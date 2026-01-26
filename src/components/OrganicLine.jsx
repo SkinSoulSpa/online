@@ -81,6 +81,16 @@ const OrganicLine = () => {
     return () => window.removeEventListener('resize', checkMobile);
   }, [isMobile]);
 
+  // Define paths based on device to ensure curves remain visible despite aspect ratio stretching
+  // Mobile needs wider X swings and more frequent Y curves to combat the tall/narrow aspect ratio
+  const mobilePath = "M50,0 C 0,50 100,100 50,150 C 0,200 100,250 50,300 C 0,350 100,400 50,450 C 0,500 100,550 50,600 C 0,650 100,700 50,750 C 0,800 100,850 50,900";
+  
+  // Desktop can be gentler
+  const desktopPath = "M50,0 C 30,100 70,200 50,300 C 30,400 70,500 50,600 C 30,700 70,800 50,900";
+
+  const currentPath = isMobile ? mobilePath : desktopPath;
+  const viewBoxHeight = 900;
+
   return (
     <div style={{
       position: 'absolute',
@@ -96,7 +106,7 @@ const OrganicLine = () => {
         ref={svgRef}
         width="100%" 
         height="100%" 
-        viewBox="0 0 100 400" 
+        viewBox={`0 0 100 ${viewBoxHeight}`}
         preserveAspectRatio="none"
         style={{ height: '100%' }}
       >
@@ -131,7 +141,7 @@ const OrganicLine = () => {
         {/* Base Line */}
         <path
           ref={pathRef}
-          d="M50,0 C30,30 80,80 50,130 C20,180 90,230 40,300 C10,350 70,380 50,450"
+          d={currentPath}
           fill="none"
           stroke="#C5B398" // Soul Gold
           strokeWidth={isMobile ? 3 : 2}
@@ -144,7 +154,7 @@ const OrganicLine = () => {
         {/* Glowing Pulse Line */}
         <path
           ref={glowPathRef}
-          d="M50,0 C30,30 80,80 50,130 C20,180 90,230 40,300 C10,350 70,380 50,450"
+          d={currentPath}
           fill="none"
           stroke="#FAF9F6" // Off-white glow
           strokeWidth={isMobile ? 2 : 1.5}
