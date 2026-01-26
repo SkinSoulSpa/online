@@ -1,7 +1,6 @@
 import React, { useRef, useEffect, useState } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import Button from './Button';
 import testImage from '../assets/test.png';
 
 if (typeof window !== 'undefined') {
@@ -146,22 +145,81 @@ const Experiences = () => {
               >
                 <div style={{
                   position: 'absolute',
-                  inset: 0,
+                  top: 0,
+                  right: 0,
+                  bottom: 0,
+                  width: '30%',
                   backgroundImage: `url(${testImage})`,
                   backgroundSize: 'cover',
                   backgroundPosition: 'center',
-                  maskImage: 'radial-gradient(ellipse at right center, black 40%, transparent 85%)',
-                  WebkitMaskImage: 'radial-gradient(ellipse at right center, black 40%, transparent 85%)',
+                  maskImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 200' preserveAspectRatio='none'%3E%3Cpath d='M100 0 L100 200 L40 200 Q0 150 40 100 T40 0 Z' fill='black'/%3E%3C/svg%3E")`,
+                  WebkitMaskImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 200' preserveAspectRatio='none'%3E%3Cpath d='M100 0 L100 200 L40 200 Q0 150 40 100 T40 0 Z' fill='black'/%3E%3C/svg%3E")`,
+                  maskSize: '100% 200%',
+                  WebkitMaskSize: '100% 200%',
+                  maskRepeat: 'repeat-y',
+                  WebkitMaskRepeat: 'repeat-y',
+                  pointerEvents: 'none',
+                  animation: 'waveFlow 8s linear infinite'
+                }}>
+                   <style>
+                    {`
+                      @keyframes waveFlow {
+                        0% { -webkit-mask-position: 0 0; mask-position: 0 0; }
+                        100% { -webkit-mask-position: 0 100%; mask-position: 0 100%; }
+                      }
+                    `}
+                  </style>
+                </div>
+                
+                {/* Hover Overlay Text */}
+                <div style={{
+                  position: 'absolute',
+                  top: 0,
+                  right: 0,
+                  bottom: 0,
+                  width: '30%',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  opacity: isHovered ? 1 : 0,
+                  transition: 'opacity 0.4s ease',
+                  zIndex: 2,
                   pointerEvents: 'none'
-                }} />
+                }}>
+                  <style>
+                    {`
+                      @keyframes goldShimmer {
+                        0% { background-position: 0% 50%; }
+                        100% { background-position: 200% 50%; }
+                      }
+                    `}
+                  </style>
+                  <span style={{
+                    fontFamily: '"Montserrat", sans-serif',
+                    fontSize: '0.9rem',
+                    letterSpacing: '0.15em',
+                    textTransform: 'uppercase',
+                    backgroundImage: 'linear-gradient(90deg, #BFA475 0%, #FFF8E7 50%, #BFA475 100%)',
+                    backgroundSize: '200% auto',
+                    color: '#BFA475',
+                    WebkitBackgroundClip: 'text',
+                    WebkitTextFillColor: 'transparent',
+                    animation: 'goldShimmer 3s linear infinite',
+                    fontWeight: 600,
+                    textShadow: '0 2px 10px rgba(0,0,0,0.1)'
+                  }}>
+                    Explore The Journeys
+                  </span>
+                </div>
+
                 {/* Card Header: Title & Subtitle/Price */}
                 <div style={{
                   position: 'relative',
                   zIndex: 1,
                   display: 'flex',
-                  flexDirection: isMobile ? 'column' : 'row',
-                  justifyContent: 'space-between',
-                  alignItems: isMobile ? 'flex-start' : 'baseline',
+                  flexDirection: 'column',
+                  justifyContent: 'flex-start',
+                  alignItems: 'flex-start',
                   marginBottom: '1.5rem'
                 }}>
                   <h3 style={{
@@ -176,24 +234,27 @@ const Experiences = () => {
                   </h3>
                   <span style={{
                     fontFamily: '"Montserrat", sans-serif',
-                    fontSize: '0.75rem',
-                    letterSpacing: '0.05em',
+                    fontSize: '0.85rem',
                     fontWeight: 500,
-                    opacity: 0.6,
-                    marginTop: isMobile ? '0.5rem' : '0',
-                    textTransform: 'uppercase'
+                    letterSpacing: '0.1em',
+                    textTransform: 'uppercase',
+                    color: '#FFFFFF',
+                    backgroundColor: '#BFA475',
+                    padding: '0.35rem 1rem',
+                    marginTop: '0.75rem',
+                    position: 'relative',
+                    display: 'inline-block',
+                    boxShadow: '0 2px 4px rgba(191, 164, 117, 0.2)'
                   }}>
                     {card.subtitle}
                   </span>
                 </div>
 
-                {/* Card Body Grid */}
+                {/* Card Body */}
                 <div style={{
-                  display: 'grid',
-                  gridTemplateColumns: isMobile ? '1fr' : '8fr 4fr', // md:col-span-8 / 4
-                  gap: '2rem',
                   position: 'relative',
-                  zIndex: 1
+                  zIndex: 1,
+                  maxWidth: isMobile ? '100%' : '65%'
                 }}>
                   {/* Text Content */}
                   <div>
@@ -223,22 +284,6 @@ const Experiences = () => {
                       <span>+ {index === 0 ? 'Deep Hydration' : index === 1 ? 'Firming Protocol' : 'Full Body & Face'}</span>
                       <span>+ {index === 0 ? 'Barrier Repair' : index === 1 ? 'Collagen Boost' : '90 Minutes'}</span>
                     </div>
-                  </div>
-
-                  {/* Button Area */}
-                  <div style={{
-                    display: 'flex',
-                    alignItems: 'flex-end',
-                    justifyContent: isMobile ? 'flex-start' : 'flex-end'
-                  }}>
-                    <Button
-                      style={{
-                        padding: '0.75rem 2rem', // slightly smaller padding for cards
-                        fontSize: '0.7rem' // slightly smaller font for cards
-                      }}
-                    >
-                      {card.cta}
-                    </Button>
                   </div>
                 </div>
 
