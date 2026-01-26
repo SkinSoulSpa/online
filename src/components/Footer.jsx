@@ -114,13 +114,5 @@ const Footer = () => {
     </footer>
   );
 };
-          opacity: 0.3,
-          margin: 0,
-          color: '#FAF9F6'
-        }}>© 2026 Skin Soul Spa</p>
-      </div>
-    </footer>
-  );
-};
 
 export default Footer;
