@@ -155,9 +155,9 @@ const TheJournal = () => {
 
           {/* Body Copy */}
           <div style={{
-            fontFamily: '"Tenor Sans", sans-serif',
-            fontSize: '0.95rem',
-            lineHeight: 1.8,
+            fontFamily: '"Cormorant Garamond", serif', // Updated to match other sections
+            fontSize: '1.25rem', // Increased size for consistency
+            lineHeight: 1.6,
             color: '#4A504D',
             marginTop: '0.5rem'
           }}>
