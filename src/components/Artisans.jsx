@@ -3,6 +3,7 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import OrganicImagePlaceholder from './OrganicImagePlaceholder';
 import Button from './Button';
+import artisansImage from '../assets/8.jpg';
 
 if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger);
@@ -144,7 +145,7 @@ const Artisans = () => {
              position: 'relative'
            }}>
               <img 
-                src="/8.jpg" 
+                src={artisansImage} 
                 alt="Artisan Team" 
                 style={{ width: '100%', height: '100%', objectFit: 'cover', position: 'absolute', top: 0, left: 0 }}
               />
