@@ -1,4 +1,5 @@
 import React from 'react';
+import Button from './Button';
 
 const Rituals = () => {
   const rituals = [
@@ -113,21 +114,14 @@ const RitualCard = ({ ritual }) => {
           </ul>
         </div>
         <div className="ritual-card-action">
-          <button style={{
-            border: '1px solid #2C332E',
-            background: isHovered ? '#2C332E' : 'transparent',
-            color: isHovered ? '#FFFFFF' : '#2C332E',
-            padding: '0.75rem 2rem',
-            borderRadius: '9999px',
-            fontSize: '0.625rem',
-            textTransform: 'uppercase',
-            letterSpacing: '0.1em',
-            cursor: 'pointer',
-            transition: 'all 0.3s ease',
-            transform: isHovered ? 'scale(1.05)' : 'scale(1)'
-          }}>
+          <Button
+            style={{
+              padding: '0.75rem 2rem',
+              fontSize: '0.625rem'
+            }}
+          >
             Book This Ritual
-          </button>
+          </Button>
         </div>
       </div>
     </div>

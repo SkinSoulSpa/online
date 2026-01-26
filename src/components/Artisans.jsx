@@ -5,6 +5,7 @@ import art1 from '../assets/art1.jpg';
 import art2 from '../assets/art2.jpg';
 import art3 from '../assets/art3.jpg';
 import OrganicImagePlaceholder from './OrganicImagePlaceholder';
+import Button from './Button';
 
 if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger);
@@ -126,26 +127,9 @@ const Artisans = () => {
             Our senior artisans—including Kelly, Freya, and Shelbee—are renowned for their gentle technique and intuitive understanding of skin health. They do not just treat the face; they nourish the soul. When you are in their hands, you are safe, heard, and deeply cared for.
           </p>
 
-          <button 
-            onMouseEnter={() => setHoveredButton(true)}
-            onMouseLeave={() => setHoveredButton(false)}
-            style={{
-              backgroundColor: hoveredButton ? '#2C332E' : 'transparent',
-              color: hoveredButton ? '#FFFFFF' : '#2C332E',
-              border: '1px solid #2C332E',
-              padding: '1rem 2.5rem',
-              borderRadius: '9999px',
-              fontFamily: '"Montserrat", sans-serif',
-              fontSize: '0.75rem',
-              textTransform: 'uppercase',
-              letterSpacing: '0.15em',
-              cursor: 'pointer',
-              transition: 'all 0.3s ease',
-              transform: hoveredButton ? 'scale(1.05)' : 'scale(1)'
-            }}
-          >
+          <Button>
             Meet The Artisans
-          </button>
+          </Button>
         </div>
 
         {/* Image Gallery - Row of 3 Portrait Images */}

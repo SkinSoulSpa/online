@@ -1,6 +1,7 @@
 import React, { useRef, useEffect, useState } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import Button from './Button';
 
 if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger);
@@ -10,7 +11,6 @@ const TheJournal = () => {
   const [isMobile, setIsMobile] = useState(() => typeof window !== 'undefined' ? window.innerWidth < 768 : false);
   const sectionRef = useRef(null);
   const contentRef = useRef(null);
-  const [hoveredButton, setHoveredButton] = useState(false);
 
   useEffect(() => {
     const checkMobile = () => setIsMobile(window.innerWidth < 768);
@@ -114,28 +114,14 @@ const TheJournal = () => {
         </div>
 
         {/* Call to Action */}
-        <a 
+        <Button 
           href="#" 
           style={{
-            display: 'inline-block',
-            marginTop: '2rem',
-            padding: '1rem 2.5rem',
-            border: '1px solid #6B5E48',
-            color: hoveredButton ? '#FFFFFF' : '#6B5E48',
-            backgroundColor: hoveredButton ? '#6B5E48' : 'transparent',
-            fontFamily: '"Tenor Sans", sans-serif',
-            fontSize: '0.9rem',
-            letterSpacing: '0.1em',
-            textDecoration: 'none',
-            textTransform: 'uppercase',
-            transition: 'all 0.3s ease',
-            cursor: 'pointer'
+            marginTop: '2rem'
           }}
-          onMouseEnter={() => setHoveredButton(true)}
-          onMouseLeave={() => setHoveredButton(false)}
         >
           Read The Journal
-        </a>
+        </Button>
       </div>
     </section>
   );

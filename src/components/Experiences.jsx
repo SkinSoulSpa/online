@@ -1,6 +1,7 @@
 import React, { useRef, useEffect, useState } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import Button from './Button';
 
 if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger);
@@ -17,7 +18,6 @@ const Experiences = () => {
   }, []);
 
   const [hoveredId, setHoveredId] = useState(null);
-  const [hoveredButtonId, setHoveredButtonId] = useState(null);
 
   useEffect(() => {
     // GSAP context for entrance animation
@@ -214,26 +214,14 @@ const Experiences = () => {
                     alignItems: 'flex-end',
                     justifyContent: isMobile ? 'flex-start' : 'flex-end'
                   }}>
-                    <button 
-                      onMouseEnter={() => setHoveredButtonId(card.id)}
-                      onMouseLeave={() => setHoveredButtonId(null)}
+                    <Button
                       style={{
-                        fontFamily: '"Montserrat", sans-serif',
-                        backgroundColor: hoveredButtonId === card.id ? '#2C332E' : 'transparent',
-                        color: hoveredButtonId === card.id ? '#FFFFFF' : '#2C332E',
-                        border: '1px solid #2C332E',
-                        padding: '0.75rem 2rem', // px-8 py-3
-                        borderRadius: '9999px', // rounded-full
-                        fontSize: '0.625rem', // text-[10px]
-                        textTransform: 'uppercase',
-                        letterSpacing: '0.1em', // tracking-widest
-                        cursor: 'pointer',
-                        transition: 'all 0.3s ease',
-                        transform: hoveredButtonId === card.id ? 'scale(1.05)' : 'scale(1)'
+                        padding: '0.75rem 2rem', // slightly smaller padding for cards
+                        fontSize: '0.7rem' // slightly smaller font for cards
                       }}
                     >
                       {card.cta}
-                    </button>
+                    </Button>
                   </div>
                 </div>
 
