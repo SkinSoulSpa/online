@@ -152,14 +152,14 @@ const Experiences = () => {
                   backgroundImage: `url(${testImage})`,
                   backgroundSize: 'cover',
                   backgroundPosition: 'center',
-                  maskImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 200' preserveAspectRatio='none'%3E%3Cpath d='M100 0 L100 200 L40 200 Q0 150 40 100 T40 0 Z' fill='black'/%3E%3C/svg%3E")`,
-                  WebkitMaskImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 200' preserveAspectRatio='none'%3E%3Cpath d='M100 0 L100 200 L40 200 Q0 150 40 100 T40 0 Z' fill='black'/%3E%3C/svg%3E")`,
+                  maskImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 200' preserveAspectRatio='none'%3E%3Cpath d='M100 0 L100 200 L25 200 Q0 175 25 150 T25 100 Q0 75 25 50 T25 0 Z' fill='black'/%3E%3C/svg%3E")`,
+                  WebkitMaskImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 200' preserveAspectRatio='none'%3E%3Cpath d='M100 0 L100 200 L25 200 Q0 175 25 150 T25 100 Q0 75 25 50 T25 0 Z' fill='black'/%3E%3C/svg%3E")`,
                   maskSize: '100% 200%',
                   WebkitMaskSize: '100% 200%',
                   maskRepeat: 'repeat-y',
                   WebkitMaskRepeat: 'repeat-y',
                   pointerEvents: 'none',
-                  animation: 'waveFlow 8s linear infinite'
+                  animation: 'waveFlow 12s linear infinite'
                 }}>
                    <style>
                     {`
@@ -234,17 +234,18 @@ const Experiences = () => {
                   </h3>
                   <span style={{
                     fontFamily: '"Montserrat", sans-serif',
-                    fontSize: '0.85rem',
+                    fontSize: '0.65rem',
                     fontWeight: 500,
                     letterSpacing: '0.1em',
                     textTransform: 'uppercase',
                     color: '#FFFFFF',
-                    backgroundColor: '#BFA475',
-                    padding: '0.35rem 1rem',
+                    backgroundColor: '#9CAFA0', // Misty Sage from brand guide
+                    padding: '0.25rem 0.75rem',
                     marginTop: '0.75rem',
                     position: 'relative',
                     display: 'inline-block',
-                    boxShadow: '0 2px 4px rgba(191, 164, 117, 0.2)'
+                    boxShadow: '0 2px 4px rgba(156, 175, 160, 0.2)',
+                    borderRadius: '4px' // Soft edges
                   }}>
                     {card.subtitle}
                   </span>
