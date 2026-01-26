@@ -15,6 +15,7 @@
             --color-bg: #FAF9F6;
             --color-text: #2C332E;
             --color-gold: #C5B398;
+            --color-antique-gold: #A89675;
             --color-sage: #9CAFA0;
             --color-sand: #E6E2DD;
             --color-bronze: #6B5E48;
@@ -262,10 +263,10 @@
             position: relative;
             display: inline-block;
             padding: 1rem 2.5rem;
-            border: 1px solid currentColor;
+            border: 1px solid var(--color-antique-gold);
             border-radius: 9999px;
             background-color: transparent;
-            color: var(--color-text);
+            color: var(--color-antique-gold);
             font-family: var(--font-display);
             font-size: 0.8rem;
             letter-spacing: 0.15em;
@@ -285,7 +286,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: var(--color-text);
+            background: linear-gradient(135deg, var(--color-antique-gold), var(--color-gold));
             transform: scaleX(0);
             transform-origin: right;
             transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
@@ -399,6 +400,15 @@
                         <h4>Soul Gold</h4>
                         <p>#C5B398</p>
                         <span class="usage-tag">Highlights</span>
+                    </div>
+                </div>
+
+                <div class="color-card">
+                    <div class="swatch" style="background: var(--color-antique-gold);"></div>
+                    <div class="color-info">
+                        <h4>Soul Antique Gold</h4>
+                        <p>#A89675</p>
+                        <span class="usage-tag">Buttons / UI</span>
                     </div>
                 </div>
 

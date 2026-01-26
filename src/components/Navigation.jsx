@@ -30,13 +30,13 @@ const Navigation = () => {
         setShimmerIndex(-1);
       }, 1500);
 
-      // Schedule next shimmer (random interval between 3s and 8s)
-      const nextDelay = 3000 + Math.random() * 5000;
+      // Schedule next shimmer (random interval between 2s and 5s)
+      const nextDelay = 2000 + Math.random() * 3000;
       timeoutId = setTimeout(triggerShimmer, nextDelay);
     };
 
     // Start loop
-    timeoutId = setTimeout(triggerShimmer, 3000);
+    timeoutId = setTimeout(triggerShimmer, 2000);
 
     return () => clearTimeout(timeoutId);
   }, []);

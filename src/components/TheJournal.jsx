@@ -3,6 +3,7 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Button from './Button';
 import art1 from '../assets/art1.jpg';
+import OrganicImagePlaceholder from './OrganicImagePlaceholder';
 
 if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger);
@@ -81,21 +82,29 @@ const TheJournal = () => {
         {/* Featured Image */}
         <div ref={imageRef} style={{
           width: '100%',
-          height: isMobile ? '300px' : '500px',
-          position: 'relative',
-          overflow: 'hidden',
-          borderRadius: '2px', // Slight soften
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center'
         }}>
-          <img 
-            src={art1} 
-            alt="The Urban Shield" 
+          <OrganicImagePlaceholder 
+            className="journal-frame"
             style={{
               width: '100%',
-              height: '100%',
-              objectFit: 'cover',
-              display: 'block'
-            }} 
-          />
+              maxWidth: '400px', // Limit width to make it smaller
+              height: isMobile ? '300px' : '400px',
+            }}
+          >
+            <img 
+              src={art1} 
+              alt="The Urban Shield" 
+              style={{
+                width: '100%',
+                height: '100%',
+                objectFit: 'cover',
+                display: 'block'
+              }} 
+            />
+          </OrganicImagePlaceholder>
         </div>
 
         {/* Text Content */}
