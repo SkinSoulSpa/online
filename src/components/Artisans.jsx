@@ -1,9 +1,6 @@
 import React, { useRef, useEffect, useState } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import art1 from '../assets/art1.jpg';
-import art2 from '../assets/art2.jpg';
-import art3 from '../assets/art3.jpg';
 import OrganicImagePlaceholder from './OrganicImagePlaceholder';
 import Button from './Button';
 
@@ -15,7 +12,7 @@ const Artisans = () => {
   const [isMobile, setIsMobile] = useState(() => typeof window !== 'undefined' ? window.innerWidth < 768 : false);
   const sectionRef = useRef(null);
   const textRef = useRef(null);
-  const imagesRef = useRef(null);
+  const imageRef = useRef(null);
   const [hoveredButton, setHoveredButton] = useState(false);
 
   useEffect(() => {
@@ -41,22 +38,22 @@ const Artisans = () => {
         }
       );
 
-      // Animate Images Stagger
-      const images = imagesRef.current.children;
-      gsap.fromTo(images,
-        { y: 100, opacity: 0 },
-        {
-          y: 0,
-          opacity: 1,
-          duration: 1.2,
-          stagger: 0.2,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: imagesRef.current,
-            start: "top 75%",
+      // Animate Single Image
+      if (imageRef.current) {
+        gsap.fromTo(imageRef.current,
+          { y: 100, opacity: 0 },
+          {
+            y: 0,
+            opacity: 1,
+            duration: 1.2,
+            ease: "power3.out",
+            scrollTrigger: {
+              trigger: imageRef.current,
+              start: "top 75%",
+            }
           }
-        }
-      );
+        );
+      }
     }, sectionRef);
 
     return () => ctx.revert();
@@ -132,65 +129,26 @@ const Artisans = () => {
           </Button>
         </div>
 
-        {/* Image Gallery - Row of 3 Portrait Images */}
-        <div ref={imagesRef} style={{
-          display: 'grid',
-          gridTemplateColumns: isMobile ? '1fr' : 'repeat(3, 1fr)',
-          gap: isMobile ? '3rem' : '2rem',
+        {/* Single Image - 16:9 Aspect Ratio */}
+        <div ref={imageRef} style={{
           width: '100%',
-          alignItems: 'start' // Align to top to allow staggering
+          display: 'flex',
+          justifyContent: 'center',
+          marginTop: '2rem'
         }}>
-          {/* Image 1 */}
-          <div style={{
-            marginTop: isMobile ? '0' : '4rem', // Stagger down
-          }}>
-             <OrganicImagePlaceholder style={{
-               width: '100%',
-               paddingBottom: '133%', // 3:4 Aspect Ratio (Portrait)
-               height: 0
-             }}>
-                <img 
-                  src={art1} 
-                  alt="Artisan Portrait" 
-                  style={{ width: '100%', height: '100%', objectFit: 'cover', position: 'absolute', top: 0, left: 0 }}
-                />
-             </OrganicImagePlaceholder>
-          </div>
-
-          {/* Image 2 */}
-          <div style={{
-            marginTop: '0', // Standard position (Higher than others)
-          }}>
-            <OrganicImagePlaceholder style={{
-               width: '100%',
-               paddingBottom: '133%', // 3:4 Aspect Ratio (Portrait)
-               height: 0
-             }}>
-                <img 
-                  src={art2} 
-                  alt="Artisan Treatment" 
-                  style={{ width: '100%', height: '100%', objectFit: 'cover', position: 'absolute', top: 0, left: 0 }}
-                />
-             </OrganicImagePlaceholder>
-          </div>
-
-           {/* Image 3 */}
-           <div style={{
-            marginTop: isMobile ? '0' : '4rem', // Stagger down
-          }}>
-            <OrganicImagePlaceholder style={{
-               width: '100%',
-               paddingBottom: '133%', // 3:4 Aspect Ratio (Portrait)
-               height: 0
-             }}>
-                <img 
-                  src={art3} 
-                  alt="Artisan Detail" 
-                  style={{ width: '100%', height: '100%', objectFit: 'cover', position: 'absolute', top: 0, left: 0 }}
-                />
-             </OrganicImagePlaceholder>
-          </div>
-
+           <OrganicImagePlaceholder style={{
+             width: '100%',
+             maxWidth: '1000px', // Limit max width for better visual
+             paddingBottom: '56.25%', // 16:9 Aspect Ratio (56.25%)
+             height: 0,
+             position: 'relative'
+           }}>
+              <img 
+                src="/8.jpg" 
+                alt="Artisan Team" 
+                style={{ width: '100%', height: '100%', objectFit: 'cover', position: 'absolute', top: 0, left: 0 }}
+              />
+           </OrganicImagePlaceholder>
         </div>
 
       </div>

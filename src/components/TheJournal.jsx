@@ -74,7 +74,7 @@ const TheJournal = () => {
         maxWidth: '1100px',
         margin: '0 auto',
         display: 'grid',
-        gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr',
+        gridTemplateColumns: isMobile ? '1fr' : '0.8fr 1.2fr', // Changed to 40% / 60%
         gap: isMobile ? '3rem' : '5rem',
         alignItems: 'center'
       }}>
@@ -90,8 +90,8 @@ const TheJournal = () => {
             className="journal-frame"
             style={{
               width: '100%',
-              maxWidth: '400px', // Limit width to make it smaller
-              height: isMobile ? '300px' : '400px',
+              maxWidth: '350px', // Reduced width
+              height: isMobile ? '300px' : '400px', // Kept height, will crop if needed or can adjust
             }}
           >
             <img 
