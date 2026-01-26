@@ -10,6 +10,7 @@ import SlowBeauty from './components/SlowBeauty';
 import OurPhilosophy from './components/OurPhilosophy';
 import Experiences from './components/Experiences';
 import Artisans from './components/Artisans';
+import TheJournal from './components/TheJournal';
 import { AudioProvider } from './context/AudioContext';
 import './styles/main.scss';
 
@@ -107,6 +108,7 @@ function App() {
           <OurPhilosophy />
           <Experiences />
           <Artisans />
+          <TheJournal />
         </main>
         
         <Footer />
