@@ -138,11 +138,25 @@ const Experiences = () => {
                   boxShadow: isHovered ? '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)' : 'none', // hover:shadow-xl
                   transition: 'all 0.5s ease',
                   cursor: 'pointer',
-                  transform: isHovered ? 'translateY(-2px)' : 'none'
+                  transform: isHovered ? 'translateY(-2px)' : 'none',
+                  position: 'relative',
+                  overflow: 'hidden'
                 }}
               >
+                <div style={{
+                  position: 'absolute',
+                  inset: 0,
+                  backgroundImage: `url(${testImage})`,
+                  backgroundSize: 'cover',
+                  backgroundPosition: 'center',
+                  maskImage: 'radial-gradient(ellipse at right center, black 40%, transparent 85%)',
+                  WebkitMaskImage: 'radial-gradient(ellipse at right center, black 40%, transparent 85%)',
+                  pointerEvents: 'none'
+                }} />
                 {/* Card Header: Title & Subtitle/Price */}
                 <div style={{
+                  position: 'relative',
+                  zIndex: 1,
                   display: 'flex',
                   flexDirection: isMobile ? 'column' : 'row',
                   justifyContent: 'space-between',
@@ -176,7 +190,9 @@ const Experiences = () => {
                 <div style={{
                   display: 'grid',
                   gridTemplateColumns: isMobile ? '1fr' : '8fr 4fr', // md:col-span-8 / 4
-                  gap: '2rem'
+                  gap: '2rem',
+                  position: 'relative',
+                  zIndex: 1
                 }}>
                   {/* Text Content */}
                   <div>
