@@ -17,7 +17,8 @@ const Footer = () => {
             letterSpacing: '0.1em',
             textTransform: 'uppercase',
             fontWeight: 400,
-            margin: 0
+            margin: 0,
+            color: '#FAF9F6' // Explicit light color
           }}>Skin Soul Spa</h4>
           <p style={{
             fontFamily: 'Montserrat, sans-serif',
@@ -40,14 +41,15 @@ const Footer = () => {
             fontSize: '0.625rem',
             letterSpacing: '0.2em',
             textTransform: 'uppercase',
-            color: '#C5B398',
+            color: '#FAF9F6', // Light color instead of gold
+            opacity: 0.7,
             margin: 0
           }}>Contact</h5>
           <p style={{
             fontFamily: 'Montserrat, sans-serif',
             fontSize: '1.125rem',
             fontStyle: 'italic',
-            opacity: 0.8,
+            opacity: 0.9,
             margin: 0,
             color: '#FAF9F6'
           }}>Orchard Road, Singapore<br/>By Reservation Only</p>
@@ -56,7 +58,8 @@ const Footer = () => {
             fontSize: '0.75rem',
             display: 'block',
             transition: 'color 0.3s',
-            color: 'inherit',
+            color: '#FAF9F6',
+            opacity: 0.8,
             textDecoration: 'none'
           }}>hello@skinsoulspa.sg</a>
         </div>
@@ -67,20 +70,23 @@ const Footer = () => {
             fontSize: '0.625rem',
             letterSpacing: '0.2em',
             textTransform: 'uppercase',
-            color: '#C5B398',
+            color: '#FAF9F6', // Light color instead of gold
+            opacity: 0.7,
             margin: 0
           }}>Connect</h5>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
             <a href="#" style={{
               fontFamily: 'Montserrat, sans-serif',
               fontSize: '0.75rem',
-              color: 'inherit',
+              color: '#FAF9F6',
+              opacity: 0.8,
               textDecoration: 'none'
             }}>Instagram</a>
             <a href="#" style={{
               fontFamily: 'Montserrat, sans-serif',
               fontSize: '0.75rem',
-              color: 'inherit',
+              color: '#FAF9F6',
+              opacity: 0.8,
               textDecoration: 'none'
             }}>Facebook</a>
           </div>
@@ -98,6 +104,16 @@ const Footer = () => {
           fontSize: '0.625rem',
           textTransform: 'uppercase',
           letterSpacing: '0.1em',
+          color: '#FAF9F6',
+          opacity: 0.4,
+          margin: 0
+        }}>
+          © {new Date().getFullYear()} Skin Soul Spa. All Rights Reserved.
+        </p>
+      </div>
+    </footer>
+  );
+};
           opacity: 0.3,
           margin: 0,
           color: '#FAF9F6'

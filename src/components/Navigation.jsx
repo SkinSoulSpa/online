@@ -71,7 +71,7 @@ const Navigation = () => {
         top: 0,
         left: 0,
         width: '100%',
-        padding: '2.5rem 4rem', // Will override with media query in CSS if needed, but flex gap handles most
+        // Padding handled by CSS .responsive-nav
         display: 'flex',
         justifyContent: 'space-between',
         alignItems: 'center',

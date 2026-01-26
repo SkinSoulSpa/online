@@ -130,12 +130,23 @@ a, button {
 
     &::after {
       left: 200%;
-      transition: left 1.5s ease 0.1s; /* Slower shimmer (was 0.8s) */
+      transition: left 2.0s ease 0.1s; /* Slower shimmer (was 1.5s) */
     }
   }
 }
 
 /* Navigation Visibility Control */
+.responsive-nav {
+  padding: 2.5rem 4rem !important;
+  transition: padding 0.3s ease;
+}
+
+@media (max-width: 768px) {
+  .responsive-nav {
+    padding: 1.5rem 1.5rem !important;
+  }
+}
+
 .desktop-menu {
   display: flex !important; /* Enforce flex for desktop layout */
 }
@@ -185,7 +196,6 @@ a, button {
   width: 100%;
   position: relative;
   z-index: 10;
-  // margin-top: -6rem; /* Removed overlap for solid block */
 }
 
 .footer-section > * {
