@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skin Soul Spa | The Illuminated Sanctuary</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Manrope:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Config -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'soul-white': '#FFFFFF',
+                        'soul-ivory': '#FAF9F6',
+                        'soul-cream': '#F0EFEB',
+                        'soul-sage': '#9CAFA0',
+                        'soul-text': '#2C332E',
+                        'soul-gold': '#BFA475',
+                    },
+                    fontFamily: {
+                        serif: ['"Cormorant Garamond"', 'serif'],
+                        sans: ['"Manrope"', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* --- BASE --- */
+        body {
+            background-color: #FAF9F6;
+            color: #2C332E;
+            overflow-x: hidden;
+            cursor: default; 
+            opacity: 1; /* Ensure body is visible */
+        }
+
+        /* --- SVG LIQUID FILTER --- */
+        .liquid-text { filter: url(#liquidFilter); will-change: filter; }
+
+        /* --- MASKS --- */
+        .soft-edge-video {
+            -webkit-mask-image: radial-gradient(circle at center, black 60%, transparent 100%);
+            mask-image: radial-gradient(circle at center, black 60%, transparent 100%);
+        }
+        .steam-mask {
+            -webkit-mask-image: radial-gradient(circle at center, black 50%, transparent 90%);
+            mask-image: radial-gradient(circle at center, black 50%, transparent 90%);
+        }
+
+        /* --- PRELOADER FAILSAFE --- */
+        /* This animation ensures the loader disappears even if JS fails */
+        @keyframes forceHide {
+            0% { opacity: 1; visibility: visible; }
+            90% { opacity: 0; visibility: visible; }
+            100% { opacity: 0; visibility: hidden; }
+        }
+        #loader {
+            animation: forceHide 0.5s ease-in-out forwards;
+            animation-delay: 3.5s; /* Wait 3.5s then force hide */
+        }
+        /* JS will add this class to hide it smoother/faster */
+        #loader.loaded {
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.8s ease;
+            animation: none; /* Cancel failsafe if JS works */
+        }
+
+        /* --- UTILS --- */
+        .fade-up { transform: translateY(0); opacity: 1; } /* Default visible */
+        
+        html.lenis, html.lenis body { height: auto; }
+        .lenis.lenis-smooth { scroll-behavior: auto !important; }
+    </style>
+</head>
+<body class="antialiased font-serif bg-soul-ivory selection:bg-soul-gold selection:text-white">
+
+    <!-- GLOBAL SVG FILTER -->
+    <svg style="display: none;">
+        <defs>
+            <filter id="liquidFilter">
+                <feTurbulence type="fractalNoise" baseFrequency="0.01 0.001" numOctaves="1" result="warp" id="liquidTurbulence" />
+                <feDisplacementMap xChannelSelector="R" yChannelSelector="G" scale="0" in="SourceGraphic" in2="warp" id="liquidDisplacement" />
+            </filter>
+        </defs>
+    </svg>
+
+    <!-- AUDIO ENGINE -->
+    <audio id="audio-ambience" loop>
+        <!-- Fallback loop -->
+        <source src="https://cdn.pixabay.com/audio/2022/08/02/audio_884fe92c21.mp3" type="audio/mpeg">
+    </audio>
+    <button id="sound-toggle" class="fixed bottom-8 right-8 z-50 flex items-center gap-3 group translate-y-4 transition-all duration-1000 cursor-pointer opacity-0 js-show">
+        <span id="sound-label" class="text-[10px] font-sans uppercase tracking-[0.2em] text-soul-gold group-hover:text-soul-text transition-colors">Sound On</span>
+        <div class="w-8 h-8 rounded-full border border-soul-gold flex items-center justify-center group-hover:bg-soul-gold group-hover:text-white transition-colors">
+            <i data-lucide="volume-2" class="w-3 h-3"></i>
+        </div>
+    </button>
+
+    <!-- PRELOADER -->
+    <div id="loader" class="fixed inset-0 bg-soul-white z-[9999] flex flex-col items-center justify-center transition-all">
+        <h1 class="font-serif text-4xl text-soul-text italic tracking-widest animate-pulse">Exhale.</h1>
+    </div>
+
+    <!-- NAV -->
+    <nav class="fixed top-0 w-full p-6 md:p-8 flex justify-between items-center z-40 bg-gradient-to-b from-soul-ivory/95 to-transparent backdrop-blur-[2px]">
+        <div class="text-xs tracking-[0.25em] font-sans uppercase text-soul-text font-bold cursor-pointer">Skin Soul Spa</div>
+        <button class="bg-soul-text text-soul-ivory px-6 py-3 rounded-full text-[10px] font-sans uppercase tracking-widest hover:bg-soul-gold transition-colors shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 duration-300">
+            Book Appointment
+        </button>
+    </nav>
+
+    <main>
+
+        <!-- HERO SECTION -->
+        <header class="relative h-screen w-full flex items-center justify-center overflow-hidden bg-soul-cream">
+            <!-- Background Video -->
+            <div class="absolute inset-0 z-0">
+                <video autoplay muted loop playsinline class="w-full h-full object-cover opacity-60">
+                    <source src="https://videos.pexels.com/video-files/6647683/6647683-uhd_2560_1440_25fps.mp4" type="video/mp4">
+                </video>
+                <div class="absolute inset-0 bg-white/40 mix-blend-overlay"></div>
+                <div class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-soul-ivory"></div>
+            </div>
+
+            <div class="relative z-10 text-center px-6 mt-12">
+                <p class="font-sans text-[10px] tracking-[0.4em] uppercase mb-6 text-soul-gold fade-up">Orchard's Hidden Gem</p>
+                
+                <h1 class="font-serif text-6xl md:text-9xl text-soul-text leading-[0.9] liquid-text fade-up select-none" id="hero-heading">
+                    Illuminated <br> <span class="italic font-light text-soul-sage">Sanctuary</span>
+                </h1>
+
+                <div class="mt-12 max-w-md mx-auto fade-up">
+                    <p class="font-sans text-xs tracking-wide leading-relaxed text-soul-text/70 mb-8">
+                        No ticking clocks. No ringing phones. <br>Just a bubble of tranquillity where time is suspended.
+                    </p>
+                    <a href="#rituals" class="inline-block border-b border-soul-text pb-1 text-xs uppercase tracking-widest hover:text-soul-gold hover:border-soul-gold transition-colors">
+                        Discover the Rituals
+                    </a>
+                </div>
+            </div>
+        </header>
+
+        <!-- VALUE PROPOSITION -->
+        <section class="py-24 md:py-32 px-6 md:px-20 bg-soul-ivory relative z-10">
+            <div class="max-w-5xl mx-auto">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+                    
+                    <!-- Text -->
+                    <div>
+                        <h2 class="font-serif text-4xl md:text-5xl text-soul-text leading-tight mb-8">
+                            Why this is an <br><span class="italic text-soul-gold">act of self-reverence</span>.
+                        </h2>
+                        <div class="w-16 h-[1px] bg-soul-text/20 mb-8"></div>
+                        <p class="font-sans text-sm text-soul-text/60 leading-loose mb-6">
+                            You aren't just paying for cleaner skin. You are investing in a rare pause. A $300 session at Skin Soul is a deliberate rejection of the "rush."
+                        </p>
+                        <p class="font-sans text-sm text-soul-text/60 leading-loose">
+                            We compete with hotel spas by offering what they cannot: <strong class="text-soul-text font-medium">Genuine intimacy.</strong> We book 30-minute buffers between clients so you never feel hurried, and you never see another soul.
+                        </p>
+                    </div>
+
+                    <!-- Visual -->
+                    <div class="relative aspect-[4/5] overflow-hidden rounded-t-[10rem] bg-gray-200">
+                        <video autoplay muted loop playsinline class="w-full h-full object-cover opacity-90">
+                            <source src="https://videos.pexels.com/video-files/5465969/5465969-uhd_2560_1440_24fps.mp4" type="video/mp4">
+                        </video>
+                        <div class="absolute bottom-6 left-6 bg-white/90 backdrop-blur px-4 py-2 rounded-full shadow-sm">
+                            <span class="font-sans text-[10px] tracking-widest uppercase text-soul-text">Private Sanctuary</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- STEAM REVEAL -->
+        <section class="relative py-24 bg-soul-cream overflow-hidden">
+            <div class="relative z-20 text-center mb-12">
+                <span class="text-soul-gold font-sans text-[10px] tracking-[0.3em] uppercase block mb-4">The Feeling</span>
+                <h3 class="font-serif text-5xl text-soul-text">Clarity Restored</h3>
+            </div>
+
+            <div class="relative w-full h-[70vh] flex items-center justify-center">
+                <div class="steam-mask w-[90%] md:w-[60%] h-full relative overflow-hidden bg-white rounded-t-[20rem] shadow-2xl">
+                    <video autoplay muted loop playsinline class="steam-video absolute inset-0 w-full h-full object-cover scale-110 grayscale-[10%] opacity-90">
+                        <source src="https://videos.pexels.com/video-files/3752538/3752538-uhd_2560_1440_25fps.mp4" type="video/mp4">
+                    </video>
+                    <div class="steam-overlay absolute inset-0 bg-white/70 backdrop-blur-[12px] transition-all duration-[2000ms] ease-out pointer-events-none z-10"></div>
+                    <div class="absolute bottom-12 left-0 w-full text-center z-20 pointer-events-none">
+                        <p class="steam-caption font-sans text-white text-[10px] tracking-[0.3em] uppercase opacity-0 translate-y-4 drop-shadow-md bg-black/10 inline-block px-4 py-1 rounded-full backdrop-blur-sm">
+                            Scroll to clear the mind
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- STICKY SENSORY SCROLL -->
+        <!-- Fixed height ensures content is visible -->
+        <section class="relative bg-soul-ivory h-[300vh]" id="atmosphere">
+            <div class="sticky top-0 h-screen w-full flex flex-col md:flex-row overflow-hidden">
+                
+                <!-- Left: Text -->
+                <div class="w-full md:w-1/2 h-full flex flex-col justify-center px-8 md:px-24 z-20 relative bg-soul-ivory/90 md:bg-transparent">
+                    <span class="text-soul-gold font-sans text-[10px] tracking-[0.3em] uppercase block mb-6">The Atmosphere</span>
+                    
+                    <!-- Text 1 (Active by default) -->
+                    <div class="sensory-text absolute transition-opacity duration-700 opacity-100" data-step="1">
+                        <h2 class="font-serif text-5xl md:text-6xl text-soul-text mb-6">A Symphony <br> <span class="italic text-soul-sage">of Silence</span></h2>
+                        <p class="font-sans text-sm text-soul-text/70 leading-loose max-w-md">
+                            The world is loud. Here, we curate the quiet. Heavy curtains, sound-absorbing linens, and a purposeful absence of chatter create a rare void.
+                        </p>
+                    </div>
+
+                    <!-- Text 2 -->
+                    <div class="sensory-text absolute transition-opacity duration-700 opacity-0" data-step="2">
+                        <h2 class="font-serif text-5xl md:text-6xl text-soul-text mb-6">Texture <br> <span class="italic text-soul-sage">of Luxury</span></h2>
+                        <p class="font-sans text-sm text-soul-text/70 leading-loose max-w-md">
+                            We reject the sterile. Everything that touches your skin—from the heated bed linens to the bamboo face towels—is chosen for its weight and softness.
+                        </p>
+                    </div>
+
+                    <!-- Text 3 -->
+                    <div class="sensory-text absolute transition-opacity duration-700 opacity-0" data-step="3">
+                        <h2 class="font-serif text-5xl md:text-6xl text-soul-text mb-6">Essence <br> <span class="italic text-soul-sage">of Nature</span></h2>
+                        <p class="font-sans text-sm text-soul-text/70 leading-loose max-w-md">
+                            A subtle, signature blend of Sage and White Tea greets you. It is not a perfume, but a grounding atmosphere that signals: "You are safe here."
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Right: Visuals -->
+                <div class="absolute inset-0 md:relative md:w-1/2 h-full z-10 bg-soul-cream">
+                    <!-- Visual 1 -->
+                    <div class="sensory-visual absolute inset-0 transition-opacity duration-1000 opacity-100" data-step="1">
+                        <video autoplay muted loop playsinline class="w-full h-full object-cover soft-edge-video grayscale-[20%]">
+                            <source src="https://videos.pexels.com/video-files/3205626/3205626-uhd_2560_1440_25fps.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                    <!-- Visual 2 -->
+                    <div class="sensory-visual absolute inset-0 transition-opacity duration-1000 opacity-0" data-step="2">
+                        <video autoplay muted loop playsinline class="w-full h-full object-cover soft-edge-video grayscale-[10%]">
+                            <source src="https://videos.pexels.com/video-files/7247348/7247348-uhd_2560_1440_25fps.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                    <!-- Visual 3 -->
+                    <div class="sensory-visual absolute inset-0 transition-opacity duration-1000 opacity-0" data-step="3">
+                        <video autoplay muted loop playsinline class="w-full h-full object-cover soft-edge-video grayscale-[10%]">
+                            <source src="https://videos.pexels.com/video-files/6647683/6647683-uhd_2560_1440_25fps.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- MENU -->
+        <section id="rituals" class="py-32 px-6 bg-soul-ivory text-soul-text border-t border-soul-sage/10 relative z-20">
+            <div class="max-w-5xl mx-auto">
+                <div class="mb-20 text-center md:text-left">
+                    <h2 class="font-serif text-5xl md:text-6xl">Curated Rituals</h2>
+                    <p class="font-sans text-xs tracking-widest uppercase mt-6 text-soul-gold">An Investment in Well-being</p>
+                </div>
+
+                <div class="space-y-4">
+                    <!-- Card 1 -->
+                    <div class="group bg-white p-8 md:p-12 border border-transparent hover:border-soul-gold/30 transition-all duration-500 hover:shadow-xl rounded-2xl cursor-pointer">
+                        <div class="flex flex-col md:flex-row justify-between items-start md:items-baseline mb-6">
+                            <h3 class="font-serif text-3xl md:text-4xl italic text-soul-text group-hover:text-soul-gold transition-colors">The Soul Awakening</h3>
+                            <span class="font-sans text-sm font-semibold mt-2 md:mt-0 opacity-40">$320 SGD</span>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-12 gap-8">
+                            <div class="md:col-span-8">
+                                <p class="font-sans text-sm leading-loose opacity-70 mb-6">
+                                    <strong>For the tired professional.</strong> This isn't just a facial; it's a reset button for your nervous system. Deep lymphatic drainage meets enzymatic exfoliation.
+                                </p>
+                                <ul class="font-sans text-xs tracking-wide opacity-50 space-y-2 uppercase">
+                                    <li>+ 90 Minutes of hands-on care</li>
+                                    <li>+ Scalp massage that halts time</li>
+                                </ul>
+                            </div>
+                            <div class="md:col-span-4 flex items-end justify-end">
+                                <button class="border border-soul-text px-8 py-3 rounded-full text-[10px] uppercase tracking-widest hover:bg-soul-text hover:text-white transition-all transform hover:scale-105 duration-300">
+                                    Book This Ritual
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 2 -->
+                    <div class="group bg-white p-8 md:p-12 border border-transparent hover:border-soul-gold/30 transition-all duration-500 hover:shadow-xl rounded-2xl cursor-pointer">
+                        <div class="flex flex-col md:flex-row justify-between items-start md:items-baseline mb-6">
+                            <h3 class="font-serif text-3xl md:text-4xl italic text-soul-text group-hover:text-soul-gold transition-colors">The Deep Restoration</h3>
+                            <span class="font-sans text-sm font-semibold mt-2 md:mt-0 opacity-40">$420 SGD</span>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-12 gap-8">
+                            <div class="md:col-span-8">
+                                <p class="font-sans text-sm leading-loose opacity-70 mb-6">
+                                    <strong>For total burnout recovery.</strong> A full sensory immersion using Cryo-therapy cooling and heated linens. You will leave looking rested, not just treated.
+                                </p>
+                                <ul class="font-sans text-xs tracking-wide opacity-50 space-y-2 uppercase">
+                                    <li>+ 120 Minutes of total surrender</li>
+                                    <li>+ Cryo-Sculpting tools included</li>
+                                </ul>
+                            </div>
+                            <div class="md:col-span-4 flex items-end justify-end">
+                                <button class="border border-soul-text px-8 py-3 rounded-full text-[10px] uppercase tracking-widest hover:bg-soul-text hover:text-white transition-all transform hover:scale-105 duration-300">
+                                    Book This Ritual
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FOOTER -->
+        <footer class="bg-soul-text text-soul-ivory py-32 px-6 relative z-20">
+            <div class="max-w-4xl mx-auto text-center">
+                <p class="font-sans text-[10px] tracking-[0.3em] uppercase mb-8 text-soul-gold">Begin your journey</p>
+                <h2 class="font-serif text-6xl md:text-8xl italic mb-12">
+                    Surrender <br> to the <span class="text-soul-sage">Silence</span>.
+                </h2>
+                
+                <button class="inline-block bg-soul-ivory text-soul-text px-12 py-5 rounded-full text-xs uppercase tracking-[0.2em] hover:bg-soul-gold hover:text-white transition-all duration-500 hover:scale-105 shadow-2xl">
+                    Reserve Appointment
+                </button>
+
+                <div class="mt-24 grid grid-cols-1 md:grid-cols-3 gap-8 text-xs font-sans opacity-60">
+                    <div>Orchard Road, Singapore</div>
+                    <div>hello@skinsoulspa.sg</div>
+                    <div>+65 9123 4567</div>
+                </div>
+            </div>
+        </footer>
+
+    </main>
+
+    <!-- SCRIPTS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://unpkg.com/@studio-freight/lenis@1.0.29/dist/lenis.min.js"></script>
+
+    <script>
+        // --- SAFE INITIALIZATION ---
+        document.addEventListener('DOMContentLoaded', () => {
+            lucide.createIcons();
+            
+            // 1. Force loader removal if JS works
+            const loader = document.getElementById('loader');
+            if(loader) {
+                setTimeout(() => {
+                    loader.classList.add('loaded');
+                    // Reveal animations trigger after loader is gone
+                    initAnimations(); 
+                }, 1500);
+            }
+
+            // 2. Audio Setup
+            initAudio();
+        });
+
+        function initAudio() {
+            const btn = document.getElementById('sound-toggle');
+            if(btn) {
+                // Show button after load
+                setTimeout(() => btn.classList.remove('opacity-0'), 2500);
+
+                const audio = document.getElementById('audio-ambience');
+                const label = document.getElementById('sound-label');
+                let playing = false;
+                audio.volume = 0;
+
+                btn.addEventListener('click', () => {
+                    if(!playing) {
+                        audio.play().catch(e => console.log("Audio play failed", e));
+                        gsap.to(audio, { volume: 0.2, duration: 2 });
+                        label.innerText = "Sound Off";
+                        playing = true;
+                    } else {
+                        gsap.to(audio, { volume: 0, duration: 1.5, onComplete: () => {
+                            audio.pause();
+                            label.innerText = "Sound On";
+                        }});
+                        playing = false;
+                    }
+                });
+            }
+        }
+
+        function initAnimations() {
+            if (typeof gsap === 'undefined') return;
+            gsap.registerPlugin(ScrollTrigger);
+
+            // A. SMOOTH SCROLL
+            const lenis = new Lenis({
+                duration: 1.2,
+                easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+                smooth: true,
+            });
+            function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
+            requestAnimationFrame(raf);
+
+            // B. HERO REVEALS (Using from() so elements are visible if JS fails)
+            gsap.from('.fade-up', {
+                y: 30,
+                opacity: 0,
+                duration: 1.5,
+                stagger: 0.2,
+                ease: "power3.out"
+            });
+
+            // C. LIQUID TEXT (SVG)
+            const displacement = document.querySelector('#liquidDisplacement');
+            const heroText = document.querySelector('#hero-heading');
+            if(displacement && heroText) {
+                heroText.addEventListener('mousemove', () => {
+                    gsap.to(displacement, { attr: { scale: 50 }, duration: 0.5 });
+                });
+                heroText.addEventListener('mouseleave', () => {
+                    gsap.to(displacement, { attr: { scale: 0 }, duration: 1, ease: "elastic.out(1, 0.3)" });
+                });
+            }
+
+            // D. STEAM REVEAL
+            const steamSection = document.querySelector('.steam-mask');
+            const steamOverlay = document.querySelector('.steam-overlay');
+            const steamCaption = document.querySelector('.steam-caption');
+            const steamVideo = document.querySelector('.steam-video');
+
+            if(steamSection) {
+                gsap.to(steamVideo, {
+                    yPercent: 15,
+                    ease: "none",
+                    scrollTrigger: { trigger: steamSection, start: "top bottom", end: "bottom top", scrub: true }
+                });
+
+                ScrollTrigger.create({
+                    trigger: steamSection,
+                    start: "top 60%", 
+                    onEnter: () => {
+                        steamOverlay.style.backdropFilter = "blur(0px)";
+                        steamOverlay.style.backgroundColor = "transparent";
+                        gsap.to(steamCaption, { opacity: 1, y: 0, duration: 1.5, delay: 0.4 });
+                    },
+                    onLeaveBack: () => {
+                        steamOverlay.style.backdropFilter = "blur(12px)";
+                        steamOverlay.style.backgroundColor = "rgba(255, 255, 255, 0.6)";
+                        gsap.to(steamCaption, { opacity: 0, y: 10, duration: 0.5 });
+                    }
+                });
+            }
+
+            // E. STICKY SENSORY LOGIC
+            const stickySection = document.getElementById('atmosphere');
+            if(stickySection) {
+                const steps = [1, 2, 3];
+                
+                steps.forEach(step => {
+                    ScrollTrigger.create({
+                        trigger: stickySection,
+                        start: () => {
+                            if(step === 1) return "top top"; 
+                            if(step === 2) return "33% top";
+                            return "66% top";
+                        }, 
+                        end: "+=100%",
+                        onEnter: () => activateStep(step),
+                        onEnterBack: () => activateStep(step),
+                    });
+                });
+
+                function activateStep(step) {
+                    document.querySelectorAll('.sensory-text').forEach(el => el.style.opacity = 0);
+                    document.querySelectorAll('.sensory-visual').forEach(el => el.style.opacity = 0);
+                    
+                    const currentText = document.querySelector(`.sensory-text[data-step="${step}"]`);
+                    const currentVisual = document.querySelector(`.sensory-visual[data-step="${step}"]`);
+                    
+                    if(currentText) currentText.style.opacity = 1;
+                    if(currentVisual) currentVisual.style.opacity = 1;
+                }
+            }
+        }
+    </script>
+</body>
+</html>

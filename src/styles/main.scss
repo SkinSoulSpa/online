@@ -1,0 +1,461 @@
+@use "sass:color";
+
+// Variables - Misty Dream Palette
+$color-bg: #FAF9F6; // Soul Ivory
+$color-text: #2C332E; // Soul Deep Green
+$color-accent: #C5B398; // Soul Gold
+$color-accent-hover: #E6D8A0;
+$color-mist: rgba(255, 255, 255, 0.8);
+$color-sage: #9CAFA0;
+$color-sand: #E6E2DD;
+
+$font-serif: "Montserrat", sans-serif;
+$font-sans: "Montserrat", sans-serif;
+
+:root {
+  font-family: $font-sans;
+  line-height: 1.6;
+  font-weight: 300;
+  color: $color-text;
+  background-color: $color-bg;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  overflow-x: hidden; /* Prevent horizontal scroll globally */
+}
+
+body {
+  min-height: 100vh;
+  background: $color-bg;
+  transition: background-color 0.5s ease;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: $font-serif;
+  font-weight: 400;
+  margin: 0;
+  color: $color-text;
+}
+
+p {
+  margin-bottom: 1.5rem;
+  opacity: 0.9;
+  color: color.adjust($color-text, $lightness: 10%);
+}
+
+a, button {
+  text-decoration: none;
+  color: inherit;
+  transition: all 0.3s ease;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+// Responsive Mixins
+@mixin mobile {
+  @media (max-width: 768px) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media (max-width: 1024px) {
+    @content;
+  }
+}
+
+// Utility classes for responsiveness
+.responsive-padding {
+  padding: 8rem 4rem;
+  
+  @include mobile {
+    padding: 4rem 1.5rem;
+  }
+}
+
+.hero-text-container {
+  position: absolute;
+  bottom: 4rem;
+  left: 4rem;
+  z-index: 10;
+  text-align: left;
+  padding: 0;
+  width: auto;
+  max-width: 600px;
+
+  @include mobile {
+    bottom: 2rem;
+    left: 1.5rem;
+    right: 1.5rem; // Ensure it doesn't overflow
+    max-width: none;
+  }
+}
+
+.sanctuary-section {
+  padding: 0 10%;
+  justify-content: flex-end;
+
+  @include mobile {
+    padding: 0 1.5rem;
+    justify-content: flex-end; // Keep aligned to bottom/end but with less padding
+  }
+}
+
+.rituals-section {
+  padding: 8rem 1.5rem;
+  background-color: $color-bg;
+  color: $color-text;
+  border-top: 1px solid rgba(156, 175, 160, 0.1);
+  position: relative;
+  z-index: 20;
+
+  @include mobile {
+    padding: 4rem 1.5rem;
+  }
+}
+
+.ritual-card {
+  background-color: #FFFFFF;
+  padding: 3rem;
+  border: 1px solid transparent;
+  border-radius: 1rem;
+  cursor: pointer;
+  transition: all 0.5s ease;
+
+  @include mobile {
+    padding: 2rem 1.5rem;
+  }
+
+  &.hovered {
+    border-color: rgba(197, 179, 152, 0.3);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  }
+}
+
+.ritual-card-content {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+
+  @include mobile {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+}
+
+.ritual-card-action {
+  flex: 1;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+
+  @include mobile {
+    justify-content: flex-start;
+    margin-top: 1rem;
+  }
+}
+
+.cta-section {
+  background-color: $color-text;
+  color: $color-bg;
+  padding: 8rem 1.5rem;
+  position: relative;
+  z-index: 20;
+  text-align: center;
+
+  @include mobile {
+    padding: 5rem 1.5rem;
+  }
+}
+
+.footer-section {
+  background-color: $color-text;
+  color: $color-bg;
+  padding: 6rem 1.5rem;
+  width: 100%;
+  position: relative;
+  z-index: 10;
+  box-sizing: border-box; // Ensure padding doesn't overflow width
+
+  @include mobile {
+    padding: 4rem 1.5rem;
+  }
+}
+
+// Mobile Menu Styles
+.mobile-menu-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(250, 249, 246, 0.98);
+  backdrop-filter: blur(10px);
+  z-index: 99;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.5s ease;
+
+  &.open {
+    opacity: 1;
+    pointer-events: all;
+  }
+}
+
+.hamburger-btn {
+  display: none;
+  z-index: 101;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 0.5rem;
+  
+  @include mobile {
+    display: block;
+  }
+}
+
+.desktop-menu {
+  display: flex;
+  
+  @include mobile {
+    display: none !important;
+  }
+}
+
+
+.generic-section {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  z-index: 10;
+  padding: 6rem 10%;
+  box-sizing: border-box;
+
+  @include mobile {
+    padding: 4rem 1.5rem;
+    min-height: auto !important; // Override min-height on mobile if needed, or keep it
+  }
+}
+
+.quote-section {
+  padding: 8rem 1.5rem; // Adjusted horizontal padding for mobile safety
+  text-align: center;
+  position: relative;
+  width: 100%;
+  box-sizing: border-box;
+
+  @include mobile {
+    padding: 4rem 1.5rem;
+  }
+}
+
+.absolute-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+// Shimmer Effect - Elegant & Slow
+@keyframes shimmer {
+  0% {
+    background-position: 100% center;
+  }
+  100% {
+    background-position: -100% center;
+  }
+}
+
+.shimmer-text {
+  // Broader, softer gradient with lower opacity gold for subtlety
+  background: linear-gradient(
+    120deg, 
+    $color-text 40%, 
+    rgba(197, 179, 152, 0.5) 50%, 
+    $color-text 60%
+  );
+  background-size: 300% auto; // Larger size creates a "pause" effect
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  
+  // Significantly slower duration (8s) with smooth easing
+  animation: shimmer 8s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  display: inline-block;
+  
+  // Fallback
+  color: $color-text;
+}
+
+// Custom Scrollbar
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: $color-bg;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(90, 106, 95, 0.2); // Sage tint
+  border-radius: 3px;
+}
+
+// Organic Morph Animation
+@keyframes morph {
+  0% {
+    border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+  }
+  50% {
+    border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%;
+  }
+  100% {
+    border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+  }
+}
+
+.organic-shape {
+  animation: morph 8s ease-in-out infinite;
+  transition: all 1s ease-in-out;
+}
+
+/* Experiences Section Visuals */
+.experience-visual {
+  background-color: #F0EFEB; /* Fallback */
+  transition: all 0.6s ease;
+  
+  .visual-content {
+    position: absolute;
+    inset: 0;
+    transition: all 0.8s ease;
+  }
+  
+  .visual-overlay {
+    position: absolute;
+    inset: 0;
+    background: transparent;
+    transition: all 0.6s ease;
+    opacity: 0;
+  }
+}
+
+/* Card 1: Restoration (Water/Cream Texture) */
+.experience-visual.restoration {
+  background: #E8ECE9; /* Light Sage base */
+  
+  .visual-content {
+    background-image: 
+      radial-gradient(circle at 50% 50%, rgba(255,255,255,0.8) 0%, transparent 60%),
+      repeating-radial-gradient(circle at 50% 50%, #9CAFA0 0%, #E8ECE9 10%, #9CAFA0 20%);
+    opacity: 0.3;
+    transform: scale(1.2);
+    filter: blur(1px);
+  }
+
+  &:hover {
+    .visual-content {
+      filter: blur(8px); /* Smooths out */
+      transform: scale(1.0);
+      opacity: 0.2;
+    }
+    background: #D8E0D9;
+  }
+}
+
+/* Card 2: Transformation (Light/Prism) */
+.experience-visual.transformation {
+  background: #FAF5E6; /* Champagne base */
+  overflow: hidden;
+
+  .visual-content {
+    background: linear-gradient(135deg, rgba(255,255,255,0) 30%, rgba(255,255,255,0.8) 50%, rgba(255,255,255,0) 70%);
+    width: 200%;
+    height: 200%;
+    top: -50%;
+    left: -50%;
+    transform: rotate(0deg);
+    opacity: 0.4;
+  }
+
+  &:hover {
+    .visual-content {
+      opacity: 0.8;
+      transform: rotate(15deg) scale(1.1); /* Light shift */
+    }
+    box-shadow: 0 0 30px rgba(247, 231, 206, 0.4);
+  }
+}
+
+/* Card 3: The Signature (Breathing/Warmth) */
+.experience-visual.signature {
+  background: #E6DFD6; /* Deep Ivory/Bronze base */
+  
+  .visual-content {
+    background: radial-gradient(circle, #BFA475 0%, transparent 70%);
+    opacity: 0.1;
+    transform: scale(0.8);
+  }
+
+  &:hover {
+    .visual-content {
+      transform: scale(1.2); /* Breathing in */
+      opacity: 0.2;
+      transition: transform 4s ease-in-out, opacity 4s ease-in-out;
+    }
+    background: #E0D6C8;
+  }
+}
+
+/* Experience Cards Interaction */
+.experience-card:hover {
+  box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+  transform: translateY(-5px);
+  border-color: rgba(197, 179, 152, 0.6) !important;
+  
+  .experience-image {
+    transform: scale(1.05);
+  }
+  
+  .experience-overlay {
+    opacity: 1 !important;
+  }
+  
+  .cta-link {
+    color: #C5B398 !important;
+    border-bottom-color: #C5B398 !important;
+  }
+}
+
+/* Card 1: Restoration Hover */
+.experience-card.restoration:hover .experience-image {
+  filter: blur(2px) brightness(1.1); /* Softening effect */
+  transform: scale(1.05);
+}
+
+/* Card 2: Transformation Hover */
+.experience-card.transformation:hover .experience-image {
+  filter: brightness(1.2) contrast(1.1); /* Glowing effect */
+  transform: scale(1.1);
+}
+
+/* Card 3: Signature Hover */
+.experience-card.signature:hover .experience-image {
+  transform: scale(1.15); /* Deep breathing zoom */
+  transition: transform 3s ease-in-out;
+}
