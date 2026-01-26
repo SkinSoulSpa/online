@@ -6,6 +6,7 @@ const Navigation = () => {
   const navRef = useRef(null);
   const { playHoverSound } = useAudio();
   const [isOpen, setIsOpen] = useState(false);
+  const [shimmerIndex, setShimmerIndex] = useState(-1);
 
   const menuItems = [
     { label: "The Sanctuary" },
@@ -14,6 +15,31 @@ const Navigation = () => {
     { label: "Journal" },
     { label: "Reservations" }
   ];
+
+  // Random autonomous shimmer effect
+  useEffect(() => {
+    let timeoutId;
+    
+    const triggerShimmer = () => {
+      // Pick a random item
+      const randomIndex = Math.floor(Math.random() * menuItems.length);
+      setShimmerIndex(randomIndex);
+
+      // Reset after animation completes (1.5s matches CSS transition)
+      setTimeout(() => {
+        setShimmerIndex(-1);
+      }, 1500);
+
+      // Schedule next shimmer (random interval between 3s and 8s)
+      const nextDelay = 3000 + Math.random() * 5000;
+      timeoutId = setTimeout(triggerShimmer, nextDelay);
+    };
+
+    // Start loop
+    timeoutId = setTimeout(triggerShimmer, 3000);
+
+    return () => clearTimeout(timeoutId);
+  }, []);
 
   useEffect(() => {
     gsap.fromTo(navRef.current, 
@@ -88,7 +114,7 @@ const Navigation = () => {
               }}
             >
               <div 
-                className="shimmer-text"
+                className={`shimmer-text ${shimmerIndex === index ? 'shimmering' : ''}`}
                 style={{
                   fontFamily: '"Tenor Sans", sans-serif',
                   fontSize: '0.8rem',
@@ -113,6 +139,11 @@ const Navigation = () => {
               background-clip: text;
               -webkit-text-fill-color: transparent;
               transition: background-position 0.5s ease;
+            }
+
+            .shimmer-text.shimmering {
+              background-position: 200% center;
+              transition: background-position 1.5s ease;
             }
 
             .menu-item .nav-underline {
