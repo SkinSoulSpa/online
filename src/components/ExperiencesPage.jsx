@@ -1,0 +1,679 @@
+import React, { useRef, useEffect, useState } from 'react';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import OrganicImagePlaceholder from './OrganicImagePlaceholder';
+import testImage from '../assets/test.png';
+
+gsap.registerPlugin(ScrollTrigger);
+
+const Section = ({ children, style, className, id }) => (
+  <section id={id} className={className} style={{
+    padding: '6rem 2rem',
+    minHeight: '60vh',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    position: 'relative',
+    ...style
+  }}>
+    {children}
+  </section>
+);
+
+const ExperiencesPage = () => {
+  const containerRef = useRef(null);
+  const heroRef = useRef(null);
+  const navRef = useRef(null);
+  const [isMobile, setIsMobile] = useState(() => window.innerWidth < 768);
+  const [hoveredId, setHoveredId] = useState(null);
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      // Fade in animations for sections
+      const sections = document.querySelectorAll('.fade-section');
+      sections.forEach(section => {
+        gsap.fromTo(section, 
+          { opacity: 0, y: 50 },
+          { 
+            opacity: 1, 
+            y: 0, 
+            duration: 1, 
+            scrollTrigger: {
+              trigger: section,
+              start: "top 80%",
+              toggleActions: "play none none reverse"
+            }
+          }
+        );
+      });
+
+      // Sticky Sub-Navigation Logic - Floating Pill at Bottom
+      ScrollTrigger.create({
+        trigger: heroRef.current,
+        start: "bottom top", 
+        end: "max", 
+        onEnter: () => {
+          gsap.to(navRef.current, {
+            y: 100, 
+            opacity: 0, 
+            duration: 0.2,
+            onComplete: () => {
+              gsap.set(navRef.current, { 
+                position: 'fixed', 
+                top: 'auto', 
+                bottom: '30px', 
+                left: '50%', 
+                xPercent: -50,
+                width: 'auto',
+                padding: '0.8rem 2rem',
+                borderRadius: '50px',
+                backgroundColor: 'rgba(250, 249, 246, 0.9)', 
+                backdropFilter: 'blur(10px)',
+                boxShadow: '0 10px 30px rgba(0,0,0,0.1)',
+                zIndex: 90,
+                border: '1px solid rgba(197, 179, 152, 0.3)'
+              });
+              gsap.to(navRef.current, {
+                y: 0,
+                opacity: 1,
+                duration: 0.4,
+                ease: "power3.out"
+              });
+            }
+          });
+        },
+        onLeaveBack: () => {
+          gsap.to(navRef.current, {
+            y: 100,
+            opacity: 0,
+            duration: 0.2,
+            onComplete: () => {
+              gsap.set(navRef.current, { 
+                position: 'absolute', 
+                top: 'auto', 
+                bottom: 0, 
+                left: 0, 
+                xPercent: 0,
+                width: '100%',
+                padding: '1.5rem 0',
+                borderRadius: '0',
+                backgroundColor: 'transparent',
+                boxShadow: 'none',
+                backdropFilter: 'none',
+                border: 'none',
+                zIndex: 90
+              });
+              gsap.to(navRef.current, {
+                y: 0,
+                opacity: 1,
+                duration: 0.4
+              });
+            }
+          });
+        }
+      });
+
+    }, containerRef);
+
+    return () => ctx.revert();
+  }, []);
+
+  const scrollToSection = (id) => {
+    const element = document.getElementById(id);
+    if (element) {
+      // Offset for the sticky nav (approx 60-80px)
+      const offset = 100;
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - offset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: "smooth"
+      });
+    }
+  };
+
+  return (
+    <div ref={containerRef} className="experiences-page" style={{ 
+      minHeight: '100vh',
+      paddingTop: '100px', // Space for main fixed nav
+      position: 'relative'
+    }}>
+      
+      {/* SECTION 1: THE HERO (The Mood) */}
+      <div ref={heroRef} style={{ 
+        position: 'relative', 
+        minHeight: '80vh', 
+        display: 'flex', 
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+        textAlign: 'center',
+        padding: '2rem'
+      }}>
+        <div className="fade-section" style={{ maxWidth: '800px', zIndex: 2 }}>
+          <h1 style={{
+            fontFamily: '"Tenor Sans", sans-serif',
+            fontSize: 'clamp(3rem, 6vw, 5rem)',
+            color: '#2C332E',
+            lineHeight: 1.1,
+            marginBottom: '1.5rem'
+          }}>
+            The Art of Transformation
+          </h1>
+          <h2 style={{
+            fontFamily: '"Cormorant Garamond", serif',
+            fontSize: 'clamp(1.5rem, 3vw, 2rem)',
+            color: '#C5B398', // Gold accent
+            fontStyle: 'italic',
+            fontWeight: 300,
+            marginBottom: '2rem'
+          }}>
+            Where science meets the soul.
+          </h2>
+          <p style={{
+            fontFamily: '"Cormorant Garamond", serif',
+            fontSize: 'clamp(1.1rem, 2vw, 1.4rem)',
+            color: '#5C615E',
+            lineHeight: 1.6,
+            maxWidth: '700px',
+            margin: '0 auto'
+          }}>
+            Your skin is unique, and so is our approach. We do not believe in standard protocols. Every journey begins with a conversation. A deep-dive consultation to understand your skin’s history and your soul’s needs.
+          </p>
+        </div>
+
+        {/* Placeholder for Hero Video/Image */}
+        <div className="fade-section" style={{ 
+          marginTop: '4rem', 
+          width: '100%', 
+          maxWidth: '1000px', 
+          height: '50vh',
+          position: 'relative' 
+        }}>
+          <OrganicImagePlaceholder style={{ width: '100%', height: '100%' }}>
+            <div style={{ 
+              width: '100%', 
+              height: '100%', 
+              backgroundColor: '#E6E2DD',
+              display: 'flex', 
+              alignItems: 'center', 
+              justifyContent: 'center',
+              color: '#8C8C8C',
+              fontFamily: 'Montserrat, sans-serif',
+              letterSpacing: '0.1em'
+            }}>
+              HERO VISUAL
+            </div>
+          </OrganicImagePlaceholder>
+        </div>
+
+        {/* Sticky Anchor Bar (initially absolute at bottom of hero) */}
+        <div ref={navRef} style={{
+          position: 'absolute',
+          bottom: 0,
+          left: 0,
+          width: '100%',
+          padding: '1.5rem 0',
+          display: 'flex',
+          justifyContent: 'center',
+          gap: '2rem',
+          zIndex: 90,
+          flexWrap: 'wrap'
+        }}>
+          {['The Signature', 'The Intensive', 'The Enhancements'].map((item, index) => {
+            const id = item.toLowerCase().replace(' ', '-'); // the-signature, etc.
+            // But user wants ids: signature, intensive, enhancements probably?
+            // Let's map properly.
+            const targetId = item.split(' ')[1].toLowerCase(); // signature, intensive, enhancements
+            
+            return (
+              <button 
+                key={index}
+                onClick={() => scrollToSection(targetId)}
+                style={{
+                  fontFamily: '"Montserrat", sans-serif',
+                  fontSize: '0.8rem',
+                  letterSpacing: '0.15em',
+                  textTransform: 'uppercase',
+                  color: '#2C332E',
+                  background: 'none',
+                  border: 'none',
+                  cursor: 'pointer',
+                  position: 'relative',
+                  padding: '0.5rem 1rem'
+                }}
+                className="hover-trigger"
+              >
+                {item}
+              </button>
+            );
+          })}
+        </div>
+      </div>
+
+      {/* SECTION 2: THE JOURNEYS */}
+      <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
+        
+        {/* Category 1: THE SIGNATURE JOURNEYS */}
+        <Section id="signature" className="fade-section" style={{ flexDirection: 'column' }}>
+          <div style={{ textAlign: 'center', maxWidth: '800px', marginBottom: '3rem' }}>
+            <span style={{
+              fontFamily: 'Montserrat, sans-serif',
+              fontSize: '0.75rem',
+              letterSpacing: '0.2em',
+              textTransform: 'uppercase',
+              color: '#C5B398',
+              display: 'block',
+              marginBottom: '1rem'
+            }}>
+              Category 1
+            </span>
+            <h2 style={{
+              fontFamily: '"Tenor Sans", sans-serif',
+              fontSize: '3rem',
+              color: '#2C332E',
+              marginBottom: '1.5rem'
+            }}>
+              The Signature Journeys
+            </h2>
+            <p style={{
+              fontFamily: '"Cormorant Garamond", serif',
+              fontSize: '1.2rem',
+              color: '#5C615E',
+              lineHeight: 1.8
+            }}>
+              Our definitive 90-minute immersions. A fusion of deep-tissue massage and botanical actives designed to nurture the skin and quiet the mind.
+            </p>
+          </div>
+          
+          <div style={{ width: '100%', height: '500px', position: 'relative', marginBottom: '4rem' }}>
+             <OrganicImagePlaceholder style={{ width: '100%', height: '100%' }}>
+              <div style={{ 
+                width: '100%', 
+                height: '100%', 
+                backgroundColor: '#DCD6CF',
+                display: 'flex', 
+                alignItems: 'center', 
+                justifyContent: 'center',
+                color: '#8C8C8C',
+                fontFamily: 'Montserrat, sans-serif',
+                letterSpacing: '0.1em'
+              }}>
+                SIGNATURE TREATMENT VISUAL
+              </div>
+            </OrganicImagePlaceholder>
+          </div>
+
+          {/* Treatment List - Updated to Card Layout */}
+          <div style={{ 
+            width: '100%', 
+            maxWidth: '1024px',
+            display: 'flex',
+            flexDirection: 'column',
+            gap: '3rem'
+          }}>
+            {[
+              {
+                id: 'clarifying',
+                title: "The Clarifying Peace",
+                duration: "60 minutes",
+                price: "$158",
+                narrative: "Designed for the city dweller, this ritual acts as a reset button for the skin barrier. We move beyond simple extraction to deep purification, targeting the invisible weight of \"urban grey\", UV damage, blue light, and pollution. By clearing congestion without aggression, we revitalise the skin's health while respecting its delicate equilibrium.",
+                sensation: "Light, breathable, and relieving.",
+                result: "A complexion that feels unburdened and profoundly clean.",
+                image: testImage
+              },
+              {
+                id: 'soul-deep',
+                title: "The Soul-Deep Restore",
+                duration: "60 minutes",
+                price: "$198",
+                narrative: "A gentle immersion for thirsty skin. Utilising the botanical power of our Hydra Global collection, this journey goes deeper than surface moisture. It is a process of \"locking in\" vitality, soothing tightness, and repairing the protective barrier. As our guest Agnes noted, this experience \"not only nurtures the skin but nourishes the soul\".",
+                sensation: "A rhythmic, cooling flow that mimics the movement of water, leaving you \"enveloped in an atmosphere of tranquillity\".",
+                result: "Plump, rested skin that holds its glow long after you leave our sanctuary.",
+                image: testImage
+              },
+              {
+                id: 'luminous',
+                title: "The Luminous Awake",
+                duration: "90 minutes",
+                price: "$258",
+                narrative: "For skin that feels dulled by the fatigue of modern life. This brightening journey is a masterclass in light reflection. We utilise a luxurious masking protocol to oxygenate the tissues and banish the shadows of uneven tone and dark spots. It is not just about correcting; it is about energising.",
+                sensation: "Invigorating yet deeply relaxing.",
+                result: "The definitive \"Post-Treatment Glow.\" Your skin will look translucent and radiant, as if lit from within.",
+                image: testImage
+              },
+              {
+                id: 'timeless',
+                title: "The Timeless Lift",
+                duration: "100 minutes",
+                price: "$338",
+                narrative: "Our premier anti-aging immersion for mature skin. This gravity-defying ritual targets structural integrity and elasticity. We combine deep-tissue massage with advanced, non-invasive lifting technology to sculpt the contours of the face.",
+                sensation: "A \"warming embrace\" of luxurious actives followed by firming precision. The touch is so gentle and professional that, like our guest Carina, you may \"fall asleep under care\".",
+                result: "A firmer, smoother profile with a visible lift that feels entirely natural, restoring the \"youthful appearance\" without the downtime.",
+                image: testImage
+              }
+            ].map((item, index) => {
+               const isHovered = hoveredId === item.id;
+               
+               return (
+                <div 
+                  key={index} 
+                  className="experience-card-item"
+                  onMouseEnter={() => setHoveredId(item.id)}
+                  onMouseLeave={() => setHoveredId(null)}
+                  style={{ 
+                    backgroundColor: '#FFFFFF',
+                    borderRadius: '1rem', 
+                    border: isHovered ? '1px solid rgba(191, 164, 117, 0.3)' : '1px solid transparent',
+                    boxShadow: isHovered ? '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)' : 'none',
+                    transition: 'all 0.5s ease',
+                    cursor: 'pointer',
+                    transform: isHovered ? 'translateY(-2px)' : 'none',
+                    position: 'relative',
+                    overflow: 'hidden',
+                    display: 'flex',
+                    flexDirection: isMobile ? 'column' : 'row',
+                    alignItems: 'stretch'
+                  }}
+                >
+                  {/* Image Section (Mobile: Top, Desktop: Right) */}
+                  <div style={{
+                    position: 'relative',
+                    width: isMobile ? '100%' : '30%',
+                    height: isMobile ? '250px' : 'auto',
+                    minHeight: isMobile ? 'auto' : '100%',
+                    order: isMobile ? -1 : 1,
+                    flexShrink: 0
+                  }}>
+                    <div style={{
+                      position: 'absolute',
+                      top: 0,
+                      left: 0,
+                      right: 0,
+                      bottom: 0,
+                      backgroundImage: `url(${item.image})`,
+                      backgroundSize: 'cover',
+                      backgroundPosition: 'center',
+                      maskImage: isMobile 
+                        ? `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 100' preserveAspectRatio='none'%3E%3Cpath d='M0 0 L200 0 L200 85 Q150 100 100 85 T0 85 Z' fill='black'/%3E%3C/svg%3E")`
+                        : `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 200' preserveAspectRatio='none'%3E%3Cpath d='M100 0 L100 200 L25 200 Q0 175 25 150 T25 100 Q0 75 25 50 T25 0 Z' fill='black'/%3E%3C/svg%3E")`,
+                      WebkitMaskImage: isMobile 
+                        ? `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 100' preserveAspectRatio='none'%3E%3Cpath d='M0 0 L200 0 L200 85 Q150 100 100 85 T0 85 Z' fill='black'/%3E%3C/svg%3E")`
+                        : `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 200' preserveAspectRatio='none'%3E%3Cpath d='M100 0 L100 200 L25 200 Q0 175 25 150 T25 100 Q0 75 25 50 T25 0 Z' fill='black'/%3E%3C/svg%3E")`,
+                      maskSize: isMobile ? '200% 100%' : '100% 200%',
+                      WebkitMaskSize: isMobile ? '200% 100%' : '100% 200%',
+                      maskRepeat: isMobile ? 'repeat-x' : 'repeat-y',
+                      WebkitMaskRepeat: isMobile ? 'repeat-x' : 'repeat-y',
+                      pointerEvents: 'none',
+                      animation: isMobile ? 'waveFlowHorizontal 15s linear infinite' : 'waveFlow 12s linear infinite'
+                    }}>
+                       <style>
+                        {`
+                          @keyframes waveFlow {
+                            0% { -webkit-mask-position: 0 0; mask-position: 0 0; }
+                            100% { -webkit-mask-position: 0 100%; mask-position: 0 100%; }
+                          }
+                          @keyframes waveFlowHorizontal {
+                            0% { -webkit-mask-position: 0 0; mask-position: 0 0; }
+                            100% { -webkit-mask-position: -100% 0; mask-position: -100% 0; }
+                          }
+                        `}
+                      </style>
+                    </div>
+                  </div>
+
+                  {/* Content Section */}
+                  <div style={{
+                    padding: isMobile ? '2rem' : '3rem',
+                    flex: 1,
+                    display: 'flex',
+                    flexDirection: 'column',
+                    justifyContent: 'center'
+                  }}>
+                    {/* Header */}
+                    <div style={{
+                      display: 'flex',
+                      justifyContent: 'space-between',
+                      alignItems: 'baseline',
+                      flexWrap: 'wrap',
+                      marginBottom: '1rem',
+                      gap: '1rem'
+                    }}>
+                      <h3 style={{
+                        fontFamily: '"Tenor Sans", sans-serif',
+                        fontSize: '1.75rem',
+                        color: isHovered ? '#BFA475' : '#2C332E',
+                        transition: 'color 0.3s ease',
+                        margin: 0
+                      }}>
+                        {item.title}
+                      </h3>
+                      <span style={{
+                        fontFamily: '"Montserrat", sans-serif',
+                        fontSize: '0.65rem',
+                        fontWeight: 500,
+                        letterSpacing: '0.1em',
+                        textTransform: 'uppercase',
+                        color: '#FFFFFF',
+                        backgroundColor: '#9CAFA0', // Misty Sage
+                        padding: '0.25rem 0.75rem',
+                        borderRadius: '4px',
+                        boxShadow: '0 2px 4px rgba(156, 175, 160, 0.2)'
+                      }}>
+                        {item.duration} | {item.price}
+                      </span>
+                    </div>
+
+                    {/* Narrative */}
+                    <div style={{ marginBottom: '2rem' }}>
+                      <p style={{
+                        fontFamily: '"Cormorant Garamond", serif',
+                        fontSize: '1.125rem',
+                        lineHeight: 1.6,
+                        color: '#5C615E',
+                        marginBottom: 0
+                      }}>
+                        {item.narrative}
+                      </p>
+                    </div>
+
+                    {/* Sensation & Result Grid */}
+                    <div style={{ 
+                      display: 'grid', 
+                      gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr', 
+                      gap: '1.5rem',
+                      marginTop: 'auto', // Push to bottom if space allows
+                      borderTop: '1px solid rgba(197, 179, 152, 0.2)',
+                      paddingTop: '1.5rem'
+                    }}>
+                      <div>
+                        <span style={{ 
+                          fontFamily: 'Montserrat, sans-serif', 
+                          fontSize: '0.7rem', 
+                          letterSpacing: '0.15em', 
+                          textTransform: 'uppercase', 
+                          color: '#C5B398',
+                          display: 'block',
+                          marginBottom: '0.5rem'
+                        }}>
+                          The Sensation
+                        </span>
+                        <p style={{
+                          fontFamily: '"Cormorant Garamond", serif',
+                          fontSize: '1rem',
+                          lineHeight: 1.5,
+                          color: '#5C615E',
+                          fontStyle: 'italic',
+                          marginBottom: 0
+                        }}>
+                          {item.sensation}
+                        </p>
+                      </div>
+                      <div>
+                        <span style={{ 
+                          fontFamily: 'Montserrat, sans-serif', 
+                          fontSize: '0.7rem', 
+                          letterSpacing: '0.15em', 
+                          textTransform: 'uppercase', 
+                          color: '#C5B398',
+                          display: 'block',
+                          marginBottom: '0.5rem'
+                        }}>
+                          The Result
+                        </span>
+                        <p style={{
+                          fontFamily: '"Cormorant Garamond", serif',
+                          fontSize: '1rem',
+                          lineHeight: 1.5,
+                          color: '#5C615E',
+                          fontStyle: 'italic',
+                          marginBottom: 0
+                        }}>
+                          {item.result}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+               );
+            })}
+          </div>
+        </Section>
+
+        {/* Category 2: THE INTENSIVE JOURNEYS */}
+        <Section id="intensive" className="fade-section" style={{ flexDirection: 'column' }}>
+          <div style={{ textAlign: 'center', maxWidth: '800px', marginBottom: '3rem' }}>
+             <span style={{
+              fontFamily: 'Montserrat, sans-serif',
+              fontSize: '0.75rem',
+              letterSpacing: '0.2em',
+              textTransform: 'uppercase',
+              color: '#C5B398',
+              display: 'block',
+              marginBottom: '1rem'
+            }}>
+              Category 2
+            </span>
+            <h2 style={{
+              fontFamily: '"Tenor Sans", sans-serif',
+              fontSize: '3rem',
+              color: '#2C332E',
+              marginBottom: '1.5rem'
+            }}>
+              The Intensive Journeys
+            </h2>
+            <p style={{
+              fontFamily: '"Cormorant Garamond", serif',
+              fontSize: '1.2rem',
+              color: '#5C615E',
+              lineHeight: 1.8
+            }}>
+              Precision-led protocols for visible transformation. We utilise advanced hydration technologies and potent actives to firm, brighten, and restore the skin barrier.
+            </p>
+          </div>
+          <div style={{ width: '100%', height: '500px', position: 'relative' }}>
+             <OrganicImagePlaceholder style={{ width: '100%', height: '100%' }}>
+              <div style={{ 
+                width: '100%', 
+                height: '100%', 
+                backgroundColor: '#DCD6CF',
+                display: 'flex', 
+                alignItems: 'center', 
+                justifyContent: 'center',
+                color: '#8C8C8C',
+                fontFamily: 'Montserrat, sans-serif',
+                letterSpacing: '0.1em'
+              }}>
+                INTENSIVE TREATMENT VISUAL
+              </div>
+            </OrganicImagePlaceholder>
+          </div>
+        </Section>
+
+        {/* Category 3: THE ENHANCEMENTS */}
+        <Section id="enhancements" className="fade-section" style={{ flexDirection: 'column' }}>
+          <div style={{ textAlign: 'center', maxWidth: '800px', marginBottom: '3rem' }}>
+             <span style={{
+              fontFamily: 'Montserrat, sans-serif',
+              fontSize: '0.75rem',
+              letterSpacing: '0.2em',
+              textTransform: 'uppercase',
+              color: '#C5B398',
+              display: 'block',
+              marginBottom: '1rem'
+            }}>
+              Category 3
+            </span>
+            <h2 style={{
+              fontFamily: '"Tenor Sans", sans-serif',
+              fontSize: '3rem',
+              color: '#2C332E',
+              marginBottom: '1.5rem'
+            }}>
+              The Enhancements
+            </h2>
+            <p style={{
+              fontFamily: '"Cormorant Garamond", serif',
+              fontSize: '1.2rem',
+              color: '#5C615E',
+              lineHeight: 1.8
+            }}>
+              The finishing touches. Targeted care for the delicate areas, eyes, neck, and décolletage, that tell the true story of your skin.
+            </p>
+          </div>
+          <div style={{ width: '100%', height: '500px', position: 'relative' }}>
+             <OrganicImagePlaceholder style={{ width: '100%', height: '100%' }}>
+              <div style={{ 
+                width: '100%', 
+                height: '100%', 
+                backgroundColor: '#DCD6CF',
+                display: 'flex', 
+                alignItems: 'center', 
+                justifyContent: 'center',
+                color: '#8C8C8C',
+                fontFamily: 'Montserrat, sans-serif',
+                letterSpacing: '0.1em'
+              }}>
+                ENHANCEMENTS VISUAL
+              </div>
+            </OrganicImagePlaceholder>
+          </div>
+        </Section>
+
+      </div>
+
+      {/* SECTION 3: THE CLOSING */}
+      <Section className="fade-section" style={{ flexDirection: 'column', textAlign: 'center', minHeight: '50vh', backgroundColor: '#F5F3EF' }}>
+        <div style={{ maxWidth: '800px' }}>
+          <h2 style={{
+            fontFamily: '"Tenor Sans", sans-serif',
+            fontSize: '3rem',
+            color: '#2C332E',
+            marginBottom: '1.5rem'
+          }}>
+            Extend The Glow.
+          </h2>
+          <p style={{
+            fontFamily: '"Cormorant Garamond", serif',
+            fontSize: '1.4rem',
+            color: '#5C615E',
+            lineHeight: 1.8
+          }}>
+            Every journey concludes with a personalised home-care prescription from our Maria Galland collection, ensuring the transformation lasts long after you leave our sanctuary.
+          </p>
+        </div>
+      </Section>
+
+    </div>
+  );
+};
+
+export default ExperiencesPage;

@@ -66,7 +66,7 @@ const MistBackground = () => {
         height: '100%',
         overflow: 'hidden',
         pointerEvents: 'none',
-        zIndex: 0
+        zIndex: -1
       }}
     />
   );

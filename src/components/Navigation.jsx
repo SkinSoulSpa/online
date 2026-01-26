@@ -1,19 +1,21 @@
 import React, { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import { useAudio } from '../context/AudioContext';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Navigation = () => {
   const navRef = useRef(null);
   const { playHoverSound } = useAudio();
   const [isOpen, setIsOpen] = useState(false);
   const [shimmerIndex, setShimmerIndex] = useState(-1);
+  const navigate = useNavigate();
 
   const menuItems = [
-    { label: "The Sanctuary" },
-    { label: "Experiences" },
-    { label: "The Artisans" },
-    { label: "Journal" },
-    { label: "Reservations" }
+    { label: "The Sanctuary", path: "/sanctuary" },
+    { label: "Experiences", path: "/experiences" },
+    { label: "The Artisans", path: "/" },
+    { label: "Journal", path: "/" },
+    { label: "Reservations", path: "/" }
   ];
 
   // Random autonomous shimmer effect
@@ -64,6 +66,12 @@ const Navigation = () => {
     playHoverSound();
   };
 
+  const handleNavigation = (path) => {
+    navigate(path);
+    window.scrollTo(0, 0);
+    if (isOpen) setIsOpen(false);
+  };
+
   return (
     <>
       <nav ref={navRef} style={{
@@ -84,6 +92,7 @@ const Navigation = () => {
         <div 
           className="hover-trigger"
           onMouseEnter={playHoverSound}
+          onClick={() => handleNavigation('/')}
           style={{ 
             fontFamily: '"Tenor Sans", sans-serif', 
             fontSize: '1.2rem',
@@ -106,6 +115,7 @@ const Navigation = () => {
               key={index} 
               className="menu-item hover-trigger"
               onMouseEnter={playHoverSound}
+              onClick={() => handleNavigation(item.path)}
               style={{ 
                 textAlign: 'center', 
                 cursor: 'pointer',
@@ -239,7 +249,7 @@ const Navigation = () => {
             <div 
               key={index} 
               className="hover-trigger"
-              onClick={() => setIsOpen(false)}
+              onClick={() => handleNavigation(item.path)}
               style={{ 
                 textAlign: 'center', 
                 cursor: 'pointer'
