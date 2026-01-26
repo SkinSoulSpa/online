@@ -132,7 +132,6 @@ const Experiences = () => {
                 onMouseLeave={() => setHoveredId(null)}
                 style={{
                   backgroundColor: '#FFFFFF',
-                  padding: isMobile ? '2rem' : '3rem', // p-8 md:p-12
                   borderRadius: '1rem', // rounded-2xl
                   border: isHovered ? '1px solid rgba(191, 164, 117, 0.3)' : '1px solid transparent', // hover:border-soul-gold/30
                   boxShadow: isHovered ? '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)' : 'none', // hover:shadow-xl
@@ -140,154 +139,183 @@ const Experiences = () => {
                   cursor: 'pointer',
                   transform: isHovered ? 'translateY(-2px)' : 'none',
                   position: 'relative',
-                  overflow: 'hidden'
+                  overflow: 'hidden',
+                  display: 'flex',
+                  flexDirection: isMobile ? 'column' : 'row',
+                  alignItems: 'stretch'
                 }}
               >
-                <div style={{
-                  position: 'absolute',
-                  top: 0,
-                  right: 0,
-                  bottom: 0,
-                  width: '30%',
-                  backgroundImage: `url(${testImage})`,
-                  backgroundSize: 'cover',
-                  backgroundPosition: 'center',
-                  maskImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 200' preserveAspectRatio='none'%3E%3Cpath d='M100 0 L100 200 L25 200 Q0 175 25 150 T25 100 Q0 75 25 50 T25 0 Z' fill='black'/%3E%3C/svg%3E")`,
-                  WebkitMaskImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 200' preserveAspectRatio='none'%3E%3Cpath d='M100 0 L100 200 L25 200 Q0 175 25 150 T25 100 Q0 75 25 50 T25 0 Z' fill='black'/%3E%3C/svg%3E")`,
-                  maskSize: '100% 200%',
-                  WebkitMaskSize: '100% 200%',
-                  maskRepeat: 'repeat-y',
-                  WebkitMaskRepeat: 'repeat-y',
-                  pointerEvents: 'none',
-                  animation: 'waveFlow 12s linear infinite'
-                }}>
-                   <style>
-                    {`
-                      @keyframes waveFlow {
-                        0% { -webkit-mask-position: 0 0; mask-position: 0 0; }
-                        100% { -webkit-mask-position: 0 100%; mask-position: 0 100%; }
-                      }
-                    `}
-                  </style>
-                </div>
-                
-                {/* Hover Overlay Text */}
-                <div style={{
-                  position: 'absolute',
-                  top: 0,
-                  right: 0,
-                  bottom: 0,
-                  width: '30%',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  opacity: isHovered ? 1 : 0,
-                  transition: 'opacity 0.4s ease',
-                  zIndex: 2,
-                  pointerEvents: 'none'
-                }}>
-                  <style>
-                    {`
-                      @keyframes goldShimmer {
-                        0% { background-position: 0% 50%; }
-                        100% { background-position: 200% 50%; }
-                      }
-                    `}
-                  </style>
-                  <span style={{
-                    fontFamily: '"Montserrat", sans-serif',
-                    fontSize: '0.9rem',
-                    letterSpacing: '0.15em',
-                    textTransform: 'uppercase',
-                    backgroundImage: 'linear-gradient(90deg, #BFA475 0%, #FFF8E7 50%, #BFA475 100%)',
-                    backgroundSize: '200% auto',
-                    color: '#BFA475',
-                    WebkitBackgroundClip: 'text',
-                    WebkitTextFillColor: 'transparent',
-                    animation: 'goldShimmer 3s linear infinite',
-                    fontWeight: 600,
-                    textShadow: '0 2px 10px rgba(0,0,0,0.1)'
-                  }}>
-                    Explore The Journeys
-                  </span>
-                </div>
-
-                {/* Card Header: Title & Subtitle/Price */}
+                {/* Image Section (Mobile: Top, Desktop: Right) */}
                 <div style={{
                   position: 'relative',
-                  zIndex: 1,
-                  display: 'flex',
-                  flexDirection: 'column',
-                  justifyContent: 'flex-start',
-                  alignItems: 'flex-start',
-                  marginBottom: '1.5rem'
+                  width: isMobile ? '100%' : '30%',
+                  height: isMobile ? '250px' : 'auto',
+                  minHeight: isMobile ? 'auto' : '100%',
+                  order: isMobile ? -1 : 1,
+                  flexShrink: 0
                 }}>
-                  <h3 style={{
-                    fontFamily: '"Tenor Sans", sans-serif',
-                    fontSize: isMobile ? '1.5rem' : '1.75rem',
-                    color: isHovered ? '#BFA475' : '#2C332E',
-                    transition: 'color 0.3s ease',
-                    margin: 0,
-                    fontWeight: 400
+                   <div style={{
+                    position: 'absolute',
+                    top: 0,
+                    left: 0,
+                    right: 0,
+                    bottom: 0,
+                    backgroundImage: `url(${testImage})`,
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center',
+                    maskImage: isMobile 
+                      ? `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 100' preserveAspectRatio='none'%3E%3Cpath d='M0 0 L200 0 L200 85 Q150 100 100 85 T0 85 Z' fill='black'/%3E%3C/svg%3E")`
+                      : `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 200' preserveAspectRatio='none'%3E%3Cpath d='M100 0 L100 200 L25 200 Q0 175 25 150 T25 100 Q0 75 25 50 T25 0 Z' fill='black'/%3E%3C/svg%3E")`,
+                    WebkitMaskImage: isMobile 
+                      ? `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 100' preserveAspectRatio='none'%3E%3Cpath d='M0 0 L200 0 L200 85 Q150 100 100 85 T0 85 Z' fill='black'/%3E%3C/svg%3E")`
+                      : `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 200' preserveAspectRatio='none'%3E%3Cpath d='M100 0 L100 200 L25 200 Q0 175 25 150 T25 100 Q0 75 25 50 T25 0 Z' fill='black'/%3E%3C/svg%3E")`,
+                    maskSize: isMobile ? '200% 100%' : '100% 200%',
+                    WebkitMaskSize: isMobile ? '200% 100%' : '100% 200%',
+                    maskRepeat: isMobile ? 'repeat-x' : 'repeat-y',
+                    WebkitMaskRepeat: isMobile ? 'repeat-x' : 'repeat-y',
+                    pointerEvents: 'none',
+                    animation: isMobile ? 'waveFlowHorizontal 15s linear infinite' : 'waveFlow 12s linear infinite'
                   }}>
-                    {card.title}
-                  </h3>
-                  <span style={{
-                    fontFamily: '"Montserrat", sans-serif',
-                    fontSize: '0.65rem',
-                    fontWeight: 500,
-                    letterSpacing: '0.1em',
-                    textTransform: 'uppercase',
-                    color: '#FFFFFF',
-                    backgroundColor: '#9CAFA0', // Misty Sage from brand guide
-                    padding: '0.25rem 0.75rem',
-                    marginTop: '0.75rem',
-                    position: 'relative',
-                    display: 'inline-block',
-                    boxShadow: '0 2px 4px rgba(156, 175, 160, 0.2)',
-                    borderRadius: '4px' // Soft edges
-                  }}>
-                    {card.subtitle}
-                  </span>
-                </div>
+                    <style>
+                      {`
+                        @keyframes waveFlow {
+                          0% { -webkit-mask-position: 0 0; mask-position: 0 0; }
+                          100% { -webkit-mask-position: 0 100%; mask-position: 0 100%; }
+                        }
+                        @keyframes waveFlowHorizontal {
+                          0% { -webkit-mask-position: 0 0; mask-position: 0 0; }
+                          100% { -webkit-mask-position: -100% 0; mask-position: -100% 0; }
+                        }
+                      `}
+                    </style>
+                  </div>
 
-                {/* Card Body */}
-                <div style={{
-                  position: 'relative',
-                  zIndex: 1,
-                  maxWidth: isMobile ? '100%' : '65%'
-                }}>
-                  {/* Text Content */}
-                  <div>
-                    <p style={{
-                      fontFamily: '"Cormorant Garamond", serif',
-                      fontSize: '1.125rem',
-                      lineHeight: 1.6,
-                      opacity: 1,
-                      marginBottom: '1.5rem',
-                      color: '#5C615E'
-                    }}>
-                      {card.body}
-                    </p>
-                    
-                    {/* List Items (Optional, simulating structure) */}
-                    <div style={{
+                  {/* Hover Overlay Text */}
+                  <div style={{
+                    position: 'absolute',
+                    top: 0,
+                    left: 0,
+                    width: '100%',
+                    height: '100%',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    opacity: isHovered ? 1 : 0,
+                    transition: 'opacity 0.4s ease',
+                    zIndex: 2,
+                    pointerEvents: 'none'
+                  }}>
+                    <style>
+                      {`
+                        @keyframes goldShimmer {
+                          0% { background-position: 0% 50%; }
+                          100% { background-position: 200% 50%; }
+                        }
+                      `}
+                    </style>
+                    <span style={{
                       fontFamily: '"Montserrat", sans-serif',
-                      fontSize: '0.7rem', // text-xs
-                      letterSpacing: '0.1em',
-                      opacity: 0.6,
+                      fontSize: '0.9rem',
+                      letterSpacing: '0.15em',
                       textTransform: 'uppercase',
-                      display: 'flex',
-                      flexDirection: 'column',
-                      gap: '0.5rem',
-                      color: '#2C332E'
+                      backgroundImage: 'linear-gradient(90deg, #BFA475 0%, #FFF8E7 50%, #BFA475 100%)',
+                      backgroundSize: '200% auto',
+                      color: '#BFA475',
+                      WebkitBackgroundClip: 'text',
+                      WebkitTextFillColor: 'transparent',
+                      animation: 'goldShimmer 3s linear infinite',
+                      fontWeight: 600,
+                      textShadow: '0 2px 10px rgba(0,0,0,0.1)'
                     }}>
-                      <span>+ {index === 0 ? 'Deep Hydration' : index === 1 ? 'Firming Protocol' : 'Full Body & Face'}</span>
-                      <span>+ {index === 0 ? 'Barrier Repair' : index === 1 ? 'Collagen Boost' : '90 Minutes'}</span>
-                    </div>
+                      Explore The Journeys
+                    </span>
                   </div>
                 </div>
 
+                {/* Content Section */}
+                <div style={{
+                  padding: isMobile ? '2rem' : '3rem', // p-8 md:p-12
+                  flex: 1,
+                  display: 'flex',
+                  flexDirection: 'column',
+                  justifyContent: 'center'
+                }}>
+                  {/* Card Header: Title & Subtitle/Price */}
+                  <div style={{
+                    position: 'relative',
+                    zIndex: 1,
+                    display: 'flex',
+                    flexDirection: 'column',
+                    justifyContent: 'flex-start',
+                    alignItems: 'flex-start',
+                    marginBottom: '1.5rem'
+                  }}>
+                    <h3 style={{
+                      fontFamily: '"Tenor Sans", sans-serif',
+                      fontSize: isMobile ? '1.5rem' : '1.75rem',
+                      color: isHovered ? '#BFA475' : '#2C332E',
+                      transition: 'color 0.3s ease',
+                      margin: 0,
+                      fontWeight: 400
+                    }}>
+                      {card.title}
+                    </h3>
+                    <span style={{
+                      fontFamily: '"Montserrat", sans-serif',
+                      fontSize: '0.65rem',
+                      fontWeight: 500,
+                      letterSpacing: '0.1em',
+                      textTransform: 'uppercase',
+                      color: '#FFFFFF',
+                      backgroundColor: '#9CAFA0', // Misty Sage from brand guide
+                      padding: '0.25rem 0.75rem',
+                      marginTop: '0.75rem',
+                      position: 'relative',
+                      display: 'inline-block',
+                      boxShadow: '0 2px 4px rgba(156, 175, 160, 0.2)',
+                      borderRadius: '4px' // Soft edges
+                    }}>
+                      {card.subtitle}
+                    </span>
+                  </div>
+
+                  {/* Card Body */}
+                  <div style={{
+                    position: 'relative',
+                    zIndex: 1,
+                    maxWidth: '100%' // Full width inside flex item
+                  }}>
+                    {/* Text Content */}
+                    <div>
+                      <p style={{
+                        fontFamily: '"Cormorant Garamond", serif',
+                        fontSize: '1.125rem',
+                        lineHeight: 1.6,
+                        opacity: 1,
+                        marginBottom: '1.5rem',
+                        color: '#5C615E'
+                      }}>
+                        {card.body}
+                      </p>
+                      
+                      {/* List Items (Optional, simulating structure) */}
+                      <div style={{
+                        fontFamily: '"Montserrat", sans-serif',
+                        fontSize: '0.7rem', // text-xs
+                        letterSpacing: '0.1em',
+                        opacity: 0.6,
+                        textTransform: 'uppercase',
+                        display: 'flex',
+                        flexDirection: 'column',
+                        gap: '0.5rem',
+                        color: '#2C332E'
+                      }}>
+                        <span>+ {index === 0 ? 'Deep Hydration' : index === 1 ? 'Firming Protocol' : 'Full Body & Face'}</span>
+                        <span>+ {index === 0 ? 'Barrier Repair' : index === 1 ? 'Collagen Boost' : '90 Minutes'}</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
             );
           })}

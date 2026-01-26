@@ -83,11 +83,11 @@ const OrganicLine = () => {
 
   // Define paths based on device to ensure curves remain visible despite aspect ratio stretching
   // Mobile needs wider X swings and more frequent Y curves to combat the tall/narrow aspect ratio
-  // Increased curvature to be more 'S' like for both mobile and desktop
-  const mobilePath = "M50,0 C -20,100 120,200 50,300 C -20,400 120,500 50,600 C -20,700 120,800 50,900";
+  const mobilePath = "M50,0 C 0,50 100,100 50,150 C 0,200 100,250 50,300 C 0,350 100,400 50,450 C 0,500 100,550 50,600 C 0,650 100,700 50,750 C 0,800 100,850 50,900";
   
-  // Desktop curve increased significantly for a more pronounced 'S' shape
-  const desktopPath = "M50,0 C 10,150 90,300 50,450 C 10,600 90,750 50,900";
+  // Desktop can be gentler but wider amplitude as requested
+  // Increased control point X values to widen the curve (30->10, 70->90)
+  const desktopPath = "M50,0 C 10,100 90,200 50,300 C 10,400 90,500 50,600 C 10,700 90,800 50,900";
 
   const currentPath = isMobile ? mobilePath : desktopPath;
   const viewBoxHeight = 900;
