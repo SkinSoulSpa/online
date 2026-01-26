@@ -76,7 +76,7 @@ const TheJournal = () => {
         display: 'grid',
         gridTemplateColumns: isMobile ? '1fr' : '0.6fr 1.4fr', // Changed to 30% / 70%
         gap: isMobile ? '3rem' : '5rem',
-        alignItems: 'center'
+        alignItems: 'start'
       }}>
         
         {/* Featured Image */}

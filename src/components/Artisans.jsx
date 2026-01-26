@@ -110,6 +110,28 @@ const Artisans = () => {
             Hands You Can Trust.
           </h3>
 
+          {/* Single Image - Reduced Size & Moved */}
+          <div ref={imageRef} style={{
+            width: '100%',
+            display: 'flex',
+            justifyContent: 'center',
+            marginBottom: '2.5rem'
+          }}>
+             <OrganicImagePlaceholder style={{
+               width: '100%',
+               maxWidth: '600px', // Reduced from 1000px
+               paddingBottom: '56.25%', // 16:9 Aspect Ratio
+               height: 0,
+               position: 'relative'
+             }}>
+                <img 
+                  src={artisansImage} 
+                  alt="Artisan Team" 
+                  style={{ width: '100%', height: '100%', objectFit: 'cover', position: 'absolute', top: 0, left: 0 }}
+                />
+             </OrganicImagePlaceholder>
+          </div>
+
           <p style={{
             fontFamily: '"Cormorant Garamond", serif',
             fontSize: '1.25rem',
@@ -128,28 +150,6 @@ const Artisans = () => {
           <Button>
             Meet The Artisans
           </Button>
-        </div>
-
-        {/* Single Image - 16:9 Aspect Ratio */}
-        <div ref={imageRef} style={{
-          width: '100%',
-          display: 'flex',
-          justifyContent: 'center',
-          marginTop: '2rem'
-        }}>
-           <OrganicImagePlaceholder style={{
-             width: '100%',
-             maxWidth: '1000px', // Limit max width for better visual
-             paddingBottom: '56.25%', // 16:9 Aspect Ratio (56.25%)
-             height: 0,
-             position: 'relative'
-           }}>
-              <img 
-                src={artisansImage} 
-                alt="Artisan Team" 
-                style={{ width: '100%', height: '100%', objectFit: 'cover', position: 'absolute', top: 0, left: 0 }}
-              />
-           </OrganicImagePlaceholder>
         </div>
 
       </div>
