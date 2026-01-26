@@ -12,6 +12,7 @@ import Experiences from './components/Experiences';
 import Artisans from './components/Artisans';
 import TheJournal from './components/TheJournal';
 import ClientStories from './components/ClientStories';
+import WhatsAppWidget from './components/WhatsAppWidget';
 import { AudioProvider } from './context/AudioContext';
 import './styles/main.scss';
 
@@ -114,6 +115,7 @@ function App() {
         </main>
         
         <Footer />
+        <WhatsAppWidget />
       </div>
     </AudioProvider>
   );

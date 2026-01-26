@@ -73,21 +73,77 @@ const ClientStories = () => {
     }
   ];
 
-  const StarRating = () => (
-    <div style={{ display: 'flex', gap: '4px', marginBottom: '1.5rem', opacity: 0.8 }}>
-      {[...Array(5)].map((_, i) => (
-        <svg key={i} width="12" height="12" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M12 2L14.4 9.6H22.4L16 14.4L18.4 22.4L12 17.6L5.6 22.4L8 14.4L1.6 9.6H9.6L12 2Z" fill="#BFA475" stroke="#BFA475" strokeWidth="1" strokeLinejoin="round"/>
-        </svg>
-      ))}
-    </div>
-  );
+  const RatingDisplay = () => {
+    // Random shimmer effect
+    const shimmerRef = useRef(null);
+    // Use a unique ref for the timeline to ensure independent control
+    const timelineRef = useRef(null);
+
+    useEffect(() => {
+      const el = shimmerRef.current;
+      if (!el) return;
+
+      // Generate truly random delays for each instance
+      // The key is to make sure these are calculated inside the effect instance
+      const initialDelay = Math.random() * 2; // Start between 0-2s
+      const repeatDelay = 2 + Math.random() * 3; // Wait 2-5s between shimmers
+      
+      // Kill any existing timeline
+      if (timelineRef.current) {
+        timelineRef.current.kill();
+      }
+
+      const tl = gsap.timeline({
+        repeat: -1,
+        repeatDelay: repeatDelay,
+        delay: initialDelay
+      });
+
+      tl.to(el, {
+        backgroundPosition: '200% center',
+        duration: 1.5,
+        ease: 'power2.inOut',
+      }).set(el, {
+        backgroundPosition: '-100% center'
+      });
+      
+      timelineRef.current = tl;
+
+      return () => {
+        if (timelineRef.current) {
+          timelineRef.current.kill();
+        }
+      };
+    }, []); // Empty dependency array means this runs once on mount per component instance
+
+    return (
+      <div style={{ marginTop: '1.5rem', opacity: 0.9 }}>
+        <span 
+          ref={shimmerRef}
+          style={{
+            fontFamily: '"Tenor Sans", sans-serif',
+            fontSize: '1.5rem',
+            color: '#BFA475',
+            background: 'linear-gradient(90deg, #BFA475 0%, #FFF8E7 50%, #BFA475 100%)',
+            backgroundSize: '200% auto',
+            backgroundPosition: '-100% center', // Start off-screen
+            backgroundClip: 'text',
+            WebkitBackgroundClip: 'text',
+            WebkitTextFillColor: 'transparent',
+            display: 'inline-block'
+          }}
+        >
+          5.0
+        </span>
+      </div>
+    );
+  };
 
   return (
     <section ref={sectionRef} style={{
       width: '100%',
-      padding: isMobile ? '6rem 1.5rem' : '12rem 2rem', // More breathing room
-      backgroundColor: 'transparent', // Transparent to show organic curve
+      padding: isMobile ? '6rem 1.5rem' : '12rem 2rem',
+      backgroundColor: 'transparent',
       color: '#2C332E',
       position: 'relative',
       zIndex: 2,
@@ -129,6 +185,7 @@ const ClientStories = () => {
           display: 'grid',
           gridTemplateColumns: isMobile ? '1fr' : 'repeat(3, 1fr)',
           gap: isMobile ? '4rem' : '5rem',
+          alignItems: 'start' // Ensure columns start at the top
         }}>
           {reviews.map((review, index) => (
             <div key={review.id} className="review-card" style={{
@@ -136,42 +193,52 @@ const ClientStories = () => {
               flexDirection: 'column',
               alignItems: 'center',
               textAlign: 'center',
-              marginTop: (!isMobile && index === 1) ? '4rem' : '0' // Stagger middle card for poetic flow
+              height: '100%' // Ensure full height for flex distribution
             }}>
-              <StarRating />
+              
+              <div style={{ flex: 1, display: 'flex', alignItems: 'flex-start' }}>
+                <p style={{
+                  fontFamily: '"Cormorant Garamond", serif',
+                  fontSize: isMobile ? '1.2rem' : '1.4rem',
+                  lineHeight: 1.8,
+                  color: '#2C332E',
+                  margin: 0,
+                  fontStyle: 'italic',
+                  maxWidth: '90%'
+                }}>
+                  "{review.quote}"
+                </p>
+              </div>
 
-              <p style={{
-                fontFamily: '"Cormorant Garamond", serif',
-                fontSize: isMobile ? '1.2rem' : '1.4rem',
-                lineHeight: 1.8,
-                color: '#2C332E',
-                marginBottom: '2.5rem',
-                flex: 1,
-                fontStyle: 'italic',
-                maxWidth: '90%'
+              <div style={{ 
+                display: 'flex', 
+                flexDirection: 'column', 
+                alignItems: 'center',
+                width: '100%',
+                marginTop: '1.5rem' // Ensure consistent spacing from text
               }}>
-                "{review.quote}"
-              </p>
+                <RatingDisplay />
 
-              <div style={{
-                width: '40px',
-                height: '1px',
-                backgroundColor: '#BFA475',
-                marginBottom: '1.5rem',
-                opacity: 0.5
-              }} />
+                <div style={{
+                  width: '40px',
+                  height: '1px',
+                  backgroundColor: '#BFA475',
+                  margin: '1.5rem 0',
+                  opacity: 0.5
+                }} />
 
-              <h4 style={{
-                fontFamily: '"Montserrat", sans-serif',
-                fontSize: '0.75rem',
-                fontWeight: 500,
-                letterSpacing: '0.2em',
-                textTransform: 'uppercase',
-                color: '#5C615E',
-                margin: 0
-              }}>
-                {review.attribution}
-              </h4>
+                <h4 style={{
+                  fontFamily: '"Montserrat", sans-serif',
+                  fontSize: '0.75rem',
+                  fontWeight: 500,
+                  letterSpacing: '0.2em',
+                  textTransform: 'uppercase',
+                  color: '#5C615E',
+                  margin: 0
+                }}>
+                  {review.attribution}
+                </h4>
+              </div>
             </div>
           ))}
         </div>
