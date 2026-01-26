@@ -11,6 +11,7 @@ import OurPhilosophy from './components/OurPhilosophy';
 import Experiences from './components/Experiences';
 import Artisans from './components/Artisans';
 import TheJournal from './components/TheJournal';
+import ClientStories from './components/ClientStories';
 import { AudioProvider } from './context/AudioContext';
 import './styles/main.scss';
 
@@ -109,6 +110,7 @@ function App() {
           <Experiences />
           <Artisans />
           <TheJournal />
+          <ClientStories />
         </main>
         
         <Footer />
