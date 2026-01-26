@@ -95,8 +95,6 @@ const Navigation = () => {
                   letterSpacing: '0.1em',
                   textTransform: 'uppercase',
                   fontWeight: 400,
-                  color: '#2C332E',
-                  transition: 'color 0.4s ease',
                   position: 'relative',
                   zIndex: 2
                 }}
@@ -107,6 +105,16 @@ const Navigation = () => {
             </div>
           ))}
           <style>{`
+            .shimmer-text {
+              color: #2C332E;
+              background: linear-gradient(to right, #2C332E 0%, #2C332E 40%, #C5B398 50%, #2C332E 60%, #2C332E 100%);
+              background-size: 200% auto;
+              -webkit-background-clip: text;
+              background-clip: text;
+              -webkit-text-fill-color: transparent;
+              transition: background-position 0.5s ease;
+            }
+
             .menu-item .nav-underline {
               position: absolute;
               bottom: 0;
@@ -126,8 +134,8 @@ const Navigation = () => {
             }
 
             .menu-item:hover .shimmer-text {
-              color: #5C615E !important;
-              text-shadow: 0 0 1px rgba(92, 97, 94, 0.3);
+              background-position: 200% center;
+              transition: background-position 1.5s ease;
             }
           `}</style>
         </div>
