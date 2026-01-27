@@ -110,10 +110,11 @@ const TheArtisans = () => {
         <div className="fade-section" style={{ maxWidth: '800px', zIndex: 2 }}>
           <h1 style={{
             fontFamily: '"Tenor Sans", sans-serif',
-            fontSize: 'clamp(2.5rem, 5vw, 4rem)',
+            fontSize: 'clamp(1.8rem, 5vw, 4rem)',
             color: '#2C332E',
             lineHeight: 1.1,
-            marginBottom: '1.5rem'
+            marginBottom: '1.5rem',
+            whiteSpace: 'nowrap'
           }}>
             Hands You Can Trust.
           </h1>
