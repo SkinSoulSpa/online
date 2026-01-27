@@ -10,6 +10,7 @@ const WhatsAppWidget = () => {
       rel="noopener noreferrer"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
+      className="whatsapp-widget-shimmer"
       style={{
         position: 'fixed',
         bottom: '2rem',
@@ -27,6 +28,7 @@ const WhatsAppWidget = () => {
         WebkitBackdropFilter: 'blur(12px)',
         border: '1px solid rgba(250, 249, 246, 0.6)',
         borderRadius: '50%',
+        overflow: 'hidden', // Ensure shimmer is clipped to circle
         // Soul Gold Glow
         boxShadow: `
           0 10px 25px -5px rgba(197, 179, 152, 0.4), 
@@ -40,6 +42,30 @@ const WhatsAppWidget = () => {
       }}
       aria-label="Contact us on WhatsApp"
     >
+      <style>{`
+        .whatsapp-widget-shimmer::after {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: -150%;
+          width: 100%;
+          height: 100%;
+          background: linear-gradient(
+            120deg,
+            transparent,
+            rgba(255, 255, 255, 0.6),
+            transparent
+          );
+          transform: skewX(-25deg);
+          transition: left 0s;
+          z-index: 1;
+          pointer-events: none;
+        }
+        .whatsapp-widget-shimmer:hover::after {
+          left: 150%;
+          transition: left 1.2s ease;
+        }
+      `}</style>
       {/* Outlined Chat Bubble Icon in Dark Bronze (#6B5E48) for warmth instead of black */}
       <svg 
         width="26" 
@@ -53,7 +79,9 @@ const WhatsAppWidget = () => {
         xmlns="http://www.w3.org/2000/svg"
         style={{
           color: '#6B5E48', // Dark Bronze - softer than black/deep green
-          filter: 'drop-shadow(0 2px 3px rgba(197, 179, 152, 0.3))' // Subtle gold shadow
+          filter: 'drop-shadow(0 2px 3px rgba(197, 179, 152, 0.3))', // Subtle gold shadow
+          position: 'relative',
+          zIndex: 2
         }}
       >
         <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" />

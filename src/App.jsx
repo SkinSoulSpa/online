@@ -13,6 +13,7 @@ import { AudioProvider } from './context/AudioContext';
 import Home from './pages/Home';
 import Sanctuary from './components/Sanctuary';
 import ExperiencesPage from './components/ExperiencesPage';
+import TheArtisans from './components/TheArtisans';
 import './styles/main.scss';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -35,6 +36,7 @@ function App() {
               <Route path="/" element={<Home isLoaded={isLoaded} />} />
               <Route path="/sanctuary" element={<Sanctuary />} />
               <Route path="/experiences" element={<ExperiencesPage />} />
+              <Route path="/artisans" element={<TheArtisans />} />
             </Routes>
           </main>
           

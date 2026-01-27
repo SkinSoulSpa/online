@@ -604,22 +604,217 @@ const ExperiencesPage = () => {
               Precision-led protocols for visible transformation. We utilise advanced hydration technologies and potent actives to firm, brighten, and restore the skin barrier.
             </p>
           </div>
-          <div style={{ width: '100%', height: '500px', position: 'relative' }}>
-             <OrganicImagePlaceholder style={{ width: '100%', height: '100%' }}>
-              <div style={{ 
-                width: '100%', 
-                height: '100%', 
-                backgroundColor: '#DCD6CF',
-                display: 'flex', 
-                alignItems: 'center', 
-                justifyContent: 'center',
-                color: '#8C8C8C',
-                fontFamily: 'Montserrat, sans-serif',
-                letterSpacing: '0.1em'
-              }}>
-                INTENSIVE TREATMENT VISUAL
-              </div>
-            </OrganicImagePlaceholder>
+          <div style={{ 
+            width: '100%', 
+            maxWidth: '1200px',
+            display: 'grid',
+            gridTemplateColumns: isMobile ? '1fr' : 'repeat(2, 1fr)',
+            gap: '2rem',
+            marginBottom: '4rem'
+          }}>
+            {[
+              {
+                title: "The Cellular Renaissance",
+                duration: "100 minutes",
+                price: "$388",
+                narrative: "Our most advanced biological immersion. This journey operates at the cellular level, combining the precision of mesotherapy with the regenerative power of exosomes. We move beyond surface hydration to fundamental restoration, delivering potent messengers that signal your skin to repair, firm, and renew itself.",
+                sensation: "A meticulous, refreshing infusion. While this is a high-performance clinical protocol, our artisans ensure the delivery is gentle, soothing, and deeply relaxing.",
+                result: "The ultimate \"Glass Skin\" finish. Fine lines are smoothed, elasticity is reclaimed, and the complexion radiates with a luminosity that looks almost ethereal."
+              },
+              {
+                title: "The Velvet Resurface",
+                duration: "100 minutes",
+                price: "$338",
+                narrative: "A next-generation resurfacing ritual designed for the delicate. Unlike traditional peels that strip the barrier, this \"Lami-Peel\" technology lifts and hydrates simultaneously. It is specifically formulated for thin or sensitive skin that usually cannot tolerate active exfoliation, offering a safe path to profound renewal.",
+                sensation: "Cool, comforting, and surprisingly soothing. There is no \"burn\" here, only the feeling of a fresh start.",
+                result: "A porcelain-smooth texture with improved elasticity. Your skin emerges not red or raw, but polished and undeniably radiant."
+              },
+              {
+                title: "The Meridian Sculpt",
+                duration: "90 minutes",
+                price: "$298",
+                narrative: "Where ancient wisdom meets modern comfort. This journey is a masterclass in structural flow, fusing the rhythmic precision of Eastern Bojin techniques with the aromatherapy of Western essential oils. We focus on the meridian lines to lift facial muscles and stimulate lymphatic drainage, releasing the stagnation and bloating caused by city life.",
+                sensation: "Deep, rhythmic, and intensely grounding. You will feel the tension physically leaving your jaw and brow as our artisans work to \"unblock\" your energy flow.",
+                result: "A visibly sculpted profile and a profound sense of lightness. The face looks lifted, depuffed, and flushed with fresh vitality."
+              },
+              {
+                title: "The Thermal Definition",
+                duration: "90 minutes",
+                price: "$338",
+                narrative: "A structural intervention for timeless skin. We utilise an advanced RF (Radio Frequency) modality to deliver controlled thermal energy deep into the dermis. This warmth acts as a wake-up call to your collagen and elastin factories, tightening the architectural fibres of the skin to restore definition.",
+                sensation: "A \"warming embrace\" that permeates deep within the tissue, balanced by the cooling touch of our finishing rituals.",
+                result: "A sharper contour and firmer texture. This is the non-invasive answer to skin laxity, restoring the \"youthful bounce\" of the complexion."
+              },
+              {
+                title: "The Vitality Infusion",
+                duration: "100 minutes",
+                price: "$338",
+                narrative: "A rescue ritual for skin suffocated by the city. We utilise a potent oxygenation protocol to breathe life back into the cellular structure. This journey detoxifies the pores from \"urban grey\" pollution and UV stress while flooding the barrier with a cocktail of essential vitamins and pH-balancing nutrients.",
+                sensation: "A cool, airy mist that feels like a deep breath of fresh mountain air. It is the ultimate relief for skin that feels tight or overheated.",
+                result: "A complexion that is not just clean, but alive. The skin emerges shielded, hydrated, and glowing with a \"natural luminosity\" that looks as if you have spent a week in nature, far from the city noise."
+              },
+              {
+                title: "The Light Renewal",
+                duration: "75 minutes",
+                price: "$298",
+                narrative: "Harnessing the power of light to reverse the visible passage of time. We employ advanced SHR (Super Hair Removal) technology adapted for skin rejuvenation to gently target the visual noise of the complexion, blemishes, pigmentation, and laxity. It is a process of clearing the canvas to reveal the \"firmer, smoother\" skin beneath.",
+                sensation: "Brief, rhythmic flashes of warmth balanced immediately by the cooling touch of our artisans. It is effective yet entirely comfortable.",
+                result: "Porcelain clarity. The tone is unified, and the texture is refined, restoring the \"youthful bounce\" and clarity that defines healthy skin."
+              },
+              {
+                title: "The Dermal Architecture",
+                duration: "90 minutes",
+                price: "$298",
+                narrative: "A structural reset for the skin’s foundation. Using the precision of the Dermia Solution modality, this journey focuses on refining the surface texture. It is designed to erase the history of the skin, softening acne scars, reducing wrinkle depth, and minimising pores to improve absorption capabilities.",
+                sensation: "Micro-stimulation that feels active and purposeful. You can feel the technology working to \"reknit\" the collagen matrix, yet the experience remains soothing within our sanctuary environment.",
+                result: "A velvet finish. The surface of the skin is smoothed and polished, creating a flawless base that looks revitalised and significantly firmer."
+              }
+            ].map((item, index) => {
+               // Unique hover state for intensive cards could be added here if needed
+               return (
+                <div 
+                  key={index} 
+                  style={{ 
+                    backgroundColor: '#FFFFFF',
+                    borderRadius: '1rem', 
+                    padding: '2.5rem',
+                    border: '1px solid rgba(197, 179, 152, 0.2)', // Subtle gold border
+                    transition: 'all 0.4s ease',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    justifyContent: 'space-between',
+                    boxShadow: '0 5px 15px rgba(0,0,0,0.02)'
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.transform = 'translateY(-5px)';
+                    e.currentTarget.style.boxShadow = '0 15px 30px rgba(197, 179, 152, 0.15)';
+                    e.currentTarget.style.borderColor = 'rgba(197, 179, 152, 0.5)';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.transform = 'translateY(0)';
+                    e.currentTarget.style.boxShadow = '0 5px 15px rgba(0,0,0,0.02)';
+                    e.currentTarget.style.borderColor = 'rgba(197, 179, 152, 0.2)';
+                  }}
+                >
+                  {/* Header */}
+                  <div style={{
+                    display: 'flex',
+                    justifyContent: 'space-between',
+                    alignItems: 'flex-start',
+                    marginBottom: '1.5rem',
+                    paddingBottom: '1rem',
+                    borderBottom: '1px solid rgba(197, 179, 152, 0.2)'
+                  }}>
+                    <h3 style={{
+                      fontFamily: '"Tenor Sans", sans-serif',
+                      fontSize: '1.5rem',
+                      color: '#2C332E',
+                      margin: 0,
+                      maxWidth: '70%'
+                    }}>
+                      {item.title}
+                    </h3>
+                    <div style={{ textAlign: 'right' }}>
+                      <span style={{
+                        display: 'block',
+                        fontFamily: '"Montserrat", sans-serif',
+                        fontSize: '0.75rem',
+                        fontWeight: 600,
+                        color: '#C5B398',
+                        letterSpacing: '0.05em'
+                      }}>
+                        {item.price}
+                      </span>
+                      <span style={{
+                        display: 'block',
+                        fontFamily: '"Montserrat", sans-serif',
+                        fontSize: '0.65rem',
+                        color: '#9CAFA0',
+                        marginTop: '0.25rem'
+                      }}>
+                        {item.duration}
+                      </span>
+                    </div>
+                  </div>
+
+                  {/* Body Content */}
+                  <div>
+                    {/* Narrative */}
+                    <div style={{ marginBottom: '1.5rem' }}>
+                      <span style={{ 
+                        fontFamily: 'Montserrat, sans-serif', 
+                        fontSize: '0.65rem', 
+                        letterSpacing: '0.15em', 
+                        textTransform: 'uppercase', 
+                        color: '#C5B398',
+                        display: 'block',
+                        marginBottom: '0.5rem'
+                      }}>
+                        The Narrative
+                      </span>
+                      <p style={{
+                        fontFamily: '"Cormorant Garamond", serif',
+                        fontSize: '1rem',
+                        lineHeight: 1.6,
+                        color: '#5C615E',
+                        marginBottom: 0
+                      }}>
+                        {item.narrative}
+                      </p>
+                    </div>
+
+                    {/* Sensation */}
+                    <div style={{ marginBottom: '1.5rem' }}>
+                      <span style={{ 
+                        fontFamily: 'Montserrat, sans-serif', 
+                        fontSize: '0.65rem', 
+                        letterSpacing: '0.15em', 
+                        textTransform: 'uppercase', 
+                        color: '#C5B398',
+                        display: 'block',
+                        marginBottom: '0.5rem'
+                      }}>
+                        The Sensation
+                      </span>
+                      <p style={{
+                        fontFamily: '"Cormorant Garamond", serif',
+                        fontSize: '1rem',
+                        lineHeight: 1.6,
+                        color: '#5C615E',
+                        marginBottom: 0,
+                        fontStyle: 'italic'
+                      }}>
+                        {item.sensation}
+                      </p>
+                    </div>
+
+                    {/* Result */}
+                    <div>
+                      <span style={{ 
+                        fontFamily: 'Montserrat, sans-serif', 
+                        fontSize: '0.65rem', 
+                        letterSpacing: '0.15em', 
+                        textTransform: 'uppercase', 
+                        color: '#C5B398',
+                        display: 'block',
+                        marginBottom: '0.5rem'
+                      }}>
+                        The Result
+                      </span>
+                      <p style={{
+                        fontFamily: '"Cormorant Garamond", serif',
+                        fontSize: '1rem',
+                        lineHeight: 1.6,
+                        color: '#5C615E',
+                        marginBottom: 0
+                      }}>
+                        {item.result}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+               );
+            })}
           </div>
         </Section>
 
