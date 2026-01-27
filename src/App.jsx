@@ -37,6 +37,19 @@ function App() {
               <Route path="/sanctuary" element={<Sanctuary />} />
               <Route path="/experiences" element={<ExperiencesPage />} />
               <Route path="/artisans" element={<TheArtisans />} />
+              <Route path="/reservation" element={
+                <div style={{ 
+                  minHeight: '80vh', 
+                  display: 'flex', 
+                  alignItems: 'center', 
+                  justifyContent: 'center', 
+                  color: '#5C615E',
+                  fontFamily: '"Tenor Sans", sans-serif',
+                  fontSize: '2rem'
+                }}>
+                  Reservation
+                </div>
+              } />
             </Routes>
           </main>
           
