@@ -265,7 +265,7 @@ const TheArtisans = () => {
                 <div style={{ 
                   height: '250px', 
                   position: 'relative',
-                  backgroundColor: '#E6E2DD',
+                  backgroundColor: '#FFFFFF',
                   overflow: 'hidden'
                 }}>
                   <div style={{
@@ -275,14 +275,24 @@ const TheArtisans = () => {
                     backgroundSize: 'cover',
                     backgroundPosition: 'center',
                     transition: 'transform 0.8s ease',
-                    transform: isActive ? 'scale(1.05)' : 'scale(1)'
-                  }} />
-                  {/* Overlay Gradient */}
-                  <div style={{
-                    position: 'absolute',
-                    bottom: 0, left: 0, width: '100%', height: '50%',
-                    background: 'linear-gradient(to top, rgba(255,255,255,1), transparent)'
-                  }} />
+                    transform: isActive ? 'scale(1.05)' : 'scale(1)',
+                    maskImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 100' preserveAspectRatio='none'%3E%3Cpath d='M0 0 L200 0 L200 85 Q150 100 100 85 T0 85 Z' fill='black'/%3E%3C/svg%3E")`,
+                    WebkitMaskImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 100' preserveAspectRatio='none'%3E%3Cpath d='M0 0 L200 0 L200 85 Q150 100 100 85 T0 85 Z' fill='black'/%3E%3C/svg%3E")`,
+                    maskSize: '200% 100%',
+                    WebkitMaskSize: '200% 100%',
+                    maskRepeat: 'repeat-x',
+                    WebkitMaskRepeat: 'repeat-x',
+                    animation: 'waveFlowHorizontal 30s linear infinite'
+                  }}>
+                    <style>
+                      {`
+                        @keyframes waveFlowHorizontal {
+                          0% { -webkit-mask-position: 0 0; mask-position: 0 0; }
+                          100% { -webkit-mask-position: -200% 0; mask-position: -200% 0; }
+                        }
+                      `}
+                    </style>
+                  </div>
                 </div>
 
                 {/* Content Area */}
