@@ -189,7 +189,7 @@ const Reservations = () => {
               color: '#5C615E',
               fontStyle: 'italic'
             }}>
-              Secure your moment of stillness.
+              The Hidden Sanctuary is conveniently nestled within Pacific Plaza, yet a world away from the noise of Scotts Road.
             </p>
           </div>
 
@@ -295,12 +295,12 @@ const Reservations = () => {
               </div>
 
               <InputGroup 
-                label="How is your skin feeling today?" 
+                label="Note" 
                 name="note" 
                 type="textarea"
                 value={formData.note} 
                 onChange={handleChange} 
-                placeholder="Any special requests, skin concerns, or allergies?"
+                placeholder="How is your skin feeling today?"
               />
             </div>
 
@@ -326,13 +326,12 @@ const Reservations = () => {
               Request Reservation
             </button>
             <p style={{
+              marginTop: '1.5rem',
               fontFamily: '"Montserrat", sans-serif',
               fontSize: '0.7rem',
               color: '#5C615E',
-              marginTop: '1.5rem',
-              lineHeight: 1.6,
-              maxWidth: '400px',
-              fontStyle: 'italic'
+              lineHeight: '1.6',
+              maxWidth: '500px'
             }}>
               Your request is confidential. Our concierge will contact you via WhatsApp or Email within 2 hours to confirm your sanctuary time.
             </p>
@@ -341,9 +340,10 @@ const Reservations = () => {
 
         {/* RIGHT COLUMN: Visual & Info (Desktop only or stacked on mobile) */}
         <div className="reservation-content" style={{ 
-          display: isMobile ? 'none' : 'block',
-          position: 'sticky',
-          top: '150px'
+          display: 'block',
+          position: isMobile ? 'static' : 'sticky',
+          top: '150px',
+          marginTop: isMobile ? '4rem' : '0'
         }}>
           <div style={{ height: '600px', position: 'relative' }}>
              {/* Decorative Border Line */}
@@ -371,63 +371,64 @@ const Reservations = () => {
                 color: '#5C615E'
               }}>
                 <span style={{ fontSize: '3rem', marginBottom: '1rem', opacity: 0.6 }}>☾</span>
-                <p style={{
-                  fontFamily: '"Tenor Sans", sans-serif',
-                  fontSize: '1.5rem',
-                  lineHeight: 1.4,
-                  marginBottom: '2rem'
-                }}>
-                  "The Hidden Sanctuary is conveniently nestled within Pacific Plaza, yet a world away from the noise of Scotts Road."
-                </p>
+                
+                {/* The Arrival */}
+                <div style={{ marginBottom: '2.5rem' }}>
+                  <h4 style={{
+                    fontFamily: '"Montserrat", sans-serif',
+                    fontSize: '0.8rem',
+                    letterSpacing: '0.15em',
+                    textTransform: 'uppercase',
+                    color: '#C5B398',
+                    marginBottom: '1rem'
+                  }}>The Arrival</h4>
+                  <p style={{
+                    fontFamily: '"Tenor Sans", sans-serif',
+                    fontSize: '1.2rem',
+                    lineHeight: 1.4,
+                    marginBottom: '0.5rem',
+                    color: '#2C332E'
+                  }}>
+                    9 Scotts Road, #03-01
+                  </p>
+                  <p style={{
+                    fontFamily: '"Cormorant Garamond", serif',
+                    fontSize: '1.1rem',
+                    fontStyle: 'italic',
+                    color: '#5C615E'
+                  }}>
+                    Take the elevator to Level 3.<br/>As the doors open, leave the city behind.
+                  </p>
+                </div>
+
                 <div style={{
                   width: '40px',
                   height: '1px',
                   backgroundColor: '#C5B398',
-                  margin: '0 auto 2rem auto'
+                  margin: '0 auto 2.5rem auto'
                 }} />
-                
-                <div style={{ marginBottom: '2rem' }}>
-                  <span style={{ 
-                    fontFamily: '"Montserrat", sans-serif',
-                    fontSize: '0.75rem',
-                    letterSpacing: '0.2em',
-                    textTransform: 'uppercase',
-                    color: '#C5B398',
-                    display: 'block',
-                    marginBottom: '0.5rem'
-                  }}>The Arrival</span>
-                  <p style={{
-                    fontFamily: '"Montserrat", sans-serif',
-                    fontSize: '0.8rem',
-                    letterSpacing: '0.05em',
-                    lineHeight: 1.6
-                  }}>
-                    9 Scotts Road, #03-01<br/>
-                    Take the elevator to Level 3.<br/>
-                    As the doors open, leave the city behind.
-                  </p>
-                </div>
 
+                {/* The Hours of Restoration */}
                 <div>
-                  <span style={{ 
-                    fontFamily: '"Montserrat", sans-serif',
-                    fontSize: '0.75rem',
-                    letterSpacing: '0.2em',
-                    textTransform: 'uppercase',
-                    color: '#C5B398',
-                    display: 'block',
-                    marginBottom: '0.5rem'
-                  }}>The Hours of Restoration</span>
-                  <p style={{
+                  <h4 style={{
                     fontFamily: '"Montserrat", sans-serif',
                     fontSize: '0.8rem',
-                    letterSpacing: '0.05em',
-                    lineHeight: 1.6
+                    letterSpacing: '0.15em',
+                    textTransform: 'uppercase',
+                    color: '#C5B398',
+                    marginBottom: '1rem'
+                  }}>The Hours of Restoration</h4>
+                  <p style={{
+                    fontFamily: '"Tenor Sans", sans-serif',
+                    fontSize: '1rem',
+                    lineHeight: 1.6,
+                    color: '#2C332E'
                   }}>
                     Mon – Fri: 11:00 AM – 8:00 PM<br/>
                     Sat, Sun & PH: 10:00 AM – 7:00 PM
                   </p>
                 </div>
+
               </div>
             </OrganicImagePlaceholder>
           </div>
