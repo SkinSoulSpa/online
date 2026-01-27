@@ -4,6 +4,10 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import OrganicImagePlaceholder from './OrganicImagePlaceholder';
 import testImage from '../assets/test.png';
+import heroHands from '../assets/hero-hands.jpg';
+import artisan1 from '../assets/artisan-1.jpg';
+import artisan2 from '../assets/artisan-2.jpg';
+import artisan3 from '../assets/artisan-3.jpg';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -60,6 +64,7 @@ const TheArtisans = () => {
       id: 'freya',
       name: "Freya",
       role: "Senior Artisan",
+      image: artisan1,
       vibe: "Experienced & Trusted",
       quote: "\"I have been trusting her recommendations for many years.\"",
       author: "Tee Wei"
@@ -68,6 +73,7 @@ const TheArtisans = () => {
       id: 'kelly',
       name: "Kelly",
       role: "Senior Artisan",
+      image: artisan2,
       vibe: "Gentle & Precise",
       quote: "\"She is very gentle... Kelly’s explanation was also rather clear and concise.\"",
       author: "Zenn Choo & Shi Jia Tan"
@@ -76,6 +82,7 @@ const TheArtisans = () => {
       id: 'shelbee',
       name: "Shelbee",
       role: "Artisan",
+      image: artisan3,
       vibe: "Attentive & Soothing",
       quote: "\"Very attentive to details... I was enveloped in an atmosphere of tranquillity.\"",
       author: "Agnes & Arielle Dray"
@@ -84,6 +91,7 @@ const TheArtisans = () => {
       id: 'karen',
       name: "Karen",
       role: "Artisan",
+      image: artisan1,
       vibe: "Deeply Relaxing",
       quote: "\"My therapist Karen is very professional... I fell asleep under her care!\"",
       author: "Carina Tan"
@@ -132,32 +140,26 @@ const TheArtisans = () => {
           </h2>
         </div>
 
-        {/* Hero Visual - Video Placeholder */}
+        {/* Hero Visual */}
         <div className="fade-section" style={{ 
           marginTop: '2rem', 
           width: '100%', 
           maxWidth: '1000px', 
-          height: '50vh',
           position: 'relative' 
         }}>
-          <OrganicImagePlaceholder style={{ width: '100%', height: '100%' }}>
-            <div style={{ 
-              width: '100%', 
-              height: '100%', 
-              backgroundColor: '#E6E2DD',
-              display: 'flex', 
-              alignItems: 'center', 
-              justifyContent: 'center',
-              color: '#8C8C8C',
-              fontFamily: 'Montserrat, sans-serif',
-              letterSpacing: '0.1em',
-              flexDirection: 'column',
-              gap: '1rem'
-            }}>
-              <span>HERO VIDEO PLACEHOLDER</span>
-              <span style={{ fontSize: '0.8rem', opacity: 0.7 }}>(Close up of hands working)</span>
-            </div>
-          </OrganicImagePlaceholder>
+          <ErrorBoundary>
+            <OrganicImagePlaceholder fitContent={true} style={{ width: '100%' }}>
+              <img 
+                src={heroHands} 
+                alt="Hands working" 
+                style={{ 
+                  width: '100%', 
+                  height: 'auto', 
+                  display: 'block'
+                }} 
+              />
+            </OrganicImagePlaceholder>
+          </ErrorBoundary>
         </div>
       </div>
 
@@ -273,7 +275,7 @@ const TheArtisans = () => {
                   <div style={{
                     position: 'absolute',
                     top: 0, left: 0, width: '100%', height: '100%',
-                    backgroundImage: `url(${testImage})`,
+                    backgroundImage: `url(${artisan.image})`,
                     backgroundSize: 'cover',
                     backgroundPosition: 'center',
                     transition: 'transform 0.8s ease',

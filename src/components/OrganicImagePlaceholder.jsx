@@ -1,7 +1,7 @@
 import React, { useRef, useEffect } from 'react';
 import gsap from 'gsap';
 
-const OrganicImagePlaceholder = ({ children, style, className }) => {
+const OrganicImagePlaceholder = ({ children, style, className, fitContent = false }) => {
   const pathRef = useRef(null);
   const strokeRef = useRef(null);
   // Simple unique ID for clip path
@@ -52,7 +52,7 @@ const OrganicImagePlaceholder = ({ children, style, className }) => {
 
       {/* Layer 2: Content (Masked) */}
       <div style={{ 
-        position: 'absolute',
+        position: fitContent ? 'relative' : 'absolute',
         top: 0,
         left: 0,
         width: '100%', 

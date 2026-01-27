@@ -122,7 +122,6 @@ const Home = ({ isLoaded = true }) => {
       <OurPhilosophy />
       <Experiences />
       <Artisans />
-      <TheJournal />
       <ClientStories />
     </div>
   );
