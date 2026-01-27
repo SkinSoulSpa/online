@@ -282,7 +282,8 @@ const TheArtisans = () => {
                     WebkitMaskSize: '200% 100%',
                     maskRepeat: 'repeat-x',
                     WebkitMaskRepeat: 'repeat-x',
-                    animation: 'waveFlowHorizontal 30s linear infinite'
+                    animation: `waveFlowHorizontal ${28 + (index * 3)}s linear infinite`,
+                    animationDelay: `-${index * 7}s`
                   }}>
                     <style>
                       {`
