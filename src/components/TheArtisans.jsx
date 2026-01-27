@@ -347,7 +347,23 @@ const TheArtisans = () => {
       </Section>
 
       {/* SECTION 4: THE TEAM PLEDGE */}
-      <Section className="fade-section" style={{ flexDirection: 'column', textAlign: 'center', minHeight: '50vh', backgroundColor: '#2C332E', color: '#FAF9F6' }}>
+      <Section className="fade-section" style={{ 
+        flexDirection: 'column', 
+        textAlign: 'center', 
+        minHeight: '50vh', 
+        backgroundColor: '#2C332E', 
+        color: '#FAF9F6',
+        // Soft wave mask
+        maskImage: 'url("data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 1440 320\' preserveAspectRatio=\'none\'%3E%3Cpath d=\'M0,320 L0,40 Q360,0 720,40 T1440,40 L1440,320 Z\' fill=\'black\'/%3E%3C/svg%3E")',
+        WebkitMaskImage: 'url("data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 1440 320\' preserveAspectRatio=\'none\'%3E%3Cpath d=\'M0,320 L0,40 Q360,0 720,40 T1440,40 L1440,320 Z\' fill=\'black\'/%3E%3C/svg%3E")',
+        maskSize: '100% 100%',
+        WebkitMaskSize: '100% 100%',
+        maskPosition: 'center bottom',
+        WebkitMaskPosition: 'center bottom',
+        maskRepeat: 'no-repeat',
+        WebkitMaskRepeat: 'no-repeat',
+        paddingTop: '8rem' // Extra padding for the wave
+      }}>
         <div style={{ maxWidth: '800px' }}>
           <h2 style={{
             fontFamily: '"Tenor Sans", sans-serif',
