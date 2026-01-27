@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import OrganicImagePlaceholder from './OrganicImagePlaceholder';
+import ErrorBoundary from './ErrorBoundary';
 import testImage from '../assets/test.png';
 import heroHands from '../assets/hero-hands.jpg';
 import artisan1 from '../assets/artisan-1.jpg';

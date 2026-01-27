@@ -5,7 +5,6 @@ import SlowBeauty from '../components/SlowBeauty';
 import OurPhilosophy from '../components/OurPhilosophy';
 import Experiences from '../components/Experiences';
 import Artisans from '../components/Artisans';
-import TheJournal from '../components/TheJournal';
 import ClientStories from '../components/ClientStories';
 
 gsap.registerPlugin(ScrollTrigger);
