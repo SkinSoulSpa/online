@@ -21,7 +21,7 @@ function App() {
   const [isLoaded, setIsLoaded] = React.useState(false);
 
   return (
-    <Router>
+    <Router basename={import.meta.env.BASE_URL}>
       <ScrollToTop />
       <AudioProvider>
         <div className="app" style={{ position: 'relative', display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
