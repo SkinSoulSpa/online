@@ -367,14 +367,23 @@ const TheArtisans = () => {
         // Soft wave mask
         maskImage: 'url("data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 1440 320\' preserveAspectRatio=\'none\'%3E%3Cpath d=\'M0,320 L0,40 Q360,0 720,40 T1440,40 L1440,320 Z\' fill=\'black\'/%3E%3C/svg%3E")',
         WebkitMaskImage: 'url("data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 1440 320\' preserveAspectRatio=\'none\'%3E%3Cpath d=\'M0,320 L0,40 Q360,0 720,40 T1440,40 L1440,320 Z\' fill=\'black\'/%3E%3C/svg%3E")',
-        maskSize: '100% 100%',
-        WebkitMaskSize: '100% 100%',
-        maskPosition: 'center bottom',
-        WebkitMaskPosition: 'center bottom',
-        maskRepeat: 'no-repeat',
-        WebkitMaskRepeat: 'no-repeat',
+        maskSize: '200% 100%',
+        WebkitMaskSize: '200% 100%',
+        maskPosition: '0 bottom',
+        WebkitMaskPosition: '0 bottom',
+        maskRepeat: 'repeat-x',
+        WebkitMaskRepeat: 'repeat-x',
+        animation: 'waveFlowFooter 60s linear infinite',
         paddingTop: '8rem' // Extra padding for the wave
       }}>
+        <style>
+          {`
+            @keyframes waveFlowFooter {
+              0% { -webkit-mask-position: 0 bottom; mask-position: 0 bottom; }
+              100% { -webkit-mask-position: -200% bottom; mask-position: -200% bottom; }
+            }
+          `}
+        </style>
         <div style={{ maxWidth: '800px' }}>
           <h2 style={{
             fontFamily: '"Tenor Sans", sans-serif',
@@ -382,7 +391,7 @@ const TheArtisans = () => {
             color: '#C5B398',
             marginBottom: '1.5rem'
           }}>
-            Our Promise of Privacy.
+            A Vow of Silence.
           </h2>
           <p style={{
             fontFamily: '"Cormorant Garamond", serif',
@@ -391,7 +400,9 @@ const TheArtisans = () => {
             lineHeight: 1.8,
             marginBottom: '3rem'
           }}>
-            "What is spoken in the room stays in the room. We treat your skin journey with the same confidentiality as a medical professional."
+            True restoration requires a space where the world cannot reach you. We believe that luxury is the freedom to be vulnerable, whether you wish to unburden your mind in confidence or surrender to deep, restorative sleep.
+            <br /><br />
+            We honour the trust you place in our hands with absolute discretion. Here, we protect your peace as fiercely as we protect your skin barrier, ensuring that your ritual remains a secret strictly between us.
           </p>
           
           <button className="btn-shimmer" style={{
