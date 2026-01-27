@@ -1,4 +1,5 @@
 import React, { useRef, useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import OrganicImagePlaceholder from './OrganicImagePlaceholder';
@@ -23,6 +24,7 @@ const Section = ({ children, style, className, id }) => (
 const TheArtisans = () => {
   const [isMobile, setIsMobile] = useState(() => window.innerWidth < 768);
   const [activePortrait, setActivePortrait] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const checkMobile = () => setIsMobile(window.innerWidth < 768);
@@ -294,6 +296,47 @@ const TheArtisans = () => {
                       `}
                     </style>
                   </div>
+
+                  {/* Hover Overlay Text */}
+                  <div style={{
+                    position: 'absolute',
+                    top: 0,
+                    left: 0,
+                    width: '100%',
+                    height: '100%',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    opacity: isActive ? 1 : 0,
+                    transition: 'opacity 0.4s ease',
+                    zIndex: 2,
+                    pointerEvents: 'none'
+                  }}>
+                    <style>
+                      {`
+                        @keyframes goldShimmer {
+                          0% { background-position: 0% 50%; }
+                          100% { background-position: 200% 50%; }
+                        }
+                      `}
+                    </style>
+                    <span style={{
+                      fontFamily: '"Montserrat", sans-serif',
+                      fontSize: '0.9rem',
+                      letterSpacing: '0.15em',
+                      textTransform: 'uppercase',
+                      backgroundImage: 'linear-gradient(90deg, #BFA475 0%, #FFF8E7 50%, #BFA475 100%)',
+                      backgroundSize: '200% auto',
+                      color: '#BFA475',
+                      WebkitBackgroundClip: 'text',
+                      WebkitTextFillColor: 'transparent',
+                      animation: 'goldShimmer 3s linear infinite',
+                      fontWeight: 600,
+                      textShadow: '0 2px 10px rgba(0,0,0,0.1)'
+                    }}>
+                      Reserve
+                    </span>
+                  </div>
                 </div>
 
                 {/* Content Area */}
@@ -374,7 +417,7 @@ const TheArtisans = () => {
         maskRepeat: 'repeat-x',
         WebkitMaskRepeat: 'repeat-x',
         animation: 'waveFlowFooter 60s linear infinite',
-        paddingTop: '8rem' // Extra padding for the wave
+        paddingTop: '15rem' // Increased padding for wave space
       }}>
         <style>
           {`
@@ -405,7 +448,10 @@ const TheArtisans = () => {
             We honour the trust you place in our hands with absolute discretion. Here, we protect your peace as fiercely as we protect your skin barrier, ensuring that your ritual remains a secret strictly between us.
           </p>
           
-          <button className="btn-shimmer" style={{
+          <button 
+            className="btn-shimmer" 
+            onClick={() => navigate('/reservation')}
+            style={{
              color: '#FAF9F6',
              borderColor: '#C5B398',
              fontSize: '0.9rem',
