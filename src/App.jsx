@@ -14,6 +14,8 @@ import Home from './pages/Home';
 import Sanctuary from './components/Sanctuary';
 import ExperiencesPage from './components/ExperiencesPage';
 import TheArtisans from './components/TheArtisans';
+import TheJournal from './components/TheJournal';
+import Reservations from './components/Reservations';
 import './styles/main.scss';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -37,19 +39,8 @@ function App() {
               <Route path="/sanctuary" element={<Sanctuary />} />
               <Route path="/experiences" element={<ExperiencesPage />} />
               <Route path="/artisans" element={<TheArtisans />} />
-              <Route path="/reservation" element={
-                <div style={{ 
-                  minHeight: '80vh', 
-                  display: 'flex', 
-                  alignItems: 'center', 
-                  justifyContent: 'center', 
-                  color: '#5C615E',
-                  fontFamily: '"Tenor Sans", sans-serif',
-                  fontSize: '2rem'
-                }}>
-                  Reservation
-                </div>
-              } />
+              <Route path="/journal" element={<TheJournal />} />
+              <Route path="/reservation" element={<Reservations />} />
             </Routes>
           </main>
           

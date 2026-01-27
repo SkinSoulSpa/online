@@ -14,7 +14,7 @@ const Navigation = () => {
     { label: "The Sanctuary", path: "/sanctuary" },
     { label: "Experiences", path: "/experiences" },
     { label: "The Artisans", path: "/artisans" },
-    { label: "Journal", path: "/" },
+    { label: "Journal", path: "/journal" },
     { label: "Reservations", path: "/reservation" }
   ];
 
