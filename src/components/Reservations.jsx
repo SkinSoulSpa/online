@@ -217,7 +217,7 @@ const Reservations = () => {
                 value={formData.name} 
                 onChange={handleChange} 
                 required 
-                placeholder="Your full name"
+                placeholder="How should we address you?"
               />
               <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr', gap: '2rem' }}>
                 <InputGroup 
