@@ -139,10 +139,9 @@ const Reservations = () => {
   };
 
   const experiences = [
-    "The Clarifying Peace (60m)",
-    "The Soul-Deep Restore (60m)",
-    "The Luminous Awake (90m)",
-    "The Timeless Lift (100m)"
+    "I am new (Request Consultation)",
+    "I am returning (Book Specific Experience)",
+    "I am looking for a Gift"
   ];
 
   const artisans = [
@@ -212,7 +211,7 @@ const Reservations = () => {
               </h3>
               
               <InputGroup 
-                label="Name" 
+                label="How should we address you?" 
                 name="name" 
                 value={formData.name} 
                 onChange={handleChange} 
@@ -254,11 +253,11 @@ const Reservations = () => {
                 paddingBottom: '0.5rem',
                 display: 'inline-block'
               }}>
-                02. The Ritual
+                02. The Journey
               </h3>
 
               <InputGroup 
-                label="Experience" 
+                label="Preferred Experience" 
                 name="experience" 
                 value={formData.experience} 
                 onChange={handleChange} 
@@ -296,7 +295,7 @@ const Reservations = () => {
               </div>
 
               <InputGroup 
-                label="Note" 
+                label="How is your skin feeling today?" 
                 name="note" 
                 type="textarea"
                 value={formData.note} 
@@ -326,6 +325,17 @@ const Reservations = () => {
             >
               Request Reservation
             </button>
+            <p style={{
+              fontFamily: '"Montserrat", sans-serif',
+              fontSize: '0.7rem',
+              color: '#5C615E',
+              marginTop: '1.5rem',
+              lineHeight: 1.6,
+              maxWidth: '400px',
+              fontStyle: 'italic'
+            }}>
+              Your request is confidential. Our concierge will contact you via WhatsApp or Email within 2 hours to confirm your sanctuary time.
+            </p>
           </form>
         </div>
 
@@ -367,7 +377,7 @@ const Reservations = () => {
                   lineHeight: 1.4,
                   marginBottom: '2rem'
                 }}>
-                  "To care for the skin is to care for the self. We await your arrival."
+                  "The Hidden Sanctuary is conveniently nestled within Pacific Plaza, yet a world away from the noise of Scotts Road."
                 </p>
                 <div style={{
                   width: '40px',
@@ -375,14 +385,49 @@ const Reservations = () => {
                   backgroundColor: '#C5B398',
                   margin: '0 auto 2rem auto'
                 }} />
-                <p style={{
-                  fontFamily: '"Montserrat", sans-serif',
-                  fontSize: '0.8rem',
-                  letterSpacing: '0.1em'
-                }}>
-                  OPEN DAILY<br/>
-                  10:00 AM — 9:00 PM
-                </p>
+                
+                <div style={{ marginBottom: '2rem' }}>
+                  <span style={{ 
+                    fontFamily: '"Montserrat", sans-serif',
+                    fontSize: '0.75rem',
+                    letterSpacing: '0.2em',
+                    textTransform: 'uppercase',
+                    color: '#C5B398',
+                    display: 'block',
+                    marginBottom: '0.5rem'
+                  }}>The Arrival</span>
+                  <p style={{
+                    fontFamily: '"Montserrat", sans-serif',
+                    fontSize: '0.8rem',
+                    letterSpacing: '0.05em',
+                    lineHeight: 1.6
+                  }}>
+                    9 Scotts Road, #03-01<br/>
+                    Take the elevator to Level 3.<br/>
+                    As the doors open, leave the city behind.
+                  </p>
+                </div>
+
+                <div>
+                  <span style={{ 
+                    fontFamily: '"Montserrat", sans-serif',
+                    fontSize: '0.75rem',
+                    letterSpacing: '0.2em',
+                    textTransform: 'uppercase',
+                    color: '#C5B398',
+                    display: 'block',
+                    marginBottom: '0.5rem'
+                  }}>The Hours of Restoration</span>
+                  <p style={{
+                    fontFamily: '"Montserrat", sans-serif',
+                    fontSize: '0.8rem',
+                    letterSpacing: '0.05em',
+                    lineHeight: 1.6
+                  }}>
+                    Mon – Fri: 11:00 AM – 8:00 PM<br/>
+                    Sat, Sun & PH: 10:00 AM – 7:00 PM
+                  </p>
+                </div>
               </div>
             </OrganicImagePlaceholder>
           </div>
