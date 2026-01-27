@@ -18,19 +18,21 @@ import './styles/main.scss';
 gsap.registerPlugin(ScrollTrigger);
 
 function App() {
+  const [isLoaded, setIsLoaded] = React.useState(false);
+
   return (
     <Router>
       <ScrollToTop />
       <AudioProvider>
-        <div className="app" style={{ position: 'relative' }}>
-          <Preloader />
+        <div className="app" style={{ position: 'relative', display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
+          <Preloader onComplete={() => setIsLoaded(true)} />
           <MistBackground />
           <OrganicLine />
           <Navigation />
           
-          <main style={{ position: 'relative', zIndex: 1 }}>
+          <main style={{ position: 'relative', zIndex: 1, flex: '1 0 auto', paddingTop: '80px' }}>
             <Routes>
-              <Route path="/" element={<Home />} />
+              <Route path="/" element={<Home isLoaded={isLoaded} />} />
               <Route path="/sanctuary" element={<Sanctuary />} />
               <Route path="/experiences" element={<ExperiencesPage />} />
             </Routes>

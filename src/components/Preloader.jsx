@@ -4,7 +4,7 @@ import gsap from 'gsap';
 // Configuration: Switch 'variant' to 'pulse', 'ripple', or 'mist'
 const VARIANT = 'organic'; 
 
-const Preloader = () => {
+const Preloader = ({ onComplete }) => {
   const [loaded, setLoaded] = useState(false);
   const containerRef = useRef(null);
   const textRef = useRef(null);
@@ -29,12 +29,16 @@ const Preloader = () => {
 
     // Failsafe: Force remove after 5 seconds max (in case animation hangs on mobile)
     const failsafe = setTimeout(() => {
-      if (!loaded) setLoaded(true);
+      if (!loaded) {
+        setLoaded(true);
+        if (onComplete) onComplete();
+      }
     }, 5000);
 
     const tl = gsap.timeline({
       onComplete: () => {
         setLoaded(true);
+        if (onComplete) onComplete();
         clearTimeout(failsafe);
         window.removeEventListener('resize', checkMobile);
       }

@@ -10,7 +10,7 @@ import ClientStories from '../components/ClientStories';
 
 gsap.registerPlugin(ScrollTrigger);
 
-const Home = () => {
+const Home = ({ isLoaded = true }) => {
   const heroRef = useRef(null);
   const [isMobile, setIsMobile] = useState(() => window.innerWidth < 768);
 
@@ -21,20 +21,48 @@ const Home = () => {
   }, []);
 
   useEffect(() => {
-    if (heroRef.current) {
+    // Force refresh ScrollTrigger to ensure layouts are correct after load
+    if (isLoaded) {
+      ScrollTrigger.refresh();
+    }
+  }, [isLoaded]);
+
+  useEffect(() => {
+    // Entrance Animation
+    const ctx = gsap.context(() => {
+      // Clear initial opacity from style
+      gsap.set(heroRef.current, { opacity: 0, y: 30 });
+      
+      const tl = gsap.timeline();
+      
+      // If loaded, animate in. If not, wait (this effect re-runs on isLoaded change)
+      if (isLoaded) {
+          tl.to(heroRef.current, {
+            opacity: 1,
+            y: 0,
+            duration: 1.5,
+            ease: "power3.out",
+            delay: 0.5
+          });
+      }
+
+      // Scroll Parallax & Fade Out
       gsap.to(heroRef.current, {
         scrollTrigger: {
           trigger: heroRef.current,
-          start: "top top", // When top of hero hits top of viewport
-          end: "bottom top", // When bottom of hero hits top of viewport
+          start: "top top", 
+          end: "bottom top", 
           scrub: true
         },
-        y: -100, // Move up slightly (parallax)
-        opacity: 0, // Fade out
-        ease: "none"
+        y: -100, 
+        opacity: 0, 
+        ease: "none",
+        immediateRender: false 
       });
-    }
-  }, []);
+    }, heroRef); // Scope to heroRef
+
+    return () => ctx.revert();
+  }, [isLoaded]);
 
   return (
     <div style={{ 
@@ -53,8 +81,7 @@ const Home = () => {
           maxWidth: '800px',
           padding: '0 2rem',
           marginLeft: isMobile ? '0' : '10vw', // Removed margin on mobile
-          opacity: 0,
-          animation: 'fadeInUp 1.5s ease-out forwards 0.5s'
+          // opacity: 0 // Removed to prevent permanent invisibility if JS fails
         }}
       >
         <h1 style={{

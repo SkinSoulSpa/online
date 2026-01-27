@@ -100,7 +100,7 @@ const OrganicLine = () => {
       width: '100%',
       height: '100%',
       pointerEvents: 'none',
-      zIndex: 0,
+      zIndex: 0, // Ensure it's above negative index background but below content
       overflow: 'hidden'
     }}>
       <svg 
@@ -149,7 +149,7 @@ const OrganicLine = () => {
           opacity="0.5"
           filter={isMobile ? null : "url(#organic-distortion)"} // Disable filter on mobile for performance
           strokeLinecap="round"
-          style={{ opacity: 0 }} // Hidden initially to prevent FOUC
+          // style={{ opacity: 0 }} // Removed to prevent FOUC risk
         />
 
         {/* Glowing Pulse Line */}
@@ -162,7 +162,7 @@ const OrganicLine = () => {
           filter={isMobile ? null : "url(#glow)"}
           opacity="0.8"
           strokeLinecap="round"
-          style={{ opacity: 0 }} // Hidden initially to prevent FOUC
+          // style={{ opacity: 0 }} // Removed to prevent FOUC risk
         />
       </svg>
     </div>
