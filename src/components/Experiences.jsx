@@ -174,7 +174,7 @@ const Experiences = () => {
                     maskRepeat: isMobile ? 'repeat-x' : 'repeat-y',
                     WebkitMaskRepeat: isMobile ? 'repeat-x' : 'repeat-y',
                     pointerEvents: 'none',
-                    animation: isMobile ? 'waveFlowHorizontal 15s linear infinite' : 'waveFlow 12s linear infinite'
+                    animation: isMobile ? 'waveFlowHorizontal 30s linear infinite' : 'waveFlow 12s linear infinite'
                   }}>
                     <style>
                       {`
@@ -184,7 +184,7 @@ const Experiences = () => {
                         }
                         @keyframes waveFlowHorizontal {
                           0% { -webkit-mask-position: 0 0; mask-position: 0 0; }
-                          100% { -webkit-mask-position: -100% 0; mask-position: -100% 0; }
+                          100% { -webkit-mask-position: -200% 0; mask-position: -200% 0; }
                         }
                       `}
                     </style>
