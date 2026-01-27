@@ -383,3 +383,4 @@ const TheArtisans = () => {
 
 export default TheArtisans;
  
+ 
