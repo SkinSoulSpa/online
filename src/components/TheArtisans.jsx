@@ -93,7 +93,7 @@ const TheArtisans = () => {
       minHeight: '100vh',
       paddingTop: '100px',
       position: 'relative',
-      backgroundColor: '#FAF9F6' // Soul Ivory
+      backgroundColor: 'transparent' // Transparent
     }}>
       
       {/* SECTION 1: THE HERO */}
@@ -212,7 +212,7 @@ const TheArtisans = () => {
       </Section>
 
       {/* SECTION 3: THE PORTRAITS (The Artisans) */}
-      <Section className="fade-section" style={{ flexDirection: 'column', backgroundColor: '#F5F3EF' }}>
+      <Section className="fade-section" style={{ flexDirection: 'column', backgroundColor: 'transparent' }}>
         <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
           <h2 style={{
             fontFamily: '"Tenor Sans", sans-serif',
@@ -234,8 +234,8 @@ const TheArtisans = () => {
 
         <div style={{ 
           display: 'grid', 
-          gridTemplateColumns: isMobile ? '1fr' : 'repeat(2, 1fr)', 
-          gap: '2rem', 
+          gridTemplateColumns: isMobile ? '1fr' : 'repeat(4, 1fr)', 
+          gap: '1.5rem', 
           maxWidth: '1200px', 
           width: '100%' 
         }}>
