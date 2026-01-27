@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import gsap from 'gsap';
 import OrganicImagePlaceholder from './OrganicImagePlaceholder';
 
+// Updated Reservations Component
 const InputGroup = ({ label, type = "text", name, value, onChange, placeholder, required = false, options = null }) => (
   <div style={{ marginBottom: '2rem' }}>
     <label style={{
@@ -211,7 +212,7 @@ const Reservations = () => {
               </h3>
               
               <InputGroup 
-                label="How should we address you?" 
+                label="Name" 
                 name="name" 
                 value={formData.name} 
                 onChange={handleChange} 
@@ -262,7 +263,7 @@ const Reservations = () => {
                 value={formData.experience} 
                 onChange={handleChange} 
                 options={experiences}
-                placeholder="Select your ritual"
+                placeholder="Select your experience"
                 required
               />
 
