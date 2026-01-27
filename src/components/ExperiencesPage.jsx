@@ -70,14 +70,17 @@ const ExperiencesPage = () => {
                 bottom: '30px', 
                 left: '50%', 
                 xPercent: -50,
-                width: 'auto',
-                padding: '0.8rem 2rem',
+                width: isMobile ? '90vw' : 'auto',
+                padding: isMobile ? '0.8rem 1rem' : '0.8rem 2rem',
                 borderRadius: '50px',
                 backgroundColor: 'rgba(250, 249, 246, 0.9)', 
                 backdropFilter: 'blur(10px)',
                 boxShadow: '0 10px 30px rgba(0,0,0,0.1)',
                 zIndex: 90,
-                border: '1px solid rgba(197, 179, 152, 0.3)'
+                border: '1px solid rgba(197, 179, 152, 0.3)',
+                overflowX: isMobile ? 'auto' : 'visible',
+                flexWrap: isMobile ? 'nowrap' : 'wrap',
+                justifyContent: isMobile ? 'flex-start' : 'center'
               });
               gsap.to(navRef.current, {
                 y: 0,
@@ -97,17 +100,20 @@ const ExperiencesPage = () => {
               gsap.set(navRef.current, { 
                 position: 'absolute', 
                 top: 'auto', 
-                bottom: 0, 
-                left: 0, 
-                xPercent: 0,
-                width: '100%',
-                padding: '1.5rem 0',
-                borderRadius: '0',
-                backgroundColor: 'transparent',
-                boxShadow: 'none',
-                backdropFilter: 'none',
-                border: 'none',
-                zIndex: 90
+                bottom: '2rem', 
+                left: '50%', 
+                xPercent: -50,
+                width: isMobile ? '90vw' : 'auto',
+                padding: isMobile ? '0.8rem 1rem' : '0.8rem 2rem',
+                borderRadius: '50px',
+                backgroundColor: 'rgba(250, 249, 246, 0.9)', 
+                backdropFilter: 'blur(10px)',
+                boxShadow: '0 10px 30px rgba(0,0,0,0.1)',
+                border: '1px solid rgba(197, 179, 152, 0.3)',
+                zIndex: 90,
+                overflowX: isMobile ? 'auto' : 'visible',
+                flexWrap: isMobile ? 'nowrap' : 'wrap',
+                justifyContent: isMobile ? 'flex-start' : 'center'
               });
               gsap.to(navRef.current, {
                 y: 0,
@@ -217,16 +223,34 @@ const ExperiencesPage = () => {
         {/* Sticky Anchor Bar (initially absolute at bottom of hero) */}
         <div ref={navRef} style={{
           position: 'absolute',
-          bottom: 0,
-          left: 0,
-          width: '100%',
-          padding: '1.5rem 0',
+          bottom: '2rem',
+          left: '50%',
+          transform: 'translateX(-50%)',
+          width: isMobile ? '90vw' : 'auto', // Responsive width
+          padding: isMobile ? '0.8rem 1rem' : '0.8rem 2rem', // Less padding on mobile
           display: 'flex',
-          justifyContent: 'center',
-          gap: '2rem',
+          justifyContent: isMobile ? 'flex-start' : 'center', // Align start for scrolling
+          gap: isMobile ? '1.5rem' : '2rem',
           zIndex: 90,
-          flexWrap: 'wrap'
+          flexWrap: isMobile ? 'nowrap' : 'wrap', // Prevent wrapping on mobile
+          overflowX: isMobile ? 'auto' : 'visible', // Enable horizontal scroll
+          // Hide scrollbar styles
+          scrollbarWidth: 'none',
+          msOverflowStyle: 'none',
+          WebkitOverflowScrolling: 'touch', // Smooth scroll on iOS
+          // Pill Styles
+          backgroundColor: 'rgba(250, 249, 246, 0.9)', 
+          backdropFilter: 'blur(10px)',
+          boxShadow: '0 10px 30px rgba(0,0,0,0.1)',
+          border: '1px solid rgba(197, 179, 152, 0.3)',
+          borderRadius: '50px'
         }}>
+          {/* Hide scrollbar for Chrome/Safari/Opera */}
+          <style>{`
+            div::-webkit-scrollbar {
+              display: none;
+            }
+          `}</style>
           {['The Signature', 'The Intensive', 'The Enhancements'].map((item, index) => {
             const id = item.toLowerCase().replace(' ', '-'); // the-signature, etc.
             // But user wants ids: signature, intensive, enhancements probably?
@@ -247,7 +271,8 @@ const ExperiencesPage = () => {
                   border: 'none',
                   cursor: 'pointer',
                   position: 'relative',
-                  padding: '0.5rem 1rem'
+                  padding: '0.5rem 1rem',
+                  whiteSpace: 'nowrap' // Ensure text doesn't wrap
                 }}
                 className="hover-trigger"
               >
@@ -413,7 +438,7 @@ const ExperiencesPage = () => {
                       maskRepeat: isMobile ? 'repeat-x' : 'repeat-y',
                       WebkitMaskRepeat: isMobile ? 'repeat-x' : 'repeat-y',
                       pointerEvents: 'none',
-                      animation: isMobile ? 'waveFlowHorizontal 15s linear infinite' : 'waveFlow 12s linear infinite'
+                      animation: isMobile ? 'waveFlowHorizontal 30s linear infinite' : 'waveFlow 12s linear infinite'
                     }}>
                        <style>
                         {`
@@ -423,7 +448,7 @@ const ExperiencesPage = () => {
                           }
                           @keyframes waveFlowHorizontal {
                             0% { -webkit-mask-position: 0 0; mask-position: 0 0; }
-                            100% { -webkit-mask-position: -100% 0; mask-position: -100% 0; }
+                            100% { -webkit-mask-position: -200% 0; mask-position: -200% 0; }
                           }
                         `}
                       </style>
