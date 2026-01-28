@@ -77,24 +77,21 @@ const Sanctuary = () => {
           marginTop: '4rem', 
           width: '100%', 
           maxWidth: '1000px', 
-          height: '60vh',
           position: 'relative' 
         }}>
-          <OrganicImagePlaceholder style={{ width: '100%', height: '100%' }}>
-            <div style={{ 
-              width: '100%', 
-              height: '100%', 
-              backgroundColor: '#E6E2DD',
-              display: 'flex', 
-              alignItems: 'center', 
-              justifyContent: 'center',
-              color: '#8C8C8C',
-              fontFamily: 'Montserrat, sans-serif',
-              letterSpacing: '0.1em'
-            }}>
-              HERO VIDEO / IMAGE
-            </div>
-          </OrganicImagePlaceholder>
+          <ErrorBoundary>
+            <OrganicImagePlaceholder fitContent={true} style={{ width: '100%' }}>
+              <img 
+                src={sanctuaryHero} 
+                alt="Sanctuary interior" 
+                style={{ 
+                  width: '100%', 
+                  height: 'auto', 
+                  display: 'block'
+                }} 
+              />
+            </OrganicImagePlaceholder>
+          </ErrorBoundary>
         </div>
       </Section>
 
