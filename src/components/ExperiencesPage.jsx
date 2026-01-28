@@ -289,17 +289,6 @@ const ExperiencesPage = () => {
         {/* Category 1: THE SIGNATURE JOURNEYS */}
         <Section id="signature" className="fade-section" style={{ flexDirection: 'column' }}>
           <div style={{ textAlign: 'center', maxWidth: '800px', marginBottom: '3rem' }}>
-            <span style={{
-              fontFamily: 'Montserrat, sans-serif',
-              fontSize: '0.75rem',
-              letterSpacing: '0.2em',
-              textTransform: 'uppercase',
-              color: '#C5B398',
-              display: 'block',
-              marginBottom: '1rem'
-            }}>
-              Category 1
-            </span>
             <h2 style={{
               fontFamily: '"Tenor Sans", sans-serif',
               fontSize: '3rem',
@@ -594,30 +583,14 @@ const ExperiencesPage = () => {
               Precision-led protocols for visible transformation. We utilise advanced hydration technologies and potent actives to firm, brighten, and restore the skin barrier.
             </p>
           </div>
-          <div className="carousel-container" style={{ 
+          <div style={{ 
             width: '100%', 
             maxWidth: '1200px',
-            display: 'flex',
-            flexWrap: 'nowrap',
-            overflowX: 'auto',
+            display: 'grid',
+            gridTemplateColumns: isMobile ? '1fr' : 'repeat(2, 1fr)',
             gap: '2rem',
-            marginBottom: '4rem',
-            paddingBottom: '2rem',
-            scrollSnapType: 'x mandatory',
-            WebkitOverflowScrolling: 'touch'
+            marginBottom: '4rem'
           }}>
-            <style>{`
-              .carousel-container::-webkit-scrollbar {
-                height: 6px;
-              }
-              .carousel-container::-webkit-scrollbar-track {
-                background: transparent;
-              }
-              .carousel-container::-webkit-scrollbar-thumb {
-                background: #C5B398;
-                border-radius: 3px;
-              }
-            `}</style>
             {[
               {
                 title: "The Cellular Renaissance",
@@ -681,9 +654,6 @@ const ExperiencesPage = () => {
                 <div 
                   key={index} 
                   style={{ 
-                    minWidth: isMobile ? '85vw' : '400px',
-                    flex: '0 0 auto',
-                    scrollSnapAlign: 'center',
                     backgroundColor: '#FFFFFF',
                     borderRadius: '1rem', 
                     padding: '2.5rem',
@@ -830,6 +800,17 @@ const ExperiencesPage = () => {
         {/* Category 3: THE ENHANCEMENTS */}
         <Section id="enhancements" className="fade-section" style={{ flexDirection: 'column' }}>
           <div style={{ textAlign: 'center', maxWidth: '800px', marginBottom: '3rem' }}>
+             <span style={{
+              fontFamily: 'Montserrat, sans-serif',
+              fontSize: '0.75rem',
+              letterSpacing: '0.2em',
+              textTransform: 'uppercase',
+              color: '#C5B398',
+              display: 'block',
+              marginBottom: '1rem'
+            }}>
+              Category 3
+            </span>
             <h2 style={{
               fontFamily: '"Tenor Sans", sans-serif',
               fontSize: '3rem',
