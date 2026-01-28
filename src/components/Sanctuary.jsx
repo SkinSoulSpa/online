@@ -2,6 +2,8 @@ import React, { useRef, useEffect } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import OrganicImagePlaceholder from './OrganicImagePlaceholder';
+import ErrorBoundary from './ErrorBoundary';
+import sanctuaryHero from '../assets/sanctuary-hero.jpg';
 
 // Re-register in case it's mounted separately
 gsap.registerPlugin(ScrollTrigger);
