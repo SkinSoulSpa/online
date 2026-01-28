@@ -4,6 +4,8 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import OrganicImagePlaceholder from './OrganicImagePlaceholder';
 import ErrorBoundary from './ErrorBoundary';
 import sanctuaryHero from '../assets/sanctuary-hero.jpg';
+import sanctuarySilence1 from '../assets/sanctuary-silence-1.jpg';
+import sanctuarySilence2 from '../assets/sanctuary-silence-2.jpg';
 
 // Re-register in case it's mounted separately
 gsap.registerPlugin(ScrollTrigger);
@@ -24,6 +26,14 @@ const Section = ({ children, style, className }) => (
 
 const Sanctuary = () => {
   const containerRef = useRef(null);
+  const [currentSilenceImage, setCurrentSilenceImage] = React.useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentSilenceImage(prev => (prev + 1) % 2);
+    }, 4000);
+    return () => clearInterval(interval);
+  }, []);
 
   useEffect(() => {
     // Simple fade-in animations for sections
