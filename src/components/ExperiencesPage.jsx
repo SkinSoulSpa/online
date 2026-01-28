@@ -800,17 +800,6 @@ const ExperiencesPage = () => {
         {/* Category 3: THE ENHANCEMENTS */}
         <Section id="enhancements" className="fade-section" style={{ flexDirection: 'column' }}>
           <div style={{ textAlign: 'center', maxWidth: '800px', marginBottom: '3rem' }}>
-             <span style={{
-              fontFamily: 'Montserrat, sans-serif',
-              fontSize: '0.75rem',
-              letterSpacing: '0.2em',
-              textTransform: 'uppercase',
-              color: '#C5B398',
-              display: 'block',
-              marginBottom: '1rem'
-            }}>
-              Category 3
-            </span>
             <h2 style={{
               fontFamily: '"Tenor Sans", sans-serif',
               fontSize: '3rem',

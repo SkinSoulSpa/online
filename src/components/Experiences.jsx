@@ -2,6 +2,7 @@ import React, { useRef, useEffect, useState } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import testImage from '../assets/test.png';
+import experience1 from '../assets/experience_1.png';
 
 if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger);
@@ -48,8 +49,7 @@ const Experiences = () => {
       body: 'For the city-stressed skin. A deep dive into moisture that soothes, repairs, and restores the skin barrier. We utilise soothing botanicals and advanced hydration technologies to quiet inflammation and quench dehydration.',
       cta: 'Explore The Journeys',
       type: 'restoration',
-      // Images removed from card layout to match 'Curated Rituals' style, but keeping data just in case
-      image: 'https://images.unsplash.com/photo-1616683693504-3ea7e9ad6fec?auto=format&fit=crop&w=2000&q=80'
+      image: experience1
     },
     {
       id: 'transformation',
@@ -58,7 +58,7 @@ const Experiences = () => {
       body: 'Powerful anti-aging protocols designed to firm, brighten, and turn back the clock without aggression. Witness a visible lift and a renewed vitality that feels entirely natural, leaving you glowing with health.',
       cta: 'Explore The Journeys',
       type: 'transformation',
-      image: 'https://images.unsplash.com/photo-1509650393247-975c0249c5ee?auto=format&fit=crop&w=2000&q=80'
+      image: testImage
     },
     {
       id: 'signature',
@@ -67,7 +67,7 @@ const Experiences = () => {
       body: 'Our signature 90-minute immersion. A customised fusion of deep-tissue massage and advanced skincare. This is the ultimate act of self-reverence, a ritual that nurtures the skin and nourishes the soul, creating a glow that lingers for days.',
       cta: 'Explore The Journeys',
       type: 'signature',
-      image: 'https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=2000&q=80'
+      image: testImage
     }
   ];
 
@@ -160,7 +160,7 @@ const Experiences = () => {
                     left: 0,
                     right: 0,
                     bottom: 0,
-                    backgroundImage: `url(${testImage})`,
+                    backgroundImage: `url(${card.image})`,
                     backgroundSize: 'cover',
                     backgroundPosition: 'center',
                     maskImage: isMobile 

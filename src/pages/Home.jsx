@@ -1,6 +1,7 @@
 import React, { useRef, useEffect, useState } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import ErrorBoundary from '../components/ErrorBoundary';
 import SlowBeauty from '../components/SlowBeauty';
 import OurPhilosophy from '../components/OurPhilosophy';
 import Experiences from '../components/Experiences';
