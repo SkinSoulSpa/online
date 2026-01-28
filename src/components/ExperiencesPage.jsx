@@ -594,14 +594,30 @@ const ExperiencesPage = () => {
               Precision-led protocols for visible transformation. We utilise advanced hydration technologies and potent actives to firm, brighten, and restore the skin barrier.
             </p>
           </div>
-          <div style={{ 
+          <div className="carousel-container" style={{ 
             width: '100%', 
             maxWidth: '1200px',
-            display: 'grid',
-            gridTemplateColumns: isMobile ? '1fr' : 'repeat(2, 1fr)',
+            display: 'flex',
+            flexWrap: 'nowrap',
+            overflowX: 'auto',
             gap: '2rem',
-            marginBottom: '4rem'
+            marginBottom: '4rem',
+            paddingBottom: '2rem',
+            scrollSnapType: 'x mandatory',
+            WebkitOverflowScrolling: 'touch'
           }}>
+            <style>{`
+              .carousel-container::-webkit-scrollbar {
+                height: 6px;
+              }
+              .carousel-container::-webkit-scrollbar-track {
+                background: transparent;
+              }
+              .carousel-container::-webkit-scrollbar-thumb {
+                background: #C5B398;
+                border-radius: 3px;
+              }
+            `}</style>
             {[
               {
                 title: "The Cellular Renaissance",
