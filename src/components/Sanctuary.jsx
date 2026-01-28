@@ -159,20 +159,33 @@ const Sanctuary = () => {
           </div>
 
           {/* Right Image */}
-          <div style={{ flex: '1 1 400px', height: '500px' }}>
-             <OrganicImagePlaceholder style={{ width: '100%', height: '100%' }}>
-              <div style={{ 
-                width: '100%', 
-                height: '100%', 
-                backgroundColor: '#DCD6CF',
-                display: 'flex', 
-                alignItems: 'center', 
-                justifyContent: 'center',
-                color: '#8C8C8C',
-                fontFamily: 'Montserrat, sans-serif',
-                letterSpacing: '0.1em'
-              }}>
-                INTERIOR AMBIANCE
+          <div style={{ flex: '1 1 400px' }}>
+             <OrganicImagePlaceholder fitContent={true} style={{ width: '100%' }}>
+              <div style={{ display: 'grid', gridTemplateAreas: '"stack"' }}>
+                <img 
+                  src={sanctuarySilence1} 
+                  alt="Sanctuary silence 1" 
+                  style={{ 
+                    gridArea: 'stack', 
+                    width: '100%', 
+                    height: 'auto', 
+                    opacity: currentSilenceImage === 0 ? 1 : 0, 
+                    transition: 'opacity 1s ease-in-out',
+                    display: 'block'
+                  }} 
+                />
+                <img 
+                  src={sanctuarySilence2} 
+                  alt="Sanctuary silence 2" 
+                  style={{ 
+                    gridArea: 'stack', 
+                    width: '100%', 
+                    height: 'auto', 
+                    opacity: currentSilenceImage === 1 ? 1 : 0, 
+                    transition: 'opacity 1s ease-in-out',
+                    display: 'block'
+                  }} 
+                />
               </div>
             </OrganicImagePlaceholder>
           </div>
