@@ -2,6 +2,7 @@ import React, { useRef, useEffect, useState } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import OrganicImagePlaceholder from './OrganicImagePlaceholder';
+import consultationImage from '../assets/consultation_1.jpg';
 import testImage from '../assets/test.png';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -195,28 +196,25 @@ const ExperiencesPage = () => {
           </p>
         </div>
 
-        {/* Placeholder for Hero Video/Image */}
+        {/* Hero Visual - Replaced with Consultation Image */}
         <div className="fade-section" style={{ 
           marginTop: '4rem', 
           width: '100%', 
           maxWidth: '1000px', 
-          height: '50vh',
+          height: 'auto',
           position: 'relative' 
         }}>
-          <OrganicImagePlaceholder style={{ width: '100%', height: '100%' }}>
-            <div style={{ 
-              width: '100%', 
-              height: '100%', 
-              backgroundColor: '#E6E2DD',
-              display: 'flex', 
-              alignItems: 'center', 
-              justifyContent: 'center',
-              color: '#8C8C8C',
-              fontFamily: 'Montserrat, sans-serif',
-              letterSpacing: '0.1em'
-            }}>
-              HERO VISUAL
-            </div>
+          <OrganicImagePlaceholder fitContent={true} style={{ width: '100%' }}>
+            <img 
+              src={consultationImage} 
+              alt="Consultation" 
+              style={{ 
+                width: '100%', 
+                height: 'auto', 
+                display: 'block',
+                objectFit: 'cover'
+              }} 
+            />
           </OrganicImagePlaceholder>
         </div>
 
