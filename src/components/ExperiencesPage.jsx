@@ -625,7 +625,7 @@ const ExperiencesPage = () => {
                 result: "A sharper contour and firmer texture. This is the non-invasive answer to skin laxity, restoring the \"youthful bounce\" of the complexion."
               },
               {
-                title: "The Vitality Infusion",
+                title: "The Urban Shield",
                 duration: "100 minutes",
                 price: "$338",
                 narrative: "A rescue ritual for skin suffocated by the city. We utilise a potent oxygenation protocol to breathe life back into the cellular structure. This journey detoxifies the pores from \"urban grey\" pollution and UV stress while flooding the barrier with a cocktail of essential vitamins and pH-balancing nutrients.",
@@ -633,7 +633,7 @@ const ExperiencesPage = () => {
                 result: "A complexion that is not just clean, but alive. The skin emerges shielded, hydrated, and glowing with a \"natural luminosity\" that looks as if you have spent a week in nature, far from the city noise."
               },
               {
-                title: "The Light Renewal",
+                title: "The Ageless Glow",
                 duration: "75 minutes",
                 price: "$298",
                 narrative: "Harnessing the power of light to reverse the visible passage of time. We employ advanced SHR (Super Hair Removal) technology adapted for skin rejuvenation to gently target the visual noise of the complexion, blemishes, pigmentation, and laxity. It is a process of clearing the canvas to reveal the \"firmer, smoother\" skin beneath.",
