@@ -268,7 +268,8 @@ const TheArtisans = () => {
               >
                 {/* Image Area - Taking up top half or side */}
                 <div style={{ 
-                  height: '400px', // Increased height for portrait
+                  aspectRatio: '3/4', // Explicit portrait ratio
+                  width: '100%',
                   position: 'relative',
                   backgroundColor: '#FFFFFF',
                   overflow: 'hidden'
