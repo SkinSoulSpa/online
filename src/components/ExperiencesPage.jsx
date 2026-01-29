@@ -1,4 +1,5 @@
 import React, { useRef, useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import OrganicImagePlaceholder from './OrganicImagePlaceholder';
@@ -6,6 +7,10 @@ import consultationImage from '../assets/consultation_1.jpg';
 import testImage from '../assets/test.png';
 
 gsap.registerPlugin(ScrollTrigger);
+
+import botanicalImage from '../assets/botanical.png';
+import luminousImage from '../assets/luminous.png';
+import experience1 from '../assets/experience_1.png';
 
 const Section = ({ children, style, className, id }) => (
   <section id={id} className={className} style={{
@@ -22,6 +27,7 @@ const Section = ({ children, style, className, id }) => (
 );
 
 const ExperiencesPage = () => {
+  const location = useLocation();
   const containerRef = useRef(null);
   const heroRef = useRef(null);
   const navRef = useRef(null);
@@ -145,6 +151,27 @@ const ExperiencesPage = () => {
       });
     }
   };
+
+  const lastKeyRef = useRef(null);
+
+  useEffect(() => {
+    // Prevent re-running logic for the same history entry to avoid loops
+    if (location.key === lastKeyRef.current) return;
+    lastKeyRef.current = location.key;
+
+    if (location.state?.scrollTo) {
+      setTimeout(() => {
+        scrollToSection(location.state.scrollTo);
+      }, 100);
+    } else if (location.hash) {
+      const id = location.hash.replace('#', '');
+      setTimeout(() => {
+        scrollToSection(id);
+      }, 100);
+    } else {
+      window.scrollTo(0, 0);
+    }
+  }, [location]);
 
   return (
     <div ref={containerRef} className="experiences-page" style={{ 
@@ -305,24 +332,6 @@ const ExperiencesPage = () => {
             </p>
           </div>
           
-          <div style={{ width: '100%', height: '500px', position: 'relative', marginBottom: '4rem' }}>
-             <OrganicImagePlaceholder style={{ width: '100%', height: '100%' }}>
-              <div style={{ 
-                width: '100%', 
-                height: '100%', 
-                backgroundColor: '#DCD6CF',
-                display: 'flex', 
-                alignItems: 'center', 
-                justifyContent: 'center',
-                color: '#8C8C8C',
-                fontFamily: 'Montserrat, sans-serif',
-                letterSpacing: '0.1em'
-              }}>
-                SIGNATURE TREATMENT VISUAL
-              </div>
-            </OrganicImagePlaceholder>
-          </div>
-
           {/* Treatment List - Updated to Card Layout */}
           <div style={{ 
             width: '100%', 
@@ -340,7 +349,7 @@ const ExperiencesPage = () => {
                 narrative: "Designed for the city dweller, this ritual acts as a reset button for the skin barrier. We move beyond simple extraction to deep purification, targeting the invisible weight of \"urban grey\", UV damage, blue light, and pollution. By clearing congestion without aggression, we revitalise the skin's health while respecting its delicate equilibrium.",
                 sensation: "Light, breathable, and relieving.",
                 result: "A complexion that feels unburdened and profoundly clean.",
-                image: testImage
+                image: experience1
               },
               {
                 id: 'soul-deep',
@@ -360,7 +369,7 @@ const ExperiencesPage = () => {
                 narrative: "For skin that feels dulled by the fatigue of modern life. This brightening journey is a masterclass in light reflection. We utilise a luxurious masking protocol to oxygenate the tissues and banish the shadows of uneven tone and dark spots. It is not just about correcting; it is about energising.",
                 sensation: "Invigorating yet deeply relaxing.",
                 result: "The definitive \"Post-Treatment Glow.\" Your skin will look translucent and radiant, as if lit from within.",
-                image: testImage
+                image: luminousImage
               },
               {
                 id: 'timeless',

@@ -6,6 +6,7 @@ import ErrorBoundary from './ErrorBoundary';
 import sanctuaryHero from '../assets/sanctuary-hero.jpg';
 import sanctuarySilence1 from '../assets/sanctuary-silence-1.jpg';
 import sanctuarySilence2 from '../assets/sanctuary-silence-2.jpg';
+import careImage from '../assets/care.jpg';
 
 // Re-register in case it's mounted separately
 gsap.registerPlugin(ScrollTrigger);
@@ -246,19 +247,16 @@ const Sanctuary = () => {
           {/* Left Image */}
            <div style={{ flex: '1 1 400px', height: '500px' }}>
              <OrganicImagePlaceholder style={{ width: '100%', height: '100%' }}>
-              <div style={{ 
-                width: '100%', 
-                height: '100%', 
-                backgroundColor: '#DCD6CF',
-                display: 'flex', 
-                alignItems: 'center', 
-                justifyContent: 'center',
-                color: '#8C8C8C',
-                fontFamily: 'Montserrat, sans-serif',
-                letterSpacing: '0.1em'
-              }}>
-                CONSULTATION / CARE
-              </div>
+              <img 
+                src={careImage} 
+                alt="Genuine Care Consultation" 
+                style={{ 
+                  width: '100%', 
+                  height: '100%', 
+                  objectFit: 'cover',
+                  display: 'block'
+                }} 
+              />
             </OrganicImagePlaceholder>
           </div>
         </div>

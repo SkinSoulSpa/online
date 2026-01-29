@@ -1,4 +1,5 @@
 import React, { useRef, useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import testImage from '../assets/test.png';
@@ -9,6 +10,7 @@ if (typeof window !== 'undefined') {
 }
 
 const Experiences = () => {
+  const navigate = useNavigate();
   const [isMobile, setIsMobile] = useState(() => typeof window !== 'undefined' ? window.innerWidth < 768 : false);
   const sectionRef = useRef(null);
 
@@ -41,33 +43,58 @@ const Experiences = () => {
     return () => ctx.revert();
   }, []);
 
+  const handleCardClick = (type) => {
+    navigate('/experiences', { state: { scrollTo: type } });
+  };
+
   const cards = [
     {
-      id: 'restoration',
-      title: 'Hydration & Calm',
-      subtitle: 'The Urban Shield',
-      body: 'For the city-stressed skin. A deep dive into moisture that soothes, repairs, and restores the skin barrier. We utilise soothing botanicals and advanced hydration technologies to quiet inflammation and quench dehydration.',
-      cta: 'Explore The Journeys',
-      type: 'restoration',
-      image: experience1
-    },
-    {
-      id: 'transformation',
-      title: 'Lift & Radiance',
-      subtitle: 'The Ageless Glow',
-      body: 'Powerful anti-aging protocols designed to firm, brighten, and turn back the clock without aggression. Witness a visible lift and a renewed vitality that feels entirely natural, leaving you glowing with health.',
-      cta: 'Explore The Journeys',
-      type: 'transformation',
-      image: testImage
-    },
-    {
       id: 'signature',
-      title: 'The Soul-Deep Journey',
-      subtitle: 'The Definitive Experience',
-      body: 'Our signature 90-minute immersion. A customised fusion of deep-tissue massage and advanced skincare. This is the ultimate act of self-reverence, a ritual that nurtures the skin and nourishes the soul, creating a glow that lingers for days.',
+      title: 'The Signature Journeys',
+      subtitle: 'Holistic Restoration',
+      body: 'Offer transformative skincare journeys tailored for urban life, resetting your skin with profound clarity, deep hydration, luminous brightness, or natural lift. Each luxurious experience blends advanced actives, expert techniques, and sensorial calm to deliver visible, lasting radiance, leaving you unburdened, plump, glowing, or sculpted.',
       cta: 'Explore The Journeys',
       type: 'signature',
-      image: testImage
+      image: experience1,
+      features: [
+        'Urban-targeted rituals',
+        'Gentle deep results',
+        'Luxurious multi-sensory',
+        'Visible lasting glow',
+        'Personalised indulgence'
+      ]
+    },
+    {
+      id: 'intensive',
+      title: 'The Intensive Journeys',
+      subtitle: 'Clinical Precision',
+      body: 'Deliver high-performance skincare transformations for demanding urban skin, harnessing cutting-edge technologies and regenerative protocols to achieve glass-like radiance, porcelain smoothness, sculpted contours, firm definition, shielded vitality, ageless clarity, and flawless dermal architecture. Each meticulously crafted ritual combines precision actives, advanced modalities, and soothing expertise to provide profound renewal, visible firmness, and luminous results without compromise or downtime.',
+      cta: 'Explore The Journeys',
+      type: 'intensive',
+      image: testImage,
+      features: [
+        'Advanced regenerative tech',
+        'Gentle intensive renewal',
+        'Sculpted lifted contours',
+        'Shielded luminous glow',
+        'Flawless texture reset'
+      ]
+    },
+    {
+      id: 'enhancements',
+      title: 'The Enhancements',
+      subtitle: 'Curated Add-Ons',
+      body: 'Provide quick, targeted boosts to elevate your skin and spirit in minutes, delivering instant oxygen revival, brighter eyes, flawless clarity, velvety smoothness, calmed inflammation, rested gaze, glass-like pores, energised contours, unified tone, firmed architecture, and deep nutrient saturation. These precise add-ons harness oxygen, light, massage, and advanced delivery for visible refreshment, luminosity, and resilience with zero downtime.',
+      cta: 'Explore The Journeys',
+      type: 'enhancements',
+      image: testImage,
+      features: [
+        'Quick targeted boosts',
+        'Instant visible refresh',
+        'Advanced light tech',
+        'Gentle deep delivery',
+        'Radiant rested results'
+      ]
     }
   ];
 
@@ -130,6 +157,7 @@ const Experiences = () => {
                 className="experience-card-item"
                 onMouseEnter={() => setHoveredId(card.id)}
                 onMouseLeave={() => setHoveredId(null)}
+                onClick={() => handleCardClick(card.type)}
                 style={{
                   backgroundColor: '#FFFFFF',
                   borderRadius: '1rem', // rounded-2xl
@@ -298,21 +326,32 @@ const Experiences = () => {
                         {card.body}
                       </p>
                       
-                      {/* List Items (Optional, simulating structure) */}
-                      <div style={{
-                        fontFamily: '"Montserrat", sans-serif',
-                        fontSize: '0.7rem', // text-xs
-                        letterSpacing: '0.1em',
-                        opacity: 0.6,
-                        textTransform: 'uppercase',
-                        display: 'flex',
-                        flexDirection: 'column',
-                        gap: '0.5rem',
-                        color: '#2C332E'
-                      }}>
-                        <span>+ {index === 0 ? 'Deep Hydration' : index === 1 ? 'Firming Protocol' : 'Full Body & Face'}</span>
-                        <span>+ {index === 0 ? 'Barrier Repair' : index === 1 ? 'Collagen Boost' : '90 Minutes'}</span>
-                      </div>
+                      {/* List Items - Tags Design */}
+                      {card.features && (
+                        <div style={{
+                          display: 'flex',
+                          flexWrap: 'wrap',
+                          gap: '0.5rem',
+                          marginTop: '1.5rem'
+                        }}>
+                          {card.features.map((feature, i) => (
+                            <span key={i} style={{
+                              fontFamily: '"Montserrat", sans-serif',
+                              fontSize: '0.65rem',
+                              letterSpacing: '0.05em',
+                              textTransform: 'uppercase',
+                              color: '#5C615E',
+                              backgroundColor: 'rgba(156, 175, 160, 0.15)', // Very light sage
+                              padding: '0.4rem 0.8rem',
+                              borderRadius: '50px', // Pill shape
+                              fontWeight: 500,
+                              whiteSpace: 'nowrap'
+                            }}>
+                              {feature}
+                            </span>
+                          ))}
+                        </div>
+                      )}
                     </div>
                   </div>
                 </div>
