@@ -817,22 +817,250 @@ const ExperiencesPage = () => {
               The finishing touches. Targeted care for the delicate areas, eyes, neck, and décolletage, that tell the true story of your skin.
             </p>
           </div>
-          <div style={{ width: '100%', height: '500px', position: 'relative' }}>
-             <OrganicImagePlaceholder style={{ width: '100%', height: '100%' }}>
-              <div style={{ 
-                width: '100%', 
-                height: '100%', 
-                backgroundColor: '#DCD6CF',
-                display: 'flex', 
-                alignItems: 'center', 
-                justifyContent: 'center',
-                color: '#8C8C8C',
-                fontFamily: 'Montserrat, sans-serif',
-                letterSpacing: '0.1em'
-              }}>
-                ENHANCEMENTS VISUAL
-              </div>
-            </OrganicImagePlaceholder>
+          <div style={{ 
+            width: '100%', 
+            maxWidth: '1200px',
+            display: 'grid',
+            gridTemplateColumns: isMobile ? '1fr' : 'repeat(2, 1fr)',
+            gap: '2rem',
+            marginBottom: '4rem'
+          }}>
+            {[
+              {
+                title: "The Vitality Breath",
+                duration: "10 minutes",
+                price: "$38",
+                narrative: "A moment of pure clarity for the city-weary. In this restorative pause, we infuse the body with a concentrated stream of pure oxygen. It acts as an internal reset, awakening tired cells and flushing out the mental fog of the day.",
+                sensation: "A cool, airy lightness that expands the lungs and calms the mind.",
+                result: "A re-energised spirit and a complexion that looks instantly awakened, bright, clear, and full of life."
+              },
+              {
+                title: "The Meridian Eye Sculpt",
+                duration: "20 minutes",
+                price: "$108",
+                narrative: "For eyes weighed down by screen fatigue and stress. We utilise the ancient rhythmic art of Guasha to gently glide over the delicate contours of the orbital bone. This ritual encourages the flow of stagnant energy, releasing deep-set tension and reducing inflammation without a single invasive touch.",
+                sensation: "Cool stone meets warm skin in a rhythmic dance that feels deeply hypnotic.",
+                result: "A visible \"lifting\" of the gaze. Puffiness is drained, and the eyes appear wider, rested, and visibly brighter."
+              },
+              {
+                title: "The Precision Clarity",
+                duration: "10 minutes",
+                price: "$38",
+                narrative: "A refining ritual for the most delicate area of the face. Using advanced light technology, we gently polish the skin surface to reduce shadow and texture. It serves a dual purpose: discouraging future growth while simultaneously brightening the skin tone for a flawless finish.",
+                sensation: "A quick, warm flash of light, balanced instantly by a cooling touch.",
+                result: "A smooth, porcelain canvas that reflects light perfectly, free from shadow."
+              },
+              {
+                title: "The Velvet Touch",
+                duration: "20 minutes",
+                price: "$88",
+                narrative: "Confidence begins with texture. This advanced smoothing ritual uses SHR light energy to target the root of the hair while actively treating the skin itself. Unlike traditional methods that darken or damage, this technology works to harmonise the skin tone and refine the surface.",
+                sensation: "Efficient and comfortable, designed to respect sensitive skin.",
+                result: "Underarms that feel velvety smooth to the touch and look visibly fairer, allowing you to move with total freedom."
+              },
+              {
+                title: "The Luminescence",
+                duration: "15 minutes",
+                price: "$38",
+                narrative: "A restorative bath of therapeutic light. We utilise specific wavelengths of LED energy to interact with the skin at a cellular level. Whether your goal is to quell the inflammation of acne or stimulate collagen production for sun-damaged tissue, this ritual works silently to repair the barrier from within.",
+                sensation: "A warm, bright embrace that feels like basking in restorative sunlight, without the damage.",
+                result: "A calmer canvas. Redness is pacified, and the skin tone emerges unified and visibly brighter."
+              },
+              {
+                title: "The Awakening Gaze",
+                duration: "15 minutes",
+                price: "$68",
+                narrative: "A manual therapy designed to unburden the eyes. In an age of screen fatigue, this ritual focuses on the delicate orbital muscles that carry the weight of the day. Through a series of precise, rhythmic massage techniques, we stimulate micro-circulation to flush out fluids and relieve deep-set tension.",
+                sensation: "A profound sense of \"lifting.\" You will feel the heaviness behind the eyes physically dissipate.",
+                result: "Eyes that look rested and alert. Dark circles are softened, and the gaze appears wider and more open."
+              },
+              {
+                title: "The Hydro-Clarifying",
+                duration: "20 minutes",
+                price: "$88",
+                narrative: "The deep clean, reimagined. Ideal for congested or city-stressed skin, this ritual replaces aggressive extraction with the gentle power of hydro-dermabrasion. We use a continuous flow of water and active serums to flush impurities from the pores, finishing with a mist of pure Hyaluronic Acid (HA) to flood the fresh skin with hydration.",
+                sensation: "Cool, rushing water that feels like a fresh stream clearing away debris.",
+                result: "Glass-like clarity. The texture is instantly smoothed, and the pores are refined without the redness of traditional extraction."
+              },
+              {
+                title: "The Cellular Breath (Eye & Neck)",
+                duration: "20 minutes",
+                price: "$108",
+                narrative: "A targeted infusion of life for the most fragile areas. The skin of the eye and neck is often the first to show signs of \"cellular suffocation.\" We direct a concentrated stream of pure oxygen and nutrients to these zones, accelerating cell turnover and breathing vitality back into the tissue.",
+                sensation: "A targeted, cool breeze that feels instantly tightening and refreshing.",
+                result: "Fine lines are plumped from within, and the shadowed areas of the eye and neck look visibly energised."
+              },
+              {
+                title: "The Canvas Renewal",
+                duration: "20 minutes",
+                price: "$128",
+                narrative: "Harnessing light to erase visual noise. This advanced therapy uses broad-spectrum light to seek out and correct imperfections in the skin tone, from sun spots to diffuse redness. It acts as a harmonising agent, tightening the collagen fibres while unifying the complexion.",
+                sensation: "Brief, rhythmic flashes of warmth signal the activation of the skin’s healing response.",
+                result: "A porcelain finish. The skin looks tighter, clearer, and undeniably more youthful."
+              },
+              {
+                title: "The Thermal Architecture (Eye & Neck)",
+                duration: "20 minutes",
+                price: "$128",
+                narrative: "Re-knitting the support matrix. We employ Radio Frequency (RF) energy to deliver controlled thermal warmth deep into the dermis of the neck and eye contours. This heat wakes up the fibroblasts, commanding them to produce new collagen and elastin to firm the architectural lines of the face.",
+                sensation: "A deep, permeating warmth that feels like a \"hot stone\" massage from the inside out.",
+                result: "Immediate contraction and long-term firming. The crepey skin of the neck and eyes feels denser and more resilient."
+              },
+              {
+                title: "The Deep Active Infusion",
+                duration: "20 minutes",
+                price: "$128",
+                narrative: "Feeding the skin where it matters most. Using advanced electromagnetic pulse technology, this ritual temporarily opens the skin’s cellular gates.",
+                sensation: "",
+                result: ""
+              }
+            ].map((item, index) => {
+              return (
+                <div 
+                  key={index} 
+                  style={{ 
+                    backgroundColor: '#FFFFFF',
+                    borderRadius: '1rem', 
+                    padding: '2rem',
+                    border: '1px solid rgba(197, 179, 152, 0.2)',
+                    transition: 'all 0.4s ease',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    justifyContent: 'space-between',
+                    boxShadow: '0 5px 15px rgba(0,0,0,0.02)'
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.transform = 'translateY(-3px)';
+                    e.currentTarget.style.boxShadow = '0 10px 20px rgba(197, 179, 152, 0.1)';
+                    e.currentTarget.style.borderColor = 'rgba(197, 179, 152, 0.4)';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.transform = 'translateY(0)';
+                    e.currentTarget.style.boxShadow = '0 5px 15px rgba(0,0,0,0.02)';
+                    e.currentTarget.style.borderColor = 'rgba(197, 179, 152, 0.2)';
+                  }}
+                >
+                  {/* Header */}
+                  <div style={{
+                    display: 'flex',
+                    justifyContent: 'space-between',
+                    alignItems: 'flex-start',
+                    marginBottom: '1rem',
+                    paddingBottom: '0.75rem',
+                    borderBottom: '1px solid rgba(197, 179, 152, 0.2)'
+                  }}>
+                    <h3 style={{
+                      fontFamily: '"Tenor Sans", sans-serif',
+                      fontSize: '1.25rem',
+                      color: '#2C332E',
+                      margin: 0,
+                      maxWidth: '75%'
+                    }}>
+                      {item.title}
+                    </h3>
+                    <div style={{ textAlign: 'right' }}>
+                      <span style={{
+                        display: 'block',
+                        fontFamily: '"Montserrat", sans-serif',
+                        fontSize: '0.75rem',
+                        fontWeight: 600,
+                        color: '#C5B398',
+                        letterSpacing: '0.05em'
+                      }}>
+                        {item.price}
+                      </span>
+                      <span style={{
+                        display: 'block',
+                        fontFamily: '"Montserrat", sans-serif',
+                        fontSize: '0.65rem',
+                        color: '#9CAFA0',
+                        marginTop: '0.2rem'
+                      }}>
+                        {item.duration}
+                      </span>
+                    </div>
+                  </div>
+
+                  {/* Body Content */}
+                  <div>
+                    {/* Narrative */}
+                    <div style={{ marginBottom: '1rem' }}>
+                      <p style={{
+                        fontFamily: '"Cormorant Garamond", serif',
+                        fontSize: '1rem',
+                        lineHeight: 1.5,
+                        color: '#5C615E',
+                        marginBottom: 0
+                      }}>
+                        {item.narrative}
+                      </p>
+                    </div>
+
+                    {/* Sensation & Result - Compact */}
+                    {(item.sensation || item.result) && (
+                      <div style={{ 
+                        marginTop: '1rem',
+                        paddingTop: '1rem',
+                        borderTop: '1px dashed rgba(197, 179, 152, 0.2)',
+                        display: 'flex',
+                        flexDirection: 'column',
+                        gap: '0.75rem'
+                      }}>
+                        {item.sensation && (
+                          <div>
+                            <span style={{ 
+                              fontFamily: 'Montserrat, sans-serif', 
+                              fontSize: '0.65rem', 
+                              letterSpacing: '0.1em', 
+                              textTransform: 'uppercase', 
+                              color: '#C5B398',
+                              display: 'block',
+                              marginBottom: '0.25rem'
+                            }}>
+                              The Sensation
+                            </span>
+                            <p style={{
+                              fontFamily: '"Cormorant Garamond", serif',
+                              fontSize: '0.95rem',
+                              lineHeight: 1.4,
+                              color: '#5C615E',
+                              fontStyle: 'italic',
+                              marginBottom: 0
+                            }}>
+                              {item.sensation}
+                            </p>
+                          </div>
+                        )}
+                        {item.result && (
+                          <div>
+                            <span style={{ 
+                              fontFamily: 'Montserrat, sans-serif', 
+                              fontSize: '0.65rem', 
+                              letterSpacing: '0.1em', 
+                              textTransform: 'uppercase', 
+                              color: '#C5B398',
+                              display: 'block',
+                              marginBottom: '0.25rem'
+                            }}>
+                              The Result
+                            </span>
+                            <p style={{
+                              fontFamily: '"Cormorant Garamond", serif',
+                              fontSize: '0.95rem',
+                              lineHeight: 1.4,
+                              color: '#5C615E',
+                              marginBottom: 0
+                            }}>
+                              {item.result}
+                            </p>
+                          </div>
+                        )}
+                      </div>
+                    )}
+                  </div>
+                </div>
+              );
+            })}
           </div>
         </Section>
 
