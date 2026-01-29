@@ -910,9 +910,9 @@ const ExperiencesPage = () => {
                 title: "The Deep Active Infusion",
                 duration: "20 minutes",
                 price: "$128",
-                narrative: "Feeding the skin where it matters most. Using advanced electromagnetic pulse technology, this ritual temporarily opens the skin’s cellular gates.",
-                sensation: "",
-                result: ""
+                narrative: "Feeding the skin where it matters most. Using advanced electromagnetic pulse technology, this ritual temporarily opens the skin’s cellular gates. This allows us to push potent active ingredients far deeper than manual application ever could, effectively \"filling\" the skin with nutrition without a single needle.",
+                sensation: "A gentle, rhythmic tingle that indicates the active ingredients are travelling deep into the dermis.",
+                result: "Profound saturation. The skin looks plump, hydrated, and volumised from the inside."
               }
             ].map((item, index) => {
               return (
