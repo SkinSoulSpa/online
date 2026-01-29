@@ -268,7 +268,7 @@ const TheArtisans = () => {
               >
                 {/* Image Area - Taking up top half or side */}
                 <div style={{ 
-                  height: '250px', 
+                  height: '400px', // Increased height for portrait
                   position: 'relative',
                   backgroundColor: '#FFFFFF',
                   overflow: 'hidden'
@@ -281,24 +281,8 @@ const TheArtisans = () => {
                     backgroundPosition: 'center',
                     transition: 'transform 0.8s ease',
                     transform: isActive ? 'scale(1.05)' : 'scale(1)',
-                    maskImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 100' preserveAspectRatio='none'%3E%3Cpath d='M0 0 L200 0 L200 85 Q150 100 100 85 T0 85 Z' fill='black'/%3E%3C/svg%3E")`,
-                    WebkitMaskImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 100' preserveAspectRatio='none'%3E%3Cpath d='M0 0 L200 0 L200 85 Q150 100 100 85 T0 85 Z' fill='black'/%3E%3C/svg%3E")`,
-                    maskSize: '200% 100%',
-                    WebkitMaskSize: '200% 100%',
-                    maskRepeat: 'repeat-x',
-                    WebkitMaskRepeat: 'repeat-x',
-                    animation: `waveFlowHorizontal ${28 + (index * 3)}s linear infinite`,
-                    animationDelay: `-${index * 7}s`
-                  }}>
-                    <style>
-                      {`
-                        @keyframes waveFlowHorizontal {
-                          0% { -webkit-mask-position: 0 0; mask-position: 0 0; }
-                          100% { -webkit-mask-position: -200% 0; mask-position: -200% 0; }
-                        }
-                      `}
-                    </style>
-                  </div>
+                    // Removed mask to allow full portrait shape
+                  }} />
 
                   {/* Hover Overlay Text */}
                   <div style={{
