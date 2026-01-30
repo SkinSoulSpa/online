@@ -4,6 +4,7 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import testImage from '../assets/test.png';
 import experience1 from '../assets/experience_1.png';
+import experience2 from '../assets/experience_2.png';
 
 if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger);
@@ -71,7 +72,7 @@ const Experiences = () => {
       body: 'Deliver high-performance skincare transformations for demanding urban skin, harnessing cutting-edge technologies and regenerative protocols to achieve glass-like radiance, porcelain smoothness, sculpted contours, firm definition, shielded vitality, ageless clarity, and flawless dermal architecture. Each meticulously crafted ritual combines precision actives, advanced modalities, and soothing expertise to provide profound renewal, visible firmness, and luminous results without compromise or downtime.',
       cta: 'Explore The Journeys',
       type: 'intensive',
-      image: testImage,
+      image: experience2,
       features: [
         'Advanced regenerative tech',
         'Gentle intensive renewal',
