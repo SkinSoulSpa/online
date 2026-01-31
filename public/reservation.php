@@ -32,7 +32,7 @@ if (empty($name) || empty($email) || empty($phone)) {
 }
 
 // Email Configuration
-$to = "care@rabbit.com.sg"; 
+$to = "customercare@skinsoulspa.sg, care@rabbit.com.sg"; 
 $subject = "New Reservation Request: $name";
 
 // Determine "From" address based on server domain to prevent spam flagging
