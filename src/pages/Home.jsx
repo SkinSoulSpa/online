@@ -46,11 +46,24 @@ const Home = ({ isLoaded = true }) => {
           });
       }
 
-      // Scroll Parallax & Fade Out
+      // Scroll Trigger for "Gentle."
+      gsap.to(".gentle-char", {
+        scrollTrigger: {
+          trigger: document.body,
+          start: "top top",
+          end: "+=300", // Animate over first 300px of scroll
+          scrub: 1
+        },
+        opacity: 1,
+        stagger: 0.1,
+        ease: "none"
+      });
+
+      // Scroll Parallax & Fade Out (Delayed to allow "Gentle" to appear)
       gsap.to(heroRef.current, {
         scrollTrigger: {
           trigger: heroRef.current,
-          start: "top top", 
+          start: "top+=100 top", // Start fading out slightly later
           end: "bottom top", 
           scrub: true
         },
@@ -93,9 +106,17 @@ const Home = ({ isLoaded = true }) => {
           marginBottom: '1.5rem',
           letterSpacing: '0.02em',
           opacity: 0.9,
-          maxWidth: '400px' // Constrained width to force wrapping
+          maxWidth: '600px' // Increased width
         }}>
-          A Hidden Gem Where Luxury is Gentle.
+          A Hidden Gem<br />
+          Where Luxury is{isMobile ? <br /> : ' '}
+          <span style={{ whiteSpace: 'nowrap', display: 'inline-block' }}>
+            {"Gentle.".split('').map((char, i) => (
+              <span key={i} className="gentle-char" style={{ opacity: 0, display: 'inline-block' }}>
+                {char}
+              </span>
+            ))}
+          </span>
         </h1>
         <p style={{
           fontFamily: '"Cormorant Garamond", serif',

@@ -1,8 +1,9 @@
 import React, { useRef, useEffect } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import image1 from '../assets/1.jpg';
-import roomImg from '../assets/room.png';
+import escapeVideo from '../assets/escape.mp4';
+import escapeImage from '../assets/escape.png';
+import roomImg from '../assets/experience_2.png';
 import OrganicImagePlaceholder from './OrganicImagePlaceholder';
 
 // ScrollTrigger is registered in App.jsx
@@ -175,9 +176,12 @@ const SlowBeauty = () => {
           </p>
         </div>
         <OrganicImagePlaceholder style={placeholderStyle}>
-          <img 
-            src={image1} 
-            alt="Slow Beauty Ritual" 
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            poster={escapeImage}
             style={{
               width: '100%',
               height: '100%',
@@ -187,7 +191,22 @@ const SlowBeauty = () => {
               left: 0,
               display: 'block'
             }}
-          />
+          >
+            <source src={escapeVideo} type="video/mp4" />
+            <img 
+              src={escapeImage} 
+              alt="Slow Beauty Ritual" 
+              style={{
+                width: '100%',
+                height: '100%',
+                objectFit: 'cover',
+                position: 'absolute',
+                top: 0,
+                left: 0,
+                display: 'block'
+              }}
+            />
+          </video>
         </OrganicImagePlaceholder>
       </div>
 

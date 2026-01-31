@@ -112,6 +112,8 @@ const Reservations = () => {
     note: ''
   });
 
+  const [status, setStatus] = useState('idle'); // idle, sending, success, error
+
   useEffect(() => {
     const checkMobile = () => setIsMobile(window.innerWidth < 768);
     window.addEventListener('resize', checkMobile);
@@ -132,11 +134,50 @@ const Reservations = () => {
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Reservation Request:', formData);
-    // Here you would typically send this data to a backend
-    alert('Thank you for your request. We will confirm your reservation shortly.');
+    setStatus('sending');
+
+    try {
+      const response = await fetch('./reservation.php', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          date: formData.date,
+          time: formData.time,
+          treatment: `${formData.experience} - ${formData.artisan}`,
+          message: formData.note
+        }),
+      });
+
+      const result = await response.json();
+
+      if (response.ok && result.status === 'success') {
+        setStatus('success');
+        setFormData({
+          name: '',
+          email: '',
+          phone: '',
+          experience: '',
+          artisan: '',
+          date: '',
+          time: '',
+          note: ''
+        });
+        alert('Thank you! Your reservation request has been sent successfully.');
+      } else {
+        throw new Error(result.message || 'Failed to send reservation.');
+      }
+    } catch (error) {
+      console.error('Submission Error:', error);
+      setStatus('error');
+      alert('Sorry, there was an issue sending your request. Please try again or contact us directly via WhatsApp.');
+    }
   };
 
   const experiences = [
@@ -307,24 +348,23 @@ const Reservations = () => {
 
             <button 
               type="submit"
-              className="hover-trigger"
+              disabled={status === 'sending'}
               style={{
-                backgroundColor: '#2C332E',
+                backgroundColor: status === 'sending' ? '#DCD6CF' : '#2C332E',
                 color: '#FFFFFF',
                 border: 'none',
                 padding: '1.2rem 3rem',
                 fontFamily: '"Montserrat", sans-serif',
-                fontSize: '0.8rem',
+                fontSize: '0.85rem',
                 letterSpacing: '0.2em',
                 textTransform: 'uppercase',
-                cursor: 'pointer',
-                transition: 'all 0.3s ease',
+                cursor: status === 'sending' ? 'not-allowed' : 'pointer',
+                transition: 'background-color 0.3s ease',
+                marginTop: '1rem',
                 width: isMobile ? '100%' : 'auto'
               }}
-              onMouseEnter={e => e.target.style.backgroundColor = '#9CAFA0'}
-              onMouseLeave={e => e.target.style.backgroundColor = '#2C332E'}
             >
-              Request Reservation
+              {status === 'sending' ? 'Sending...' : 'Request Reservation'}
             </button>
             <p style={{
               marginTop: '1.5rem',
