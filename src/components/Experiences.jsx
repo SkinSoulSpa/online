@@ -5,6 +5,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import testImage from '../assets/test.png';
 import experience1 from '../assets/experience_1.png';
 import experience2 from '../assets/experience_2.png';
+import experience3 from '../assets/experience_3.png';
 
 if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger);
@@ -88,7 +89,7 @@ const Experiences = () => {
       body: 'Provide quick, targeted boosts to elevate your skin and spirit in minutes, delivering instant oxygen revival, brighter eyes, flawless clarity, velvety smoothness, calmed inflammation, rested gaze, glass-like pores, energised contours, unified tone, firmed architecture, and deep nutrient saturation. These precise add-ons harness oxygen, light, massage, and advanced delivery for visible refreshment, luminosity, and resilience with zero downtime.',
       cta: 'Explore The Journeys',
       type: 'enhancements',
-      image: testImage,
+      image: experience3,
       features: [
         'Quick targeted boosts',
         'Instant visible refresh',

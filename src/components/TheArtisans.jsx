@@ -9,6 +9,10 @@ import heroHands from '../assets/hero-hands.jpg';
 import artisan1 from '../assets/artisan-1.jpg';
 import artisan2 from '../assets/artisan-2.jpg';
 import artisan3 from '../assets/artisan-3.jpg';
+import freyaImage from '../assets/artisan_freya_3.jpg';
+import karenImage from '../assets/artisan_karen_3.jpg';
+import shelbeeImage from '../assets/artisan_shelbee_3.jpg';
+import carisImage from '../assets/artisan_caris_3.jpg';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -65,25 +69,16 @@ const TheArtisans = () => {
       id: 'freya',
       name: "Freya",
       role: "Senior Artisan",
-      image: artisan1,
+      image: freyaImage,
       vibe: "Experienced & Trusted",
       quote: "\"I have been trusting her recommendations for many years.\"",
       author: "Tee Wei"
     },
     {
-      id: 'kelly',
-      name: "Kelly",
-      role: "Senior Artisan",
-      image: artisan2,
-      vibe: "Gentle & Precise",
-      quote: "\"She is very gentle... Kelly’s explanation was also rather clear and concise.\"",
-      author: "Zenn Choo & Shi Jia Tan"
-    },
-    {
       id: 'shelbee',
       name: "Shelbee",
-      role: "Artisan",
-      image: artisan3,
+      role: "Senior Artisan",
+      image: shelbeeImage,
       vibe: "Attentive & Soothing",
       quote: "\"Very attentive to details... I was enveloped in an atmosphere of tranquillity.\"",
       author: "Agnes & Arielle Dray"
@@ -91,11 +86,20 @@ const TheArtisans = () => {
     {
       id: 'karen',
       name: "Karen",
-      role: "Artisan",
-      image: artisan1,
+      role: "Senior Artisan",
+      image: karenImage,
       vibe: "Deeply Relaxing",
       quote: "\"My therapist Karen is very professional... I fell asleep under her care!\"",
       author: "Carina Tan"
+    },
+    {
+      id: 'caris',
+      name: "Caris",
+      role: "Senior Artisan",
+      image: carisImage,
+      vibe: "Gentle & Precise",
+      quote: "\"It was a full sensory escape. I drifted off to sleep and woke up with plump, glowing skin.\"",
+      author: "Jon"
     }
   ];
 
