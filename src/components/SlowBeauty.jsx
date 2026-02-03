@@ -3,7 +3,8 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import escapeVideo from '../assets/escape.mp4';
 import escapeImage from '../assets/escape.png';
-import roomImg from '../assets/experience_2.png';
+import sensoryVideo from '../assets/sensory.mp4';
+import sensoryImage from '../assets/sensory.png';
 import OrganicImagePlaceholder from './OrganicImagePlaceholder';
 
 // ScrollTrigger is registered in App.jsx
@@ -219,19 +220,37 @@ const SlowBeauty = () => {
       }}>
         {/* We use order to alternate visual layout */}
         <OrganicImagePlaceholder style={{...placeholderStyle, order: isMobile ? 2 : 1}}>
-           <img 
-             src={roomImg} 
-             alt="The Sensory Promise" 
-             style={{
-               width: '100%',
-               height: '100%',
-               objectFit: 'cover',
-               position: 'absolute',
-               top: 0,
-               left: 0,
-               display: 'block'
-             }}
-           />
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            poster={sensoryImage}
+            style={{
+              width: '100%',
+              height: '100%',
+              objectFit: 'cover',
+              position: 'absolute',
+              top: 0,
+              left: 0,
+              display: 'block'
+            }}
+          >
+            <source src={sensoryVideo} type="video/mp4" />
+            <img 
+              src={sensoryImage} 
+              alt="The Sensory Promise" 
+              style={{
+                width: '100%',
+                height: '100%',
+                objectFit: 'cover',
+                position: 'absolute',
+                top: 0,
+                left: 0,
+                display: 'block'
+              }}
+            />
+          </video>
         </OrganicImagePlaceholder>
         <div style={{...textContainerStyle, order: isMobile ? 1 : 2}}>
           <h3 style={headingStyle}>The Sensory Promise</h3>
