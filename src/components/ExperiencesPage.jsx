@@ -11,6 +11,7 @@ gsap.registerPlugin(ScrollTrigger);
 import botanicalImage from '../assets/botanical.png';
 import luminousImage from '../assets/luminous.png';
 import experience1 from '../assets/experience_1.png';
+import lushImage from '../assets/lush.png';
 
 const Section = ({ children, style, className, id }) => (
   <section id={id} className={className} style={{
@@ -359,7 +360,7 @@ const ExperiencesPage = () => {
                 narrative: "A gentle immersion for thirsty skin. Utilising the botanical power of our Hydra Global collection, this journey goes deeper than surface moisture. It is a process of \"locking in\" vitality, soothing tightness, and repairing the protective barrier. As our guest Agnes noted, this experience \"not only nurtures the skin but nourishes the soul\".",
                 sensation: "A rhythmic, cooling flow that mimics the movement of water, leaving you \"enveloped in an atmosphere of tranquillity\".",
                 result: "Plump, rested skin that holds its glow long after you leave our sanctuary.",
-                image: testImage
+                image: lushImage
               },
               {
                 id: 'luminous',
