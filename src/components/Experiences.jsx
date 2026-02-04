@@ -45,8 +45,16 @@ const Experiences = () => {
     return () => ctx.revert();
   }, []);
 
-  const handleCardClick = (type) => {
-    navigate('/experiences', { state: { scrollTo: type } });
+  const handleCardClick = (type, id) => {
+    if (isMobile) {
+      if (hoveredId === id) {
+        navigate('/experiences', { state: { scrollTo: type } });
+      } else {
+        setHoveredId(id);
+      }
+    } else {
+      navigate('/experiences', { state: { scrollTo: type } });
+    }
   };
 
   const cards = [
@@ -158,8 +166,8 @@ const Experiences = () => {
                 key={card.id} 
                 className="experience-card-item"
                 onMouseEnter={() => setHoveredId(card.id)}
-                onMouseLeave={() => setHoveredId(null)}
-                onClick={() => handleCardClick(card.type)}
+          onMouseLeave={() => setHoveredId(null)}
+          onClick={() => handleCardClick(card.type, card.id)}
                 style={{
                   backgroundColor: '#FFFFFF',
                   borderRadius: '1rem', // rounded-2xl

@@ -65,6 +65,18 @@ const TheArtisans = () => {
     return () => ctx.revert();
   }, []);
 
+  const handleCardClick = (id) => {
+    if (isMobile) {
+      if (activePortrait === id) {
+        navigate('/reservations');
+      } else {
+        setActivePortrait(id);
+      }
+    } else {
+      navigate('/reservations');
+    }
+  };
+
   const artisans = [
     {
       id: 'freya',
@@ -262,7 +274,7 @@ const TheArtisans = () => {
             return (
               <div 
                 key={index}
-                onClick={() => navigate('/reservations')}
+                onClick={() => handleCardClick(artisan.id)}
                 style={{
                   position: 'relative',
                   backgroundColor: '#FFFFFF',

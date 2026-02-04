@@ -139,6 +139,18 @@ const ExperiencesPage = () => {
     return () => ctx.revert();
   }, []);
 
+  const handleCardClick = (id) => {
+    if (isMobile) {
+      if (hoveredId === id) {
+        navigate('/reservations');
+      } else {
+        setHoveredId(id);
+      }
+    } else {
+      navigate('/reservations');
+    }
+  };
+
   const scrollToSection = (id) => {
     const element = document.getElementById(id);
     if (element) {
@@ -392,7 +404,7 @@ const ExperiencesPage = () => {
                   className="experience-card-item"
                   onMouseEnter={() => setHoveredId(item.id)}
                   onMouseLeave={() => setHoveredId(null)}
-                  onClick={() => navigate('/reservations')}
+                  onClick={() => handleCardClick(item.id)}
                   style={{ 
                     backgroundColor: '#FFFFFF',
                     borderRadius: '1rem', 
