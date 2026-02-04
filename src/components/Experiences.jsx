@@ -165,8 +165,8 @@ const Experiences = () => {
               <div 
                 key={card.id} 
                 className="experience-card-item"
-                onMouseEnter={() => setHoveredId(card.id)}
-          onMouseLeave={() => setHoveredId(null)}
+                onMouseEnter={() => !isMobile && setHoveredId(card.id)}
+          onMouseLeave={() => !isMobile && setHoveredId(null)}
           onClick={() => handleCardClick(card.type, card.id)}
                 style={{
                   backgroundColor: '#FFFFFF',

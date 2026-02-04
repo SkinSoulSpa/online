@@ -402,8 +402,8 @@ const ExperiencesPage = () => {
                 <div 
                   key={index} 
                   className="experience-card-item"
-                  onMouseEnter={() => setHoveredId(item.id)}
-                  onMouseLeave={() => setHoveredId(null)}
+                  onMouseEnter={() => !isMobile && setHoveredId(item.id)}
+                  onMouseLeave={() => !isMobile && setHoveredId(null)}
                   onClick={() => handleCardClick(item.id)}
                   style={{ 
                     backgroundColor: '#FFFFFF',

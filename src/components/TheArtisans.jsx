@@ -288,8 +288,8 @@ const TheArtisans = () => {
                   transform: isActive ? 'translateY(-5px)' : 'none',
                   boxShadow: isActive ? '0 20px 40px rgba(197, 179, 152, 0.2)' : '0 5px 15px rgba(0,0,0,0.05)'
                 }}
-                onMouseEnter={() => setActivePortrait(artisan.id)}
-                onMouseLeave={() => setActivePortrait(null)}
+                onMouseEnter={() => !isMobile && setActivePortrait(artisan.id)}
+                onMouseLeave={() => !isMobile && setActivePortrait(null)}
               >
                 {/* Image Area - Taking up top half or side */}
                 <div style={{ 
