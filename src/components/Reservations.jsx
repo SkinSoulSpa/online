@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import gsap from 'gsap';
 import OrganicImagePlaceholder from './OrganicImagePlaceholder';
+import sanctuaryImage from '../assets/sanctuary_15.jpg';
 
 // Updated Reservations Component
 const InputGroup = ({ label, type = "text", name, value, onChange, placeholder, required = false, options = null }) => (
@@ -387,90 +388,17 @@ const Reservations = () => {
           marginTop: isMobile ? '4rem' : '0'
         }}>
           <div style={{ height: '600px', position: 'relative' }}>
-             {/* Decorative Border Line */}
-             <div style={{
-               position: 'absolute',
-               top: '-1.5rem',
-               right: '-1.5rem',
-               width: '100%',
-               height: '100%',
-               border: '1px solid rgba(197, 179, 152, 0.3)',
-               zIndex: 0
-             }} />
-
             <OrganicImagePlaceholder style={{ width: '100%', height: '100%', zIndex: 1 }}>
-              <div style={{ 
-                width: '100%', 
-                height: '100%', 
-                backgroundColor: '#E6E2DD', 
-                display: 'flex', 
-                flexDirection: 'column',
-                alignItems: 'center', 
-                justifyContent: 'center',
-                padding: '3rem',
-                textAlign: 'center',
-                color: '#5C615E'
-              }}>
-                <span style={{ fontSize: '3rem', marginBottom: '1rem', opacity: 0.6 }}>☾</span>
-                
-                {/* The Arrival */}
-                <div style={{ marginBottom: '2.5rem' }}>
-                  <h4 style={{
-                    fontFamily: '"Montserrat", sans-serif',
-                    fontSize: '0.8rem',
-                    letterSpacing: '0.15em',
-                    textTransform: 'uppercase',
-                    color: '#C5B398',
-                    marginBottom: '1rem'
-                  }}>The Arrival</h4>
-                  <p style={{
-                    fontFamily: '"Tenor Sans", sans-serif',
-                    fontSize: '1.2rem',
-                    lineHeight: 1.4,
-                    marginBottom: '0.5rem',
-                    color: '#2C332E'
-                  }}>
-                    9 Scotts Road, #03-01
-                  </p>
-                  <p style={{
-                    fontFamily: '"Cormorant Garamond", serif',
-                    fontSize: '1.1rem',
-                    fontStyle: 'italic',
-                    color: '#5C615E'
-                  }}>
-                    Take the elevator to Level 3.<br/>As the doors open, leave the city behind.
-                  </p>
-                </div>
-
-                <div style={{
-                  width: '40px',
-                  height: '1px',
-                  backgroundColor: '#C5B398',
-                  margin: '0 auto 2.5rem auto'
-                }} />
-
-                {/* The Hours of Restoration */}
-                <div>
-                  <h4 style={{
-                    fontFamily: '"Montserrat", sans-serif',
-                    fontSize: '0.8rem',
-                    letterSpacing: '0.15em',
-                    textTransform: 'uppercase',
-                    color: '#C5B398',
-                    marginBottom: '1rem'
-                  }}>The Hours of Restoration</h4>
-                  <p style={{
-                    fontFamily: '"Tenor Sans", sans-serif',
-                    fontSize: '1rem',
-                    lineHeight: 1.6,
-                    color: '#2C332E'
-                  }}>
-                    Mon – Fri: 11:00 AM – 8:00 PM<br/>
-                    Sat, Sun & PH: 10:00 AM – 7:00 PM
-                  </p>
-                </div>
-
-              </div>
+              <img 
+                src={sanctuaryImage} 
+                alt="The Sanctuary" 
+                style={{ 
+                  width: '100%', 
+                  height: '100%', 
+                  objectFit: 'cover',
+                  display: 'block' 
+                }} 
+              />
             </OrganicImagePlaceholder>
           </div>
         </div>

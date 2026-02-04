@@ -1,4 +1,5 @@
 import React, { useRef, useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import OrganicImagePlaceholder from './OrganicImagePlaceholder';
@@ -10,6 +11,7 @@ if (typeof window !== 'undefined') {
 }
 
 const Artisans = () => {
+  const navigate = useNavigate();
   const [isMobile, setIsMobile] = useState(() => typeof window !== 'undefined' ? window.innerWidth < 768 : false);
   const sectionRef = useRef(null);
   const textRef = useRef(null);
@@ -147,7 +149,7 @@ const Artisans = () => {
             Our senior artisans—including Kelly, Freya, and Shelbee—are renowned for their gentle technique and intuitive understanding of skin health. They do not just treat the face; they nourish the soul. When you are in their hands, you are safe, heard, and deeply cared for.
           </p>
 
-          <Button>
+          <Button onClick={() => navigate('/artisans')}>
             Meet The Artisans
           </Button>
         </div>

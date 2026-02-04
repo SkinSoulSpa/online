@@ -7,6 +7,7 @@ import sanctuaryHero from '../assets/sanctuary-hero.jpg';
 import sanctuarySilence1 from '../assets/sanctuary-silence-1.jpg';
 import sanctuarySilence2 from '../assets/sanctuary-silence-2.jpg';
 import careImage from '../assets/care.jpg';
+import pacificPlazaImage from '../assets/pacific_plaza.jpg';
 
 // Re-register in case it's mounted separately
 gsap.registerPlugin(ScrollTrigger);
@@ -89,7 +90,7 @@ const Sanctuary = () => {
         <div style={{ 
           marginTop: '4rem', 
           width: '100%', 
-          maxWidth: '1000px', 
+          maxWidth: '600px', 
           position: 'relative' 
         }}>
           <ErrorBoundary>
@@ -290,31 +291,26 @@ const Sanctuary = () => {
             lineHeight: 1.8,
             color: '#5C615E'
           }}>
-            Conveniently nestled at Pacific Plaza on Scotts Road, we are the secret escape for the city's most discerning professionals. Step off the busy street and into a space where time feels suspended.
+            The Hidden Sanctuary is conveniently nestled within Pacific Plaza, yet a world away from the noise of Scotts Road. A refined escape where luxury is gentle and time slows down.
           </p>
         </div>
 
         {/* Map/Location Placeholder */}
         <div style={{ 
           width: '100%', 
-          maxWidth: '1000px', 
-          height: '400px',
+          maxWidth: '600px', 
           position: 'relative'
         }}>
-           <OrganicImagePlaceholder style={{ width: '100%', height: '100%' }}>
-             <div style={{ 
-                width: '100%', 
-                height: '100%', 
-                backgroundColor: '#EAEAEA',
-                display: 'flex', 
-                alignItems: 'center', 
-                justifyContent: 'center',
-                color: '#8C8C8C',
-                fontFamily: 'Montserrat, sans-serif',
-                letterSpacing: '0.1em'
-              }}>
-                MAP / EXTERIOR SHOT
-              </div>
+           <OrganicImagePlaceholder fitContent={true} style={{ width: '100%' }}>
+             <img 
+               src={pacificPlazaImage} 
+               alt="Pacific Plaza Location" 
+               style={{ 
+                 width: '100%', 
+                 height: 'auto', 
+                 display: 'block'
+               }} 
+             />
            </OrganicImagePlaceholder>
         </div>
       </Section>

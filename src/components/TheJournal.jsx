@@ -3,6 +3,12 @@ import { useNavigate } from 'react-router-dom';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import OrganicImagePlaceholder from './OrganicImagePlaceholder';
+import journalHero from '../assets/journal.jpg';
+import creamImage from '../assets/260_HYDRA_GLOBAL_Cream.jpg';
+import serumImage from '../assets/240_HYDRA_GLOBAL_Serum.jpg';
+import botanicalImage from '../assets/botanical.png';
+import giftCardImage from '../assets/skin_soul_gift_card.png';
+import milleCreamImage from '../assets/1000_MILLE_The Cream.jpg';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -20,7 +26,7 @@ const JournalSection = ({ children, className, style, id }) => (
   </section>
 );
 
-const ProductCard = ({ title, price, imageLabel }) => (
+const ProductCard = ({ title, price, imageLabel, image, onAcquire }) => (
   <div style={{
     border: '1px solid #E6E2DD',
     padding: '2rem',
@@ -31,17 +37,31 @@ const ProductCard = ({ title, price, imageLabel }) => (
   }}
   onMouseEnter={(e) => e.currentTarget.style.transform = 'translateY(-5px)'}
   onMouseLeave={(e) => e.currentTarget.style.transform = 'translateY(0)'}
+  onClick={onAcquire}
   >
     <div style={{ height: '200px', marginBottom: '1.5rem' }}>
       <OrganicImagePlaceholder style={{ width: '100%', height: '100%' }}>
-        <div style={{ 
-          width: '100%', height: '100%', 
-          backgroundColor: '#F5F5F0', 
-          display: 'flex', alignItems: 'center', justifyContent: 'center',
-          color: '#9CAFA0', fontSize: '0.8rem', letterSpacing: '0.1em'
-        }}>
-          {imageLabel || 'PRODUCT'}
-        </div>
+        {image ? (
+          <img 
+            src={image} 
+            alt={title} 
+            style={{ 
+              width: '100%', 
+              height: '100%', 
+              objectFit: 'contain', 
+              display: 'block' 
+            }} 
+          />
+        ) : (
+          <div style={{ 
+            width: '100%', height: '100%', 
+            backgroundColor: '#F5F5F0', 
+            display: 'flex', alignItems: 'center', justifyContent: 'center',
+            color: '#9CAFA0', fontSize: '0.8rem', letterSpacing: '0.1em'
+          }}>
+            {imageLabel || 'PRODUCT'}
+          </div>
+        )}
       </OrganicImagePlaceholder>
     </div>
     <h4 style={{
@@ -232,14 +252,11 @@ const TheJournal = () => {
           opacity: 0.15
         }}>
           <OrganicImagePlaceholder style={{ width: '100%', height: '100%' }}>
-            <div style={{ 
-              width: '100%', height: '100%', 
-              backgroundColor: '#9CAFA0', 
-              display: 'flex', alignItems: 'center', justifyContent: 'center',
-              color: '#FFFFFF'
-            }}>
-              ABSTRACT SKIN TEXTURE VIDEO
-            </div>
+            <img 
+              src={journalHero} 
+              alt="Abstract Skin Texture" 
+              style={{ width: '100%', height: '100%', objectFit: 'cover' }} 
+            />
           </OrganicImagePlaceholder>
         </div>
 
@@ -382,12 +399,14 @@ const TheJournal = () => {
               title="260 Hydra Global Cream" 
               price="$226.80" 
               imageLabel="260 CREAM"
+              image={creamImage}
               onAcquire={() => handleAcquire({ title: '260 Hydra Global Cream', price: '$226.80' })}
             />
             <ProductCard 
               title="240 Hydra Global Serum" 
               price="$237.60" 
               imageLabel="240 SERUM"
+              image={serumImage}
               onAcquire={() => handleAcquire({ title: '240 Hydra Global Serum', price: '$237.60' })}
             />
           </div>
@@ -402,7 +421,7 @@ const TheJournal = () => {
       />
 
       {/* ENTRY 02: The Philosophy */}
-      <JournalSection className="journal-fade" style={{ backgroundColor: 'rgba(240, 242, 240, 0.9)' }}> {/* Light Sage Tint - Semi-transparent */}
+      <JournalSection className="journal-fade" style={{ backgroundColor: 'transparent' }}> {/* Transparent to reveal curve */}
         <div style={{ maxWidth: '800px', textAlign: 'center' }}>
           <span style={{
             fontFamily: '"Montserrat", sans-serif',
@@ -427,14 +446,16 @@ const TheJournal = () => {
           {/* Visual Break */}
           <div style={{ height: '300px', margin: '3rem 0', position: 'relative' }}>
             <OrganicImagePlaceholder style={{ width: '100%', height: '100%' }}>
-              <div style={{ 
-                width: '100%', height: '100%', 
-                backgroundColor: '#D1D1C7', // Misty Sage
-                display: 'flex', alignItems: 'center', justifyContent: 'center',
-                color: '#FFFFFF'
-              }}>
-                SLOW BEAUTY RITUAL VIDEO
-              </div>
+              <img 
+                src={botanicalImage} 
+                alt="Slow Beauty Ritual" 
+                style={{ 
+                  width: '100%', 
+                  height: '100%', 
+                  objectFit: 'cover',
+                  display: 'block'
+                }} 
+              />
             </OrganicImagePlaceholder>
           </div>
 
@@ -477,9 +498,9 @@ const TheJournal = () => {
           {/* Gift Card Visual - Left on Desktop */}
           <div style={{ order: isMobile ? 2 : 1 }}>
             <div style={{ 
-              backgroundColor: '#2C332E', 
+              background: 'linear-gradient(135deg, #F9F9F7 0%, #E8EBE8 100%)', 
               padding: '3rem', 
-              color: '#C5B398',
+              color: '#5C615E',
               textAlign: 'center',
               borderRadius: '2px',
               position: 'relative',
@@ -491,19 +512,21 @@ const TheJournal = () => {
               gap: '2rem'
             }}>
               <div style={{
-                border: '1px solid rgba(197, 179, 152, 0.3)',
-                padding: '2rem',
                 width: '100%',
-                maxWidth: '300px',
-                minHeight: '200px',
-                display: 'flex',
-                flexDirection: 'column',
-                justifyContent: 'center',
-                marginBottom: '1rem',
-                backgroundColor: 'rgba(255,255,255,0.03)'
+                maxWidth: '350px',
+                marginBottom: '1.5rem',
+                borderRadius: '12px',
+                overflow: 'hidden'
               }}>
-                <span style={{ fontFamily: '"Tenor Sans", sans-serif', fontSize: '1.5rem', marginBottom: '0.5rem' }}>SKIN SOUL</span>
-                <span style={{ fontFamily: '"Montserrat", sans-serif', fontSize: '0.7rem', letterSpacing: '0.2em' }}>GIFT CARD</span>
+                <img 
+                  src={giftCardImage} 
+                  alt="Skin Soul Gift Card" 
+                  style={{ 
+                    width: '100%', 
+                    height: 'auto', 
+                    display: 'block' 
+                  }} 
+                />
               </div>
               
               {/* Denomination Buttons */}
@@ -513,9 +536,9 @@ const TheJournal = () => {
                     key={value}
                     onClick={() => handleAcquire({ title: `Skin Soul Gift Card - $${value}`, price: `$${value}.00` })}
                     style={{
-                      background: 'rgba(197, 179, 152, 0.1)',
+                      background: '#FFFFFF',
                       border: '1px solid #C5B398',
-                      color: '#C5B398',
+                      color: '#5C615E',
                       padding: '0.8rem 1.2rem',
                       fontFamily: '"Montserrat", sans-serif',
                       fontSize: '0.9rem',
@@ -528,8 +551,8 @@ const TheJournal = () => {
                       e.target.style.color = '#2C332E';
                     }}
                     onMouseLeave={e => {
-                      e.target.style.background = 'rgba(197, 179, 152, 0.1)';
-                      e.target.style.color = '#C5B398';
+                      e.target.style.background = '#FFFFFF';
+                      e.target.style.color = '#5C615E';
                     }}
                   >
                     ${value}
@@ -592,7 +615,7 @@ const TheJournal = () => {
       </JournalSection>
 
       {/* ENTRY 04: The Architecture of Sleep (Light Mode Layout) */}
-      <JournalSection className="journal-fade" style={{ backgroundColor: 'rgba(250, 249, 246, 0.9)', padding: '8rem 2rem' }}>
+      <JournalSection className="journal-fade" style={{ backgroundColor: 'transparent', padding: '8rem 2rem' }}>
         <div style={{ 
           display: 'grid', 
           gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr', 
@@ -616,17 +639,16 @@ const TheJournal = () => {
              }} />
              
             <OrganicImagePlaceholder style={{ width: '100%', height: '100%', zIndex: 1, position: 'relative' }}>
-              <div style={{ 
-                width: '100%', height: '100%', 
-                backgroundColor: '#1A1D1B', 
-                display: 'flex', alignItems: 'center', justifyContent: 'center',
-                flexDirection: 'column',
-                color: '#C5B398',
-                gap: '1rem'
-              }}>
-                <span style={{ fontSize: '3rem', fontWeight: 100 }}>☾</span>
-                <span style={{ fontFamily: '"Montserrat", sans-serif', letterSpacing: '0.2em', fontSize: '0.8rem' }}>MIDNIGHT RITUAL</span>
-              </div>
+              <img 
+                src={milleCreamImage} 
+                alt="Midnight Ritual" 
+                style={{ 
+                  width: '100%', 
+                  height: '100%', 
+                  objectFit: 'cover',
+                  display: 'block' 
+                }} 
+              />
             </OrganicImagePlaceholder>
           </div>
 
@@ -686,7 +708,16 @@ const TheJournal = () => {
             }}>
               <div style={{ width: '100px', height: '120px', flexShrink: 0 }}>
                 <OrganicImagePlaceholder style={{ width: '100%', height: '100%' }}>
-                   <div style={{ width: '100%', height: '100%', backgroundColor: '#F5F5F0', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#2C332E', fontSize: '0.7rem' }}>1000 MILLE</div>
+                   <img 
+                     src={milleCreamImage} 
+                     alt="1000 MILLE La Crème" 
+                     style={{ 
+                       width: '100%', 
+                       height: '100%', 
+                       objectFit: 'cover',
+                       display: 'block' 
+                     }} 
+                   />
                 </OrganicImagePlaceholder>
               </div>
               <div>

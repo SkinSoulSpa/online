@@ -1,5 +1,5 @@
 import React, { useRef, useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import OrganicImagePlaceholder from './OrganicImagePlaceholder';
@@ -28,6 +28,7 @@ const Section = ({ children, style, className, id }) => (
 );
 
 const ExperiencesPage = () => {
+  const navigate = useNavigate();
   const location = useLocation();
   const containerRef = useRef(null);
   const heroRef = useRef(null);
@@ -391,6 +392,7 @@ const ExperiencesPage = () => {
                   className="experience-card-item"
                   onMouseEnter={() => setHoveredId(item.id)}
                   onMouseLeave={() => setHoveredId(null)}
+                  onClick={() => navigate('/reservations')}
                   style={{ 
                     backgroundColor: '#FFFFFF',
                     borderRadius: '1rem', 
@@ -449,6 +451,47 @@ const ExperiencesPage = () => {
                           }
                         `}
                       </style>
+                    </div>
+
+                    {/* Hover Overlay Text */}
+                    <div style={{
+                      position: 'absolute',
+                      top: 0,
+                      left: 0,
+                      width: '100%',
+                      height: '100%',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      opacity: isHovered ? 1 : 0,
+                      transition: 'opacity 0.4s ease',
+                      zIndex: 2,
+                      pointerEvents: 'none'
+                    }}>
+                      <style>
+                        {`
+                          @keyframes goldShimmer {
+                            0% { background-position: 0% 50%; }
+                            100% { background-position: 200% 50%; }
+                          }
+                        `}
+                      </style>
+                      <span style={{
+                        fontFamily: '"Montserrat", sans-serif',
+                        fontSize: '0.9rem',
+                        letterSpacing: '0.15em',
+                        textTransform: 'uppercase',
+                        backgroundImage: 'linear-gradient(90deg, #BFA475 0%, #FFF8E7 50%, #BFA475 100%)',
+                        backgroundSize: '200% auto',
+                        color: '#BFA475',
+                        WebkitBackgroundClip: 'text',
+                        WebkitTextFillColor: 'transparent',
+                        animation: 'goldShimmer 3s linear infinite',
+                        fontWeight: 600,
+                        textShadow: '0 2px 10px rgba(0,0,0,0.1)'
+                      }}>
+                        Reserve
+                      </span>
                     </div>
                   </div>
 
@@ -661,7 +704,9 @@ const ExperiencesPage = () => {
                return (
                 <div 
                   key={index} 
+                  onClick={() => navigate('/reservations')}
                   style={{ 
+                    cursor: 'pointer',
                     backgroundColor: '#FFFFFF',
                     borderRadius: '1rem', 
                     padding: '2.5rem',
@@ -799,6 +844,25 @@ const ExperiencesPage = () => {
                       </p>
                     </div>
                   </div>
+
+                  {/* Reserve Action */}
+                  <div style={{
+                    marginTop: '1.5rem',
+                    borderTop: '1px solid rgba(197, 179, 152, 0.2)',
+                    paddingTop: '1rem',
+                    textAlign: 'center'
+                  }}>
+                    <span style={{
+                      fontFamily: '"Montserrat", sans-serif',
+                      fontSize: '0.8rem',
+                      letterSpacing: '0.15em',
+                      textTransform: 'uppercase',
+                      color: '#C5B398',
+                      fontWeight: 600
+                    }}>
+                      Reserve Experience
+                    </span>
+                  </div>
                 </div>
                );
             })}
@@ -926,7 +990,9 @@ const ExperiencesPage = () => {
               return (
                 <div 
                   key={index} 
+                  onClick={() => navigate('/reservations')}
                   style={{ 
+                    cursor: 'pointer',
                     backgroundColor: '#FFFFFF',
                     borderRadius: '1rem', 
                     padding: '2rem',
@@ -1065,6 +1131,25 @@ const ExperiencesPage = () => {
                         )}
                       </div>
                     )}
+                  </div>
+                  
+                  {/* Reserve Action */}
+                  <div style={{
+                    marginTop: '1.5rem',
+                    borderTop: '1px solid rgba(197, 179, 152, 0.2)',
+                    paddingTop: '1rem',
+                    textAlign: 'center'
+                  }}>
+                    <span style={{
+                      fontFamily: '"Montserrat", sans-serif',
+                      fontSize: '0.8rem',
+                      letterSpacing: '0.15em',
+                      textTransform: 'uppercase',
+                      color: '#C5B398',
+                      fontWeight: 600
+                    }}>
+                      Reserve Experience
+                    </span>
                   </div>
                 </div>
               );

@@ -6,6 +6,7 @@ import OrganicImagePlaceholder from './OrganicImagePlaceholder';
 import ErrorBoundary from './ErrorBoundary';
 import testImage from '../assets/test.png';
 import heroHands from '../assets/hero-hands.jpg';
+import trustImage from '../assets/trust.jpg';
 import artisan1 from '../assets/artisan-1.jpg';
 import artisan2 from '../assets/artisan-2.jpg';
 import artisan3 from '../assets/artisan-3.jpg';
@@ -211,9 +212,16 @@ const TheArtisans = () => {
             {/* Visual Balance */}
             <div style={{ flex: 1, width: '100%', height: '300px' }}>
               <OrganicImagePlaceholder style={{ width: '100%', height: '100%' }}>
-                 <div style={{ width: '100%', height: '100%', backgroundColor: '#DCD6CF', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#8C8C8C' }}>
-                    PHILOSOPHY VISUAL
-                 </div>
+                 <img 
+                    src={trustImage} 
+                    alt="Advisors, Not Sellers" 
+                    style={{ 
+                      width: '100%', 
+                      height: '100%', 
+                      objectFit: 'cover',
+                      display: 'block'
+                    }} 
+                 />
               </OrganicImagePlaceholder>
             </div>
           </div>
@@ -254,6 +262,7 @@ const TheArtisans = () => {
             return (
               <div 
                 key={index}
+                onClick={() => navigate('/reservations')}
                 style={{
                   position: 'relative',
                   backgroundColor: '#FFFFFF',
@@ -457,7 +466,7 @@ const TheArtisans = () => {
           
           <button 
             className="btn-shimmer" 
-            onClick={() => navigate('/reservation')}
+            onClick={() => navigate('/reservations')}
             style={{
              color: '#FAF9F6',
              borderColor: '#C5B398',

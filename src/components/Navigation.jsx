@@ -15,7 +15,7 @@ const Navigation = () => {
     { label: "Experiences", path: "/experiences" },
     { label: "The Artisans", path: "/artisans" },
     { label: "Journal", path: "/journal" },
-    { label: "Reservations", path: "/reservation" }
+    { label: "Reservations", path: "/reservations" }
   ];
 
   // Random autonomous shimmer effect

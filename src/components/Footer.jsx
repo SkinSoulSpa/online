@@ -1,26 +1,43 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const FooterLink = ({ href, children }) => {
   const [isHovered, setIsHovered] = useState(false);
+  const isInternal = href.startsWith('/');
+  
+  const style = {
+    fontFamily: 'Montserrat, sans-serif',
+    fontSize: '0.75rem',
+    lineHeight: 1.8,
+    color: isHovered ? '#BFA475' : '#FAF9F6',
+    opacity: isHovered ? 1 : 0.9,
+    margin: 0,
+    textDecoration: 'none',
+    transition: 'all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
+    transform: isHovered ? 'translateX(6px)' : 'translateX(0)',
+    display: 'inline-block',
+    textShadow: isHovered ? '0 0 20px rgba(191, 164, 117, 0.3)' : 'none'
+  };
+
+  if (isInternal) {
+    return (
+      <Link 
+        to={href}
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+        style={style}
+      >
+        {children}
+      </Link>
+    );
+  }
   
   return (
     <a 
       href={href}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      style={{
-        fontFamily: 'Montserrat, sans-serif',
-        fontSize: '0.75rem',
-        lineHeight: 1.8,
-        color: isHovered ? '#BFA475' : '#FAF9F6',
-        opacity: isHovered ? 1 : 0.9,
-        margin: 0,
-        textDecoration: 'none',
-        transition: 'all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
-        transform: isHovered ? 'translateX(6px)' : 'translateX(0)',
-        display: 'inline-block',
-        textShadow: isHovered ? '0 0 20px rgba(191, 164, 117, 0.3)' : 'none'
-      }}
+      style={style}
     >
       {children}
     </a>
@@ -116,11 +133,11 @@ const Footer = () => {
         <div style={{ display: 'flex', flexDirection: 'column' }}>
           <h5 style={sectionTitleStyle}>Explore</h5>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
-            <FooterLink href="#sanctuary">The Sanctuary</FooterLink>
-            <FooterLink href="#experiences">Experiences</FooterLink>
-            <FooterLink href="#artisans">The Artisans</FooterLink>
-            <FooterLink href="#journal">The Journal</FooterLink>
-            <FooterLink href="#reservations">Reservations</FooterLink>
+            <FooterLink href="/sanctuary">The Sanctuary</FooterLink>
+            <FooterLink href="/experiences">Experiences</FooterLink>
+            <FooterLink href="/artisans">The Artisans</FooterLink>
+            <FooterLink href="/journal">The Journal</FooterLink>
+            <FooterLink href="/reservations">Reservations</FooterLink>
           </div>
         </div>
 
