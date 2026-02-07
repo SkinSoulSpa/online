@@ -219,7 +219,7 @@ const TheArtisans = () => {
             }}>
               We know that the modern spa industry often feels like a sales floor. At Skin Soul Spa, we have removed that pressure entirely.
               <br /><br />
-              Our artisans are compensated for their care, not their conversion rates. Whether you are seeing Kelly for clarity or Freya for restoration, you will receive honest, professional advice, never a sales pitch. We believe, as our guest Zenn noted, in being "genuine in trying to improve your face condition".
+              Our artisans are compensated for their care, not their conversion rates. Whether you are seeing Karen for clarity or Freya for restoration, you will receive honest, professional advice, never a sales pitch. We believe, as our guest Zenn noted, in being "genuine in trying to improve your face condition".
             </p>
             {/* Visual Balance */}
             <div style={{ flex: 1, width: '100%', height: '300px' }}>

@@ -63,8 +63,8 @@ const ClientStories = () => {
     },
     {
       id: 2,
-      quote: "Kelly is very gentle and very good. No hard selling. I appreciate the fact that she is genuine in trying to improve my face condition.",
-      attribution: "Zenn Choo"
+      quote: "Both staff Karen & Shelbee were very attentive and friendly. The whole atmosphere was very comfortable and welcoming. Karen was my beautician who did my facial. She was meticulous and my skin issue was addressed accordingly to the facial tailor for me. Both my boyfriend and I had a great time here! Highly recommended!",
+      attribution: "Jessica Loo"
     },
     {
       id: 3,

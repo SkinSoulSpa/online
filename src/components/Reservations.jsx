@@ -189,9 +189,9 @@ const Reservations = () => {
 
   const artisans = [
     "Freya (Senior Artisan)",
-    "Kelly (Senior Artisan)",
-    "Shelbee (Artisan)",
-    "Karen (Artisan)",
+    "Caris (Senior Artisan)",
+    "Shelbee (Senior Artisan)",
+    "Karen (Senior Artisan)",
     "First Available Artisan"
   ];
 

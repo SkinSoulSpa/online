@@ -146,7 +146,7 @@ const Artisans = () => {
           }}>
             Technology is powerful, but the human touch is transformative. At Skin Soul Spa, we believe the energy of the therapist is as vital as the product on your skin.
             <br/><br/>
-            Our senior artisans—including Kelly, Freya, and Shelbee—are renowned for their gentle technique and intuitive understanding of skin health. They do not just treat the face; they nourish the soul. When you are in their hands, you are safe, heard, and deeply cared for.
+            Our senior artisans—including Karen, Freya, and Shelbee—are renowned for their gentle technique and intuitive understanding of skin health. They do not just treat the face; they nourish the soul. When you are in their hands, you are safe, heard, and deeply cared for.
           </p>
 
           <Button onClick={() => navigate('/artisans')}>
