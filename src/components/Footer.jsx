@@ -168,6 +168,7 @@ const Footer = () => {
         <div style={{ display: 'flex', flexDirection: 'column' }}>
           <h5 style={sectionTitleStyle}>Connect</h5>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+            <FooterLink href="tel:+6593633111">+65 9363 3111</FooterLink>
             <FooterLink href="tel:+6569943066">+65 6994 3066</FooterLink>
             <FooterLink href="mailto:customercare@skinsoulspa.sg">customercare@skinsoulspa.sg</FooterLink>
             <div style={{ display: 'flex', gap: '1rem', marginTop: '1rem' }}>
