@@ -4,7 +4,7 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import OrganicImagePlaceholder from './OrganicImagePlaceholder';
 import Button from './Button';
-import artisansImage from '../assets/artisans.jpg';
+import artisansImage from '../assets/8.jpg';
 
 if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger);
