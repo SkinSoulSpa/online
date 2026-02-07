@@ -5,14 +5,14 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import OrganicImagePlaceholder from './OrganicImagePlaceholder';
 import ErrorBoundary from './ErrorBoundary';
 import testImage from '../assets/test.png';
-import heroHands from '../assets/hero-hands.jpg';
+import heroHands from '../assets/artisans.jpg';
 import trustImage from '../assets/trust.jpg';
 import artisan1 from '../assets/artisan-1.jpg';
 import artisan2 from '../assets/artisan-2.jpg';
 import artisan3 from '../assets/artisan-3.jpg';
-import freyaImage from '../assets/artisan_freya_3.jpg';
-import karenImage from '../assets/artisan_karen_3.jpg';
-import shelbeeImage from '../assets/artisan_shelbee_3.jpg';
+import freyaImage from '../assets/artisan_freya_7.jpg';
+import karenImage from '../assets/artisan_karen_6.jpg';
+import shelbeeImage from '../assets/artisan_shelbee_6.jpg';
 import carisImage from '../assets/artisan_caris_3.jpg';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -274,7 +274,6 @@ const TheArtisans = () => {
             return (
               <div 
                 key={index}
-                onClick={() => handleCardClick(artisan.id)}
                 style={{
                   position: 'relative',
                   backgroundColor: '#FFFFFF',
@@ -283,7 +282,6 @@ const TheArtisans = () => {
                   minHeight: '400px',
                   display: 'flex',
                   flexDirection: 'column',
-                  cursor: 'pointer',
                   transition: 'transform 0.4s ease, box-shadow 0.4s ease',
                   transform: isActive ? 'translateY(-5px)' : 'none',
                   boxShadow: isActive ? '0 20px 40px rgba(197, 179, 152, 0.2)' : '0 5px 15px rgba(0,0,0,0.05)'
@@ -421,6 +419,39 @@ const TheArtisans = () => {
                   }}>
                     — {artisan.author}
                   </cite>
+
+                  <div style={{ marginTop: '2rem', textAlign: 'center' }}>
+                    <button 
+                      onClick={() => handleCardClick(artisan.id)}
+                      style={{
+                  background: 'linear-gradient(to right, #A89675 0%, #A89675 50%, #A89675 60%, #FFFFFF 75%, #A89675 90%, #A89675 100%)',
+                   backgroundSize: '200% auto',
+                   WebkitBackgroundClip: 'text',
+                   backgroundClip: 'text',
+                   WebkitTextFillColor: 'transparent',
+                   border: 'none',
+                   padding: '0',
+                   fontFamily: '"Tenor Sans", sans-serif',
+                   fontSize: '0.8rem',
+                   letterSpacing: '0.15em',
+                   textTransform: 'uppercase',
+                   cursor: 'pointer',
+                   transition: 'background-position 0.6s ease',
+                   fontWeight: 400,
+                   backgroundPosition: '0% center'
+                 }}
+                 onMouseEnter={(e) => {
+                   e.target.style.backgroundPosition = '-100% center';
+                   e.target.style.transition = 'background-position 0.6s ease';
+                 }}
+                 onMouseLeave={(e) => {
+                   e.target.style.backgroundPosition = '0% center';
+                   e.target.style.transition = 'background-position 0.6s ease';
+                 }}
+                    >
+                      Reserve without Purchasing
+                    </button>
+                  </div>
                 </div>
               </div>
             );

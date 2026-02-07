@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import { useAudio } from '../context/AudioContext';
 import { Link, useNavigate } from 'react-router-dom';
+import logo from '../assets/skinsoulspa_2.png';
 
 const Navigation = () => {
   const navRef = useRef(null);
@@ -94,18 +95,22 @@ const Navigation = () => {
           onMouseEnter={playHoverSound}
           onClick={() => handleNavigation('/')}
           style={{ 
-            fontFamily: '"Tenor Sans", sans-serif', 
-            fontSize: '1.2rem',
-            letterSpacing: '0.15em',
-            textTransform: 'uppercase',
-            fontWeight: 400,
-            color: '#2C332E',
             cursor: 'pointer',
             position: 'relative',
-            zIndex: 102 // Above overlay
+            zIndex: 102, // Above overlay
+            display: 'flex',
+            alignItems: 'center'
           }}
         >
-          Skin Soul Spa
+          <img 
+            src={logo} 
+            alt="Skin Soul Spa" 
+            style={{ 
+              height: '6rem',
+              width: 'auto',
+              objectFit: 'contain'
+            }} 
+          />
         </div>
 
         {/* Desktop Menu */}

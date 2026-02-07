@@ -3,6 +3,8 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import OrganicImagePlaceholder from './OrganicImagePlaceholder';
+import CheckoutModal from './CheckoutModal';
+import Button from './Button';
 import consultationImage from '../assets/consultation_1.jpg';
 import testImage from '../assets/test.png';
 
@@ -35,12 +37,30 @@ const ExperiencesPage = () => {
   const navRef = useRef(null);
   const [isMobile, setIsMobile] = useState(() => window.innerWidth < 768);
   const [hoveredId, setHoveredId] = useState(null);
+  const [checkoutProduct, setCheckoutProduct] = useState(null);
+  const [paymentMethod, setPaymentMethod] = useState('generic');
 
   useEffect(() => {
     const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    
+    // Simple OS detection for Payment Method
+    const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+    if (/iPad|iPhone|iPod|Macintosh/.test(userAgent) && !window.MSStream) {
+      setPaymentMethod('apple');
+    } else if (/android/i.test(userAgent)) {
+      setPaymentMethod('google');
+    } else {
+      setPaymentMethod('generic');
+    }
+
     window.addEventListener('resize', checkMobile);
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
+
+  const handleAcquire = (e, product) => {
+    e.stopPropagation();
+    setCheckoutProduct(product);
+  };
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -306,14 +326,27 @@ const ExperiencesPage = () => {
                   letterSpacing: '0.15em',
                   textTransform: 'uppercase',
                   color: '#2C332E',
-                  background: 'none',
+                  background: 'linear-gradient(to right, #2C332E 0%, #2C332E 40%, #C5B398 50%, #2C332E 60%, #2C332E 100%)',
+                  backgroundSize: '200% auto',
+                  WebkitBackgroundClip: 'text',
+                  backgroundClip: 'text',
+                  WebkitTextFillColor: 'transparent',
                   border: 'none',
                   cursor: 'pointer',
                   position: 'relative',
                   padding: '0.5rem 1rem',
-                  whiteSpace: 'nowrap' // Ensure text doesn't wrap
+                  whiteSpace: 'nowrap',
+                  transition: 'background-position 0.5s ease',
+                  fontWeight: 500
                 }}
-                className="hover-trigger"
+                onMouseEnter={(e) => {
+                  e.target.style.backgroundPosition = '200% center';
+                  e.target.style.transition = 'background-position 1.5s ease';
+                }}
+                onMouseLeave={(e) => {
+                  e.target.style.backgroundPosition = '0% center';
+                  e.target.style.transition = 'background-position 0.5s ease';
+                }}
               >
                 {item}
               </button>
@@ -357,7 +390,7 @@ const ExperiencesPage = () => {
             {[
               {
                 id: 'clarifying',
-                title: "The Clarifying Peace",
+                title: "Detox Facial",
                 duration: "60 minutes",
                 price: "$158",
                 narrative: "Designed for the city dweller, this ritual acts as a reset button for the skin barrier. We move beyond simple extraction to deep purification, targeting the invisible weight of \"urban grey\", UV damage, blue light, and pollution. By clearing congestion without aggression, we revitalise the skin's health while respecting its delicate equilibrium.",
@@ -367,7 +400,7 @@ const ExperiencesPage = () => {
               },
               {
                 id: 'soul-deep',
-                title: "The Soul-Deep Restore",
+                title: "Hydrating Facial",
                 duration: "60 minutes",
                 price: "$198",
                 narrative: "A gentle immersion for thirsty skin. Utilising the botanical power of our Hydra Global collection, this journey goes deeper than surface moisture. It is a process of \"locking in\" vitality, soothing tightness, and repairing the protective barrier. As our guest Agnes noted, this experience \"not only nurtures the skin but nourishes the soul\".",
@@ -377,7 +410,7 @@ const ExperiencesPage = () => {
               },
               {
                 id: 'luminous',
-                title: "The Luminous Awake",
+                title: "Youthful Radiance Facial",
                 duration: "90 minutes",
                 price: "$258",
                 narrative: "For skin that feels dulled by the fatigue of modern life. This brightening journey is a masterclass in light reflection. We utilise a luxurious masking protocol to oxygenate the tissues and banish the shadows of uneven tone and dark spots. It is not just about correcting; it is about energising.",
@@ -387,7 +420,7 @@ const ExperiencesPage = () => {
               },
               {
                 id: 'timeless',
-                title: "The Timeless Lift",
+                title: "Youthful Lifting Facial",
                 duration: "100 minutes",
                 price: "$338",
                 narrative: "Our premier anti-aging immersion for mature skin. This gravity-defying ritual targets structural integrity and elasticity. We combine deep-tissue massage with advanced, non-invasive lifting technology to sculpt the contours of the face.",
@@ -404,14 +437,12 @@ const ExperiencesPage = () => {
                   className="experience-card-item"
                   onMouseEnter={() => !isMobile && setHoveredId(item.id)}
                   onMouseLeave={() => !isMobile && setHoveredId(null)}
-                  onClick={() => handleCardClick(item.id)}
                   style={{ 
                     backgroundColor: '#FFFFFF',
                     borderRadius: '1rem', 
                     border: isHovered ? '1px solid rgba(191, 164, 117, 0.3)' : '1px solid transparent',
                     boxShadow: isHovered ? '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)' : 'none',
                     transition: 'all 0.5s ease',
-                    cursor: 'pointer',
                     transform: isHovered ? 'translateY(-2px)' : 'none',
                     position: 'relative',
                     overflow: 'hidden',
@@ -618,6 +649,62 @@ const ExperiencesPage = () => {
                         </p>
                       </div>
                     </div>
+                    
+                    {/* Impulse Buy Button */}
+                    <div style={{ marginTop: '2rem', display: 'flex', flexDirection: 'row', alignItems: 'center', gap: '1rem', flexWrap: 'wrap' }}>
+                      <Button 
+                        onClick={(e) => handleAcquire(e, item)}
+                        style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}
+                      >
+                        {paymentMethod === 'apple' ? 'Pay with  Pay' : 
+                         paymentMethod === 'google' ? 'Pay with G Pay' : 
+                         'Purchase Experience'}
+                      </Button>
+                      
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+                        <span style={{
+                          fontFamily: '"Cormorant Garamond", serif',
+                          fontStyle: 'italic',
+                          color: '#BFA475',
+                          fontSize: '1.1rem',
+                          lineHeight: 1,
+                          transform: 'translateY(1px)' // Fine-tune vertical alignment
+                        }}>or</span>
+                        <button 
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            handleCardClick(item.id);
+                          }}
+                          style={{
+                            background: 'linear-gradient(to right, #A89675 0%, #A89675 50%, #A89675 60%, #FFFFFF 75%, #A89675 90%, #A89675 100%)',
+                          backgroundSize: '200% auto',
+                          WebkitBackgroundClip: 'text',
+                          backgroundClip: 'text',
+                          WebkitTextFillColor: 'transparent',
+                          border: 'none',
+                          padding: '0',
+                          fontFamily: '"Tenor Sans", sans-serif',
+                          fontSize: '0.8rem',
+                          letterSpacing: '0.15em',
+                          textTransform: 'uppercase',
+                          cursor: 'pointer',
+                          transition: 'background-position 0.6s ease',
+                          fontWeight: 400,
+                          backgroundPosition: '0% center'
+                        }}
+                        onMouseEnter={(e) => {
+                          e.target.style.backgroundPosition = '-100% center';
+                          e.target.style.transition = 'background-position 0.6s ease';
+                        }}
+                        onMouseLeave={(e) => {
+                          e.target.style.backgroundPosition = '0% center';
+                          e.target.style.transition = 'background-position 0.6s ease';
+                        }}
+                        >
+                          Reserve without Purchasing
+                        </button>
+                      </div>
+                    </div>
                   </div>
                 </div>
                );
@@ -656,15 +743,15 @@ const ExperiencesPage = () => {
           }}>
             {[
               {
-                title: "The Cellular Renaissance",
-                duration: "100 minutes",
-                price: "$388",
+                title: "Exo Glow Treatment Facial",
+                duration: "90 minutes",
+                price: "$398",
                 narrative: "Our most advanced biological immersion. This journey operates at the cellular level, combining the precision of mesotherapy with the regenerative power of exosomes. We move beyond surface hydration to fundamental restoration, delivering potent messengers that signal your skin to repair, firm, and renew itself.",
                 sensation: "A meticulous, refreshing infusion. While this is a high-performance clinical protocol, our artisans ensure the delivery is gentle, soothing, and deeply relaxing.",
                 result: "The ultimate \"Glass Skin\" finish. Fine lines are smoothed, elasticity is reclaimed, and the complexion radiates with a luminosity that looks almost ethereal."
               },
               {
-                title: "The Velvet Resurface",
+                title: "Youthful Lifting Lami Peel Facial",
                 duration: "100 minutes",
                 price: "$338",
                 narrative: "A next-generation resurfacing ritual designed for the delicate. Unlike traditional peels that strip the barrier, this \"Lami-Peel\" technology lifts and hydrates simultaneously. It is specifically formulated for thin or sensitive skin that usually cannot tolerate active exfoliation, offering a safe path to profound renewal.",
@@ -672,7 +759,7 @@ const ExperiencesPage = () => {
                 result: "A porcelain-smooth texture with improved elasticity. Your skin emerges not red or raw, but polished and undeniably radiant."
               },
               {
-                title: "The Meridian Sculpt",
+                title: "Western Oriental Facial",
                 duration: "90 minutes",
                 price: "$298",
                 narrative: "Where ancient wisdom meets modern comfort. This journey is a masterclass in structural flow, fusing the rhythmic precision of Eastern Bojin techniques with the aromatherapy of Western essential oils. We focus on the meridian lines to lift facial muscles and stimulate lymphatic drainage, releasing the stagnation and bloating caused by city life.",
@@ -680,7 +767,7 @@ const ExperiencesPage = () => {
                 result: "A visibly sculpted profile and a profound sense of lightness. The face looks lifted, depuffed, and flushed with fresh vitality."
               },
               {
-                title: "The Thermal Definition",
+                title: "Age Defying Facial",
                 duration: "90 minutes",
                 price: "$338",
                 narrative: "A structural intervention for timeless skin. We utilise an advanced RF (Radio Frequency) modality to deliver controlled thermal energy deep into the dermis. This warmth acts as a wake-up call to your collagen and elastin factories, tightening the architectural fibres of the skin to restore definition.",
@@ -688,7 +775,7 @@ const ExperiencesPage = () => {
                 result: "A sharper contour and firmer texture. This is the non-invasive answer to skin laxity, restoring the \"youthful bounce\" of the complexion."
               },
               {
-                title: "The Urban Shield",
+                title: "Anti-OXYdant Facial",
                 duration: "100 minutes",
                 price: "$338",
                 narrative: "A rescue ritual for skin suffocated by the city. We utilise a potent oxygenation protocol to breathe life back into the cellular structure. This journey detoxifies the pores from \"urban grey\" pollution and UV stress while flooding the barrier with a cocktail of essential vitamins and pH-balancing nutrients.",
@@ -696,7 +783,7 @@ const ExperiencesPage = () => {
                 result: "A complexion that is not just clean, but alive. The skin emerges shielded, hydrated, and glowing with a \"natural luminosity\" that looks as if you have spent a week in nature, far from the city noise."
               },
               {
-                title: "The Ageless Glow",
+                title: "Derm Rejuvenating Facial",
                 duration: "75 minutes",
                 price: "$298",
                 narrative: "Harnessing the power of light to reverse the visible passage of time. We employ advanced SHR (Super Hair Removal) technology adapted for skin rejuvenation to gently target the visual noise of the complexion, blemishes, pigmentation, and laxity. It is a process of clearing the canvas to reveal the \"firmer, smoother\" skin beneath.",
@@ -704,7 +791,7 @@ const ExperiencesPage = () => {
                 result: "Porcelain clarity. The tone is unified, and the texture is refined, restoring the \"youthful bounce\" and clarity that defines healthy skin."
               },
               {
-                title: "The Dermal Architecture",
+                title: "Collagen Revival Facial",
                 duration: "90 minutes",
                 price: "$298",
                 narrative: "A structural reset for the skin’s foundation. Using the precision of the Dermia Solution modality, this journey focuses on refining the surface texture. It is designed to erase the history of the skin, softening acne scars, reducing wrinkle depth, and minimising pores to improve absorption capabilities.",
@@ -716,9 +803,7 @@ const ExperiencesPage = () => {
                return (
                 <div 
                   key={index} 
-                  onClick={() => navigate('/reservations')}
                   style={{ 
-                    cursor: 'pointer',
                     backgroundColor: '#FFFFFF',
                     borderRadius: '1rem', 
                     padding: '2.5rem',
@@ -857,23 +942,60 @@ const ExperiencesPage = () => {
                     </div>
                   </div>
 
-                  {/* Reserve Action */}
-                  <div style={{
-                    marginTop: '1.5rem',
-                    borderTop: '1px solid rgba(197, 179, 152, 0.2)',
-                    paddingTop: '1rem',
-                    textAlign: 'center'
-                  }}>
-                    <span style={{
-                      fontFamily: '"Montserrat", sans-serif',
-                      fontSize: '0.8rem',
-                      letterSpacing: '0.15em',
-                      textTransform: 'uppercase',
-                      color: '#C5B398',
-                      fontWeight: 600
-                    }}>
-                      Reserve Experience
-                    </span>
+                  {/* Impulse Buy Button */}
+                    <div style={{ marginTop: '2rem', display: 'flex', flexDirection: 'row', alignItems: 'center', gap: '1rem', flexWrap: 'wrap' }}>
+                      <Button 
+                        onClick={(e) => handleAcquire(e, item)}
+                        style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}
+                      >
+                        {paymentMethod === 'apple' ? 'Pay with  Pay' : 
+                         paymentMethod === 'google' ? 'Pay with G Pay' : 
+                         'Purchase Experience'}
+                      </Button>
+                      
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+                        <span style={{
+                          fontFamily: '"Cormorant Garamond", serif',
+                          fontStyle: 'italic',
+                          color: '#BFA475',
+                          fontSize: '1.1rem',
+                          lineHeight: 1,
+                          transform: 'translateY(1px)'
+                        }}>or</span>
+                        <button 
+                          onClick={(e) => {
+                          e.stopPropagation();
+                          handleCardClick(item.id);
+                        }}
+                        style={{
+                          background: 'linear-gradient(to right, #A89675 0%, #A89675 50%, #A89675 60%, #FFFFFF 75%, #A89675 90%, #A89675 100%)',
+                          backgroundSize: '200% auto',
+                          WebkitBackgroundClip: 'text',
+                          backgroundClip: 'text',
+                          WebkitTextFillColor: 'transparent',
+                          border: 'none',
+                          padding: '0',
+                          fontFamily: '"Tenor Sans", sans-serif',
+                          fontSize: '0.8rem',
+                          letterSpacing: '0.15em',
+                          textTransform: 'uppercase',
+                          cursor: 'pointer',
+                          transition: 'background-position 0.6s ease',
+                          fontWeight: 400,
+                          backgroundPosition: '0% center'
+                        }}
+                        onMouseEnter={(e) => {
+                          e.target.style.backgroundPosition = '-100% center';
+                          e.target.style.transition = 'background-position 0.6s ease';
+                        }}
+                        onMouseLeave={(e) => {
+                          e.target.style.backgroundPosition = '0% center';
+                          e.target.style.transition = 'background-position 0.6s ease';
+                        }}
+                      >
+                        Reserve without Purchasing
+                      </button>
+                    </div>
                   </div>
                 </div>
                );
@@ -911,7 +1033,7 @@ const ExperiencesPage = () => {
           }}>
             {[
               {
-                title: "The Vitality Breath",
+                title: "Anti-OXYdant Inhalation",
                 duration: "10 minutes",
                 price: "$38",
                 narrative: "A moment of pure clarity for the city-weary. In this restorative pause, we infuse the body with a concentrated stream of pure oxygen. It acts as an internal reset, awakening tired cells and flushing out the mental fog of the day.",
@@ -919,7 +1041,7 @@ const ExperiencesPage = () => {
                 result: "A re-energised spirit and a complexion that looks instantly awakened, bright, clear, and full of life."
               },
               {
-                title: "The Meridian Eye Sculpt",
+                title: "Guasha Eye Rejuvenation Treatment",
                 duration: "20 minutes",
                 price: "$108",
                 narrative: "For eyes weighed down by screen fatigue and stress. We utilise the ancient rhythmic art of Guasha to gently glide over the delicate contours of the orbital bone. This ritual encourages the flow of stagnant energy, releasing deep-set tension and reducing inflammation without a single invasive touch.",
@@ -927,7 +1049,7 @@ const ExperiencesPage = () => {
                 result: "A visible \"lifting\" of the gaze. Puffiness is drained, and the eyes appear wider, rested, and visibly brighter."
               },
               {
-                title: "The Precision Clarity",
+                title: "Hair Removal (Upper Lips)",
                 duration: "10 minutes",
                 price: "$38",
                 narrative: "A refining ritual for the most delicate area of the face. Using advanced light technology, we gently polish the skin surface to reduce shadow and texture. It serves a dual purpose: discouraging future growth while simultaneously brightening the skin tone for a flawless finish.",
@@ -935,7 +1057,7 @@ const ExperiencesPage = () => {
                 result: "A smooth, porcelain canvas that reflects light perfectly, free from shadow."
               },
               {
-                title: "The Velvet Touch",
+                title: "Hair Removal (Underarm)",
                 duration: "20 minutes",
                 price: "$88",
                 narrative: "Confidence begins with texture. This advanced smoothing ritual uses SHR light energy to target the root of the hair while actively treating the skin itself. Unlike traditional methods that darken or damage, this technology works to harmonise the skin tone and refine the surface.",
@@ -943,7 +1065,7 @@ const ExperiencesPage = () => {
                 result: "Underarms that feel velvety smooth to the touch and look visibly fairer, allowing you to move with total freedom."
               },
               {
-                title: "The Luminescence",
+                title: "LED Therapy",
                 duration: "15 minutes",
                 price: "$38",
                 narrative: "A restorative bath of therapeutic light. We utilise specific wavelengths of LED energy to interact with the skin at a cellular level. Whether your goal is to quell the inflammation of acne or stimulate collagen production for sun-damaged tissue, this ritual works silently to repair the barrier from within.",
@@ -951,7 +1073,7 @@ const ExperiencesPage = () => {
                 result: "A calmer canvas. Redness is pacified, and the skin tone emerges unified and visibly brighter."
               },
               {
-                title: "The Awakening Gaze",
+                title: "Eye Care Treatment",
                 duration: "15 minutes",
                 price: "$68",
                 narrative: "A manual therapy designed to unburden the eyes. In an age of screen fatigue, this ritual focuses on the delicate orbital muscles that carry the weight of the day. Through a series of precise, rhythmic massage techniques, we stimulate micro-circulation to flush out fluids and relieve deep-set tension.",
@@ -959,7 +1081,7 @@ const ExperiencesPage = () => {
                 result: "Eyes that look rested and alert. Dark circles are softened, and the gaze appears wider and more open."
               },
               {
-                title: "The Hydro-Clarifying",
+                title: "Hydra Intensive Treatment",
                 duration: "20 minutes",
                 price: "$88",
                 narrative: "The deep clean, reimagined. Ideal for congested or city-stressed skin, this ritual replaces aggressive extraction with the gentle power of hydro-dermabrasion. We use a continuous flow of water and active serums to flush impurities from the pores, finishing with a mist of pure Hyaluronic Acid (HA) to flood the fresh skin with hydration.",
@@ -967,7 +1089,7 @@ const ExperiencesPage = () => {
                 result: "Glass-like clarity. The texture is instantly smoothed, and the pores are refined without the redness of traditional extraction."
               },
               {
-                title: "The Cellular Breath (Eye & Neck)",
+                title: "Anti-OXYdant (Eye/Neck)",
                 duration: "20 minutes",
                 price: "$108",
                 narrative: "A targeted infusion of life for the most fragile areas. The skin of the eye and neck is often the first to show signs of \"cellular suffocation.\" We direct a concentrated stream of pure oxygen and nutrients to these zones, accelerating cell turnover and breathing vitality back into the tissue.",
@@ -975,7 +1097,7 @@ const ExperiencesPage = () => {
                 result: "Fine lines are plumped from within, and the shadowed areas of the eye and neck look visibly energised."
               },
               {
-                title: "The Canvas Renewal",
+                title: "Derm Rejuvenating",
                 duration: "20 minutes",
                 price: "$128",
                 narrative: "Harnessing light to erase visual noise. This advanced therapy uses broad-spectrum light to seek out and correct imperfections in the skin tone, from sun spots to diffuse redness. It acts as a harmonising agent, tightening the collagen fibres while unifying the complexion.",
@@ -983,7 +1105,7 @@ const ExperiencesPage = () => {
                 result: "A porcelain finish. The skin looks tighter, clearer, and undeniably more youthful."
               },
               {
-                title: "The Thermal Architecture (Eye & Neck)",
+                title: "Age Defying (Eye/Neck)",
                 duration: "20 minutes",
                 price: "$128",
                 narrative: "Re-knitting the support matrix. We employ Radio Frequency (RF) energy to deliver controlled thermal warmth deep into the dermis of the neck and eye contours. This heat wakes up the fibroblasts, commanding them to produce new collagen and elastin to firm the architectural lines of the face.",
@@ -991,7 +1113,7 @@ const ExperiencesPage = () => {
                 result: "Immediate contraction and long-term firming. The crepey skin of the neck and eyes feels denser and more resilient."
               },
               {
-                title: "The Deep Active Infusion",
+                title: "Age Control Pro",
                 duration: "20 minutes",
                 price: "$128",
                 narrative: "Feeding the skin where it matters most. Using advanced electromagnetic pulse technology, this ritual temporarily opens the skin’s cellular gates. This allows us to push potent active ingredients far deeper than manual application ever could, effectively \"filling\" the skin with nutrition without a single needle.",
@@ -1002,9 +1124,7 @@ const ExperiencesPage = () => {
               return (
                 <div 
                   key={index} 
-                  onClick={() => navigate('/reservations')}
                   style={{ 
-                    cursor: 'pointer',
                     backgroundColor: '#FFFFFF',
                     borderRadius: '1rem', 
                     padding: '2rem',
@@ -1145,23 +1265,60 @@ const ExperiencesPage = () => {
                     )}
                   </div>
                   
-                  {/* Reserve Action */}
-                  <div style={{
-                    marginTop: '1.5rem',
-                    borderTop: '1px solid rgba(197, 179, 152, 0.2)',
-                    paddingTop: '1rem',
-                    textAlign: 'center'
-                  }}>
-                    <span style={{
-                      fontFamily: '"Montserrat", sans-serif',
-                      fontSize: '0.8rem',
-                      letterSpacing: '0.15em',
-                      textTransform: 'uppercase',
-                      color: '#C5B398',
-                      fontWeight: 600
-                    }}>
-                      Reserve Experience
-                    </span>
+                  {/* Impulse Buy Button */}
+                  <div style={{ marginTop: '2rem', display: 'flex', flexDirection: 'row', alignItems: 'center', gap: '1rem', flexWrap: 'wrap' }}>
+                    <Button 
+                      onClick={(e) => handleAcquire(e, item)}
+                      style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}
+                    >
+                      {paymentMethod === 'apple' ? 'Pay with  Pay' : 
+                       paymentMethod === 'google' ? 'Pay with G Pay' : 
+                       'Purchase Experience'}
+                    </Button>
+                    
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+                      <span style={{
+                        fontFamily: '"Cormorant Garamond", serif',
+                        fontStyle: 'italic',
+                        color: '#BFA475',
+                        fontSize: '1.1rem',
+                        lineHeight: 1,
+                        transform: 'translateY(1px)'
+                      }}>or</span>
+                      <button 
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          handleCardClick(item.id);
+                        }}
+                        style={{
+                          background: 'linear-gradient(to right, #A89675 0%, #A89675 50%, #A89675 60%, #FFFFFF 75%, #A89675 90%, #A89675 100%)',
+                          backgroundSize: '200% auto',
+                          WebkitBackgroundClip: 'text',
+                          backgroundClip: 'text',
+                          WebkitTextFillColor: 'transparent',
+                          border: 'none',
+                          padding: '0',
+                          fontFamily: '"Tenor Sans", sans-serif',
+                          fontSize: '0.8rem',
+                          letterSpacing: '0.15em',
+                          textTransform: 'uppercase',
+                          cursor: 'pointer',
+                          transition: 'background-position 0.6s ease',
+                          fontWeight: 400,
+                          backgroundPosition: '0% center'
+                        }}
+                        onMouseEnter={(e) => {
+                          e.target.style.backgroundPosition = '-100% center';
+                          e.target.style.transition = 'background-position 0.6s ease';
+                        }}
+                        onMouseLeave={(e) => {
+                          e.target.style.backgroundPosition = '0% center';
+                          e.target.style.transition = 'background-position 0.6s ease';
+                        }}
+                      >
+                        Reserve without Purchasing
+                      </button>
+                    </div>
                   </div>
                 </div>
               );
@@ -1193,6 +1350,13 @@ const ExperiencesPage = () => {
         </div>
       </Section>
 
+      {/* CHECKOUT MODAL */}
+      <CheckoutModal 
+        isOpen={!!checkoutProduct} 
+        onClose={() => setCheckoutProduct(null)} 
+        product={checkoutProduct}
+        paymentMethod={paymentMethod}
+      />
     </div>
   );
 };

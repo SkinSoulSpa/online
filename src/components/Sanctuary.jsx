@@ -6,7 +6,7 @@ import ErrorBoundary from './ErrorBoundary';
 import sanctuaryHero from '../assets/sanctuary-hero.jpg';
 import sanctuarySilence1 from '../assets/sanctuary-silence-1.jpg';
 import sanctuarySilence2 from '../assets/sanctuary-silence-2.jpg';
-import careImage from '../assets/care.jpg';
+import noHardSellingImage from '../assets/no_hard_selling.jpg';
 import pacificPlazaImage from '../assets/pacific_plaza.jpg';
 
 // Re-register in case it's mounted separately
@@ -249,7 +249,7 @@ const Sanctuary = () => {
            <div style={{ flex: '1 1 400px', height: '500px' }}>
              <OrganicImagePlaceholder style={{ width: '100%', height: '100%' }}>
               <img 
-                src={careImage} 
+                src={noHardSellingImage} 
                 alt="Genuine Care Consultation" 
                 style={{ 
                   width: '100%', 

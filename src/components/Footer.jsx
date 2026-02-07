@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import logo from '../assets/skinsoulspa_3.png';
 
 const FooterLink = ({ href, children }) => {
   const [isHovered, setIsHovered] = useState(false);
@@ -105,15 +106,15 @@ const Footer = () => {
       }}>
         {/* Brand */}
         <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
-          <h4 style={{
-            fontFamily: '"Tenor Sans", sans-serif',
-            fontSize: '1.5rem',
-            letterSpacing: '0.1em',
-            textTransform: 'uppercase',
-            fontWeight: 400,
-            margin: 0,
-            color: textColor
-          }}>Skin Soul Spa</h4>
+          <img 
+            src={logo} 
+            alt="Skin Soul Spa" 
+            style={{
+              width: '180px',
+              height: 'auto',
+              marginBottom: '0.5rem'
+            }} 
+          />
           <p style={{
             fontFamily: 'Montserrat, sans-serif',
             fontSize: '0.625rem',

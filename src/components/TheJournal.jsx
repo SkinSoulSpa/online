@@ -1,20 +1,24 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import OrganicImagePlaceholder from './OrganicImagePlaceholder';
+import Button from './Button';
+import CheckoutModal from './CheckoutModal';
 import journalHero from '../assets/journal.jpg';
 import creamImage from '../assets/260_HYDRA_GLOBAL_Cream.jpg';
 import serumImage from '../assets/240_HYDRA_GLOBAL_Serum.jpg';
 import botanicalImage from '../assets/botanical.png';
 import giftCardImage from '../assets/skin_soul_gift_card.png';
 import milleCreamImage from '../assets/1000_MILLE_The Cream.jpg';
+import sanctuaryHero from '../assets/sanctuary-hero.jpg';
+import luminousImage from '../assets/luminous.png';
 
 gsap.registerPlugin(ScrollTrigger);
 
 const JournalSection = ({ children, className, style, id }) => (
   <section id={id} className={className} style={{
-    padding: '8rem 2rem',
+    padding: '6rem 2rem',
     minHeight: '80vh',
     display: 'flex',
     alignItems: 'center',
@@ -26,172 +30,37 @@ const JournalSection = ({ children, className, style, id }) => (
   </section>
 );
 
-const ProductCard = ({ title, price, imageLabel, image, onAcquire }) => (
-  <div style={{
-    border: '1px solid #E6E2DD',
-    padding: '2rem',
-    textAlign: 'center',
-    backgroundColor: '#FFFFFF',
-    transition: 'transform 0.3s ease',
-    cursor: 'pointer'
-  }}
-  onMouseEnter={(e) => e.currentTarget.style.transform = 'translateY(-5px)'}
-  onMouseLeave={(e) => e.currentTarget.style.transform = 'translateY(0)'}
-  onClick={onAcquire}
-  >
-    <div style={{ height: '200px', marginBottom: '1.5rem' }}>
-      <OrganicImagePlaceholder style={{ width: '100%', height: '100%' }}>
-        {image ? (
-          <img 
-            src={image} 
-            alt={title} 
-            style={{ 
-              width: '100%', 
-              height: '100%', 
-              objectFit: 'contain', 
-              display: 'block' 
-            }} 
-          />
-        ) : (
-          <div style={{ 
-            width: '100%', height: '100%', 
-            backgroundColor: '#F5F5F0', 
-            display: 'flex', alignItems: 'center', justifyContent: 'center',
-            color: '#9CAFA0', fontSize: '0.8rem', letterSpacing: '0.1em'
-          }}>
-            {imageLabel || 'PRODUCT'}
-          </div>
-        )}
-      </OrganicImagePlaceholder>
-    </div>
-    <h4 style={{
-      fontFamily: '"Tenor Sans", sans-serif',
-      fontSize: '1.2rem',
-      color: '#2C332E',
-      marginBottom: '0.5rem'
-    }}>
-      {title}
-    </h4>
-    <p style={{
-      fontFamily: '"Montserrat", sans-serif',
-      fontSize: '0.9rem',
-      color: '#C5B398',
-      letterSpacing: '0.05em'
-    }}>
-      {price}
-    </p>
-  </div>
-);
-
-const MockCheckoutModal = ({ isOpen, onClose, product }) => {
-  if (!isOpen) return null;
-  return (
-    <div style={{
-      position: 'fixed',
-      top: 0,
-      left: 0,
-      width: '100%',
-      height: '100%',
-      backgroundColor: 'rgba(44, 51, 46, 0.6)',
-      backdropFilter: 'blur(8px)',
-      zIndex: 1000,
-      display: 'flex',
-      alignItems: 'flex-end',
-      justifyContent: 'center'
-    }} onClick={onClose}>
-      <div style={{
-        backgroundColor: '#FFFFFF',
-        width: '100%',
-        maxWidth: '500px',
-        borderTopLeftRadius: '20px',
-        borderTopRightRadius: '20px',
-        padding: '2rem',
-        animation: 'slideUp 0.4s ease-out',
-        position: 'relative',
-        boxShadow: '0 -10px 40px rgba(0,0,0,0.1)'
-      }} onClick={e => e.stopPropagation()}>
-        <style>
-          {`
-            @keyframes slideUp {
-              from { transform: translateY(100%); }
-              to { transform: translateY(0); }
-            }
-          `}
-        </style>
-        {/* Apple Pay / Stripe Mock Header */}
-        <div style={{ 
-          display: 'flex', 
-          justifyContent: 'space-between', 
-          alignItems: 'center', 
-          marginBottom: '2rem',
-          borderBottom: '1px solid #F0F0F0',
-          paddingBottom: '1rem'
-        }}>
-          <span style={{ fontFamily: '-apple-system, BlinkMacSystemFont, sans-serif', fontWeight: 600, fontSize: '1.1rem' }}>
-            Pay with Passcode
-          </span>
-          <button onClick={onClose} style={{ border: 'none', background: 'none', fontSize: '1.5rem', cursor: 'pointer', color: '#8C8C8C' }}>×</button>
-        </div>
-        {/* Product Summary */}
-        <div style={{ display: 'flex', gap: '1rem', marginBottom: '2rem' }}>
-          <div style={{ width: '80px', height: '80px', backgroundColor: '#F5F5F0', borderRadius: '8px' }}></div>
-          <div>
-            <h4 style={{ margin: '0 0 0.5rem 0', fontFamily: '"Tenor Sans", sans-serif', fontSize: '1.1rem' }}>{product?.title}</h4>
-            <p style={{ margin: 0, color: '#5C615E', fontFamily: '"Montserrat", sans-serif', fontSize: '0.9rem' }}>{product?.price}</p>
-          </div>
-        </div>
-        {/* Payment Methods */}
-        <div style={{ marginBottom: '2rem' }}>
-          <div style={{ 
-            backgroundColor: '#000000', 
-            color: '#FFFFFF', 
-            padding: '1rem', 
-            borderRadius: '4px', 
-            display: 'flex', 
-            justifyContent: 'center', 
-            alignItems: 'center',
-            cursor: 'pointer',
-            marginBottom: '0.5rem',
-            fontFamily: '-apple-system, BlinkMacSystemFont, sans-serif',
-            fontWeight: 500
-          }}>
-              Pay
-          </div>
-        </div>
-        {/* Face ID Animation Mock */}
-        <div style={{ textAlign: 'center', color: '#8C8C8C', fontSize: '0.8rem', marginTop: '1rem' }}>
-          <div style={{ 
-            width: '40px', 
-            height: '40px', 
-            border: '2px solid #2C332E', 
-            borderRadius: '50%', 
-            margin: '0 auto 0.5rem auto',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center'
-          }}>
-            <span style={{ fontSize: '1.2rem' }}>☺</span>
-          </div>
-          Double Click Side Button
-        </div>
-      </div>
-
-
-    </div>
-  );
-};
-
 const TheJournal = () => {
   const [isMobile, setIsMobile] = useState(() => window.innerWidth < 768);
   const [checkoutProduct, setCheckoutProduct] = useState(null);
+  const [paymentMethod, setPaymentMethod] = useState('generic'); // 'apple', 'google', 'generic'
   const navigate = useNavigate();
+  const heroRef = useRef(null);
+  const purchaseBarRef = useRef(null);
 
   const handleAcquire = (product) => {
     setCheckoutProduct(product);
   };
 
+  const handleReserve = (experienceName) => {
+    navigate('/reservations', { 
+      state: { experience: experienceName } 
+    });
+  };
+
   useEffect(() => {
     const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    
+    // Simple OS detection
+    const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+    if (/iPad|iPhone|iPod|Macintosh/.test(userAgent) && !window.MSStream) {
+      setPaymentMethod('apple');
+    } else if (/android/i.test(userAgent)) {
+      setPaymentMethod('google');
+    } else {
+      setPaymentMethod('generic');
+    }
+
     window.addEventListener('resize', checkMobile);
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
@@ -216,6 +85,30 @@ const TheJournal = () => {
           }
         );
       });
+
+      // Sticky Purchase Bar Logic (Mobile Only)
+      if (window.innerWidth < 768 && purchaseBarRef.current && heroRef.current) {
+         ScrollTrigger.create({
+          trigger: heroRef.current,
+          start: "bottom top", 
+          end: "max", 
+          onEnter: () => {
+            gsap.to(purchaseBarRef.current, {
+              y: 0,
+              opacity: 1,
+              duration: 0.4,
+              ease: "power3.out"
+            });
+          },
+          onLeaveBack: () => {
+             gsap.to(purchaseBarRef.current, {
+              y: 100,
+              opacity: 0,
+              duration: 0.3
+            });
+          }
+        });
+      }
     });
     return () => ctx.revert();
   }, []);
@@ -228,45 +121,26 @@ const TheJournal = () => {
       backgroundColor: 'transparent' // Transparent to reveal OrganicLine
     }}>
 
-      {/* HERO SECTION: The Library of Skin */}
-      <div style={{ 
-        position: 'relative', 
-        minHeight: '70vh', 
-        display: 'flex', 
+      {/* HERO SECTION: The Library of Skin (Refined 1 Column) */}
+      <div ref={heroRef} style={{ 
+        minHeight: '60vh',
+        display: 'flex',
         flexDirection: 'column',
-        justifyContent: 'center',
+        justifyContent: 'flex-start',
         alignItems: 'center',
-        textAlign: 'center',
-        padding: '2rem',
-        overflow: 'hidden'
+        padding: '4rem 2rem 4rem',
+        position: 'relative',
+        gap: '3.5rem'
       }}>
-        {/* Background Visual Placeholder */}
-        <div style={{
-          position: 'absolute',
-          top: '50%',
-          left: '50%',
-          transform: 'translate(-50%, -50%)',
-          width: '80%',
-          height: '80%',
-          zIndex: 0,
-          opacity: 0.15
-        }}>
-          <OrganicImagePlaceholder style={{ width: '100%', height: '100%' }}>
-            <img 
-              src={journalHero} 
-              alt="Abstract Skin Texture" 
-              style={{ width: '100%', height: '100%', objectFit: 'cover' }} 
-            />
-          </OrganicImagePlaceholder>
-        </div>
-
-        <div className="journal-fade" style={{ maxWidth: '900px', zIndex: 2 }}>
+        
+        {/* Text Content - Top */}
+        <div className="journal-fade" style={{ zIndex: 2, textAlign: 'center', maxWidth: '700px' }}>
           <span style={{
             fontFamily: '"Montserrat", sans-serif',
-            fontSize: '0.8rem',
+            fontSize: '0.7rem',
             letterSpacing: '0.3em',
             textTransform: 'uppercase',
-            color: '#9CAFA0', // Sage
+            color: '#9CAFA0', 
             display: 'block',
             marginBottom: '1.5rem'
           }}>
@@ -274,39 +148,115 @@ const TheJournal = () => {
           </span>
           <h1 style={{
             fontFamily: '"Tenor Sans", sans-serif',
-            fontSize: 'clamp(2.5rem, 6vw, 5rem)',
+            fontSize: 'clamp(2.5rem, 4vw, 3.5rem)',
             color: '#2C332E',
-            lineHeight: 1.1,
+            lineHeight: 1.2,
             marginBottom: '1.5rem'
           }}>
             Notes on Radiance.
           </h1>
-          <h2 style={{
-            fontFamily: '"Cormorant Garamond", serif',
-            fontSize: 'clamp(1.2rem, 3vw, 1.8rem)',
+          <p style={{
+            fontFamily: '"Montserrat", sans-serif',
+            fontSize: '0.9rem',
+            lineHeight: 1.8,
             color: '#5C615E',
-            fontStyle: 'italic',
-            fontWeight: 300,
-            maxWidth: '600px',
-            margin: '0 auto'
+            maxWidth: '450px',
+            margin: '0 auto',
+            letterSpacing: '0.02em'
           }}>
-            Insights, rituals, and the science of slowing down.
-          </h2>
+            Insights, rituals, and the science of slowing down. <br/>A curated collection of wisdom for the modern soul.
+          </p>
+        </div>
+
+        {/* Image Content - Bottom (Smaller + Organic Border) */}
+        <div style={{
+          width: '100%',
+          maxWidth: '600px', // Smaller, more contained width
+          position: 'relative'
+        }}>
+           <div style={{
+             width: '100%',
+             display: 'flex',
+             justifyContent: 'center'
+           }}>
+             <OrganicImagePlaceholder fitContent={true} style={{ width: '100%', height: 'auto' }}>
+               <img 
+                  src={journalHero} 
+                  alt="Skin Soul Journal" 
+                  style={{ 
+                    width: '100%', 
+                    height: 'auto',
+                    display: 'block' 
+                  }} 
+                />
+             </OrganicImagePlaceholder>
+           </div>
         </div>
       </div>
 
-      {/* ENTRY 01: The Hydration Paradox */}
+      {/* ENTRY 01: The Architecture of Light */}
       <JournalSection className="journal-fade">
         <div style={{ 
           display: 'grid', 
-          gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr', 
-          gap: '4rem', 
+          gridTemplateColumns: isMobile ? '1fr' : '0.7fr 1.3fr', 
+          gap: '5rem', 
           maxWidth: '1200px', 
-          alignItems: 'center' 
+          margin: '0 auto',
+          alignItems: 'start'
         }}>
-          {/* Text Content */}
+          
+          {/* Visual - Left */}
+          <div style={{ position: 'sticky', top: '120px' }}>
+            <OrganicImagePlaceholder fitContent={true} style={{ width: '100%', zIndex: 1, position: 'relative' }}>
+              <img 
+                src={luminousImage} 
+                alt="Skin Soul Spa Sanctuary" 
+                style={{ 
+                  width: '100%', 
+                  height: 'auto', 
+                  display: 'block' 
+                }} 
+              />
+            </OrganicImagePlaceholder>
+            
+            {/* Desktop Impulse Purchase Card */}
+             {!isMobile && (
+               <div style={{
+                 marginTop: '2rem',
+                 padding: '2rem',
+                 border: '1px solid #E6E2DD',
+                 backgroundColor: '#FFFFFF',
+                 textAlign: 'center',
+                 transition: 'transform 0.3s ease',
+                 cursor: 'pointer'
+               }}
+               onMouseEnter={(e) => e.currentTarget.style.transform = 'translateY(-5px)'}
+               onMouseLeave={(e) => e.currentTarget.style.transform = 'translateY(0)'}
+               >
+                 <h4 style={{ fontFamily: '"Tenor Sans", sans-serif', fontSize: '1.2rem', color: '#2C332E', marginBottom: '0.5rem' }}>
+                  Reclaim Your Youthful Radiance
+                </h4>
+                 <p style={{ fontFamily: '"Montserrat", sans-serif', fontSize: '0.9rem', color: '#C5B398', letterSpacing: '0.05em', marginBottom: '1.5rem' }}>
+                   Youthful Radiance Facial — $258.00
+                 </p>
+                 
+                 {/* Smart Payment Button */}
+                 <div style={{ marginTop: '1.5rem', display: 'flex', justifyContent: 'center' }}>
+                   <Button 
+                     onClick={() => handleAcquire({ title: 'Youthful Radiance Facial', price: '$258.00' })}
+                   >
+                     {paymentMethod === 'apple' ? 'Pay with  Pay' : 
+                      paymentMethod === 'google' ? 'Pay with G Pay' : 
+                      'Purchase Experience'}
+                   </Button>
+                 </div>
+               </div>
+             )}
+          </div>
+
+          {/* Content - Right */}
           <div>
-            <span style={{
+             <span style={{
               fontFamily: '"Montserrat", sans-serif',
               fontSize: '0.75rem',
               letterSpacing: '0.2em',
@@ -319,360 +269,12 @@ const TheJournal = () => {
             </span>
             <h3 style={{
               fontFamily: '"Tenor Sans", sans-serif',
-              fontSize: '2.5rem',
-              color: '#2C332E',
-              marginBottom: '1.5rem'
-            }}>
-              The Hydration Paradox
-            </h3>
-            <h4 style={{
-              fontFamily: '"Cormorant Garamond", serif',
-              fontSize: '1.5rem',
-              fontStyle: 'italic',
-              color: '#5C615E',
-              marginBottom: '2rem'
-            }}>
-              Why drinking water isn't enough for city skin.
-            </h4>
-            <div style={{
-              fontFamily: '"Montserrat", sans-serif',
-              fontSize: '0.95rem',
-              lineHeight: 1.8,
-              color: '#5C615E',
-              marginBottom: '2rem'
-            }}>
-              <p style={{ marginBottom: '1.5rem' }}>
-                Living in the city imposes a specific tax on the complexion. We often mistake dehydration for dryness, but the root cause is frequently a compromised barrier unable to hold onto vitality.
-              </p>
-              <p style={{ marginBottom: '1.5rem' }}>
-                In our "Soul-Deep Restore" ritual, we utilise the specific botanical potency of the Hydra Global collection to retrain the skin’s architecture. To maintain this "post-treatment glow" at home, we recommend a two-step intervention:
-              </p>
-              <p>
-                <strong>The 240 Serum:</strong> A concentrated infusion that delivers immediate vitality. <br/>
-                <strong>The 260 Cream:</strong> A "daily seal" that mimics the skin’s natural lipids, locking in moisture while shielding you from the urban environment.
-              </p>
-            </div>
-            <div style={{
-              marginTop: '2rem',
-              padding: '1.5rem',
-              border: '1px solid #E6E2DD',
-              backgroundColor: '#FFFFFF',
-              display: 'flex',
-              flexDirection: isMobile ? 'column' : 'row',
-              alignItems: 'center',
-              justifyContent: 'space-between',
-              gap: '1rem',
-              boxShadow: '0 4px 20px rgba(0,0,0,0.03)'
-            }}>
-              <div style={{ textAlign: isMobile ? 'center' : 'left' }}>
-                <span style={{ display: 'block', fontFamily: '"Tenor Sans", sans-serif', fontSize: '1.2rem', color: '#2C332E', marginBottom: '0.3rem' }}>The Hydration Ritual Set</span>
-                <span style={{ display: 'block', fontFamily: '"Montserrat", sans-serif', fontSize: '0.8rem', color: '#5C615E' }}>Complete 2-Step Regimen</span>
-              </div>
-              <button 
-                className="btn-shimmer"
-                onClick={() => handleAcquire({ title: 'The Hydration Ritual Set', price: '$464.40' })}
-                style={{
-                  background: '#2C332E',
-                  border: 'none',
-                  padding: '1rem 2rem',
-                  color: '#FFFFFF',
-                  fontFamily: '"Montserrat", sans-serif',
-                  fontSize: '0.8rem',
-                  letterSpacing: '0.1em',
-                  textTransform: 'uppercase',
-                  cursor: 'pointer',
-                  minWidth: '220px',
-                  whiteSpace: 'nowrap'
-                }}>
-                Purchase Set — $464.40
-              </button>
-            </div>
-          </div>
-
-          {/* Product Showcase */}
-          <div style={{ 
-            display: 'grid', 
-            gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr', 
-            gap: '1.5rem' 
-          }}>
-            <ProductCard 
-              title="260 Hydra Global Cream" 
-              price="$226.80" 
-              imageLabel="260 CREAM"
-              image={creamImage}
-              onAcquire={() => handleAcquire({ title: '260 Hydra Global Cream', price: '$226.80' })}
-            />
-            <ProductCard 
-              title="240 Hydra Global Serum" 
-              price="$237.60" 
-              imageLabel="240 SERUM"
-              image={serumImage}
-              onAcquire={() => handleAcquire({ title: '240 Hydra Global Serum', price: '$237.60' })}
-            />
-          </div>
-        </div>
-      </JournalSection>
-
-      {/* Mock Checkout Modal */}
-      <MockCheckoutModal 
-        isOpen={!!checkoutProduct} 
-        onClose={() => setCheckoutProduct(null)} 
-        product={checkoutProduct} 
-      />
-
-      {/* ENTRY 02: The Philosophy */}
-      <JournalSection className="journal-fade" style={{ backgroundColor: 'transparent' }}> {/* Transparent to reveal curve */}
-        <div style={{ maxWidth: '800px', textAlign: 'center' }}>
-          <span style={{
-            fontFamily: '"Montserrat", sans-serif',
-            fontSize: '0.75rem',
-            letterSpacing: '0.2em',
-            textTransform: 'uppercase',
-            color: '#9CAFA0',
-            display: 'block',
-            marginBottom: '1rem'
-          }}>
-            Entry 02: The Philosophy
-          </span>
-          <h3 style={{
-            fontFamily: '"Tenor Sans", sans-serif',
-            fontSize: '3rem',
-            color: '#2C332E',
-            marginBottom: '2rem'
-          }}>
-            Why We Don't Do "Quick Fixes"
-          </h3>
-          
-          {/* Visual Break */}
-          <div style={{ height: '300px', margin: '3rem 0', position: 'relative' }}>
-            <OrganicImagePlaceholder style={{ width: '100%', height: '100%' }}>
-              <img 
-                src={botanicalImage} 
-                alt="Slow Beauty Ritual" 
-                style={{ 
-                  width: '100%', 
-                  height: '100%', 
-                  objectFit: 'cover',
-                  display: 'block'
-                }} 
-              />
-            </OrganicImagePlaceholder>
-          </div>
-
-          <h4 style={{
-            fontFamily: '"Cormorant Garamond", serif',
-            fontSize: '1.6rem',
-            fontStyle: 'italic',
-            color: '#5C615E',
-            marginBottom: '2rem'
-          }}>
-            A manifesto on "Slow Beauty."
-          </h4>
-          <div style={{
-            fontFamily: '"Montserrat", sans-serif',
-            fontSize: '1rem',
-            lineHeight: 2,
-            color: '#5C615E',
-            marginBottom: '3rem'
-          }}>
-            <p style={{ marginBottom: '1.5rem' }}>
-              In an industry obsessed with aggression, harsher peels, stronger lasers, faster turnover, we have chosen a different path. We believe, as our clients Zenn and Tee Wei have noted, in "genuine care" without the pressure.
-            </p>
-            <p>
-              True radiance is not forced; it is coaxed. Whether you are visiting us for a Clarifying Peace session or seeking advice on a regimen, our artisans focus on long-term structural health over temporary surface changes. We treat the skin as a living organ to be respected, not a problem to be conquered.
-            </p>
-          </div>
-
-        </div>
-      </JournalSection>
-
-      {/* ENTRY 03: The Art of Solitude */}
-      <JournalSection className="journal-fade">
-        <div style={{ 
-          display: 'grid', 
-          gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr', 
-          gap: '4rem', 
-          maxWidth: '1200px', 
-          alignItems: 'center' 
-        }}>
-          {/* Gift Card Visual - Left on Desktop */}
-          <div style={{ order: isMobile ? 2 : 1 }}>
-            <div style={{ 
-              background: 'linear-gradient(135deg, #F9F9F7 0%, #E8EBE8 100%)', 
-              padding: '3rem', 
-              color: '#5C615E',
-              textAlign: 'center',
-              borderRadius: '2px',
-              position: 'relative',
-              overflow: 'hidden',
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
-              justifyContent: 'center',
-              gap: '2rem'
-            }}>
-              <div style={{
-                width: '100%',
-                maxWidth: '350px',
-                marginBottom: '1.5rem',
-                borderRadius: '12px',
-                overflow: 'hidden'
-              }}>
-                <img 
-                  src={giftCardImage} 
-                  alt="Skin Soul Gift Card" 
-                  style={{ 
-                    width: '100%', 
-                    height: 'auto', 
-                    display: 'block' 
-                  }} 
-                />
-              </div>
-              
-              {/* Denomination Buttons */}
-              <div style={{ display: 'flex', gap: '0.8rem', flexWrap: 'wrap', justifyContent: 'center' }}>
-                {[100, 200, 500].map(value => (
-                  <button
-                    key={value}
-                    onClick={() => handleAcquire({ title: `Skin Soul Gift Card - $${value}`, price: `$${value}.00` })}
-                    style={{
-                      background: '#FFFFFF',
-                      border: '1px solid #C5B398',
-                      color: '#5C615E',
-                      padding: '0.8rem 1.2rem',
-                      fontFamily: '"Montserrat", sans-serif',
-                      fontSize: '0.9rem',
-                      cursor: 'pointer',
-                      transition: 'all 0.3s ease',
-                      minWidth: '80px'
-                    }}
-                    onMouseEnter={e => {
-                      e.target.style.background = '#C5B398';
-                      e.target.style.color = '#2C332E';
-                    }}
-                    onMouseLeave={e => {
-                      e.target.style.background = '#FFFFFF';
-                      e.target.style.color = '#5C615E';
-                    }}
-                  >
-                    ${value}
-                  </button>
-                ))}
-              </div>
-              <span style={{ fontFamily: '"Montserrat", sans-serif', fontSize: '0.65rem', color: '#8C8C8C', letterSpacing: '0.05em' }}>
-                Select amount to purchase
-              </span>
-            </div>
-          </div>
-
-          {/* Text Content - Right on Desktop */}
-          <div style={{ order: isMobile ? 1 : 2 }}>
-            <span style={{
-              fontFamily: '"Montserrat", sans-serif',
-              fontSize: '0.75rem',
-              letterSpacing: '0.2em',
-              textTransform: 'uppercase',
-              color: '#C5B398',
-              display: 'block',
-              marginBottom: '1rem'
-            }}>
-              Entry 03
-            </span>
-            <h3 style={{
-              fontFamily: '"Tenor Sans", sans-serif',
-              fontSize: '2.5rem',
-              color: '#2C332E',
-              marginBottom: '1.5rem'
-            }}>
-              The Art of Solitude
-            </h3>
-            <h4 style={{
-              fontFamily: '"Cormorant Garamond", serif',
-              fontSize: '1.5rem',
-              fontStyle: 'italic',
-              color: '#5C615E',
-              marginBottom: '2rem'
-            }}>
-              In a noisy world, the ultimate luxury is silence.
-            </h4>
-            <div style={{
-              fontFamily: '"Montserrat", sans-serif',
-              fontSize: '0.95rem',
-              lineHeight: 1.8,
-              color: '#5C615E',
-              marginBottom: '2rem'
-            }}>
-              <p style={{ marginBottom: '1.5rem' }}>
-                We often equate generosity with material objects. But for the stressed professional, the executive, the mother, the traveller, the rarest commodity is time.
-              </p>
-              <p>
-                A Skin Soul Spa journey is more than a facial; it is a "bubble of tranquillity" where phones are silenced and time feels suspended. When you gift a ritual, you are not just giving a treatment; you are permitting a pause.
-              </p>
-            </div>
-
-          </div>
-        </div>
-      </JournalSection>
-
-      {/* ENTRY 04: The Architecture of Sleep (Light Mode Layout) */}
-      <JournalSection className="journal-fade" style={{ backgroundColor: 'transparent', padding: '8rem 2rem' }}>
-        <div style={{ 
-          display: 'grid', 
-          gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr', 
-          gap: '6rem', 
-          maxWidth: '1200px', 
-          margin: '0 auto',
-          alignItems: 'center'
-        }}>
-          
-          {/* Visual - Left */}
-          <div style={{ order: isMobile ? 2 : 1, height: '600px', position: 'relative' }}>
-             {/* Decorative Line */}
-             <div style={{
-               position: 'absolute',
-               top: '-2rem',
-               left: '-2rem',
-               width: '100%',
-               height: '100%',
-               border: '1px solid rgba(197, 179, 152, 0.2)',
-               zIndex: 0
-             }} />
-             
-            <OrganicImagePlaceholder style={{ width: '100%', height: '100%', zIndex: 1, position: 'relative' }}>
-              <img 
-                src={milleCreamImage} 
-                alt="Midnight Ritual" 
-                style={{ 
-                  width: '100%', 
-                  height: '100%', 
-                  objectFit: 'cover',
-                  display: 'block' 
-                }} 
-              />
-            </OrganicImagePlaceholder>
-          </div>
-
-          {/* Content - Right */}
-          <div style={{ order: isMobile ? 1 : 2 }}>
-             <span style={{
-              fontFamily: '"Montserrat", sans-serif',
-              fontSize: '0.75rem',
-              letterSpacing: '0.2em',
-              textTransform: 'uppercase',
-              color: '#C5B398',
-              display: 'block',
-              marginBottom: '1rem'
-            }}>
-              Entry 04
-            </span>
-            <h3 style={{
-              fontFamily: '"Tenor Sans", sans-serif',
               fontSize: '3rem',
               color: '#2C332E',
-              marginBottom: '1.5rem',
+              marginBottom: '1rem',
               lineHeight: 1.1
             }}>
-              The Architecture of Sleep
+              The Architecture of Light
             </h3>
             <h4 style={{
               fontFamily: '"Cormorant Garamond", serif',
@@ -681,84 +283,183 @@ const TheJournal = () => {
               color: '#5C615E',
               marginBottom: '2.5rem'
             }}>
-              Circadian rhythms and the silent work of repair.
+              Reclaiming Your Youthful Radiance
             </h4>
             <div style={{
+              columnCount: isMobile ? 1 : 2,
+              columnGap: '4rem',
               fontFamily: '"Montserrat", sans-serif',
               fontSize: '1rem',
               lineHeight: 1.8,
-              color: '#5C615E',
+              color: '#2C332E',
               marginBottom: '3rem'
             }}>
-              <p style={{ marginBottom: '1.5rem' }}>
-                While the city sleeps, your skin enters its most metabolic phase. Catabolism shifts to anabolism; destruction gives way to construction. This is the "Golden Hour" of cellular recovery.
+              <p style={{ marginBottom: '2rem' }}>
+                In the relentless pulse of Orchard Road, where the city’s demands are loudest, exists a hidden gem that many pass without ever realising the sanctuary that lies just a floor away. Stepping into Level 3 of Pacific Plaza, the transition is immediate: the frantic energy of Scotts Road dissolves, replaced by a bubble of tranquillity where time feels suspended. This is Skin Soul Spa, a space where luxury is not loud, but gentle, soul-deep, and profoundly restorative.
               </p>
-              <p>
-                We prescribe "The Midnight Ritual" not just as a product application, but as a discipline. By signalling to the body that the day has ended, we lower cortisol and unlock the skin's innate healing potential.
-              </p>
-            </div>
 
-            {/* Featured Product Horizontal Card (Light Theme) */}
-            <div style={{ 
-              display: 'flex', 
-              gap: '2rem', 
-              alignItems: 'center',
-              borderTop: '1px solid #F0F0F0',
-              paddingTop: '2rem'
-            }}>
-              <div style={{ width: '100px', height: '120px', flexShrink: 0 }}>
-                <OrganicImagePlaceholder style={{ width: '100%', height: '100%' }}>
-                   <img 
-                     src={milleCreamImage} 
-                     alt="1000 MILLE La Crème" 
-                     style={{ 
-                       width: '100%', 
-                       height: '100%', 
-                       objectFit: 'cover',
-                       display: 'block' 
-                     }} 
-                   />
-                </OrganicImagePlaceholder>
-              </div>
-              <div>
-                <h5 style={{ fontFamily: '"Tenor Sans", sans-serif', fontSize: '1.2rem', margin: '0 0 0.5rem 0', color: '#2C332E' }}>
-                  1000 MILLE La Crème
-                </h5>
-                <p style={{ fontFamily: '"Montserrat", sans-serif', fontSize: '0.85rem', color: '#8C8C8C', margin: '0 0 1.5rem 0' }}>
-                  The ultimate luxury.
-                </p>
+              <h5 style={{ fontFamily: '"Tenor Sans", sans-serif', fontSize: '1.2rem', color: '#2C332E', margin: '2rem 0 1rem 0' }}>
+                The Dialogue Before the Glow
+              </h5>
+              <p style={{ marginBottom: '1.5rem' }}>
+                Our most sought-after transformative experience, the Youthful Radiance Facial, begins not with the hum of a machine, but with a quiet, purposeful dialogue. We understand that every individual’s skin is a unique architecture; therefore, we reject generic protocols in favour of a highly personalised Skin Consultation.
+              </p>
+              <p style={{ marginBottom: '2rem' }}>
+                Whether you are guided by the "attentive and gentle" touch of Shelbee or the seasoned expertise of Freya, the focus remains entirely on genuine care. In an atmosphere defined by zero pressure and no hard selling, our artisans provide professional recommendations designed to reveal your skin’s inherent luminosity, treating your journey with the highest level of professional discretion.
+              </p>
+
+              <h5 style={{ fontFamily: '"Tenor Sans", sans-serif', fontSize: '1.2rem', color: '#2C332E', margin: '2rem 0 1rem 0' }}>
+                A Sensory Immersion
+              </h5>
+              <p style={{ marginBottom: '2rem' }}>
+                As you are led into your private treatment room, the ritual of self-reverence truly begins. You are invited to recline into spacious, plush beds and high-end linens designed for total physical surrender. The environment is a meticulously curated sanctuary of soft lighting, soothing music, and ambient scents that coax the mind into a state of deep, luxurious calm. It is here that guests find themselves slipping into a restorative sleep, safe in the hands of artisans who treat your skin as sacred.
+              </p>
+
+              <h5 style={{ fontFamily: '"Tenor Sans", sans-serif', fontSize: '1.2rem', color: '#2C332E', margin: '2rem 0 1rem 0' }}>
+                The Science of Illumination
+              </h5>
+              <p style={{ marginBottom: '2rem' }}>
+                The Youthful Radiance Facial is a symphony of technical mastery and premium botanical ingredients. By utilising specialised techniques to promote circulation and repair the skin barrier, our artisans work to "coax" radiance rather than force it. To the discerning client, this $258 investment represents far more than a facial. It is the acquisition of emotional value, a rare pause in a busy life and the specialised care required to achieve an "ageless glow" that justifies the splurge.
+              </p>
+
+              <h5 style={{ fontFamily: '"Tenor Sans", sans-serif', fontSize: '1.2rem', color: '#2C332E', margin: '2rem 0 1rem 0' }}>
+                The Lingering Afterglow
+              </h5>
+              <p style={{ marginBottom: '1.5rem' }}>
+                You do not leave Skin Soul Spa simply with better skin; you leave with a renewed sense of well-being and a physical vitality that lingers for days. The Youthful Radiance Facial is designed to leave both the body and mind in harmony, turning a standard appointment into a private ritual of restoration.
+              </p>
+              <p style={{ marginBottom: '2.5rem', fontStyle: 'italic', color: '#2C332E' }}>
+                In a noisy world, the ultimate luxury is the freedom to be vulnerable. The path to your most radiant self is a journey of total surrender.
+              </p>
+
+              <div style={{ marginTop: '1rem' }}>
                 <button 
-                  onClick={() => handleAcquire({ title: '1000 MILLE La Crème', price: '$620.00' })}
+                  onClick={() => handleReserve('Youthful Radiance Facial')}
                   style={{
-                    border: '1px solid #C5B398',
-                    background: 'transparent',
-                    padding: '0.8rem 1.5rem',
-                    fontFamily: '"Montserrat", sans-serif',
-                    fontSize: '0.75rem',
-                    fontWeight: 600,
-                    color: '#C5B398',
-                    cursor: 'pointer',
-                    letterSpacing: '0.1em',
+                    background: 'linear-gradient(to right, #A89675 0%, #A89675 50%, #A89675 60%, #FFFFFF 75%, #A89675 90%, #A89675 100%)',
+                    backgroundSize: '200% auto',
+                    WebkitBackgroundClip: 'text',
+                    backgroundClip: 'text',
+                    WebkitTextFillColor: 'transparent',
+                    border: 'none',
+                    padding: '0',
+                    fontFamily: '"Tenor Sans", sans-serif',
+                    fontSize: '0.8rem',
+                    letterSpacing: '0.15em',
                     textTransform: 'uppercase',
-                    transition: 'all 0.3s ease'
+                    cursor: 'pointer',
+                    transition: 'background-position 0.6s ease',
+                    fontWeight: 400,
+                    marginTop: '1rem',
+                    backgroundPosition: '0% center'
                   }}
-                  onMouseEnter={e => {
-                    e.target.style.background = '#C5B398';
-                    e.target.style.color = '#2C332E';
+                  onMouseEnter={(e) => {
+                    e.target.style.backgroundPosition = '-100% center';
+                    e.target.style.transition = 'background-position 0.6s ease';
                   }}
-                  onMouseLeave={e => {
-                    e.target.style.background = 'transparent';
-                    e.target.style.color = '#C5B398';
+                  onMouseLeave={(e) => {
+                    e.target.style.backgroundPosition = '0% center';
+                    e.target.style.transition = 'background-position 0.6s ease';
                   }}
                 >
-                  Invest in the Night ($620)
+                  Reserve without Purchasing
                 </button>
               </div>
             </div>
-
           </div>
         </div>
       </JournalSection>
+
+      {/* Real Checkout Modal */}
+      <CheckoutModal 
+        isOpen={!!checkoutProduct} 
+        onClose={() => setCheckoutProduct(null)} 
+        product={checkoutProduct} 
+        paymentMethod={paymentMethod}
+      />
+
+      {/* Mobile Sticky Purchase Bar */}
+      <div 
+        ref={purchaseBarRef}
+        style={{
+          position: 'fixed',
+          bottom: '30px',
+          left: '50%',
+          transform: 'translate(-50%, 100px)', // Start hidden
+          width: '90vw',
+          maxWidth: '400px',
+          backgroundColor: 'rgba(255, 255, 255, 0.95)',
+          backdropFilter: 'blur(10px)',
+          borderRadius: '16px',
+          padding: '1rem',
+          boxShadow: '0 10px 40px rgba(0,0,0,0.15)',
+          zIndex: 999,
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          border: '1px solid rgba(197, 179, 152, 0.3)',
+          opacity: 0
+        }}
+        onClick={() => handleAcquire({ title: 'Youthful Radiance Facial', price: '$258.00' })}
+      >
+        <div style={{ display: 'flex', flexDirection: 'column' }}>
+          <span style={{ fontFamily: '"Tenor Sans", sans-serif', fontSize: '0.9rem', color: '#2C332E' }}>
+            Youthful Radiance
+          </span>
+          <span style={{ fontFamily: '"Montserrat", sans-serif', fontSize: '0.8rem', color: '#5C615E' }}>
+            $258.00
+          </span>
+          <button 
+            onClick={(e) => {
+              e.stopPropagation();
+              handleReserve('Youthful Radiance Facial');
+            }}
+            style={{
+              background: 'linear-gradient(to right, #C5B398 0%, #C5B398 50%, #C5B398 60%, #FFFFFF 75%, #C5B398 90%, #C5B398 100%)',
+               backgroundSize: '200% auto',
+               WebkitBackgroundClip: 'text',
+               backgroundClip: 'text',
+               WebkitTextFillColor: 'transparent',
+               border: 'none',
+               padding: '4px 0 0 0',
+               fontFamily: '"Montserrat", sans-serif',
+               fontSize: '0.6rem',
+               letterSpacing: '0.15em',
+               textTransform: 'uppercase',
+               cursor: 'pointer',
+               textAlign: 'left',
+               transition: 'background-position 0.6s ease',
+               fontWeight: 500,
+               backgroundPosition: '0% center'
+             }}
+             onMouseEnter={(e) => {
+               e.target.style.backgroundPosition = '-100% center';
+               e.target.style.transition = 'background-position 0.6s ease';
+             }}
+             onMouseLeave={(e) => {
+               e.target.style.backgroundPosition = '0% center';
+               e.target.style.transition = 'background-position 0.6s ease';
+             }}
+          >
+            Reserve without Purchasing
+          </button>
+        </div>
+        <Button 
+          style={{
+            padding: '0.8rem 1.5rem',
+            fontSize: '0.8rem',
+            display: 'flex',
+            alignItems: 'center',
+            gap: '0.5rem',
+            whiteSpace: 'nowrap'
+          }}
+          onClick={() => handleAcquire({ title: 'Youthful Radiance Facial', price: '$258.00' })}
+        >
+          {paymentMethod === 'apple' && 'Pay '}
+          {paymentMethod === 'google' && 'Pay GPay'}
+          {paymentMethod === 'generic' && 'Purchase'}
+        </Button>
+      </div>
 
     </div>
   );

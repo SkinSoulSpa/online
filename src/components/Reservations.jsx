@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import gsap from 'gsap';
 import OrganicImagePlaceholder from './OrganicImagePlaceholder';
+import Button from './Button';
 import sanctuaryImage from '../assets/sanctuary_15.jpg';
 
 // Updated Reservations Component
@@ -101,6 +103,7 @@ const InputGroup = ({ label, type = "text", name, value, onChange, placeholder, 
 );
 
 const Reservations = () => {
+  const location = useLocation();
   const [isMobile, setIsMobile] = useState(() => window.innerWidth < 768);
   const [formData, setFormData] = useState({
     name: '',
@@ -113,7 +116,40 @@ const Reservations = () => {
     note: ''
   });
 
+  const [experiences, setExperiences] = useState([
+    "I am new (Request Consultation)",
+    "I am returning (Book Specific Experience)",
+    "I am looking for a Gift"
+  ]);
+
   const [status, setStatus] = useState('idle'); // idle, sending, success, error
+
+  useEffect(() => {
+    if (location.state?.selectedExperience) {
+      const selected = location.state.selectedExperience;
+      const orderRef = location.state.orderReference;
+      
+      setExperiences(prev => {
+        if (!prev.includes(selected)) {
+          return [selected, ...prev];
+        }
+        return prev;
+      });
+      
+      setFormData(prev => {
+        const newNotePrefix = orderRef ? `[Pre-paid Experience: ${orderRef}]` : '';
+        // Avoid duplication if the note already starts with the prefix
+        if (newNotePrefix && !prev.note.includes(newNotePrefix)) {
+             return { 
+                ...prev, 
+                experience: selected,
+                note: `${newNotePrefix} ${prev.note}` 
+            };
+        }
+        return { ...prev, experience: selected };
+      });
+    }
+  }, [location.state]);
 
   useEffect(() => {
     const checkMobile = () => setIsMobile(window.innerWidth < 768);
@@ -180,12 +216,6 @@ const Reservations = () => {
       alert('Sorry, there was an issue sending your request. Please try again or contact us directly via WhatsApp.');
     }
   };
-
-  const experiences = [
-    "I am new (Request Consultation)",
-    "I am returning (Book Specific Experience)",
-    "I am looking for a Gift"
-  ];
 
   const artisans = [
     "Freya (Senior Artisan)",
@@ -347,26 +377,18 @@ const Reservations = () => {
               />
             </div>
 
-            <button 
+            <Button 
               type="submit"
               disabled={status === 'sending'}
               style={{
-                backgroundColor: status === 'sending' ? '#DCD6CF' : '#2C332E',
-                color: '#FFFFFF',
-                border: 'none',
-                padding: '1.2rem 3rem',
-                fontFamily: '"Montserrat", sans-serif',
-                fontSize: '0.85rem',
-                letterSpacing: '0.2em',
-                textTransform: 'uppercase',
-                cursor: status === 'sending' ? 'not-allowed' : 'pointer',
-                transition: 'background-color 0.3s ease',
                 marginTop: '1rem',
-                width: isMobile ? '100%' : 'auto'
+                width: isMobile ? '100%' : 'auto',
+                opacity: status === 'sending' ? 0.7 : 1,
+                cursor: status === 'sending' ? 'not-allowed' : 'pointer'
               }}
             >
               {status === 'sending' ? 'Sending...' : 'Request Reservation'}
-            </button>
+            </Button>
             <p style={{
               marginTop: '1.5rem',
               fontFamily: '"Montserrat", sans-serif',

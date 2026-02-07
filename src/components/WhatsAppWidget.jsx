@@ -22,18 +22,18 @@ const WhatsAppWidget = () => {
         width: '3.8rem',
         height: '3.8rem',
         padding: 0,
-        // Soul Ivory (#FAF9F6), River Sand (#E6E2DD), Soul Gold (#C5B398) Blend
-        background: 'linear-gradient(135deg, rgba(250, 249, 246, 0.7) 0%, rgba(230, 226, 221, 0.5) 50%, rgba(197, 179, 152, 0.4) 100%)',
-        backdropFilter: 'blur(12px)',
-        WebkitBackdropFilter: 'blur(12px)',
-        border: '1px solid rgba(250, 249, 246, 0.6)',
+        // Transparent Glass Green (Botanical/Forest)
+        background: 'linear-gradient(135deg, rgba(74, 124, 89, 0.6) 0%, rgba(46, 92, 62, 0.7) 100%)',
+        backdropFilter: 'blur(10px)',
+        WebkitBackdropFilter: 'blur(10px)',
+        border: '1px solid rgba(255, 255, 255, 0.3)',
         borderRadius: '50%',
         overflow: 'hidden', // Ensure shimmer is clipped to circle
-        // Soul Gold Glow
+        // Glassy Glow
         boxShadow: `
-          0 10px 25px -5px rgba(197, 179, 152, 0.4), 
-          0 0 15px rgba(197, 179, 152, 0.2),
-          inset 0 0 0 1px rgba(255, 255, 255, 0.3)
+          0 8px 32px 0 rgba(31, 38, 135, 0.15),
+          0 4px 12px rgba(37, 211, 102, 0.2),
+          inset 0 0 0 1px rgba(255, 255, 255, 0.15)
         `,
         transition: 'all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1)',
         transform: isHovered ? 'translateY(-5px) scale(1.05)' : 'translateY(0) scale(1)',
@@ -66,20 +66,20 @@ const WhatsAppWidget = () => {
           transition: left 1.2s ease;
         }
       `}</style>
-      {/* Outlined Chat Bubble Icon in Dark Bronze (#6B5E48) for warmth instead of black */}
+      {/* Crisp White Icon for Maximum Definition */}
       <svg 
         width="26" 
         height="26" 
         viewBox="0 0 24 24" 
         fill="none" 
         stroke="currentColor" 
-        strokeWidth="1.5" 
+        strokeWidth="2" 
         strokeLinecap="round" 
         strokeLinejoin="round"
         xmlns="http://www.w3.org/2000/svg"
         style={{
-          color: '#6B5E48', // Dark Bronze - softer than black/deep green
-          filter: 'drop-shadow(0 2px 3px rgba(197, 179, 152, 0.3))', // Subtle gold shadow
+          color: '#FFFFFF', // Pure White
+          filter: 'none', // Removed shadow for crisp edges
           position: 'relative',
           zIndex: 2
         }}

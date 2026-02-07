@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react';
 import gsap from 'gsap';
+import logo from '../assets/skinsoulspa_2.png';
 
 // Configuration: Switch 'variant' to 'pulse', 'ripple', or 'mist'
 const VARIANT = 'organic'; 
@@ -71,10 +72,6 @@ const Preloader = ({ onComplete }) => {
             // Ensure text is prepared correctly
             gsap.set(textRef.current, { 
                 y: 20, 
-                fontFamily: '"Tenor Sans", sans-serif',
-                textTransform: 'uppercase',
-                fontSize: '1.5rem',
-                letterSpacing: '0.15em',
                 opacity: 0 // Ensure it starts invisible
             });
 
@@ -316,26 +313,21 @@ const Preloader = ({ onComplete }) => {
       {/* VARIANT 3: MIST ELEMENTS (Uses Text Only with Filters) */}
 
       {/* Common Text Element */}
-      <div 
+      <img 
         ref={textRef}
+        src={logo}
+        alt="Skin Soul Spa"
         style={{
-          fontFamily: '"Tenor Sans", sans-serif',
-          fontSize: '1.5rem',
-          color: '#2C332E',
-          letterSpacing: '0.15em',
-          textTransform: 'uppercase',
           zIndex: 10,
-          fontStyle: 'normal',
           position: 'relative',
           userSelect: 'none',
           outline: 'none',
           border: 'none',
-          background: 'transparent',
-          opacity: 0 // Start hidden to prevent FOUC/FOUT
+          opacity: 0, // Start hidden to prevent FOUC/FOUT
+          width: '200px',
+          height: 'auto'
         }}
-      >
-        skin soul spa
-      </div>
+      />
 
     </div>
   );
