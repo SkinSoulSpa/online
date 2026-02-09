@@ -388,6 +388,7 @@ const ExperiencesPage = () => {
             gap: '3rem'
           }}>
             {[
+              /*
               {
                 id: 'clarifying',
                 title: "Detox Facial",
@@ -398,6 +399,7 @@ const ExperiencesPage = () => {
                 result: "A complexion that feels unburdened and profoundly clean.",
                 image: experience1
               },
+              */
               {
                 id: 'soul-deep',
                 title: "Hydrating Facial",
