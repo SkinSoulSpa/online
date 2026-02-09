@@ -12,15 +12,20 @@
 
     <style>
         :root {
-            --color-bg: #FAF9F6;
-            --color-text: #2C332E;
-            --color-gold: #C5B398;
-            --color-antique-gold: #A89675;
-            --color-sage: #9CAFA0;
-            --color-sand: #E6E2DD;
-            --color-bronze: #6B5E48;
+            /* Primary Palette */
+            --color-bg: #FAF9F6;           /* Soul Ivory */
+            --color-text: #2C332E;         /* Soul Deep Green */
+            --color-gold: #C5B398;         /* Soul Gold */
+            --color-antique-gold: #A89675; /* Soul Antique Gold */
+            
+            /* Secondary / Accents */
+            --color-sage: #9CAFA0;         /* Misty Sage */
+            --color-sand: #E6E2DD;         /* River Sand */
+            --color-bronze: #6B5E48;       /* Dark Bronze */
+            --color-forest: #1E4632;       /* Soul Forest (Modal Gradient Base) */
             --color-white: #FFFFFF;
             
+            /* Typography */
             --font-display: 'Tenor Sans', sans-serif;
             --font-serif: 'Cormorant Garamond', serif;
             --font-sans: 'Montserrat', sans-serif;
@@ -151,6 +156,7 @@
             border-radius: 4px;
             margin-bottom: 1rem;
             border: 1px solid rgba(0,0,0,0.05);
+            position: relative;
         }
 
         .color-info h4 {
@@ -259,6 +265,30 @@
         }
 
         /* UI Elements */
+        .ui-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 4rem;
+        }
+
+        .ui-section {
+            background: white;
+            padding: 2rem;
+            border-radius: 1rem;
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .ui-label {
+            font-family: var(--font-sans);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--color-sage);
+            margin-bottom: 1.5rem;
+            display: block;
+        }
+
+        /* Button Styles */
         .btn-preview {
             position: relative;
             display: inline-block;
@@ -277,6 +307,7 @@
             z-index: 1;
             text-align: center;
             text-decoration: none;
+            margin-bottom: 1rem;
         }
 
         .btn-preview::before {
@@ -308,7 +339,7 @@
         }
 
         .btn-preview:hover {
-            color: var(--color-white);
+            color: var(--color-bg);
             border-color: transparent;
         }
 
@@ -322,8 +353,67 @@
             transition: left 0.8s ease 0.1s;
         }
 
+        /* Card Preview */
+        .card-preview {
+            background-color: #FFFFFF;
+            border-radius: 1rem;
+            padding: 2rem;
+            border: 1px solid transparent;
+            box-shadow: none;
+            transition: all 0.5s ease;
+            cursor: pointer;
+        }
+
+        .card-preview:hover {
+            border-color: rgba(197, 179, 152, 0.3);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            transform: translateY(-2px);
+        }
+
+        /* Navigation Shimmer Preview */
+        .nav-item-preview {
+            font-family: var(--font-display);
+            font-size: 1rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            cursor: pointer;
+            position: relative;
+            display: inline-block;
+            padding: 0.5rem 0;
+        }
+
+        .shimmer-text {
+            color: var(--color-text);
+            background: linear-gradient(to right, var(--color-text) 0%, var(--color-text) 40%, var(--color-gold) 50%, var(--color-text) 60%, var(--color-text) 100%);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            transition: background-position 0.5s ease;
+        }
+
+        .nav-item-preview:hover .shimmer-text {
+            background-position: 200% center;
+            transition: background-position 1.5s ease;
+        }
+
+        .nav-underline {
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0%;
+            height: 1px;
+            background: var(--color-gold);
+            transform: translateX(-50%);
+            transition: width 0.4s ease;
+        }
+
+        .nav-item-preview:hover .nav-underline {
+            width: 100%;
+        }
+
         @media (max-width: 768px) {
-            .photo-guide, .type-grid {
+            .photo-guide, .type-grid, .ui-grid {
                 grid-template-columns: 1fr;
             }
         }
@@ -334,6 +424,7 @@
         <header>
             <h1>Skin Soul Spa</h1>
             <p class="subtitle">Brand Design System & Guidelines</p>
+            <p style="margin-top: 1rem; font-size: 0.9rem; color: var(--color-sage);">Version 2.0 • Updated Feb 2026</p>
         </header>
 
         <!-- Typography -->
@@ -343,14 +434,14 @@
                 <div class="type-card">
                     <h3>Display / Headings</h3>
                     <div class="sample-display">Tenor Sans</div>
-                    <div class="sample-display" style="font-size: 2rem;">The Art of Slow Beauty</div>
+                    <div class="sample-display" style="font-size: 2rem;">The Art of Transformation</div>
                     <p class="font-meta">Usage: Section Titles, Hero Headers. Uppercase or Sentence Case.</p>
                 </div>
 
                 <div class="type-card">
                     <h3>Expressive / Body</h3>
                     <div class="sample-serif">Cormorant Garamond</div>
-                    <div class="sample-serif" style="font-size: 1.5rem;">"A sanctuary where time feels suspended."</div>
+                    <div class="sample-serif" style="font-size: 1.5rem;">"Where science meets the soul."</div>
                     <p class="font-meta">Usage: Pull Quotes, Subtitles, Narrative Paragraphs. Often Italic.</p>
                 </div>
 
@@ -358,9 +449,9 @@
                     <h3>Functional / UI</h3>
                     <div class="sample-sans">Montserrat</div>
                     <div class="sample-sans">
-                        BOOK APPOINTMENT<br>
+                        RESERVE EXPERIENCE<br>
                         MENU<br>
-                        $320 SGD
+                        $198 SGD
                     </div>
                     <p class="font-meta">Usage: Buttons, Navigation, Labels, Prices. Tracking: 0.1em - 0.2em.</p>
                 </div>
@@ -387,7 +478,7 @@
                 <div class="color-card">
                     <div class="swatch" style="background: var(--color-text);"></div>
                     <div class="color-info">
-                        <h4>Soul Charcoal</h4>
+                        <h4>Soul Deep Green</h4>
                         <p>#2C332E</p>
                         <span class="usage-tag">Primary Text</span>
                     </div>
@@ -437,6 +528,57 @@
                         <p>#E6E2DD</p>
                         <span class="usage-tag">UI Backgrounds</span>
                     </div>
+                </div>
+
+                 <div class="color-card">
+                    <div class="swatch" style="background: linear-gradient(135deg, rgba(60, 100, 70, 0.95), rgba(30, 70, 50, 1));"></div>
+                    <div class="color-info">
+                        <h4>Soul Forest (Gradient)</h4>
+                        <p>#3C6446 -> #1E4632</p>
+                        <span class="usage-tag">Modal / Dark UI</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- UI Components -->
+        <section>
+            <h2>UI Components</h2>
+            <div class="ui-grid">
+                <!-- Buttons -->
+                <div class="ui-section">
+                    <span class="ui-label">Primary Action</span>
+                    <a href="#" class="btn-preview">Reserve Experience</a>
+                    <p class="font-meta" style="margin-top: 1rem;">
+                        <strong>Idle:</strong> Transparent with Antique Gold border.<br>
+                        <strong>Hover:</strong> Fills with Antique Gold/Gold gradient. Text turns Ivory.
+                    </p>
+                </div>
+
+                <!-- Cards -->
+                <div class="ui-section">
+                    <span class="ui-label">Interactive Card</span>
+                    <div class="card-preview">
+                        <h4 style="font-family: var(--font-display); font-size: 1.5rem; margin-bottom: 0.5rem;">The Signature</h4>
+                        <p style="font-family: var(--font-serif); font-style: italic; color: var(--color-bronze);">90 Minutes • $198</p>
+                    </div>
+                    <p class="font-meta" style="margin-top: 1rem;">
+                        <strong>Hover:</strong> Slight lift (-2px), subtle shadow, and faint gold border appear.
+                    </p>
+                </div>
+
+                <!-- Navigation -->
+                <div class="ui-section">
+                    <span class="ui-label">Navigation Link</span>
+                    <div style="padding: 1rem 0;">
+                        <div class="nav-item-preview">
+                            <span class="shimmer-text">The Artisans</span>
+                            <div class="nav-underline"></div>
+                        </div>
+                    </div>
+                    <p class="font-meta" style="margin-top: 1rem;">
+                        <strong>Hover:</strong> Gold shimmer passes through text. Underline expands from center.
+                    </p>
                 </div>
             </div>
         </section>
@@ -494,11 +636,6 @@
                                 <li>Oversaturate colors.</li>
                             </ul>
                         </div>
-                    </div>
-
-                    <div style="margin-top: 3rem; padding: 2rem; background: var(--color-sand); border-radius: 8px; text-align: center;">
-                        <h4 style="font-family: var(--font-display); margin-bottom: 1rem;">UI Element Example</h4>
-                        <div class="btn-shimmer">Book Appointment</div>
                     </div>
                 </div>
             </div>
