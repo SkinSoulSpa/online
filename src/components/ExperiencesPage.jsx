@@ -1121,6 +1121,14 @@ const ExperiencesPage = () => {
                 narrative: "Feeding the skin where it matters most. Using advanced electromagnetic pulse technology, this ritual temporarily opens the skin’s cellular gates. This allows us to push potent active ingredients far deeper than manual application ever could, effectively \"filling\" the skin with nutrition without a single needle.",
                 sensation: "A gentle, rhythmic tingle that indicates the active ingredients are travelling deep into the dermis.",
                 result: "Profound saturation. The skin looks plump, hydrated, and volumised from the inside."
+              },
+              {
+                title: "The Exosomal Aura",
+                duration: "20 minutes",
+                price: "$208",
+                narrative: "An intensive molecular infusion designed to be woven into your primary journey for those seeking the pinnacle of cellular renewal. This high-precision micro-ritual utilises a potent dialogue of mesotherapy and exosomes to re-awaken the skin’s architectural strength. It acts as a powerful booster, delivering regenerative nutrients deep into the dermis to dissolve the shadows of fatigue and restore a profound sense of elasticity.",
+                sensation: "A purposeful, cooling activation that feels as though the skin is being \"re-knitted\" with light and hydration.",
+                result: "A complexion that doesn’t just look brighter, but radiates an \"ageless glow\" from within. The skin is left plumped, deeply hydrated, and vibrating with a \"soul-deep\" vitality that lingers for days."
               }
             ].map((item, index) => {
               return (
