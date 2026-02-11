@@ -10,10 +10,10 @@ import trustImage from '../assets/trust.jpg';
 import artisan1 from '../assets/artisan-1.jpg';
 import artisan2 from '../assets/artisan-2.jpg';
 import artisan3 from '../assets/artisan-3.jpg';
-import freyaImage from '../assets/artisan_freya_7.jpg';
-import karenImage from '../assets/artisan_karen_6.jpg';
-import shelbeeImage from '../assets/artisan_shelbee_6.jpg';
-import carisImage from '../assets/artisan_caris_3.jpg';
+import freyaImage from '../assets/artisan_freya_6.jpg';
+import karenImage from '../assets/artisan_karen_11.jpg';
+import shelbeeImage from '../assets/artisan_shelbee_8.jpg';
+import carisImage from '../assets/artisan_caris_2.jpg';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -68,12 +68,12 @@ const TheArtisans = () => {
   const handleCardClick = (id) => {
     if (isMobile) {
       if (activePortrait === id) {
-        navigate('/reservations');
+        navigate('/reservations', { state: { artisan: id } });
       } else {
         setActivePortrait(id);
       }
     } else {
-      navigate('/reservations');
+      navigate('/reservations', { state: { artisan: id } });
     }
   };
 
@@ -284,12 +284,14 @@ const TheArtisans = () => {
                   flexDirection: 'column',
                   transition: 'transform 0.4s ease, box-shadow 0.4s ease',
                   transform: isActive ? 'translateY(-5px)' : 'none',
-                  boxShadow: isActive ? '0 20px 40px rgba(197, 179, 152, 0.2)' : '0 5px 15px rgba(0,0,0,0.05)'
+                  boxShadow: isActive ? '0 20px 40px rgba(197, 179, 152, 0.2)' : '0 5px 15px rgba(0,0,0,0.05)',
+                  cursor: 'pointer'
                 }}
                 onMouseEnter={() => !isMobile && setActivePortrait(artisan.id)}
                 onMouseLeave={() => !isMobile && setActivePortrait(null)}
+                onClick={() => handleCardClick(artisan.id)}
               >
-                {/* Image Area - Taking up top half or side */}
+                  {/* Image Area - Taking up top half or side */}
                 <div style={{ 
                   height: '450px', 
                   position: 'relative',
@@ -301,7 +303,7 @@ const TheArtisans = () => {
                     top: 0, left: 0, width: '100%', height: '100%',
                     backgroundImage: `url(${artisan.image})`,
                     backgroundSize: 'cover',
-                    backgroundPosition: 'center',
+                    backgroundPosition: 'top center', // Changed from center to top center
                     transition: 'transform 0.8s ease',
                     transform: isActive ? 'scale(1.05)' : 'scale(1)',
                     maskImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 100' preserveAspectRatio='none'%3E%3Cpath d='M0 0 L200 0 L200 85 Q150 100 100 85 T0 85 Z' fill='black'/%3E%3C/svg%3E")`,
@@ -420,37 +422,15 @@ const TheArtisans = () => {
                     — {artisan.author}
                   </cite>
 
-                  <div style={{ marginTop: '2rem', textAlign: 'center' }}>
-                    <button 
-                      onClick={() => handleCardClick(artisan.id)}
-                      style={{
-                  background: 'linear-gradient(to right, #A89675 0%, #A89675 50%, #A89675 60%, #FFFFFF 75%, #A89675 90%, #A89675 100%)',
-                   backgroundSize: '200% auto',
-                   WebkitBackgroundClip: 'text',
-                   backgroundClip: 'text',
-                   WebkitTextFillColor: 'transparent',
-                   border: 'none',
-                   padding: '0',
-                   fontFamily: '"Tenor Sans", sans-serif',
-                   fontSize: '0.8rem',
-                   letterSpacing: '0.15em',
-                   textTransform: 'uppercase',
-                   cursor: 'pointer',
-                   transition: 'background-position 0.6s ease',
-                   fontWeight: 400,
-                   backgroundPosition: '0% center'
-                 }}
-                 onMouseEnter={(e) => {
-                   e.target.style.backgroundPosition = '-100% center';
-                   e.target.style.transition = 'background-position 0.6s ease';
-                 }}
-                 onMouseLeave={(e) => {
-                   e.target.style.backgroundPosition = '0% center';
-                   e.target.style.transition = 'background-position 0.6s ease';
-                 }}
-                    >
-                      Reserve without Purchasing
-                    </button>
+                  <div style={{ 
+                    marginTop: '2rem', 
+                    textAlign: 'center',
+                    opacity: isActive ? 1 : 0,
+                    transform: isActive ? 'translateY(0)' : 'translateY(10px)',
+                    transition: 'all 0.4s ease',
+                    pointerEvents: isActive ? 'auto' : 'none',
+                    display: 'none' // Hide button but keep structure if needed later, or remove completely
+                  }}>
                   </div>
                 </div>
               </div>

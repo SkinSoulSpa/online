@@ -125,6 +125,7 @@ const Reservations = () => {
   const [status, setStatus] = useState('idle'); // idle, sending, success, error
 
   useEffect(() => {
+    // Handle pre-selected experience (Impulse Buy)
     if (location.state?.selectedExperience) {
       const selected = location.state.selectedExperience;
       const orderRef = location.state.orderReference;
@@ -148,6 +149,23 @@ const Reservations = () => {
         }
         return { ...prev, experience: selected };
       });
+    }
+
+    // Handle pre-selected artisan (Artisans Page)
+    if (location.state?.artisan) {
+        const artisanIdMap = {
+            'freya': 'Freya (Senior Artisan)',
+            'shelbee': 'Shelbee (Senior Artisan)',
+            'karen': 'Karen (Senior Artisan)',
+            'caris': 'Caris (Senior Artisan)'
+        };
+        const selectedArtisan = artisanIdMap[location.state.artisan];
+        if (selectedArtisan) {
+            setFormData(prev => ({
+                ...prev,
+                artisan: selectedArtisan
+            }));
+        }
     }
   }, [location.state]);
 
