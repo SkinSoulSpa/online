@@ -14,6 +14,7 @@ import freyaImage from '../assets/artisan_freya_6.jpg';
 import karenImage from '../assets/artisan_karen_11.jpg';
 import shelbeeImage from '../assets/artisan_shelbee_8.jpg';
 import carisImage from '../assets/artisan_caris_2.jpg';
+import SEO from './SEO';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -117,10 +118,15 @@ const TheArtisans = () => {
   ];
 
   return (
-    <div className="artisans-page" style={{ 
-      minHeight: '100vh',
-      paddingTop: '100px',
-      position: 'relative',
+    <>
+      <SEO 
+        title="The Artisans" 
+        description="Meet the skilled hands behind Skin Soul Spa. Technical mastery, intuitive touch, and total respect for your silence."
+      />
+      <div className="artisans-page" style={{ 
+        minHeight: '100vh',
+        paddingTop: '100px'
+      }}>  position: 'relative',
       backgroundColor: 'transparent' // Transparent
     }}>
       
@@ -500,8 +506,8 @@ const TheArtisans = () => {
           </button>
         </div>
       </Section>
-
     </div>
+    </>
   );
 };
 

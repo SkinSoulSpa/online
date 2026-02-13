@@ -13,6 +13,7 @@ import giftCardImage from '../assets/skin_soul_gift_card.png';
 import milleCreamImage from '../assets/1000_MILLE_The Cream.jpg';
 import sanctuaryHero from '../assets/sanctuary-hero.jpg';
 import luminousImage from '../assets/luminous.png';
+import SEO from './SEO';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -114,12 +115,15 @@ const TheJournal = () => {
   }, []);
 
   return (
-    <div className="journal-page" style={{ 
-      minHeight: '100vh',
-      paddingTop: '100px',
-      position: 'relative',
-      backgroundColor: 'transparent' // Transparent to reveal OrganicLine
-    }}>
+    <>
+      <SEO 
+        title="The Journal" 
+        description="Notes on slow beauty, self-care rituals, and our curated collection of Maria Galland products."
+      />
+      <div className="journal-page" style={{ 
+        minHeight: '100vh',
+        paddingTop: '100px'
+      }}>
 
       {/* HERO SECTION: The Library of Skin (Refined 1 Column) */}
       <div ref={heroRef} style={{ 
@@ -460,8 +464,8 @@ const TheJournal = () => {
           {paymentMethod === 'generic' && 'Purchase'}
         </Button>
       </div>
-
     </div>
+    </>
   );
 };
 

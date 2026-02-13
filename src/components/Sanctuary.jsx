@@ -8,6 +8,7 @@ import sanctuarySilence1 from '../assets/sanctuary-silence-1.jpg';
 import sanctuarySilence2 from '../assets/sanctuary-silence-2.jpg';
 import noHardSellingImage from '../assets/no_hard_selling.jpg';
 import pacificPlazaImage from '../assets/pacific_plaza.jpg';
+import SEO from './SEO';
 
 // Re-register in case it's mounted separately
 gsap.registerPlugin(ScrollTrigger);
@@ -58,7 +59,12 @@ const Sanctuary = () => {
   }, []);
 
   return (
-    <div ref={containerRef} className="sanctuary-page" style={{ 
+    <>
+      <SEO 
+        title="The Sanctuary" 
+        description="A world away from the city noise. Step into our sanctuary of silence, trust, and slow beauty."
+      />
+      <div ref={containerRef} className="sanctuary-page" style={{ 
       minHeight: '100vh',
       paddingTop: '100px' // Space for fixed nav
     }}>
@@ -314,8 +320,8 @@ const Sanctuary = () => {
            </OrganicImagePlaceholder>
         </div>
       </Section>
-
     </div>
+    </>
   );
 };
 

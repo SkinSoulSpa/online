@@ -7,6 +7,7 @@ import OurPhilosophy from '../components/OurPhilosophy';
 import Experiences from '../components/Experiences';
 import Artisans from '../components/Artisans';
 import ClientStories from '../components/ClientStories';
+import SEO from '../components/SEO';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -65,7 +66,12 @@ const Home = ({ isLoaded = true }) => {
   }, [isLoaded]);
 
   return (
-    <div style={{ 
+    <>
+      <SEO 
+        title="Skin Soul Spa | Soul-Deep Restoration" 
+        description="A private ritual of self-reverence in a hidden Orchard gem. Experience bespoke facials, body therapies, and soul-deep restoration."
+      />
+      <div style={{ 
       position: 'relative', 
       zIndex: 1, 
       minHeight: '300vh', // Extended height to demonstrate scrolling
@@ -127,6 +133,7 @@ const Home = ({ isLoaded = true }) => {
       <Artisans />
       <ClientStories />
     </div>
+    </>
   );
 };
 

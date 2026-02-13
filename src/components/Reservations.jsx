@@ -4,6 +4,7 @@ import gsap from 'gsap';
 import OrganicImagePlaceholder from './OrganicImagePlaceholder';
 import Button from './Button';
 import sanctuaryImage from '../assets/sanctuary_15.jpg';
+import SEO from './SEO';
 
 // Updated Reservations Component
 const InputGroup = ({ label, type = "text", name, value, onChange, placeholder, required = false, options = null }) => (
@@ -244,14 +245,19 @@ const Reservations = () => {
   ];
 
   return (
-    <div style={{
-      minHeight: '100vh',
-      paddingTop: '120px',
-      paddingBottom: '4rem',
-      backgroundColor: 'transparent', // Allow global background to show
-      display: 'flex',
-      justifyContent: 'center'
-    }}>
+    <>
+      <SEO 
+        title="Reservations" 
+        description="Book your appointment at Skin Soul Spa. Select your journey, artisan, and preferred time for your ritual."
+      />
+      <div className="reservations-page" style={{
+        minHeight: '100vh',
+        paddingTop: '120px',
+        paddingBottom: '4rem',
+        backgroundColor: 'transparent', // Allow global background to show
+        display: 'flex',
+        justifyContent: 'center'
+      }}>
       <div style={{
         width: '100%',
         maxWidth: '1200px',
@@ -445,6 +451,7 @@ const Reservations = () => {
 
       </div>
     </div>
+    </>
   );
 };
 

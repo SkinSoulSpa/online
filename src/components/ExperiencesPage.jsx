@@ -7,6 +7,7 @@ import CheckoutModal from './CheckoutModal';
 import Button from './Button';
 import consultationImage from '../assets/consultation_1.jpg';
 import testImage from '../assets/test.png';
+import SEO from './SEO';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -208,7 +209,12 @@ const ExperiencesPage = () => {
   }, [location]);
 
   return (
-    <div ref={containerRef} className="experiences-page" style={{ 
+    <>
+      <SEO 
+        title="Experiences" 
+        description="Curated journeys for face and body. From our signature facials to intensive treatments, discover your path to radiance."
+      />
+      <div ref={containerRef} className="experiences-page" style={{ 
       minHeight: '100vh',
       paddingTop: '100px', // Space for main fixed nav
       position: 'relative'
@@ -1368,6 +1374,7 @@ const ExperiencesPage = () => {
         paymentMethod={paymentMethod}
       />
     </div>
+    </>
   );
 };
 
