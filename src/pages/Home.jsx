@@ -68,7 +68,7 @@ const Home = ({ isLoaded = true }) => {
   return (
     <>
       <SEO 
-        title="Skin Soul Spa | Soul-Deep Restoration" 
+        title="Soul-Deep Restoration" 
         description="A private ritual of self-reverence in a hidden Orchard gem. Experience bespoke facials, body therapies, and soul-deep restoration."
       />
       <div style={{ 
