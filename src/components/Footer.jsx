@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import logo from '../assets/skinsoulspa_logo.png';
+import logo from '../assets/skinsoulspa_3.png';
 
 const FooterLink = ({ href, children }) => {
   const [isHovered, setIsHovered] = useState(false);
