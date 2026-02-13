@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react';
 import gsap from 'gsap';
-import logo from '../assets/skinsoulspa_2.png';
+import logo from '../assets/skinsoulspa_logo.png';
 
 // Configuration: Switch 'variant' to 'pulse', 'ripple', or 'mist'
 const VARIANT = 'organic'; 
@@ -324,7 +324,7 @@ const Preloader = ({ onComplete }) => {
           outline: 'none',
           border: 'none',
           opacity: 0, // Start hidden to prevent FOUC/FOUT
-          width: '200px',
+          width: '150px',
           height: 'auto'
         }}
       />

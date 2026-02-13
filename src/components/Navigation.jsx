@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import { useAudio } from '../context/AudioContext';
 import { Link, useNavigate } from 'react-router-dom';
-import logo from '../assets/skinsoulspa_2.png';
+import logo from '../assets/skinsoulspa_logo.png';
 
 const Navigation = () => {
   const navRef = useRef(null);
@@ -106,7 +106,7 @@ const Navigation = () => {
             src={logo} 
             alt="Skin Soul Spa" 
             style={{ 
-              height: '6rem',
+              height: '4rem',
               width: 'auto',
               objectFit: 'contain'
             }} 
