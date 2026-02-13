@@ -1123,7 +1123,7 @@ const ExperiencesPage = () => {
                 result: "Profound saturation. The skin looks plump, hydrated, and volumised from the inside."
               },
               {
-                title: "The Exosomal Aura",
+                title: "Exo Glow Treatment",
                 duration: "20 minutes",
                 price: "$208",
                 narrative: "An intensive molecular infusion designed to be woven into your primary journey for those seeking the pinnacle of cellular renewal. This high-precision micro-ritual utilises a potent dialogue of mesotherapy and exosomes to re-awaken the skin’s architectural strength. It acts as a powerful booster, delivering regenerative nutrients deep into the dermis to dissolve the shadows of fatigue and restore a profound sense of elasticity.",
