@@ -19,6 +19,7 @@ const SEO = ({
     "@context": "https://schema.org",
     "@type": "DaySpa",
     "name": "Skin Soul Spa",
+    "description": metaDescription,
     "image": [
       `https://www.skinsoulspa.sg${defaultImage}`
     ],
@@ -71,6 +72,7 @@ const SEO = ({
 
       {/* Open Graph / Facebook */}
       <meta property="og:type" content={type} />
+      <meta property="og:site_name" content={name} />
       <meta property="og:url" content={url} />
       <meta property="og:title" content={siteTitle} />
       <meta property="og:description" content={metaDescription} />
