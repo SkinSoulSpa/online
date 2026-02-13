@@ -244,7 +244,7 @@ const TheJournal = () => {
                    Youthful Radiance Facial — $258.00
                  </p>
                  
-                 {/* Smart Payment Button */}
+                 {/* Smart Payment Button - Hidden for Launch
                  <div style={{ marginTop: '1.5rem', display: 'flex', justifyContent: 'center' }}>
                    <Button 
                      onClick={() => handleAcquire({ title: 'Youthful Radiance Facial', price: '$258.00' })}
@@ -253,6 +253,40 @@ const TheJournal = () => {
                       paymentMethod === 'google' ? 'Pay with G Pay' : 
                       'Purchase Experience'}
                    </Button>
+                 </div>
+                 */}
+                 
+                 <div style={{ marginTop: '1.5rem', display: 'flex', justifyContent: 'center' }}>
+                    <button 
+                      onClick={() => handleReserve('Youthful Radiance Facial')}
+                      style={{
+                        background: 'linear-gradient(to right, #A89675 0%, #A89675 50%, #A89675 60%, #FFFFFF 75%, #A89675 90%, #A89675 100%)',
+                        backgroundSize: '200% auto',
+                        WebkitBackgroundClip: 'text',
+                        backgroundClip: 'text',
+                        WebkitTextFillColor: 'transparent',
+                        border: 'none',
+                        padding: '0',
+                        fontFamily: '"Tenor Sans", sans-serif',
+                        fontSize: '0.8rem',
+                        letterSpacing: '0.15em',
+                        textTransform: 'uppercase',
+                        cursor: 'pointer',
+                        transition: 'background-position 0.6s ease',
+                        fontWeight: 400,
+                        backgroundPosition: '0% center'
+                      }}
+                      onMouseEnter={(e) => {
+                        e.target.style.backgroundPosition = '-100% center';
+                        e.target.style.transition = 'background-position 0.6s ease';
+                      }}
+                      onMouseLeave={(e) => {
+                        e.target.style.backgroundPosition = '0% center';
+                        e.target.style.transition = 'background-position 0.6s ease';
+                      }}
+                    >
+                      Reserve
+                    </button>
                  </div>
                </div>
              )}
@@ -366,7 +400,7 @@ const TheJournal = () => {
                     e.target.style.transition = 'background-position 0.6s ease';
                   }}
                 >
-                  Reserve without Purchasing
+                  Reserve
                 </button>
               </div>
             </div>
@@ -374,13 +408,14 @@ const TheJournal = () => {
         </div>
       </JournalSection>
 
-      {/* Real Checkout Modal */}
+      {/* Real Checkout Modal - Hidden for Launch
       <CheckoutModal 
         isOpen={!!checkoutProduct} 
         onClose={() => setCheckoutProduct(null)} 
         product={checkoutProduct} 
         paymentMethod={paymentMethod}
       />
+      */}
 
       {/* Mobile Sticky Purchase Bar */}
       <div 
@@ -445,9 +480,10 @@ const TheJournal = () => {
                e.target.style.transition = 'background-position 0.6s ease';
              }}
           >
-            Reserve without Purchasing
+            Reserve
           </button>
         </div>
+        {/* Payment Hidden for Launch
         <Button 
           style={{
             padding: '0.8rem 1.5rem',
@@ -463,6 +499,7 @@ const TheJournal = () => {
           {paymentMethod === 'google' && 'Pay GPay'}
           {paymentMethod === 'generic' && 'Purchase'}
         </Button>
+        */}
       </div>
     </div>
     </>

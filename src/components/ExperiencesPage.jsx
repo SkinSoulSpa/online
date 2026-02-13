@@ -660,6 +660,7 @@ const ExperiencesPage = () => {
                     
                     {/* Impulse Buy Button */}
                     <div style={{ marginTop: '2rem', display: 'flex', flexDirection: 'row', alignItems: 'center', gap: '1rem', flexWrap: 'wrap' }}>
+                      {/* Payment Hidden for Launch
                       <Button 
                         onClick={(e) => handleAcquire(e, item)}
                         style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}
@@ -668,8 +669,10 @@ const ExperiencesPage = () => {
                          paymentMethod === 'google' ? 'Pay with G Pay' : 
                          'Purchase Experience'}
                       </Button>
+                      */}
                       
                       <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+                        {/*
                         <span style={{
                           fontFamily: '"Cormorant Garamond", serif',
                           fontStyle: 'italic',
@@ -678,6 +681,7 @@ const ExperiencesPage = () => {
                           lineHeight: 1,
                           transform: 'translateY(1px)' // Fine-tune vertical alignment
                         }}>or</span>
+                        */}
                         <button 
                           onClick={(e) => {
                             e.stopPropagation();
@@ -709,7 +713,7 @@ const ExperiencesPage = () => {
                           e.target.style.transition = 'background-position 0.6s ease';
                         }}
                         >
-                          Reserve without Purchasing
+                          Reserve
                         </button>
                       </div>
                     </div>
@@ -952,6 +956,7 @@ const ExperiencesPage = () => {
 
                   {/* Impulse Buy Button */}
                     <div style={{ marginTop: '2rem', display: 'flex', flexDirection: 'row', alignItems: 'center', gap: '1rem', flexWrap: 'wrap' }}>
+                      {/* Payment Hidden for Launch
                       <Button 
                         onClick={(e) => handleAcquire(e, item)}
                         style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}
@@ -960,8 +965,10 @@ const ExperiencesPage = () => {
                          paymentMethod === 'google' ? 'Pay with G Pay' : 
                          'Purchase Experience'}
                       </Button>
+                      */}
                       
                       <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+                        {/*
                         <span style={{
                           fontFamily: '"Cormorant Garamond", serif',
                           fontStyle: 'italic',
@@ -970,6 +977,7 @@ const ExperiencesPage = () => {
                           lineHeight: 1,
                           transform: 'translateY(1px)'
                         }}>or</span>
+                        */}
                         <button 
                           onClick={(e) => {
                           e.stopPropagation();
@@ -1001,8 +1009,8 @@ const ExperiencesPage = () => {
                           e.target.style.transition = 'background-position 0.6s ease';
                         }}
                       >
-                        Reserve without Purchasing
-                      </button>
+                        Reserve
+                        </button>
                     </div>
                   </div>
                 </div>
@@ -1283,6 +1291,7 @@ const ExperiencesPage = () => {
                   
                   {/* Impulse Buy Button */}
                   <div style={{ marginTop: '2rem', display: 'flex', flexDirection: 'row', alignItems: 'center', gap: '1rem', flexWrap: 'wrap' }}>
+                    {/* Payment Hidden for Launch
                     <Button 
                       onClick={(e) => handleAcquire(e, item)}
                       style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}
@@ -1291,8 +1300,10 @@ const ExperiencesPage = () => {
                        paymentMethod === 'google' ? 'Pay with G Pay' : 
                        'Purchase Experience'}
                     </Button>
+                    */}
                     
                     <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+                      {/*
                       <span style={{
                         fontFamily: '"Cormorant Garamond", serif',
                         fontStyle: 'italic',
@@ -1301,6 +1312,7 @@ const ExperiencesPage = () => {
                         lineHeight: 1,
                         transform: 'translateY(1px)'
                       }}>or</span>
+                      */}
                       <button 
                         onClick={(e) => {
                           e.stopPropagation();
@@ -1332,8 +1344,8 @@ const ExperiencesPage = () => {
                           e.target.style.transition = 'background-position 0.6s ease';
                         }}
                       >
-                        Reserve without Purchasing
-                      </button>
+                        Reserve
+                        </button>
                     </div>
                   </div>
                 </div>
@@ -1366,13 +1378,14 @@ const ExperiencesPage = () => {
         </div>
       </Section>
 
-      {/* CHECKOUT MODAL */}
+      {/* CHECKOUT MODAL - Hidden for Launch
       <CheckoutModal 
         isOpen={!!checkoutProduct} 
         onClose={() => setCheckoutProduct(null)} 
         product={checkoutProduct}
         paymentMethod={paymentMethod}
       />
+      */}
     </div>
     </>
   );
