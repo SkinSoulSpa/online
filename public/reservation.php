@@ -37,6 +37,8 @@ $subject = "New Reservation Request: $name";
 
 // Determine "From" address based on server domain to prevent spam flagging
 $server_domain = $_SERVER['SERVER_NAME'];
+// Strip www. prefix if present for cleaner email address
+$server_domain = preg_replace('/^www\./', '', $server_domain);
 $from_email = "noreply@" . $server_domain;
 
 $headers = "From: Skin Soul Spa Website <$from_email>\r\n";
@@ -172,7 +174,8 @@ $email_body = "
 ";
 
 // Send Email
-if (mail($to, $subject, $email_body, $headers)) {
+// Use -f parameter to set the envelope sender, which improves deliverability and prevents spam flagging
+if (mail($to, $subject, $email_body, $headers, "-f" . $from_email)) {
     echo json_encode(["status" => "success", "message" => "Reservation sent successfully"]);
 } else {
     http_response_code(500);
