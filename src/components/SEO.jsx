@@ -12,7 +12,7 @@ const SEO = ({
 }) => {
   const siteTitle = title ? `${title} | ${name}` : name;
   const metaDescription = description || "A private ritual of self-reverence in a hidden Orchard gem. Experience bespoke facials, body therapies, and soul-deep restoration.";
-  const metaImage = image || "https://www.skinsoulspa.sg/assets/sanctuary-hero.jpg"; // Ideally this should be a full URL
+  const metaImage = image || `https://www.skinsoulspa.sg${defaultImage}`;
   
   // JSON-LD Schema for Local Business
   const schemaData = {
@@ -20,8 +20,7 @@ const SEO = ({
     "@type": "DaySpa",
     "name": "Skin Soul Spa",
     "image": [
-      "https://www.skinsoulspa.sg/assets/skinsoulspa_logo.png",
-      "https://www.skinsoulspa.sg/assets/sanctuary-hero.jpg"
+      `https://www.skinsoulspa.sg${defaultImage}`
     ],
     "url": "https://www.skinsoulspa.sg",
     "telephone": "+6593633111",

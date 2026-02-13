@@ -125,10 +125,10 @@ const TheArtisans = () => {
       />
       <div className="artisans-page" style={{ 
         minHeight: '100vh',
-        paddingTop: '100px'
-      }}>  position: 'relative',
-      backgroundColor: 'transparent' // Transparent
-    }}>
+        paddingTop: '100px',
+        position: 'relative',
+        backgroundColor: 'transparent' // Transparent
+      }}>
       
       {/* SECTION 1: THE HERO */}
       <div style={{ 
