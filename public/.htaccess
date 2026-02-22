@@ -1,19 +1,23 @@
 <IfModule mod_rewrite.c>
   RewriteEngine On
   RewriteBase /
-  RewriteRule ^index\.html$ - [L]
   
-  # Do not rewrite request for these file extensions to index.html if they don't exist (return 404)
+  # Prefer index.php over index.html
+  DirectoryIndex index.php index.html
+  
+  RewriteRule ^index\.php$ - [L]
+  
+  # Do not rewrite request for these file extensions to index.php if they don't exist (return 404)
   RewriteCond %{REQUEST_URI} !\.(js|css|png|jpg|jpeg|gif|ico|svg|woff|woff2|ttf|eot|mp4|webm)$ [NC]
   
   RewriteCond %{REQUEST_FILENAME} !-f
   RewriteCond %{REQUEST_FILENAME} !-d
   RewriteCond %{REQUEST_FILENAME} !-l
-  RewriteRule . /index.html [L]
+  RewriteRule . /index.php [L]
 </IfModule>
 
-# Disable caching for HTML files to ensure latest version is always loaded
-<FilesMatch "\.(html|htm)$">
+# Disable caching for HTML/PHP files to ensure latest version is always loaded
+<FilesMatch "\.(html|htm|php)$">
   FileETag None
   <IfModule mod_headers.c>
     Header unset ETag
