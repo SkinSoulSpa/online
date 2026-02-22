@@ -121,7 +121,7 @@ const TheArtisans = () => {
     <>
       <SEO 
         title="The Artisans" 
-        description="Meet the skilled hands behind Skin Soul Spa. Technical mastery, intuitive touch, and total respect for your silence."
+        description="Meet the hands behind the magic. Experienced, intuitive, and dedicated to your soul-deep restoration."
         image={heroHands}
       />
       <div className="artisans-page" style={{ 
