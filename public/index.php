@@ -1,6 +1,11 @@
 <?php
 // index.php - Dynamic Open Graph Injection
 
+// Prevent caching
+header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
+header("Cache-Control: post-check=0, pre-check=0", false);
+header("Pragma: no-cache");
+
 // 1. Determine the requested path
 $request_uri = $_SERVER['REQUEST_URI'];
 $path = parse_url($request_uri, PHP_URL_PATH);
@@ -55,6 +60,12 @@ if (file_exists($template_file)) {
 // We look for the specific meta tags we want to replace.
 // Note: We use regex or string replacement. Since we know the exact format in index.html, we can use str_replace or preg_replace.
 
+// Helper for consistent replacement
+function replace_tag($html, $pattern, $replacement) {
+    // Try to match the tag, allowing for variations in whitespace
+    return preg_replace($pattern, $replacement, $html);
+}
+
 // Replace Title
 $html = preg_replace('/<title>.*?<\/title>/', "<title>$title</title>", $html);
 $html = preg_replace('/<meta property="og:title" content=".*?" \/>/', '<meta property="og:title" content="' . $title . '" />', $html);
@@ -72,6 +83,9 @@ $html = preg_replace('/<meta property="twitter:image" content=".*?" \/>/', '<met
 // Replace URL
 $html = preg_replace('/<meta property="og:url" content=".*?" \/>/', '<meta property="og:url" content="' . $url . '" />', $html);
 $html = preg_replace('/<meta property="twitter:url" content=".*?" \/>/', '<meta property="twitter:url" content="' . $url . '" />', $html);
+
+// Debug Info (Hidden in source)
+$html .= "\n<!-- Debug: Path=$path, Image=$image -->";
 
 // 6. Output the modified HTML
 echo $html;
