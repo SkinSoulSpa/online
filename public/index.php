@@ -84,9 +84,6 @@ $html = preg_replace('/<meta property="twitter:image" content=".*?" \/>/', '<met
 $html = preg_replace('/<meta property="og:url" content=".*?" \/>/', '<meta property="og:url" content="' . $url . '" />', $html);
 $html = preg_replace('/<meta property="twitter:url" content=".*?" \/>/', '<meta property="twitter:url" content="' . $url . '" />', $html);
 
-// Debug Info (Hidden in source)
-$html .= "\n<!-- Debug: Path=$path, Image=$image -->";
-
 // 6. Output the modified HTML
 echo $html;
 ?>
