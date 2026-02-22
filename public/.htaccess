@@ -7,3 +7,18 @@
   RewriteCond %{REQUEST_FILENAME} !-l
   RewriteRule . /index.html [L]
 </IfModule>
+
+# Disable caching for HTML files to ensure latest version is always loaded
+<FilesMatch "\.(html|htm)$">
+  FileETag None
+  <IfModule mod_headers.c>
+    Header unset ETag
+    Header set Cache-Control "max-age=0, no-cache, no-store, must-revalidate"
+    Header set Pragma "no-cache"
+    Header set Expires "Wed, 11 Jan 1984 05:00:00 GMT"
+  </IfModule>
+</FilesMatch>
+
+# Ensure correct MIME types
+AddType application/javascript .js
+AddType text/css .css
