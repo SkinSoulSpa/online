@@ -63,6 +63,7 @@ const Sanctuary = () => {
       <SEO 
         title="The Sanctuary" 
         description="A world away from the city noise. Step into our sanctuary of silence, trust, and slow beauty."
+        image={sanctuaryHero}
       />
       <div ref={containerRef} className="sanctuary-page" style={{ 
       minHeight: '100vh',
