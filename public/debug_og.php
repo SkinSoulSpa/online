@@ -1,5 +1,5 @@
 <?php
-// Debug script to test OG tags for different routes
+// Debug script to test OG tags for different routes (updated)
 $route = $_GET['route'] ?? '/';
 $_SERVER['REQUEST_URI'] = $route;
 
@@ -16,6 +16,9 @@ preg_match('/<meta property="og:image:width" content="(.*?)" \/>/', $html, $widt
 preg_match('/<meta property="og:image:height" content="(.*?)" \/>/', $html, $height);
 
 header('Content-Type: application/json');
+// Remove Content-Length from index.php if set
+header_remove('Content-Length');
+
 echo json_encode([
     'route' => $route,
     'title' => $title[1] ?? 'Not found',
