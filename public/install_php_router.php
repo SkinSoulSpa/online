@@ -1,12 +1,12 @@
 <?php
-// nuke_index.php (Renamed to be a Router Installer/Fixer)
+// install_php_router.php
 // This script ensures that index.html is renamed to index.template.html
 // so that index.php can serve as the main entry point and inject dynamic tags.
 
 $source = 'index.html';
 $target = 'index.template.html';
 
-echo "<h1>Router Fixer (formerly nuke_index)</h1>";
+echo "<h1>PHP Router Installer</h1>";
 
 // 1. Check permissions
 if (!is_writable('.')) {
@@ -15,7 +15,6 @@ if (!is_writable('.')) {
 
 // 2. Handle index.html -> index.template.html
 if (file_exists($source)) {
-    // If target already exists, remove it first to allow overwrite
     if (file_exists($target)) {
         if (unlink($target)) {
             echo "Removed old $target.<br>";
@@ -24,7 +23,6 @@ if (file_exists($source)) {
         }
     }
     
-    // Rename source to target
     if (rename($source, $target)) {
         echo "Success: Renamed $source to $target.<br>";
     } else {
@@ -35,7 +33,7 @@ if (file_exists($source)) {
     if (file_exists($target)) {
         echo "Success: $target already exists (good).<br>";
     } else {
-        echo "Error: Neither $source nor $target found. Deployment might be incomplete (or index.html was deleted without renaming).<br>";
+        echo "Error: Neither $source nor $target found. Deployment might be incomplete.<br>";
     }
 }
 
