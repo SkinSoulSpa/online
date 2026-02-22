@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-d
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import ScrollToTop from './components/ScrollToTop';
+import GoogleAnalytics from './components/GoogleAnalytics';
 import MistBackground from './components/MistBackground';
 import Navigation from './components/Navigation';
 import Footer from './components/Footer';
@@ -26,6 +27,7 @@ function App() {
   return (
     <Router basename={import.meta.env.BASE_URL}>
       <ScrollToTop />
+      <GoogleAnalytics />
       <AudioProvider>
         <div className="app" style={{ position: 'relative', display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
           <Preloader onComplete={() => setIsLoaded(true)} />

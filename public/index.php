@@ -57,32 +57,47 @@ if (file_exists($template_file)) {
 }
 
 // 5. Replace Metadata Placeholders
-// We look for the specific meta tags we want to replace.
-// Note: We use regex or string replacement. Since we know the exact format in index.html, we can use str_replace or preg_replace.
+// Improved regex to handle attribute order variations and whitespace
 
-// Helper for consistent replacement
-function replace_tag($html, $pattern, $replacement) {
-    // Try to match the tag, allowing for variations in whitespace
-    return preg_replace($pattern, $replacement, $html);
+// Helper for consistent replacement using regex
+function replace_meta_content($html, $property, $new_content) {
+    // Matches <meta property="og:title" content="..." /> OR <meta content="..." property="og:title" />
+    // Also handles name="..." for description
+    // Also handles single or double quotes
+    
+    // Pattern 1: property="..." content="..."
+    $pattern1 = '/<meta\s+(property|name)=["\']' . preg_quote($property, '/') . '["\']\s+content=["\'].*?["\']\s*\/?>/i';
+    // Pattern 2: content="..." property="..."
+    $pattern2 = '/<meta\s+content=["\'].*?["\']\s+(property|name)=["\']' . preg_quote($property, '/') . '["\']\s*\/?>/i';
+    
+    $replacement = '<meta property="' . $property . '" content="' . $new_content . '" />';
+    if ($property === 'description') {
+        $replacement = '<meta name="description" content="' . $new_content . '" />';
+    }
+
+    $html = preg_replace($pattern1, $replacement, $html);
+    $html = preg_replace($pattern2, $replacement, $html);
+    
+    return $html;
 }
 
-// Replace Title
-$html = preg_replace('/<title>.*?<\/title>/', "<title>$title</title>", $html);
-$html = preg_replace('/<meta property="og:title" content=".*?" \/>/', '<meta property="og:title" content="' . $title . '" />', $html);
-$html = preg_replace('/<meta property="twitter:title" content=".*?" \/>/', '<meta property="twitter:title" content="' . $title . '" />', $html);
+// Replace Title (Special case for <title> tag)
+$html = preg_replace('/<title>.*?<\/title>/i', "<title>$title</title>", $html);
+$html = replace_meta_content($html, 'og:title', $title);
+$html = replace_meta_content($html, 'twitter:title', $title);
 
 // Replace Description
-$html = preg_replace('/<meta name="description" content=".*?" \/>/', '<meta name="description" content="' . $description . '" />', $html);
-$html = preg_replace('/<meta property="og:description" content=".*?" \/>/', '<meta property="og:description" content="' . $description . '" />', $html);
-$html = preg_replace('/<meta property="twitter:description" content=".*?" \/>/', '<meta property="twitter:description" content="' . $description . '" />', $html);
+$html = replace_meta_content($html, 'description', $description);
+$html = replace_meta_content($html, 'og:description', $description);
+$html = replace_meta_content($html, 'twitter:description', $description);
 
 // Replace Image
-$html = preg_replace('/<meta property="og:image" content=".*?" \/>/', '<meta property="og:image" content="' . $image . '" />', $html);
-$html = preg_replace('/<meta property="twitter:image" content=".*?" \/>/', '<meta property="twitter:image" content="' . $image . '" />', $html);
+$html = replace_meta_content($html, 'og:image', $image);
+$html = replace_meta_content($html, 'twitter:image', $image);
 
 // Replace URL
-$html = preg_replace('/<meta property="og:url" content=".*?" \/>/', '<meta property="og:url" content="' . $url . '" />', $html);
-$html = preg_replace('/<meta property="twitter:url" content=".*?" \/>/', '<meta property="twitter:url" content="' . $url . '" />', $html);
+$html = replace_meta_content($html, 'og:url', $url);
+$html = replace_meta_content($html, 'twitter:url', $url);
 
 // 6. Output the modified HTML
 echo $html;
