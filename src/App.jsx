@@ -23,6 +23,13 @@ gsap.registerPlugin(ScrollTrigger);
 function App() {
   const [isLoaded, setIsLoaded] = React.useState(false);
 
+  // Clean up ugly URL from cache-bust redirect
+  React.useEffect(() => {
+    if (window.location.pathname === '/index.php' || window.location.search.includes('v=')) {
+      window.history.replaceState(null, '', '/');
+    }
+  }, []);
+
   return (
     <Router basename={import.meta.env.BASE_URL}>
       <ScrollToTop />
