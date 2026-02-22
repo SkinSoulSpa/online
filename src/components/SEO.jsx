@@ -12,7 +12,15 @@ const SEO = ({
 }) => {
   const siteTitle = title ? `${title} | ${name}` : name;
   const metaDescription = description || "A private ritual of self-reverence in a hidden Orchard gem. Experience bespoke facials, body therapies, and soul-deep restoration.";
-  const metaImage = image || `https://www.skinsoulspa.sg${defaultImage}`;
+  
+  // Ensure image is an absolute URL
+  const resolveImage = (img) => {
+    if (!img) return `https://www.skinsoulspa.sg${defaultImage}`;
+    if (img.startsWith('http')) return img;
+    return `https://www.skinsoulspa.sg${img}`;
+  };
+
+  const metaImage = resolveImage(image);
   
   // JSON-LD Schema for Local Business
   const schemaData = {
@@ -21,7 +29,7 @@ const SEO = ({
     "name": "Skin Soul Spa",
     "description": metaDescription,
     "image": [
-      `https://www.skinsoulspa.sg${defaultImage}`
+      metaImage
     ],
     "url": "https://www.skinsoulspa.sg",
     "telephone": "+6593633111",

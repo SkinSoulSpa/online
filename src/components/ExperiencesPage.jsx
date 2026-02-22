@@ -213,6 +213,7 @@ const ExperiencesPage = () => {
       <SEO 
         title="Experiences" 
         description="Curated journeys for face and body. From our signature facials to intensive treatments, discover your path to radiance."
+        image={consultationImage}
       />
       <div ref={containerRef} className="experiences-page" style={{ 
       minHeight: '100vh',

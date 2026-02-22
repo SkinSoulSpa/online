@@ -119,6 +119,7 @@ const TheJournal = () => {
       <SEO 
         title="The Journal" 
         description="Notes on slow beauty, self-care rituals, and our curated collection of Maria Galland products."
+        image={journalHero}
       />
       <div className="journal-page" style={{ 
         minHeight: '100vh',

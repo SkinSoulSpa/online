@@ -122,6 +122,7 @@ const TheArtisans = () => {
       <SEO 
         title="The Artisans" 
         description="Meet the skilled hands behind Skin Soul Spa. Technical mastery, intuitive touch, and total respect for your silence."
+        image={heroHands}
       />
       <div className="artisans-page" style={{ 
         minHeight: '100vh',
