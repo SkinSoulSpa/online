@@ -35,23 +35,20 @@ if (strpos($path, '/sanctuary') !== false) {
 }
 
 // 4. Load the compiled index.html
-// Since index.html might take precedence if present, we renamed it to index.html.template or we read it and then delete it?
-// Actually, in our deployment flow, Vite builds index.html.
-// We need this PHP script to BE the index.php that gets served.
-// But if index.html exists, Apache might serve it first depending on DirectoryIndex.
-// We set "DirectoryIndex index.php index.html" in .htaccess, so index.php wins.
-// However, we need to read the CONTENT of the built index.html to serve it.
-// Let's assume the built file is named 'index.html'.
-$html_file = 'index.html';
-if (!file_exists($html_file)) {
-    // Fallback if index.html is missing (maybe renamed to template)
-    $html_file = 'index.template.html';
+// Since we want index.php to be the router, we rename the static index.html to index.template.html
+// during deployment or runtime initialization.
+$template_file = 'index.template.html';
+
+// Check if index.html exists and rename it if necessary (runtime fix)
+if (file_exists('index.html')) {
+    rename('index.html', $template_file);
 }
 
-if (file_exists($html_file)) {
-    $html = file_get_contents($html_file);
+if (file_exists($template_file)) {
+    $html = file_get_contents($template_file);
 } else {
-    die('Error: index.html not found.');
+    // Fallback if rename failed or file missing
+    die('Error: index.template.html not found. Deployment incomplete.');
 }
 
 // 5. Replace Metadata Placeholders
