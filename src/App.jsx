@@ -36,6 +36,7 @@ function App() {
           <main style={{ position: 'relative', zIndex: 1, flex: '1 0 auto', paddingTop: '80px' }}>
             <Routes>
               <Route path="/" element={<Home isLoaded={isLoaded} />} />
+              <Route path="/index.php" element={<Home isLoaded={isLoaded} />} />
               <Route path="/sanctuary" element={<Sanctuary />} />
               <Route path="/experiences" element={<ExperiencesPage />} />
               <Route path="/artisans" element={<TheArtisans />} />
