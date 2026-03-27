@@ -39,7 +39,8 @@ const InputGroup = ({ label, type = "text", name, value, onChange, placeholder, 
             borderRadius: 0,
             appearance: 'none',
             cursor: 'pointer',
-            outline: 'none'
+            outline: 'none',
+            textAlign: 'left'
           }}
         >
           <option value="" disabled>{placeholder || "Select..."}</option>
@@ -76,7 +77,8 @@ const InputGroup = ({ label, type = "text", name, value, onChange, placeholder, 
           fontSize: '1.1rem',
           color: '#2C332E',
           outline: 'none',
-          resize: 'vertical'
+          resize: 'vertical',
+          textAlign: 'left'
         }}
       />
     ) : prefixName ? (
@@ -113,7 +115,8 @@ const InputGroup = ({ label, type = "text", name, value, onChange, placeholder, 
             fontFamily: '"Tenor Sans", sans-serif',
             fontSize: '1.1rem',
             color: '#2C332E',
-            outline: 'none'
+            outline: 'none',
+            textAlign: 'left'
           }}
         />
       </div>
@@ -134,7 +137,8 @@ const InputGroup = ({ label, type = "text", name, value, onChange, placeholder, 
           fontFamily: '"Tenor Sans", sans-serif',
           fontSize: '1.1rem',
           color: '#2C332E',
-          outline: 'none'
+          outline: 'none',
+          textAlign: 'left'
         }}
       />
     )}
