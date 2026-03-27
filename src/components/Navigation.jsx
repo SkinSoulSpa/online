@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import { useAudio } from '../context/AudioContext';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import logo from '../assets/skinsoulspa_logo.png';
 
 const Navigation = () => {
@@ -10,6 +10,7 @@ const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [shimmerIndex, setShimmerIndex] = useState(-1);
   const navigate = useNavigate();
+  const location = useLocation();
 
   const menuItems = [
     { label: "The Sanctuary", path: "/sanctuary" },
@@ -90,10 +91,12 @@ const Navigation = () => {
 
         {/* Desktop Menu */}
         <div className="desktop-menu" style={{ flexDirection: 'row', alignItems: 'center', gap: '2rem' }}>
-          {menuItems.map((item, index) => (
+          {menuItems.map((item, index) => {
+            const isActive = location.pathname === item.path || (item.path !== '/' && location.pathname.startsWith(item.path));
+            return (
             <div 
               key={index} 
-              className="menu-item hover-trigger"
+              className={`menu-item hover-trigger ${isActive ? 'active' : ''}`}
               onMouseEnter={playHoverSound}
               onClick={() => handleNavigation(item.path)}
               style={{ 
@@ -119,7 +122,7 @@ const Navigation = () => {
               </div>
               <div className="nav-underline"></div>
             </div>
-          ))}
+          )})}
           <style>{`
             .shimmer-text {
               color: #2C332E;
@@ -137,6 +140,12 @@ const Navigation = () => {
               transition: background-position 1.5s ease;
             }
 
+            .menu-item.active .shimmer-text {
+              background: none;
+              -webkit-text-fill-color: #A89675;
+              color: #A89675;
+            }
+
             .menu-item .nav-underline {
               position: absolute;
               bottom: 0;
@@ -150,7 +159,8 @@ const Navigation = () => {
               box-shadow: 0 0 5px rgba(197, 179, 152, 0.5);
             }
             
-            .menu-item:hover .nav-underline {
+            .menu-item:hover .nav-underline,
+            .menu-item.active .nav-underline {
               width: 100%;
               opacity: 1;
             }
@@ -221,10 +231,12 @@ const Navigation = () => {
           ref={mobileMenuRef}
           style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '2.5rem' }}
         >
-          {menuItems.map((item, index) => (
+          {menuItems.map((item, index) => {
+            const isActive = location.pathname === item.path || (item.path !== '/' && location.pathname.startsWith(item.path));
+            return (
             <div 
               key={index} 
-              className="hover-trigger"
+              className={`hover-trigger ${isActive ? 'active' : ''}`}
               onClick={() => handleNavigation(item.path)}
               style={{ 
                 textAlign: 'center', 
@@ -235,23 +247,25 @@ const Navigation = () => {
                 style={{
                   fontFamily: '"Tenor Sans", sans-serif',
                   fontSize: '1.75rem', // Slightly refined size
-                  color: '#2C332E',
+                  color: isActive ? '#A89675' : '#2C332E',
                   marginBottom: '0.2rem',
                   textTransform: 'uppercase',
-                  letterSpacing: '0.05em'
+                  letterSpacing: '0.05em',
+                  transition: 'color 0.3s ease'
                 }}
               >
                 {item.label}
               </div>
               <div style={{ // Sub-line or decoration could go here
                 height: '1px',
-                width: '0%',
+                width: isActive ? '100%' : '0%',
                 background: '#C5B398',
                 transition: 'width 0.3s ease',
-                margin: '0 auto'
+                margin: '0 auto',
+                boxShadow: isActive ? '0 0 5px rgba(197, 179, 152, 0.5)' : 'none'
               }} className="underline"></div>
             </div>
-          ))}
+          )})}
         </div>
       </div>
     </>
