@@ -28,13 +28,13 @@ const Preloader = ({ onComplete }) => {
     };
     window.addEventListener('resize', checkMobile);
 
-    // Failsafe: Force remove after 5 seconds max (in case animation hangs on mobile)
+    // Failsafe: Force remove after 3 seconds max (in case animation hangs on mobile)
     const failsafe = setTimeout(() => {
       if (!loaded) {
         setLoaded(true);
         if (onComplete) onComplete();
       }
-    }, 5000);
+    }, 2500);
 
     const tl = gsap.timeline({
       onComplete: () => {
@@ -90,7 +90,7 @@ const Preloader = ({ onComplete }) => {
             // Draw Line (Travels from top to bottom)
             tl.to([path, glowPath], { 
                 strokeDashoffset: 0, 
-                duration: 2.5, 
+                duration: 1.2, 
                 ease: "power2.inOut" 
             }, 0.2);
             
@@ -119,16 +119,16 @@ const Preloader = ({ onComplete }) => {
             tl.to(textRef.current, { 
                 opacity: 1, 
                 y: 0, 
-                duration: 1.5, 
+                duration: 1.0, 
                 ease: "power2.out" 
-            }, 0.8);
+            }, 0.5);
 
             // Exit
             tl.to(containerRef.current, { 
                 opacity: 0, 
-                duration: 1, 
+                duration: 0.6, 
                 ease: "power2.inOut",
-                delay: 0.5
+                delay: 0.2
             });
         } else {
              console.error("Preloader: Path refs missing");
@@ -202,7 +202,7 @@ const Preloader = ({ onComplete }) => {
     // Common Exit for Container
     tl.to(containerRef.current, {
       yPercent: -100,
-      duration: 1.2,
+      duration: 0.8,
       ease: "power3.inOut"
     });
 
