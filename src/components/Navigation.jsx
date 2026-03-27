@@ -13,9 +13,10 @@ const Navigation = () => {
   const location = useLocation();
 
   const menuItems = [
-    { label: "The Sanctuary", path: "/sanctuary" },
     { label: "Services", path: "/experiences" },
+    { label: "Promotions", path: "/promotions" },
     { label: "The Artisans", path: "/artisans" },
+    { label: "The Sanctuary", path: "/sanctuary" },
     { label: "Journal", path: "/journal" },
     { label: "Reservations", path: "/reservations" }
   ];
