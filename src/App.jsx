@@ -10,6 +10,7 @@ import Footer from './components/Footer';
 import Preloader from './components/Preloader';
 import OrganicLine from './components/OrganicLine';
 import WhatsAppWidget from './components/WhatsAppWidget';
+import BackToTopButton from './components/BackToTopButton';
 import { AudioProvider } from './context/AudioContext';
 import Home from './pages/Home';
 import Sanctuary from './components/Sanctuary';
@@ -49,6 +50,7 @@ function App() {
           
           <Footer />
           <WhatsAppWidget />
+          <BackToTopButton />
         </div>
       </AudioProvider>
     </Router>
