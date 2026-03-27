@@ -19,31 +19,6 @@ const Navigation = () => {
     { label: "Reservations", path: "/reservations" }
   ];
 
-  // Random autonomous shimmer effect
-  useEffect(() => {
-    let timeoutId;
-    
-    const triggerShimmer = () => {
-      // Pick a random item
-      const randomIndex = Math.floor(Math.random() * menuItems.length);
-      setShimmerIndex(randomIndex);
-
-      // Reset after animation completes (1.5s matches CSS transition)
-      setTimeout(() => {
-        setShimmerIndex(-1);
-      }, 1500);
-
-      // Schedule next shimmer (random interval between 2s and 5s)
-      const nextDelay = 2000 + Math.random() * 3000;
-      timeoutId = setTimeout(triggerShimmer, nextDelay);
-    };
-
-    // Start loop
-    timeoutId = setTimeout(triggerShimmer, 2000);
-
-    return () => clearTimeout(timeoutId);
-  }, []);
-
   useEffect(() => {
     gsap.fromTo(navRef.current, 
       { y: -20, opacity: 0 },
@@ -129,7 +104,7 @@ const Navigation = () => {
               }}
             >
               <div 
-                className={`shimmer-text ${shimmerIndex === index ? 'shimmering' : ''}`}
+                className="shimmer-text"
                 style={{
                   fontFamily: '"Tenor Sans", sans-serif',
                   fontSize: '0.8rem',
@@ -148,17 +123,32 @@ const Navigation = () => {
           <style>{`
             .shimmer-text {
               color: #2C332E;
-              background: linear-gradient(to right, #2C332E 0%, #2C332E 40%, #C5B398 50%, #2C332E 60%, #2C332E 100%);
-              background-size: 200% auto;
-              -webkit-background-clip: text;
-              background-clip: text;
-              -webkit-text-fill-color: transparent;
-              transition: background-position 0.5s ease;
+              position: relative;
+              display: inline-block;
+              transition: color 0.3s ease;
             }
-
-            .shimmer-text.shimmering {
-              background-position: 200% center;
-              transition: background-position 1.5s ease;
+            .shimmer-text::before {
+              content: '';
+              position: absolute;
+              top: 0;
+              left: 0;
+              width: 100%;
+              height: 100%;
+              background: linear-gradient(
+                120deg,
+                transparent,
+                rgba(197, 179, 152, 0.4),
+                transparent
+              );
+              transform: translateX(-100%);
+              transition: transform 0.5s ease;
+            }
+            .menu-item:hover .shimmer-text::before {
+              transform: translateX(100%);
+              transition: transform 1s ease;
+            }
+            .menu-item:hover .shimmer-text {
+              color: #A89675; /* Soul Antique Gold */
             }
 
             .menu-item .nav-underline {
@@ -177,11 +167,6 @@ const Navigation = () => {
             .menu-item:hover .nav-underline {
               width: 100%;
               opacity: 1;
-            }
-
-            .menu-item:hover .shimmer-text {
-              background-position: 200% center;
-              transition: background-position 1.5s ease;
             }
           `}</style>
         </div>
