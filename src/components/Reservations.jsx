@@ -7,7 +7,7 @@ import sanctuaryImage from '../assets/sanctuary_15.jpg';
 import SEO from './SEO';
 
 // Updated Reservations Component
-const InputGroup = ({ label, type = "text", name, value, onChange, placeholder, required = false, options = null }) => (
+const InputGroup = ({ label, type = "text", name, value, onChange, placeholder, required = false, options = null, prefixName, prefixValue }) => (
   <div style={{ marginBottom: '2rem' }}>
     <label style={{
       display: 'block',
@@ -79,6 +79,44 @@ const InputGroup = ({ label, type = "text", name, value, onChange, placeholder, 
           resize: 'vertical'
         }}
       />
+    ) : prefixName ? (
+      <div style={{ display: 'flex', alignItems: 'flex-end', borderBottom: '1px solid #DCD6CF' }}>
+        <input
+          type="text"
+          name={prefixName}
+          value={prefixValue}
+          onChange={onChange}
+          style={{
+            width: '3.5rem',
+            padding: '0.8rem 0.5rem 0.8rem 0',
+            border: 'none',
+            backgroundColor: 'transparent',
+            fontFamily: '"Tenor Sans", sans-serif',
+            fontSize: '1.1rem',
+            color: '#2C332E',
+            outline: 'none',
+            textAlign: 'left'
+          }}
+        />
+        <input
+          type={type}
+          name={name}
+          value={value}
+          onChange={onChange}
+          placeholder={placeholder}
+          required={required}
+          style={{
+            flex: 1,
+            padding: '0.8rem 0',
+            border: 'none',
+            backgroundColor: 'transparent',
+            fontFamily: '"Tenor Sans", sans-serif',
+            fontSize: '1.1rem',
+            color: '#2C332E',
+            outline: 'none'
+          }}
+        />
+      </div>
     ) : (
       <input
         type={type}
@@ -109,7 +147,8 @@ const Reservations = () => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
-    phone: '+65 ',
+    countryCode: '+65',
+    phone: '',
     experience: '',
     artisan: '',
     date: '',
@@ -203,7 +242,7 @@ const Reservations = () => {
         body: JSON.stringify({
           name: formData.name,
           email: formData.email,
-          phone: formData.phone,
+          phone: `${formData.countryCode} ${formData.phone}`,
           date: formData.date,
           time: formData.time,
           treatment: `${formData.experience} - ${formData.artisan}`,
@@ -218,7 +257,8 @@ const Reservations = () => {
         setFormData({
           name: '',
           email: '',
-          phone: '+65 ',
+          countryCode: '+65',
+          phone: '',
           experience: '',
           artisan: '',
           date: '',
@@ -332,7 +372,9 @@ const Reservations = () => {
                   value={formData.phone} 
                   onChange={handleChange} 
                   required 
-                  placeholder="+65 "
+                  placeholder="8123 4567"
+                  prefixName="countryCode"
+                  prefixValue={formData.countryCode}
                 />
               </div>
             </div>
