@@ -13,7 +13,7 @@ const Navigation = () => {
 
   const menuItems = [
     { label: "The Sanctuary", path: "/sanctuary" },
-    { label: "Experiences", path: "/experiences" },
+    { label: "Services", path: "/experiences" },
     { label: "The Artisans", path: "/artisans" },
     { label: "Journal", path: "/journal" },
     { label: "Reservations", path: "/reservations" }
