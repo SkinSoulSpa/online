@@ -216,7 +216,7 @@ const Preloader = ({ onComplete }) => {
       position: 'fixed',
       inset: 0,
       background: '#FAF9F6',
-      zIndex: 9999,
+      zIndex: 99,
       display: 'flex',
       justifyContent: 'center',
       alignItems: 'center',
