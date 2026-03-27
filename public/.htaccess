@@ -1,6 +1,6 @@
 <IfModule mod_rewrite.c>
   RewriteEngine On
-  RewriteBase /
+  RewriteBase /staging/
   
   # Prefer index.php over index.html
   DirectoryIndex index.php index.html
@@ -13,7 +13,7 @@
   RewriteCond %{REQUEST_FILENAME} !-f
   RewriteCond %{REQUEST_FILENAME} !-d
   RewriteCond %{REQUEST_FILENAME} !-l
-  RewriteRule . /index.php [L]
+  RewriteRule . /staging/index.php [L]
 </IfModule>
 
 # Disable caching for HTML/PHP files to ensure latest version is always loaded
