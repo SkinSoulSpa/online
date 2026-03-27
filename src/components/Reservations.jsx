@@ -394,7 +394,7 @@ const Reservations = () => {
               <InputGroup 
                 label="Note" 
                 name="note" 
-                type="textarea"
+                type="text"
                 value={formData.note} 
                 onChange={handleChange} 
                 placeholder="How is your skin feeling today?"
