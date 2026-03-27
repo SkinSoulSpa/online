@@ -123,32 +123,18 @@ const Navigation = () => {
           <style>{`
             .shimmer-text {
               color: #2C332E;
-              position: relative;
-              display: inline-block;
-              transition: color 0.3s ease;
+              background: linear-gradient(to right, #2C332E 0%, #2C332E 40%, #C5B398 50%, #2C332E 60%, #2C332E 100%);
+              background-size: 200% auto;
+              -webkit-background-clip: text;
+              background-clip: text;
+              -webkit-text-fill-color: transparent;
+              background-position: 0% center;
+              transition: background-position 0.5s ease;
             }
-            .shimmer-text::before {
-              content: '';
-              position: absolute;
-              top: 0;
-              left: 0;
-              width: 100%;
-              height: 100%;
-              background: linear-gradient(
-                120deg,
-                transparent,
-                rgba(197, 179, 152, 0.4),
-                transparent
-              );
-              transform: translateX(-100%);
-              transition: transform 0.5s ease;
-            }
-            .menu-item:hover .shimmer-text::before {
-              transform: translateX(100%);
-              transition: transform 1s ease;
-            }
+
             .menu-item:hover .shimmer-text {
-              color: #A89675; /* Soul Antique Gold */
+              background-position: 200% center;
+              transition: background-position 1.5s ease;
             }
 
             .menu-item .nav-underline {
