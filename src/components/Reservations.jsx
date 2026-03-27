@@ -7,7 +7,7 @@ import sanctuaryImage from '../assets/sanctuary_15.jpg';
 import SEO from './SEO';
 
 // Updated Reservations Component
-const InputGroup = ({ label, type = "text", name, value, onChange, placeholder, required = false, options = null, prefixName, prefixValue }) => (
+const InputGroup = ({ label, type = "text", name, value, onChange, placeholder, required = false, options = null, prefixName, prefixValue, error }) => (
   <div style={{ marginBottom: '2rem' }}>
     <label style={{
       display: 'block',
@@ -15,7 +15,7 @@ const InputGroup = ({ label, type = "text", name, value, onChange, placeholder, 
       fontSize: '0.75rem',
       letterSpacing: '0.1em',
       textTransform: 'uppercase',
-      color: '#5C615E',
+      color: error ? '#D9534F' : '#5C615E',
       marginBottom: '0.8rem'
     }}>
       {label} {required && <span style={{ color: '#C5B398' }}>*</span>}
@@ -80,7 +80,7 @@ const InputGroup = ({ label, type = "text", name, value, onChange, placeholder, 
         }}
       />
     ) : prefixName ? (
-      <div style={{ display: 'flex', alignItems: 'flex-end', borderBottom: '1px solid #DCD6CF' }}>
+      <div style={{ display: 'flex', alignItems: 'flex-end', borderBottom: error ? '1px solid #D9534F' : '1px solid #DCD6CF' }}>
         <input
           type="text"
           name={prefixName}
@@ -129,7 +129,7 @@ const InputGroup = ({ label, type = "text", name, value, onChange, placeholder, 
           width: '100%',
           padding: '0.8rem 0',
           border: 'none',
-          borderBottom: '1px solid #DCD6CF',
+          borderBottom: error ? '1px solid #D9534F' : '1px solid #DCD6CF',
           backgroundColor: 'transparent',
           fontFamily: '"Tenor Sans", sans-serif',
           fontSize: '1.1rem',
@@ -137,6 +137,17 @@ const InputGroup = ({ label, type = "text", name, value, onChange, placeholder, 
           outline: 'none'
         }}
       />
+    )}
+    {error && (
+      <div style={{ 
+        color: '#D9534F', 
+        fontSize: '0.75rem', 
+        fontFamily: '"Montserrat", sans-serif',
+        marginTop: '0.5rem',
+        fontWeight: '500'
+      }}>
+        {error}
+      </div>
     )}
   </div>
 );
@@ -388,6 +399,7 @@ const Reservations = () => {
                   placeholder="8123 4567"
                   prefixName="countryCode"
                   prefixValue={formData.countryCode}
+                  error={errorMsg}
                 />
               </div>
             </div>
@@ -468,17 +480,6 @@ const Reservations = () => {
             >
               {status === 'sending' ? 'Sending...' : 'Request Reservation'}
             </Button>
-            {errorMsg && (
-              <p style={{
-                marginTop: '1rem',
-                fontFamily: '"Montserrat", sans-serif',
-                fontSize: '0.8rem',
-                color: '#D9534F',
-                fontWeight: '500'
-              }}>
-                {errorMsg}
-              </p>
-            )}
             <p style={{
               marginTop: '1.5rem',
               fontFamily: '"Montserrat", sans-serif',
