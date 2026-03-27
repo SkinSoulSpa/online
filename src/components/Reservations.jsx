@@ -256,6 +256,24 @@ const Reservations = () => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
+    
+    // Add custom validation for time if date is today
+    if (name === 'time' && formData.date === today) {
+      const currentTime = getCurrentTime();
+      if (value < currentTime) {
+        // Prevent setting a past time
+        return;
+      }
+    }
+    
+    // If date changes to today and currently selected time is in the past, reset time
+    if (name === 'date' && value === today) {
+      if (formData.time && formData.time < getCurrentTime()) {
+        setFormData(prev => ({ ...prev, date: value, time: '' }));
+        return;
+      }
+    }
+
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
@@ -476,6 +494,7 @@ const Reservations = () => {
                   onChange={handleChange} 
                   required
                   min={minTime}
+                  error={formData.date === today && formData.time && formData.time < getCurrentTime() ? "Please select a future time" : undefined}
                 />
               </div>
 
