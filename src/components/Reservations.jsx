@@ -292,6 +292,11 @@ const Reservations = () => {
   const handleChange = (e) => {
     const { name, value } = e.target;
     
+    // Clear error for this field if it exists
+    if (errors[name]) {
+      setErrors(prev => ({ ...prev, [name]: undefined }));
+    }
+    
     // Add custom validation for time if date is today
     if (name === 'time' && formData.date === today) {
       const currentTime = getCurrentTime();
@@ -312,21 +317,41 @@ const Reservations = () => {
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-  const [errorMsg, setErrorMsg] = useState('');
+  const [errors, setErrors] = useState({});
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     
+    // Custom Validation
+    const newErrors = {};
+    
+    if (!formData.name.trim()) newErrors.name = 'Please fill in your name.';
+    
+    if (!formData.email.trim()) {
+      newErrors.email = 'Please fill in your email.';
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+      newErrors.email = 'Please enter a valid email address.';
+    }
+    
+    if (!formData.phone.trim()) newErrors.phone = 'Please fill in your phone number.';
+    if (!formData.experience) newErrors.experience = 'Please select an experience.';
+    if (!formData.date) newErrors.date = 'Please select a preferred date.';
+    if (!formData.time) newErrors.time = 'Please select a preferred time.';
+
     // Validation for +65 phone numbers
-    if (formData.countryCode.trim() === '+65') {
+    if (formData.countryCode.trim() === '+65' && formData.phone.trim()) {
       const phoneDigitsOnly = formData.phone.replace(/\D/g, '');
       if (phoneDigitsOnly.length !== 8) {
-        setErrorMsg('Singapore phone numbers must be exactly 8 digits.');
-        return;
+        newErrors.phone = 'Singapore phone numbers must be exactly 8 digits.';
       }
     }
     
-    setErrorMsg('');
+    if (Object.keys(newErrors).length > 0) {
+      setErrors(newErrors);
+      return;
+    }
+    
+    setErrors({});
     setStatus('sending');
 
     try {
@@ -426,7 +451,7 @@ const Reservations = () => {
             </p>
           </div>
 
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={handleSubmit} noValidate>
             {/* Contact Details Section */}
             <div style={{ marginBottom: '3rem' }}>
               <h3 style={{
@@ -450,6 +475,7 @@ const Reservations = () => {
                 onChange={handleChange} 
                 required 
                 placeholder="How should we address you?"
+                error={errors.name}
               />
               <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr', gap: '2rem' }}>
                 <InputGroup 
@@ -460,6 +486,7 @@ const Reservations = () => {
                   onChange={handleChange} 
                   required 
                   placeholder="name@example.com"
+                  error={errors.email}
                 />
                 <InputGroup 
                   label="Phone" 
@@ -471,7 +498,7 @@ const Reservations = () => {
                   placeholder="8123 4567"
                   prefixName="countryCode"
                   prefixValue={formData.countryCode}
-                  error={errorMsg}
+                  error={errors.phone}
                 />
               </div>
             </div>
@@ -500,6 +527,7 @@ const Reservations = () => {
                 options={experiences}
                 placeholder="Select your experience"
                 required
+                error={errors.experience}
               />
 
               <InputGroup 
@@ -509,6 +537,7 @@ const Reservations = () => {
                 onChange={handleChange} 
                 options={artisans}
                 placeholder="Select artisan"
+                error={errors.artisan}
               />
 
               <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr', gap: '2rem' }}>
@@ -520,6 +549,7 @@ const Reservations = () => {
                   onChange={handleChange} 
                   required
                   min={today}
+                  error={errors.date}
                 />
                 <InputGroup 
                   label="Preferred Time" 
@@ -530,7 +560,7 @@ const Reservations = () => {
                   required
                   options={formData.date ? generateTimeOptions() : []}
                   placeholder={formData.date ? "Select time" : "Select a date first"}
-                  error={formData.date === today && formData.time && formData.time < getCurrentTime() ? "Please select a future time" : undefined}
+                  error={errors.time || (formData.date === today && formData.time && formData.time < getCurrentTime() ? "Please select a future time" : undefined)}
                 />
               </div>
 
