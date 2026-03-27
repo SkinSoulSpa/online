@@ -15,6 +15,7 @@ import { AudioProvider } from './context/AudioContext';
 import Home from './pages/Home';
 import Sanctuary from './components/Sanctuary';
 import ExperiencesPage from './components/ExperiencesPage';
+import Promotions from './components/Promotions';
 import TheArtisans from './components/TheArtisans';
 import TheJournal from './components/TheJournal';
 import Reservations from './components/Reservations';
@@ -41,6 +42,7 @@ function App() {
               <Route path="/" element={<Home isLoaded={isLoaded} />} />
               <Route path="/sanctuary" element={<Sanctuary />} />
               <Route path="/experiences" element={<ExperiencesPage />} />
+              <Route path="/promotions" element={<Promotions />} />
               <Route path="/artisans" element={<TheArtisans />} />
               <Route path="/journal" element={<TheJournal />} />
               <Route path="/reservations" element={<Reservations />} />
