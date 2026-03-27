@@ -240,3 +240,15 @@ a, button {
     right: 1.5rem;
   }
 }
+
+/* Fix for iOS Safari date and time input alignment */
+input[type="date"]::-webkit-datetime-edit,
+input[type="time"]::-webkit-datetime-edit,
+input[type="date"]::-webkit-date-and-time-value,
+input[type="time"]::-webkit-date-and-time-value {
+  text-align: left !important;
+  justify-content: flex-start !important;
+  display: flex !important;
+  padding: 0;
+}
+
