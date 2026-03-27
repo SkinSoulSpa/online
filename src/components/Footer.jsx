@@ -101,7 +101,7 @@ const Footer = () => {
         margin: '0 auto',
         display: 'grid',
         gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
-        gap: '4rem',
+        gap: '3rem',
         alignItems: 'start'
       }}>
         {/* Brand */}
@@ -110,7 +110,7 @@ const Footer = () => {
             src={logo} 
             alt="Skin Soul Spa" 
             style={{
-              width: '140px',
+              width: '100px',
               height: 'auto',
               marginBottom: '0.5rem'
             }} 
@@ -128,18 +128,6 @@ const Footer = () => {
           }}>
             A private ritual of self-reverence in a hidden Orchard gem.
           </p>
-        </div>
-
-        {/* Explore */}
-        <div style={{ display: 'flex', flexDirection: 'column' }}>
-          <h5 style={sectionTitleStyle}>Explore</h5>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
-            <FooterLink href="/sanctuary">The Sanctuary</FooterLink>
-            <FooterLink href="/experiences">Experiences</FooterLink>
-            <FooterLink href="/artisans">The Artisans</FooterLink>
-            <FooterLink href="/journal">The Journal</FooterLink>
-            <FooterLink href="/reservations">Reservations</FooterLink>
-          </div>
         </div>
 
         {/* Visit */}
@@ -192,8 +180,8 @@ const Footer = () => {
       
       <div style={{
         textAlign: 'center',
-        marginTop: '6rem',
-        paddingTop: '2.5rem',
+        marginTop: '3rem',
+        paddingTop: '2rem',
         borderTop: '1px solid rgba(250, 249, 246, 0.1)'
       }}>
         <p style={{
