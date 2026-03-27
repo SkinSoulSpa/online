@@ -157,7 +157,9 @@ const InputGroup = ({ label, type = "text", name, value, onChange, placeholder, 
         fontSize: '0.75rem', 
         fontFamily: '"Montserrat", sans-serif',
         marginTop: '0.5rem',
-        fontWeight: '500'
+        fontWeight: '500',
+        letterSpacing: '0.05em',
+        textTransform: 'uppercase'
       }}>
         {error}
       </div>
