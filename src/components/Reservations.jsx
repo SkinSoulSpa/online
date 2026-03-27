@@ -44,9 +44,16 @@ const InputGroup = ({ label, type = "text", name, value, onChange, placeholder, 
           }}
         >
           <option value="" disabled>{placeholder || "Select..."}</option>
-          {options.map((opt, idx) => (
-            <option key={idx} value={opt.value || opt}>{opt.label || opt}</option>
-          ))}
+          {options.map((opt, idx) => {
+            const val = opt.value !== undefined ? opt.value : opt;
+            const label = opt.label !== undefined ? opt.label : opt;
+            const isDisabled = opt.disabled || false;
+            return (
+              <option key={idx} value={val} disabled={isDisabled}>
+                {label}
+              </option>
+            );
+          })}
         </select>
         <span style={{
           position: 'absolute',
@@ -193,6 +200,34 @@ const Reservations = () => {
   };
 
   const minTime = formData.date === today ? getCurrentTime() : undefined;
+
+  const generateTimeOptions = () => {
+    const options = [];
+    // Spa hours roughly 10:00 AM to 8:00 PM
+    for (let i = 10; i <= 20; i++) {
+      for (let j = 0; j < 60; j += 30) {
+        if (i === 20 && j > 0) continue; // End at 8:00 PM
+        
+        const hour = String(i).padStart(2, '0');
+        const minute = String(j).padStart(2, '0');
+        const timeValue = `${hour}:${minute}`;
+        
+        const ampm = i >= 12 ? 'PM' : 'AM';
+        const displayHour = i > 12 ? i - 12 : i;
+        const displayTime = `${displayHour}:${minute} ${ampm}`;
+        
+        let isDisabled = false;
+        if (formData.date === today) {
+          if (timeValue < getCurrentTime()) {
+            isDisabled = true;
+          }
+        }
+        
+        options.push({ value: timeValue, label: displayTime, disabled: isDisabled });
+      }
+    }
+    return options;
+  };
 
   useEffect(() => {
     // Handle pre-selected experience (Impulse Buy)
@@ -489,11 +524,12 @@ const Reservations = () => {
                 <InputGroup 
                   label="Preferred Time" 
                   name="time" 
-                  type="time" 
+                  type="text" 
                   value={formData.time} 
                   onChange={handleChange} 
                   required
-                  min={minTime}
+                  options={formData.date ? generateTimeOptions() : []}
+                  placeholder={formData.date ? "Select time" : "Select a date first"}
                   error={formData.date === today && formData.time && formData.time < getCurrentTime() ? "Please select a future time" : undefined}
                 />
               </div>
