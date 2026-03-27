@@ -15,7 +15,7 @@ const InputGroup = ({ label, type = "text", name, value, onChange, placeholder, 
       fontSize: '0.75rem',
       letterSpacing: '0.1em',
       textTransform: 'uppercase',
-      color: error ? '#D9534F' : '#5C615E',
+      color: error ? '#800000' : '#5C615E',
       marginBottom: '0.8rem'
     }}>
       {label} {required && <span style={{ color: '#C5B398' }}>*</span>}
@@ -89,7 +89,7 @@ const InputGroup = ({ label, type = "text", name, value, onChange, placeholder, 
         }}
       />
     ) : prefixName ? (
-      <div style={{ display: 'flex', alignItems: 'flex-end', borderBottom: error ? '1px solid #D9534F' : '1px solid #DCD6CF' }}>
+      <div style={{ display: 'flex', alignItems: 'flex-end', borderBottom: error ? '1px solid #800000' : '1px solid #DCD6CF' }}>
         <input
           type="text"
           name={prefixName}
@@ -141,7 +141,7 @@ const InputGroup = ({ label, type = "text", name, value, onChange, placeholder, 
           width: '100%',
           padding: '0.8rem 0',
           border: 'none',
-          borderBottom: error ? '1px solid #D9534F' : '1px solid #DCD6CF',
+          borderBottom: error ? '1px solid #800000' : '1px solid #DCD6CF',
           backgroundColor: 'transparent',
           fontFamily: '"Tenor Sans", sans-serif',
           fontSize: '1.1rem',
@@ -153,13 +153,11 @@ const InputGroup = ({ label, type = "text", name, value, onChange, placeholder, 
     )}
     {error && (
       <div style={{ 
-        color: '#D9534F', 
+        color: '#800000', 
         fontSize: '0.75rem', 
         fontFamily: '"Montserrat", sans-serif',
         marginTop: '0.5rem',
-        fontWeight: '500',
-        letterSpacing: '0.05em',
-        textTransform: 'uppercase'
+        fontWeight: '500'
       }}>
         {error}
       </div>
