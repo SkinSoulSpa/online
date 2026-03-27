@@ -229,8 +229,21 @@ const Reservations = () => {
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
+  const [errorMsg, setErrorMsg] = useState('');
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+    
+    // Validation for +65 phone numbers
+    if (formData.countryCode.trim() === '+65') {
+      const phoneDigitsOnly = formData.phone.replace(/\D/g, '');
+      if (phoneDigitsOnly.length !== 8) {
+        setErrorMsg('Singapore phone numbers must be exactly 8 digits.');
+        return;
+      }
+    }
+    
+    setErrorMsg('');
     setStatus('sending');
 
     try {
@@ -455,6 +468,17 @@ const Reservations = () => {
             >
               {status === 'sending' ? 'Sending...' : 'Request Reservation'}
             </Button>
+            {errorMsg && (
+              <p style={{
+                marginTop: '1rem',
+                fontFamily: '"Montserrat", sans-serif',
+                fontSize: '0.8rem',
+                color: '#D9534F',
+                fontWeight: '500'
+              }}>
+                {errorMsg}
+              </p>
+            )}
             <p style={{
               marginTop: '1.5rem',
               fontFamily: '"Montserrat", sans-serif',
