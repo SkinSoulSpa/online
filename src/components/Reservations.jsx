@@ -109,7 +109,7 @@ const Reservations = () => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
-    phone: '',
+    phone: '+65 ',
     experience: '',
     artisan: '',
     date: '',
@@ -218,7 +218,7 @@ const Reservations = () => {
         setFormData({
           name: '',
           email: '',
-          phone: '',
+          phone: '+65 ',
           experience: '',
           artisan: '',
           date: '',
@@ -332,7 +332,7 @@ const Reservations = () => {
                   value={formData.phone} 
                   onChange={handleChange} 
                   required 
-                  placeholder="+65 ..."
+                  placeholder="+65 "
                 />
               </div>
             </div>
