@@ -7,7 +7,7 @@ import sanctuaryImage from '../assets/sanctuary_15.jpg';
 import SEO from './SEO';
 
 // Updated Reservations Component
-const InputGroup = ({ label, type = "text", name, value, onChange, placeholder, required = false, options = null, prefixName, prefixValue, error }) => (
+const InputGroup = ({ label, type = "text", name, value, onChange, placeholder, required = false, options = null, prefixName, prefixValue, error, min }) => (
   <div style={{ marginBottom: '2rem' }}>
     <label style={{
       display: 'block',
@@ -107,6 +107,7 @@ const InputGroup = ({ label, type = "text", name, value, onChange, placeholder, 
           onChange={onChange}
           placeholder={placeholder}
           required={required}
+          min={min}
           style={{
             flex: 1,
             padding: '0.8rem 0',
@@ -128,6 +129,7 @@ const InputGroup = ({ label, type = "text", name, value, onChange, placeholder, 
         onChange={onChange}
         placeholder={placeholder}
         required={required}
+        min={min}
         style={{
           width: '100%',
           padding: '0.8rem 0',
@@ -178,6 +180,19 @@ const Reservations = () => {
   ]);
 
   const [status, setStatus] = useState('idle'); // idle, sending, success, error
+
+  // Get today's date in YYYY-MM-DD format for the min attribute
+  const today = new Date().toISOString().split('T')[0];
+
+  // Get current time in HH:MM format if the selected date is today
+  const getCurrentTime = () => {
+    const now = new Date();
+    const hours = String(now.getHours()).padStart(2, '0');
+    const minutes = String(now.getMinutes()).padStart(2, '0');
+    return `${hours}:${minutes}`;
+  };
+
+  const minTime = formData.date === today ? getCurrentTime() : undefined;
 
   useEffect(() => {
     // Handle pre-selected experience (Impulse Buy)
@@ -451,6 +466,7 @@ const Reservations = () => {
                   value={formData.date} 
                   onChange={handleChange} 
                   required
+                  min={today}
                 />
                 <InputGroup 
                   label="Preferred Time" 
@@ -459,6 +475,7 @@ const Reservations = () => {
                   value={formData.time} 
                   onChange={handleChange} 
                   required
+                  min={minTime}
                 />
               </div>
 
