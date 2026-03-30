@@ -189,7 +189,16 @@ const Reservations = () => {
   const [status, setStatus] = useState('idle'); // idle, sending, success, error
 
   // Get today's date in YYYY-MM-DD format for the min attribute
-  const today = new Date().toISOString().split('T')[0];
+  // Get local date in YYYY-MM-DD format to avoid timezone issues
+  const getLocalDate = () => {
+    const now = new Date();
+    const year = now.getFullYear();
+    const month = String(now.getMonth() + 1).padStart(2, '0');
+    const day = String(now.getDate()).padStart(2, '0');
+    return `${year}-${month}-${day}`;
+  };
+  
+  const today = getLocalDate();
 
   // Get current time in HH:MM format if the selected date is today
   const getCurrentTime = () => {
@@ -295,6 +304,12 @@ const Reservations = () => {
     // Clear error for this field if it exists
     if (errors[name]) {
       setErrors(prev => ({ ...prev, [name]: undefined }));
+    }
+    
+    // Prevent selecting a past date (fallback for mobile/Safari where 'min' might not strictly block selection visually)
+    if (name === 'date' && value < today) {
+      setErrors(prev => ({ ...prev, date: 'Please select a future date.' }));
+      return;
     }
     
     // Add custom validation for time if date is today
