@@ -149,6 +149,11 @@ const InputGroup = ({ label, type = "text", name, value, onChange, placeholder, 
           outline: 'none',
           textAlign: 'left'
         }}
+        onClick={(e) => {
+          if (type === 'date') {
+            e.target.showPicker && e.target.showPicker();
+          }
+        }}
       />
     )}
     {error && (
@@ -190,15 +195,14 @@ const Reservations = () => {
 
   // Get today's date in YYYY-MM-DD format for the min attribute
   // Get local date in YYYY-MM-DD format to avoid timezone issues
-  const getLocalDate = () => {
-    const now = new Date();
-    const year = now.getFullYear();
-    const month = String(now.getMonth() + 1).padStart(2, '0');
-    const day = String(now.getDate()).padStart(2, '0');
-    return `${year}-${month}-${day}`;
-  };
-  
-  const today = getLocalDate();
+    const getLocalDate = () => {
+      const now = new Date();
+      const offset = now.getTimezoneOffset();
+      now.setMinutes(now.getMinutes() - offset);
+      return now.toISOString().split('T')[0];
+    };
+    
+    const today = getLocalDate();
 
   // Get current time in HH:MM format if the selected date is today
   const getCurrentTime = () => {
