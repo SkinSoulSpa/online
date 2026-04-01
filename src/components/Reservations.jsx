@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
 import gsap from 'gsap';
 import OrganicImagePlaceholder from './OrganicImagePlaceholder';
 import Button from './Button';
@@ -128,6 +130,78 @@ const InputGroup = ({ label, type = "text", name, value, onChange, placeholder, 
           }}
         />
       </div>
+    ) : type === 'date' ? (
+      <div style={{ position: 'relative' }}>
+        <DatePicker
+          selected={value ? new Date(value) : null}
+          onChange={(date) => {
+            if (date) {
+              const offset = date.getTimezoneOffset();
+              const localDate = new Date(date.getTime() - (offset*60*1000));
+              onChange({ target: { name, value: localDate.toISOString().split('T')[0] } });
+            } else {
+              onChange({ target: { name, value: '' } });
+            }
+          }}
+          minDate={new Date()}
+          placeholderText={placeholder}
+          required={required}
+          dateFormat="yyyy-MM-dd"
+          className="custom-datepicker"
+          wrapperClassName="date-picker-wrapper"
+          onFocus={(e) => e.target.blur()}
+        />
+        <style>{`
+          .date-picker-wrapper {
+            width: 100%;
+            display: block;
+          }
+          .custom-datepicker {
+            width: 100%;
+            padding: 0.8rem 0;
+            border: none;
+            border-bottom: ${error ? '1px solid #800000' : '1px solid #DCD6CF'};
+            background-color: transparent;
+            font-family: "Tenor Sans", sans-serif;
+            font-size: 1.1rem;
+            color: #2C332E;
+            outline: none;
+            text-align: left;
+            border-radius: 0;
+            -webkit-appearance: none;
+          }
+          .react-datepicker {
+            font-family: "Montserrat", sans-serif;
+            border: 1px solid #DCD6CF;
+            border-radius: 4px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+          }
+          .react-datepicker__header {
+            background-color: #F8F5F0;
+            border-bottom: 1px solid #DCD6CF;
+          }
+          .react-datepicker__current-month, .react-datepicker-time__header, .react-datepicker-year-header {
+            color: #2C332E;
+            font-family: "Tenor Sans", sans-serif;
+            font-weight: normal;
+          }
+          .react-datepicker__day--selected, .react-datepicker__day--in-selecting-range, .react-datepicker__day--in-range, .react-datepicker__month-text--selected, .react-datepicker__month-text--in-selecting-range, .react-datepicker__month-text--in-range, .react-datepicker__quarter-text--selected, .react-datepicker__quarter-text--in-selecting-range, .react-datepicker__quarter-text--in-range, .react-datepicker__year-text--selected, .react-datepicker__year-text--in-selecting-range, .react-datepicker__year-text--in-range {
+            background-color: #A89675;
+            color: #fff;
+          }
+          .react-datepicker__day--selected:hover, .react-datepicker__day--in-selecting-range:hover, .react-datepicker__day--in-range:hover, .react-datepicker__month-text--selected:hover, .react-datepicker__month-text--in-selecting-range:hover, .react-datepicker__month-text--in-range:hover, .react-datepicker__quarter-text--selected:hover, .react-datepicker__quarter-text--in-selecting-range:hover, .react-datepicker__quarter-text--in-range:hover, .react-datepicker__year-text--selected:hover, .react-datepicker__year-text--in-selecting-range:hover, .react-datepicker__year-text--in-range:hover {
+            background-color: #928265;
+          }
+          .react-datepicker__day--keyboard-selected, .react-datepicker__month-text--keyboard-selected, .react-datepicker__quarter-text--keyboard-selected, .react-datepicker__year-text--keyboard-selected {
+            background-color: #C5B398;
+            color: #fff;
+          }
+          .react-datepicker__day--disabled, .react-datepicker__month-text--disabled, .react-datepicker__quarter-text--disabled, .react-datepicker__year-text--disabled {
+            cursor: default;
+            color: #ccc;
+          }
+        `}</style>
+      </div>
     ) : (
       <input
         type={type}
@@ -236,7 +310,11 @@ const Reservations = () => {
           }
         }
         
-        options.push({ value: timeValue, label: displayTime, disabled: isDisabled });
+        // On mobile, disabled options in a select might not be visually greyed out or might still be selectable depending on the OS version.
+        // To guarantee they can't be selected and to provide a clean UI, we just filter them out completely if they are in the past.
+        if (!isDisabled) {
+          options.push({ value: timeValue, label: displayTime, disabled: isDisabled });
+        }
       }
     }
     return options;
