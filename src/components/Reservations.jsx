@@ -152,6 +152,9 @@ const InputGroup = ({ label, type = "text", name, value, onChange, placeholder, 
           onFocus={(e) => e.target.blur()}
         />
         <style>{`
+          .react-datepicker-popper {
+            z-index: 9999 !important;
+          }
           .date-picker-wrapper {
             width: 100%;
             display: block;
