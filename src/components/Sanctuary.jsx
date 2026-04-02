@@ -9,6 +9,7 @@ import sanctuarySilence2 from '../assets/sanctuary-silence-2.jpg';
 import noHardSellingImage from '../assets/no_hard_selling.jpg';
 import pacificPlazaImage from '../assets/pacific_plaza.jpg';
 import SEO from './SEO';
+import SlowBeauty from './SlowBeauty';
 
 // Re-register in case it's mounted separately
 gsap.registerPlugin(ScrollTrigger);
@@ -321,6 +322,8 @@ const Sanctuary = () => {
            </OrganicImagePlaceholder>
         </div>
       </Section>
+
+      <SlowBeauty />
     </div>
     </>
   );
