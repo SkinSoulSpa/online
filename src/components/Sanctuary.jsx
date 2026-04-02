@@ -271,6 +271,8 @@ const Sanctuary = () => {
         </div>
       </Section>
 
+      <SlowBeauty />
+
       {/* SECTION 4: THE LOCATION (The Hidden Gem) */}
       <Section className="fade-section" style={{ flexDirection: 'column', textAlign: 'center' }}>
         <div style={{ maxWidth: '700px', marginBottom: '4rem' }}>
@@ -322,8 +324,6 @@ const Sanctuary = () => {
            </OrganicImagePlaceholder>
         </div>
       </Section>
-
-      <SlowBeauty />
     </div>
     </>
   );
