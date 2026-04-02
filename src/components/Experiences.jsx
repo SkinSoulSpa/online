@@ -169,13 +169,13 @@ const Experiences = () => {
           onMouseLeave={() => !isMobile && setHoveredId(null)}
           onClick={() => handleCardClick(card.type, card.id)}
                 style={{
-                  backgroundColor: '#FFFFFF',
+                  backgroundColor: isHovered ? '#FCFAF5' : '#FFFFFF',
                   borderRadius: '1rem', // rounded-2xl
-                  border: isHovered ? '1px solid rgba(191, 164, 117, 0.3)' : '1px solid transparent', // hover:border-soul-gold/30
-                  boxShadow: isHovered ? '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)' : 'none', // hover:shadow-xl
-                  transition: 'all 0.5s ease',
+                  border: isHovered ? '1px solid rgba(191, 164, 117, 0.6)' : '1px solid transparent', // hover:border-soul-gold/60
+                  boxShadow: isHovered ? '0 25px 35px -5px rgba(0, 0, 0, 0.15), 0 15px 15px -5px rgba(0, 0, 0, 0.08)' : '0 4px 6px -1px rgba(0, 0, 0, 0.05)', // hover:shadow-2xl
+                  transition: 'all 0.5s cubic-bezier(0.4, 0, 0.2, 1)',
                   cursor: 'pointer',
-                  transform: isHovered ? 'translateY(-2px)' : 'none',
+                  transform: isHovered ? 'translateY(-6px)' : 'none',
                   position: 'relative',
                   overflow: 'hidden',
                   display: 'flex',
@@ -212,7 +212,9 @@ const Experiences = () => {
                     maskRepeat: isMobile ? 'repeat-x' : 'repeat-y',
                     WebkitMaskRepeat: isMobile ? 'repeat-x' : 'repeat-y',
                     pointerEvents: 'none',
-                    animation: isMobile ? 'waveFlowHorizontal 30s linear infinite' : 'waveFlow 12s linear infinite'
+                    animation: isMobile ? 'waveFlowHorizontal 30s linear infinite' : 'waveFlow 12s linear infinite',
+                    transition: 'transform 0.6s ease',
+                    transform: isHovered ? 'scale(1.05)' : 'scale(1)'
                   }}>
                     <style>
                       {`
@@ -226,47 +228,6 @@ const Experiences = () => {
                         }
                       `}
                     </style>
-                  </div>
-
-                  {/* Hover Overlay Text */}
-                  <div style={{
-                    position: 'absolute',
-                    top: 0,
-                    left: 0,
-                    width: '100%',
-                    height: '100%',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    opacity: isHovered ? 1 : 0,
-                    transition: 'opacity 0.4s ease',
-                    zIndex: 2,
-                    pointerEvents: 'none'
-                  }}>
-                    <style>
-                      {`
-                        @keyframes goldShimmer {
-                          0% { background-position: 0% 50%; }
-                          100% { background-position: 200% 50%; }
-                        }
-                      `}
-                    </style>
-                    <span style={{
-                      fontFamily: '"Montserrat", sans-serif',
-                      fontSize: '0.9rem',
-                      letterSpacing: '0.15em',
-                      textTransform: 'uppercase',
-                      backgroundImage: 'linear-gradient(90deg, #BFA475 0%, #FFF8E7 50%, #BFA475 100%)',
-                      backgroundSize: '200% auto',
-                      color: '#BFA475',
-                      WebkitBackgroundClip: 'text',
-                      WebkitTextFillColor: 'transparent',
-                      animation: 'goldShimmer 3s linear infinite',
-                      fontWeight: 600,
-                      textShadow: '0 2px 10px rgba(0,0,0,0.1)'
-                    }}>
-                      Explore The Journeys
-                    </span>
                   </div>
                 </div>
 
@@ -362,6 +323,39 @@ const Experiences = () => {
                           ))}
                         </div>
                       )}
+                      
+                      {/* Call to action arrow */}
+                      <div style={{
+                        marginTop: '2rem',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'flex-end',
+                        color: isHovered ? '#BFA475' : '#9CAFA0',
+                        transition: 'all 0.3s ease'
+                      }}>
+                        <span style={{
+                          fontFamily: '"Montserrat", sans-serif',
+                          fontSize: '0.75rem',
+                          textTransform: 'uppercase',
+                          letterSpacing: '0.15em',
+                          fontWeight: 600,
+                          marginRight: '0.5rem',
+                          opacity: isHovered ? 1 : 0,
+                          transform: isHovered ? 'translateX(0)' : 'translateX(-10px)',
+                          transition: 'all 0.3s ease'
+                        }}>
+                          Discover
+                        </span>
+                        <svg 
+                          width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"
+                          style={{
+                            transform: isHovered ? 'translateX(5px)' : 'translateX(0)',
+                            transition: 'transform 0.3s ease'
+                          }}
+                        >
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                        </svg>
+                      </div>
                     </div>
                   </div>
                 </div>
