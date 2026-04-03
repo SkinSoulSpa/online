@@ -7,7 +7,7 @@ import Experiences from '../components/Experiences';
 import Artisans from '../components/Artisans';
 import ClientStories from '../components/ClientStories';
 import SEO from '../components/SEO';
-import heroBg from '../assets/sanctuary-hero.jpg';
+import heroBg from '../assets/luminous.png';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -78,29 +78,40 @@ const Home = ({ isLoaded = true }) => {
       display: 'flex',
       flexDirection: 'column',
       alignItems: 'flex-start',
+      marginTop: '-80px', // Counteract the padding-top: 80px on the <main> container so hero starts at true top
     }}>
-      {/* Full Width Hero Background */}
+      {/* Full Width Hero Background Container */}
       <div style={{
         position: 'absolute',
         top: 0,
         left: 0,
         width: '100%',
-        height: '100vh',
+        height: 'calc(100vh + 80px)', // Account for the negative margin
         zIndex: -1,
-        backgroundImage: `url(${heroBg})`,
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        backgroundAttachment: 'fixed', // Creates a nice parallax effect
+        backgroundColor: '#2C332E', // Solid dark base color
       }}>
-        {/* Dark overlay to make text readable */}
+        {/* Actual Image with low opacity */}
         <div style={{
           position: 'absolute',
           top: 0,
           left: 0,
           width: '100%',
           height: '100%',
-          backgroundColor: 'rgba(44, 51, 46, 0.4)', // Soul Dark Green with opacity
-          background: 'linear-gradient(to bottom, rgba(44,51,46,0.3) 0%, rgba(44,51,46,0.6) 100%)'
+          backgroundImage: `url(${heroBg})`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundAttachment: 'fixed', // Creates a nice parallax effect
+          opacity: 0.25, // Low opacity for luminous.png
+        }} />
+        
+        {/* Gradient overlay for text readability */}
+        <div style={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          width: '100%',
+          height: '100%',
+          background: 'linear-gradient(to bottom, rgba(44,51,46,0.1) 0%, rgba(44,51,46,0.6) 100%)'
         }} />
       </div>
 
@@ -111,11 +122,11 @@ const Home = ({ isLoaded = true }) => {
           maxWidth: '1000px',
           padding: '0 2rem',
           marginLeft: isMobile ? '0' : '10vw',
-          height: '100vh', // Take full height of viewport
+          height: 'calc(100vh + 80px)', // Take full height of viewport
           display: 'flex',
           flexDirection: 'column',
           justifyContent: 'center', // Center content vertically
-          paddingTop: '5vh' // Slight offset for header
+          paddingTop: '80px' // Add padding back so content isn't under header
         }}
       >
         <h1 style={{
