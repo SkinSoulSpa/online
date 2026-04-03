@@ -7,7 +7,7 @@ import Experiences from '../components/Experiences';
 import Artisans from '../components/Artisans';
 import ClientStories from '../components/ClientStories';
 import SEO from '../components/SEO';
-import homeHeroVideo from '../assets/1.mp4';
+import heroBg from '../assets/sanctuary-hero.jpg';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -47,11 +47,11 @@ const Home = ({ isLoaded = true }) => {
           });
       }
 
-      // Scroll Parallax & Fade Out
+      // Scroll Parallax & Fade Out (Delayed to allow "Gentle" to appear)
       gsap.to(heroRef.current, {
         scrollTrigger: {
           trigger: heroRef.current,
-          start: "top+=100 top", 
+          start: "top+=100 top", // Start fading out slightly later
           end: "bottom top", 
           scrub: true
         },
@@ -74,14 +74,12 @@ const Home = ({ isLoaded = true }) => {
       <div style={{ 
       position: 'relative', 
       zIndex: 1, 
-      minHeight: '120vh', // Reduced height since we are using a distinct hero
+      minHeight: '150vh', // Reduced height since we're using a full hero image
       display: 'flex',
       flexDirection: 'column',
-      alignItems: 'center', // Center align for new hero style
-      paddingTop: '0' // Remove padding top to allow full bleed
+      alignItems: 'flex-start',
     }}>
-      
-      {/* Background Video for Hero */}
+      {/* Full Width Hero Background */}
       <div style={{
         position: 'absolute',
         top: 0,
@@ -89,112 +87,90 @@ const Home = ({ isLoaded = true }) => {
         width: '100%',
         height: '100vh',
         zIndex: -1,
-        overflow: 'hidden',
-        backgroundColor: '#9CAFA0'
+        backgroundImage: `url(${heroBg})`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundAttachment: 'fixed', // Creates a nice parallax effect
       }}>
-        <video 
-          autoPlay 
-          muted 
-          loop 
-          playsInline 
-          style={{
-            width: '100%',
-            height: '100%',
-            objectFit: 'cover',
-            opacity: 0.6,
-            filter: 'grayscale(20%)'
-          }}
-        >
-          <source src={homeHeroVideo} type="video/mp4" />
-        </video>
-        {/* Gradient Overlay to transition into the white sections below */}
+        {/* Dark overlay to make text readable */}
         <div style={{
           position: 'absolute',
-          inset: 0,
-          background: 'linear-gradient(to bottom, rgba(250, 249, 246, 0.3) 0%, rgba(250, 249, 246, 0.7) 70%, #FAF9F6 100%)'
-        }}></div>
+          top: 0,
+          left: 0,
+          width: '100%',
+          height: '100%',
+          backgroundColor: 'rgba(44, 51, 46, 0.4)', // Soul Dark Green with opacity
+          background: 'linear-gradient(to bottom, rgba(44,51,46,0.3) 0%, rgba(44,51,46,0.6) 100%)'
+        }} />
       </div>
 
-      {/* Hero Content */}
       <div 
         ref={heroRef}
         style={{
-          textAlign: 'center', // Center text
+          textAlign: 'left',
           maxWidth: '1000px',
           padding: '0 2rem',
-          height: '100vh',
+          marginLeft: isMobile ? '0' : '10vw',
+          height: '100vh', // Take full height of viewport
           display: 'flex',
           flexDirection: 'column',
-          justifyContent: 'center',
-          alignItems: 'center',
-          marginTop: '-5vh' // Slight adjustment upward
+          justifyContent: 'center', // Center content vertically
+          paddingTop: '5vh' // Slight offset for header
         }}
       >
-        <span style={{
-          fontFamily: '"Montserrat", sans-serif',
-          fontSize: '0.7rem',
-          letterSpacing: '0.3em',
-          textTransform: 'uppercase',
-          color: '#2C332E', 
-          display: 'block',
-          marginBottom: '1.5rem',
-          opacity: 0.8
-        }}>
-          Orchard's Hidden Gem
-        </span>
         <h1 style={{
           fontFamily: '"Tenor Sans", sans-serif',
-          fontSize: 'clamp(3rem, 7vw, 5.5rem)', // Even larger for impact
-          color: '#2C332E',
+          fontSize: 'clamp(2rem, 4vw, 3rem)', // Toned down size
+          color: '#FCFAF5', // Changed to light color for dark background
           fontWeight: 400,
-          lineHeight: 1.1,
-          marginBottom: '2rem',
+          lineHeight: 1.2,
+          marginBottom: '1.5rem',
           letterSpacing: '0.02em',
-          opacity: 0.9,
-          maxWidth: '800px',
-          textShadow: '0 4px 20px rgba(250, 249, 246, 0.8)' // Better readability over video
+          opacity: 0.95,
+          maxWidth: '600px',
+          textShadow: '0 2px 10px rgba(0,0,0,0.2)' // Added text shadow for readability
         }}>
-          Peaceful<br />
-          <span style={{ whiteSpace: 'nowrap', display: 'inline-block', fontStyle: 'italic', color: '#BFA475' }}>
-            Haven.
+          A Hidden Gem<br />
+          Where Luxury is <span style={{ whiteSpace: 'nowrap', display: 'inline-block', color: '#E8DCC4' }}>
+            Gentle.
           </span>
         </h1>
         <p style={{
           fontFamily: '"Cormorant Garamond", serif',
-          fontSize: 'clamp(1.25rem, 2.5vw, 1.75rem)',
-          color: '#2C332E',
-          fontWeight: 400,
+          fontSize: 'clamp(1.1rem, 2vw, 1.4rem)', // Toned down size
+          color: '#E8DCC4', // Light warm tone
+          fontWeight: 300,
           fontStyle: 'italic',
           lineHeight: 1.6,
-          maxWidth: '600px',
-          margin: '0 auto',
-          position: 'relative'
+          maxWidth: '500px',
+          margin: '0',
+          position: 'relative',
+          textShadow: '0 2px 8px rgba(0,0,0,0.3)'
         }}>
           Experience the art of slow beauty. A transformative escape designed to nourish your skin and calm your spirit.
         </p>
         
         {/* Scroll Indicator */}
         <div style={{
-          marginTop: '5rem',
+          marginTop: '3rem',
           display: 'flex',
-          flexDirection: 'column',
           alignItems: 'center',
           gap: '1rem',
           opacity: 0.8
         }}>
           <span style={{
             fontFamily: '"Montserrat", sans-serif',
-            fontSize: '0.6rem',
+            fontSize: '0.65rem',
             letterSpacing: '0.2em',
             textTransform: 'uppercase',
-            color: '#2C332E'
+            color: '#FCFAF5' // Light color
           }}>
-            Discover
+            Scroll to discover
           </span>
           <div style={{
-            width: '1px',
-            height: '40px',
-            backgroundColor: 'rgba(44, 51, 46, 0.3)',
+            width: '40px',
+            height: '1px',
+            backgroundColor: 'rgba(252, 250, 245, 0.3)',
             position: 'relative',
             overflow: 'hidden'
           }}>
@@ -204,25 +180,26 @@ const Home = ({ isLoaded = true }) => {
               left: 0,
               width: '100%',
               height: '100%',
-              backgroundColor: '#BFA475',
-              animation: 'scrollLineVertical 2s ease-in-out infinite'
+              backgroundColor: '#FCFAF5',
+              animation: 'scrollLine 2s ease-in-out infinite'
             }} />
           </div>
         </div>
       </div>
       
       <style>{`
-        @keyframes scrollLineVertical {
-          0% { transform: translateY(-100%); }
-          50% { transform: translateY(0); }
-          100% { transform: translateY(100%); }
+        @keyframes scrollLine {
+          0% { transform: translateX(-100%); }
+          50% { transform: translateX(0); }
+          100% { transform: translateX(100%); }
         }
         @keyframes fadeInUp {
           from { opacity: 0; transform: translateY(20px); }
           to { opacity: 1; transform: translateY(0); }
         }
       `}</style>
-      
+
+      {/* Solid background for content below hero */}
       <div style={{ width: '100%', backgroundColor: '#FAF9F6', position: 'relative', zIndex: 2 }}>
         <OurPhilosophy />
         <Experiences />
