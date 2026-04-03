@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skin Soul Spa - Brand Summary</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600&family=Tenor+Sans&display=swap" rel="stylesheet">
+    <style>
+        @page {
+            size: A4;
+            margin: 0;
+        }
+
+        :root {
+            --color-gold: #A89675;
+            --color-dark: #1F1F1F;
+            --color-text: #4A4A4A;
+            --color-deep-green: #2C332E;
+            --color-bg: #FAF9F6;
+            --font-heading: 'Tenor Sans', serif;
+            --font-body: 'Manrope', sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        body {
+            font-family: var(--font-body);
+            color: var(--color-text);
+            line-height: 1.6;
+            background-color: #eee; /* Grey background for screen view to show pages */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 40px 0;
+            gap: 40px;
+        }
+
+        .page {
+            width: 210mm;
+            height: 297mm;
+            background: white;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* --- Page 1 Layout --- */
+        .p1-header {
+            padding: 50px 50px 30px;
+            text-align: center;
+        }
+
+        .brand-logo img {
+            width: 120px;
+            margin-bottom: 25px;
+        }
+
+        .brand-subtitle {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.3em;
+            color: var(--color-gold);
+        }
+
+        .p1-hero {
+            height: 350px;
+            margin: 0 50px;
+            background-image: url('og/sanctuary.jpg');
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            border-radius: 6px;
+        }
+        
+        .p1-hero::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: rgba(44, 51, 46, 0.2);
+            border-radius: 6px;
+        }
+
+        .p1-content {
+            padding: 50px 70px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 40px;
+        }
+
+        .philosophy-section {
+            text-align: center;
+        }
+
+        .section-heading {
+            font-family: var(--font-heading);
+            font-size: 24px;
+            color: var(--color-deep-green);
+            margin-bottom: 20px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-heading::after {
+            content: '';
+            display: block;
+            width: 40px;
+            height: 1px;
+            background: var(--color-gold);
+            margin: 10px auto 0;
+        }
+
+        .body-text {
+            font-size: 14px;
+            font-weight: 300;
+            color: #555;
+            line-height: 1.8;
+            text-align: left;
+        }
+
+        .columns-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-top: 20px;
+        }
+
+        .column-title {
+            font-family: var(--font-heading);
+            font-size: 18px;
+            color: var(--color-dark);
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        /* --- Page 2 & 3 Headers --- */
+        .sub-header {
+            padding: 25px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .sub-brand-mark {
+            font-family: var(--font-heading);
+            font-size: 16px;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--color-gold);
+        }
+
+        .page-num {
+            font-size: 10px;
+            color: #ccc;
+            letter-spacing: 0.1em;
+        }
+
+        /* --- Page 2 Content --- */
+        .p2-hero {
+            height: 250px;
+            background-image: url('og/artisans.jpg');
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            border-radius: 6px;
+        }
+
+        .p2-content {
+            padding: 50px 70px;
+            flex: 1;
+        }
+
+        .methodology-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-top: 30px;
+        }
+
+        .method-card {
+            background: #FAF9F6;
+            border: 1px solid #EAE5D9;
+            border-radius: 6px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .method-image {
+            width: 100%;
+            height: 150px;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .method-content {
+            padding: 25px;
+            flex: 1;
+        }
+
+        .method-title {
+            font-family: var(--font-heading);
+            font-size: 16px;
+            color: var(--color-deep-green);
+            margin-bottom: 10px;
+        }
+
+        .method-desc {
+            font-size: 12px;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* --- Page 3 Content --- */
+        .p3-hero {
+            height: 250px;
+            background-image: url('og/experiences.jpg');
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            border-radius: 6px;
+        }
+
+        .p3-content {
+            padding: 50px 70px;
+            flex: 1;
+        }
+
+        .service-list {
+            display: flex;
+            flex-direction: column;
+            gap: 35px;
+        }
+
+        .service-item {
+            display: grid;
+            grid-template-columns: 180px 1fr;
+            gap: 30px;
+            align-items: baseline;
+        }
+
+        .service-name {
+            font-family: var(--font-heading);
+            font-size: 18px;
+            color: var(--color-deep-green);
+            text-align: right;
+            line-height: 1.3;
+        }
+
+        .service-desc {
+            font-size: 13px;
+            font-weight: 300;
+            color: #555;
+            line-height: 1.7;
+        }
+
+        .review-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 25px;
+            border: 1px solid var(--color-gold);
+            text-decoration: none !important;
+            color: var(--color-dark) !important;
+            margin: 30px auto;
+            transition: all 0.2s;
+            background-color: transparent;
+            border-radius: 6px;
+        }
+
+        .review-cta:hover {
+            background-color: #FAF9F6;
+            transform: translateY(-1px);
+        }
+
+        .star-group {
+            color: var(--color-gold);
+            letter-spacing: 2px;
+            font-size: 14px;
+        }
+
+        .review-text {
+            font-family: var(--font-heading);
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            font-weight: 500;
+        }
+
+        .promise-section {
+            margin-top: 60px;
+            margin-bottom: 150px; /* Space for footer */
+            text-align: center;
+            position: relative;
+            padding: 40px 20px;
+        }
+
+        .promise-section::before {
+            content: '“';
+            font-family: var(--font-heading);
+            font-size: 60px;
+            color: var(--color-gold);
+            opacity: 0.15;
+            position: absolute;
+            top: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            line-height: 1;
+        }
+
+        .promise-text {
+            font-family: var(--font-heading);
+            font-size: 16px;
+            color: #444;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            max-width: 550px;
+            margin-left: auto;
+            margin-right: auto;
+            font-weight: 400;
+        }
+        
+        .promise-sub {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.3em;
+            color: #999;
+            position: relative;
+            display: inline-block;
+            padding-top: 15px;
+        }
+
+        .promise-sub::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 30px;
+            height: 1px;
+            background-color: var(--color-gold);
+        }
+
+        .footer {
+            background-color: var(--color-deep-green);
+            color: white;
+            padding: 25px 50px; /* Reduced padding */
+            margin-top: auto;
+            position: absolute; /* Anchor to bottom */
+            bottom: 0;
+            width: 100%;
+            border-top: 1px solid rgba(168, 150, 117, 0.2);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 40px;
+        }
+
+        .footer-col {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .footer-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            font-size: 11px;
+            font-weight: 300;
+            line-height: 1.6;
+            opacity: 0.9;
+        }
+
+        .footer-icon {
+            width: 14px;
+            height: 14px;
+            fill: var(--color-gold);
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .footer-heading {
+            font-family: var(--font-heading);
+            font-size: 11px;
+            color: var(--color-gold);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 4px;
+            display: block;
+        }
+
+        .footer-link {
+            color: white;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .footer-link:hover {
+            color: var(--color-gold);
+        }
+
+        @media print {
+            body {
+                background: none;
+                padding: 0;
+                display: block;
+            }
+            .page {
+                box-shadow: none;
+                margin: 0;
+                break-after: page;
+            }
+            .page:last-child {
+                break-after: auto;
+            }
+            .no-print {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Page 1: The Essence -->
+    <div class="page">
+        <div class="p1-header">
+            <div class="brand-logo">
+                <img src="logo-icon.png" alt="Skin Soul Spa">
+            </div>
+            <!-- Brand title removed as per user request -->
+            <div class="brand-subtitle">The Soul of Skincare</div>
+        </div>
+
+        <div class="p1-hero"></div>
+
+        <div class="p1-content">
+            <div class="philosophy-section">
+                <div class="section-heading">The Art of Slow Beauty</div>
+                <div class="body-text">
+                    In a city that never stops, true luxury is the freedom to pause. Skin Soul Spa is your "urban shield"—a hidden sanctuary designed to quiet the mind. We invite you to step out of the noise and into a bubble of tranquillity, where time feels suspended and deep restoration begins.
+                </div>
+            </div>
+
+            <div class="columns-2">
+                <div>
+                    <div class="column-title">The Sanctuary</div>
+                    <div class="body-text">
+                        Hidden away in the heart of Orchard at Pacific Plaza, our space is an architectural whisper. Designed for silence and crafted for restoration, every texture, scent, and sound is curated to calm the nervous system. It is a space where the outside world falls away, allowing true regeneration to begin.
+                    </div>
+                </div>
+                <div>
+                    <div class="column-title">The Philosophy</div>
+                    <div class="body-text">
+                        We believe that true radiance is born from a quiet mind and a nourished body. Our approach is holistic, treating the skin as a reflection of your inner vitality. By harmonising ancient healing traditions with modern efficacy, we create treatments that resonate on a cellular—and soulful—level.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Page 2: The Methodology -->
+    <div class="page">
+        <div class="sub-header">
+            <div class="sub-brand-mark">Skin Soul Spa</div>
+            <div class="page-num">PAGE 02 // METHODOLOGY</div>
+        </div>
+
+        <div class="p2-content">
+            <div class="section-heading">Our Artisans — Intuition Meets Precision</div>
+            <div class="body-text" style="margin-bottom: 30px;">
+                Our aestheticians are masters of the unseen. Beyond their rigorous training in facial anatomy and advanced clinical modalities, they possess the rare gift of intuition. They listen with their hands, decoding the silent language of your skin to deliver exactly what it craves.
+            </div>
+
+            <div class="methodology-grid">
+                <div class="method-card">
+                    <div class="method-image" style="background-image: url('assets/img/hero-hands.jpg');"></div>
+                    <div class="method-content">
+                        <div class="method-title">Intuitive Touch</div>
+                        <div class="method-desc">
+                            Every facial begins with connection. Through rhythmic massage and lymphatic drainage, we release tension, boost circulation, and lift the facial contours naturally. This tactile dialogue is the heart of our practice.
+                        </div>
+                    </div>
+                </div>
+                <div class="method-card">
+                    <div class="method-image" style="background-image: url('assets/img/luminous.png');"></div>
+                    <div class="method-content">
+                        <div class="method-title">Clinical Precision</div>
+                        <div class="method-desc">
+                            While we honour tradition, we embrace innovation. We integrate safe, high-performance technologies like Ultrasound and Radio Frequency to stimulate collagen production and refine skin texture at a structural level.
+                        </div>
+                    </div>
+                </div>
+                <div class="method-card">
+                    <div class="method-image" style="background-image: url('assets/img/consultation_1.jpg');"></div>
+                    <div class="method-content">
+                        <div class="method-title">Bespoke Consultation</div>
+                        <div class="method-desc">
+                            No two skins are alike. Before treatment, we conduct a thorough analysis of your skin's current state, lifestyle factors, and long-term goals to curate a protocol unique to you.
+                        </div>
+                    </div>
+                </div>
+                <div class="method-card">
+                    <div class="method-image" style="background-image: url('assets/img/botanical.png');"></div>
+                    <div class="method-content">
+                        <div class="method-title">Pure Formulations</div>
+                        <div class="method-desc">
+                            We use only the finest botanical extracts and active ingredients, free from harsh synthetics. Our products are chosen for their bioavailability and ability to nourish the skin barrier deeply.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Page 3: The Experience -->
+    <div class="page">
+        <div class="sub-header">
+            <div class="sub-brand-mark">Skin Soul Spa</div>
+            <div class="page-num">PAGE 03 // THE MENU</div>
+        </div>
+
+        <div class="p3-hero"></div>
+
+        <div class="p3-content">
+            <div class="section-heading" style="margin-bottom: 40px;">The Experience</div>
+
+            <div class="service-list">
+                <div class="service-item">
+                    <div class="service-name">Signature<br>Journeys</div>
+                    <div class="service-desc">
+                        Our foundational rituals are designed to soothe the soul while nourishing the skin barrier. Utilising potent botanical extracts and fluid, rhythmic massage techniques, these journeys flush toxins, reduce inflammation, and invite a deep, restorative glow that radiates from within.
+                    </div>
+                </div>
+
+                <div class="service-item">
+                    <div class="service-name">Intensive<br>Treatments</div>
+                    <div class="service-desc">
+                        Precision-led protocols for those seeking visible transformation. We integrate clinical-grade technologies to firm, lift, and refine skin texture. These treatments deliver high-performance results without compromising on the luxury of touch and comfort.
+                    </div>
+                </div>
+
+                <div class="service-item">
+                    <div class="service-name">Bespoke<br>Enhancements</div>
+                    <div class="service-desc">
+                        Every face is unique, and so is every session. From our targeted Age Defying Eye Treatment to specialised hydration boosters, we tailor every detail to address your skin's immediate needs and long-term goals.
+                    </div>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin: 40px 0;">
+                <a href="https://share.google/Gpb4S58v6LVaXgX7S" class="review-cta" target="_blank" rel="noopener noreferrer">
+                    <span class="star-group">★★★★★</span>
+                    <span class="review-text">Read Our Guest Stories on Google</span>
+                </a>
+            </div>
+
+            <div class="promise-section">
+                <div class="promise-text">True luxury is the freedom to relax completely. We promise genuine care with zero pressure—no hard selling, just expert guidance and a sanctuary where you are truly seen.</div>
+                <div class="promise-sub">Our Promise</div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <div class="footer-grid">
+                <!-- Column 1: Location -->
+                <div class="footer-col">
+                    <div class="footer-item">
+                        <svg class="footer-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                        <div>
+                            <span class="footer-heading">Visit Us</span>
+                            9 Scotts Road, #03-01 Pacific Plaza<br>Singapore 228210
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Column 2: Hours -->
+                <div class="footer-col">
+                    <div class="footer-item">
+                        <svg class="footer-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/></svg>
+                        <div>
+                            <span class="footer-heading">Opening Hours</span>
+                            Mon - Fri: 11:00 am - 8:00 pm<br>
+                            Sat, Sun, PH: 10:00 am - 7:00 pm
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Column 3: Contact -->
+                <div class="footer-col">
+                    <div class="footer-item">
+                        <svg class="footer-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+                        <div>
+                            <span class="footer-heading">Contact</span>
+                            <a href="tel:6593633111" class="footer-link">+65 9363 3111</a>
+                        </div>
+                    </div>
+                    <div class="footer-item">
+                        <svg class="footer-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
+                        <div>
+                            <a href="https://skinsoulspa.sg" class="footer-link">skinsoulspa.sg</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

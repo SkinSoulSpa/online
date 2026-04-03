@@ -35,11 +35,11 @@ const ExperiencesPage = () => {
   const location = useLocation();
   const containerRef = useRef(null);
   const heroRef = useRef(null);
-  const navRef = useRef(null);
   const [isMobile, setIsMobile] = useState(() => window.innerWidth < 768);
   const [hoveredId, setHoveredId] = useState(null);
   const [checkoutProduct, setCheckoutProduct] = useState(null);
   const [paymentMethod, setPaymentMethod] = useState('generic');
+  const [activeTab, setActiveTab] = useState('signature');
 
   useEffect(() => {
     const checkMobile = () => setIsMobile(window.innerWidth < 768);
@@ -65,7 +65,7 @@ const ExperiencesPage = () => {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Fade in animations for sections
+      // Fade in animations for hero section
       const sections = document.querySelectorAll('.fade-section');
       sections.forEach(section => {
         gsap.fromTo(section, 
@@ -82,83 +82,28 @@ const ExperiencesPage = () => {
           }
         );
       });
-
-      // Sticky Sub-Navigation Logic - Floating Pill at Bottom
-      ScrollTrigger.create({
-        trigger: heroRef.current,
-        start: "bottom top", 
-        end: "max", 
-        onEnter: () => {
-          gsap.to(navRef.current, {
-            y: 100, 
-            opacity: 0, 
-            duration: 0.2,
-            onComplete: () => {
-              gsap.set(navRef.current, { 
-                position: 'fixed', 
-                top: 'auto', 
-                bottom: '30px', 
-                left: '50%', 
-                xPercent: -50,
-                width: isMobile ? '90vw' : 'auto',
-                padding: isMobile ? '0.8rem 1rem' : '0.8rem 2rem',
-                borderRadius: '50px',
-                backgroundColor: 'rgba(250, 249, 246, 0.9)', 
-                backdropFilter: 'blur(10px)',
-                boxShadow: '0 10px 30px rgba(0,0,0,0.1)',
-                zIndex: 90,
-                border: '1px solid rgba(197, 179, 152, 0.3)',
-                overflowX: isMobile ? 'auto' : 'visible',
-                flexWrap: isMobile ? 'nowrap' : 'wrap',
-                justifyContent: isMobile ? 'flex-start' : 'center'
-              });
-              gsap.to(navRef.current, {
-                y: 0,
-                opacity: 1,
-                duration: 0.4,
-                ease: "power3.out"
-              });
-            }
-          });
-        },
-        onLeaveBack: () => {
-          gsap.to(navRef.current, {
-            y: 100,
-            opacity: 0,
-            duration: 0.2,
-            onComplete: () => {
-              gsap.set(navRef.current, { 
-                position: 'absolute', 
-                top: 'auto', 
-                bottom: '2rem', 
-                left: '50%', 
-                xPercent: -50,
-                width: isMobile ? '90vw' : 'auto',
-                padding: isMobile ? '0.8rem 1rem' : '0.8rem 2rem',
-                borderRadius: '50px',
-                backgroundColor: 'rgba(250, 249, 246, 0.9)', 
-                backdropFilter: 'blur(10px)',
-                boxShadow: '0 10px 30px rgba(0,0,0,0.1)',
-                border: '1px solid rgba(197, 179, 152, 0.3)',
-                zIndex: 90,
-                overflowX: isMobile ? 'auto' : 'visible',
-                flexWrap: isMobile ? 'nowrap' : 'wrap',
-                justifyContent: isMobile ? 'flex-start' : 'center'
-              });
-              gsap.to(navRef.current, {
-                y: 0,
-                opacity: 1,
-                duration: 0.4
-              });
-            }
-          });
-        }
-      });
-
     }, containerRef);
 
     return () => ctx.revert();
   }, []);
+
+  // Fade in tab content when active tab changes
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      const tabContent = document.querySelectorAll('.tab-content-fade');
+      gsap.fromTo(tabContent, 
+        { opacity: 0, y: 20 },
+        { 
+          opacity: 1, 
+          y: 0, 
+          duration: 0.6, 
+          ease: "power2.out",
+          stagger: 0.1
+        }
+      );
+    }, containerRef);
+    return () => ctx.revert();
+  }, [activeTab]);
 
   const handleCardClick = (id) => {
     if (isMobile) {
@@ -173,9 +118,11 @@ const ExperiencesPage = () => {
   };
 
   const scrollToSection = (id) => {
-    const element = document.getElementById(id);
+    if (['signature', 'intensive', 'enhancements'].includes(id)) {
+      setActiveTab(id);
+    }
+    const element = document.getElementById('journeys-container');
     if (element) {
-      // Offset for the sticky nav (approx 60-80px)
       const offset = 100;
       const elementPosition = element.getBoundingClientRect().top;
       const offsetPosition = elementPosition + window.pageYOffset - offset;
@@ -285,88 +232,66 @@ const ExperiencesPage = () => {
             />
           </OrganicImagePlaceholder>
         </div>
-
-        {/* Sticky Anchor Bar (initially absolute at bottom of hero) */}
-        <div ref={navRef} style={{
-          position: 'absolute',
-          bottom: '2rem',
-          left: '50%',
-          transform: 'translateX(-50%)',
-          width: isMobile ? '90vw' : 'auto', // Responsive width
-          padding: isMobile ? '0.8rem 1rem' : '0.8rem 2rem', // Less padding on mobile
-          display: 'flex',
-          justifyContent: isMobile ? 'flex-start' : 'center', // Align start for scrolling
-          gap: isMobile ? '1.5rem' : '2rem',
-          zIndex: 90,
-          flexWrap: isMobile ? 'nowrap' : 'wrap', // Prevent wrapping on mobile
-          overflowX: isMobile ? 'auto' : 'visible', // Enable horizontal scroll
-          // Hide scrollbar styles
-          scrollbarWidth: 'none',
-          msOverflowStyle: 'none',
-          WebkitOverflowScrolling: 'touch', // Smooth scroll on iOS
-          // Pill Styles
-          backgroundColor: 'rgba(250, 249, 246, 0.9)', 
-          backdropFilter: 'blur(10px)',
-          boxShadow: '0 10px 30px rgba(0,0,0,0.1)',
-          border: '1px solid rgba(197, 179, 152, 0.3)',
-          borderRadius: '50px'
-        }}>
-          {/* Hide scrollbar for Chrome/Safari/Opera */}
-          <style>{`
-            div::-webkit-scrollbar {
-              display: none;
-            }
-          `}</style>
-          {['The Signature', 'The Intensive', 'The Enhancements'].map((item, index) => {
-            const id = item.toLowerCase().replace(' ', '-'); // the-signature, etc.
-            // But user wants ids: signature, intensive, enhancements probably?
-            // Let's map properly.
-            const targetId = item.split(' ')[1].toLowerCase(); // signature, intensive, enhancements
-            
-            return (
-              <button 
-                key={index}
-                onClick={() => scrollToSection(targetId)}
-                style={{
-                  fontFamily: '"Montserrat", sans-serif',
-                  fontSize: '0.8rem',
-                  letterSpacing: '0.15em',
-                  textTransform: 'uppercase',
-                  color: '#2C332E',
-                  background: 'linear-gradient(to right, #2C332E 0%, #2C332E 40%, #C5B398 50%, #2C332E 60%, #2C332E 100%)',
-                  backgroundSize: '200% auto',
-                  WebkitBackgroundClip: 'text',
-                  backgroundClip: 'text',
-                  WebkitTextFillColor: 'transparent',
-                  border: 'none',
-                  cursor: 'pointer',
-                  position: 'relative',
-                  padding: '0.5rem 1rem',
-                  whiteSpace: 'nowrap',
-                  transition: 'background-position 0.5s ease',
-                  fontWeight: 500
-                }}
-                onMouseEnter={(e) => {
-                  e.target.style.backgroundPosition = '200% center';
-                  e.target.style.transition = 'background-position 1.5s ease';
-                }}
-                onMouseLeave={(e) => {
-                  e.target.style.backgroundPosition = '0% center';
-                  e.target.style.transition = 'background-position 0.5s ease';
-                }}
-              >
-                {item}
-              </button>
-            );
-          })}
-        </div>
       </div>
 
       {/* SECTION 2: THE JOURNEYS */}
-      <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
+      <div id="journeys-container" style={{ maxWidth: '1200px', margin: '0 auto', paddingTop: '2rem' }}>
         
+        {/* TABS NAVIGATION */}
+        <div style={{
+          display: 'flex',
+          justifyContent: 'center',
+          gap: isMobile ? '1.5rem' : '4rem',
+          marginBottom: '4rem',
+          borderBottom: '1px solid rgba(197, 179, 152, 0.3)',
+          paddingBottom: '1rem',
+          overflowX: 'auto',
+          WebkitOverflowScrolling: 'touch',
+          scrollbarWidth: 'none',
+          msOverflowStyle: 'none'
+        }}>
+          <style>{`div::-webkit-scrollbar { display: none; }`}</style>
+          {[
+            { id: 'signature', label: 'The Signature' },
+            { id: 'intensive', label: 'The Intensive' },
+            { id: 'enhancements', label: 'The Enhancements' }
+          ].map((tab) => (
+            <button
+              key={tab.id}
+              onClick={() => setActiveTab(tab.id)}
+              style={{
+                fontFamily: '"Tenor Sans", sans-serif',
+                fontSize: isMobile ? '1rem' : '1.5rem',
+                color: activeTab === tab.id ? '#2C332E' : '#9CAFA0',
+                background: 'none',
+                border: 'none',
+                cursor: 'pointer',
+                padding: '0.5rem 1rem',
+                position: 'relative',
+                whiteSpace: 'nowrap',
+                transition: 'color 0.3s ease',
+                outline: 'none'
+              }}
+            >
+              {tab.label}
+              {activeTab === tab.id && (
+                <div style={{
+                  position: 'absolute',
+                  bottom: '-1rem',
+                  left: 0,
+                  width: '100%',
+                  height: '2px',
+                  backgroundColor: '#C5B398',
+                  boxShadow: '0 0 10px rgba(197, 179, 152, 0.5)'
+                }} />
+              )}
+            </button>
+          ))}
+        </div>
+
         {/* Category 1: THE SIGNATURE JOURNEYS */}
-        <Section id="signature" className="fade-section" style={{ flexDirection: 'column' }}>
+        {activeTab === 'signature' && (
+        <Section id="signature" className="tab-content-fade" style={{ flexDirection: 'column', paddingTop: 0 }}>
           <div style={{ textAlign: 'center', maxWidth: '800px', marginBottom: '3rem' }}>
             <h2 style={{
               fontFamily: '"Tenor Sans", sans-serif',
@@ -724,9 +649,11 @@ const ExperiencesPage = () => {
             })}
           </div>
         </Section>
+        )}
 
         {/* Category 2: THE INTENSIVE JOURNEYS */}
-        <Section id="intensive" className="fade-section" style={{ flexDirection: 'column' }}>
+        {activeTab === 'intensive' && (
+        <Section id="intensive" className="tab-content-fade" style={{ flexDirection: 'column', paddingTop: 0 }}>
           <div style={{ textAlign: 'center', maxWidth: '800px', marginBottom: '3rem' }}>
 
             <h2 style={{
@@ -1019,9 +946,11 @@ const ExperiencesPage = () => {
             })}
           </div>
         </Section>
+        )}
 
         {/* Category 3: THE ENHANCEMENTS */}
-        <Section id="enhancements" className="fade-section" style={{ flexDirection: 'column' }}>
+        {activeTab === 'enhancements' && (
+        <Section id="enhancements" className="tab-content-fade" style={{ flexDirection: 'column', paddingTop: 0 }}>
           <div style={{ textAlign: 'center', maxWidth: '800px', marginBottom: '3rem' }}>
             <h2 style={{
               fontFamily: '"Tenor Sans", sans-serif',
@@ -1354,6 +1283,7 @@ const ExperiencesPage = () => {
             })}
           </div>
         </Section>
+        )}
 
       </div>
 

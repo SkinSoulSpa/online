@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exclusive AOX × Skin Soul Spa Invitation</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500&family=Tenor+Sans&display=swap" rel="stylesheet">
+    <style>
+        @page {
+            size: A4;
+            margin: 0;
+        }
+
+        :root {
+            --color-gold: #A89675;
+            --color-dark: #1F1F1F;
+            --color-text: #4A4A4A;
+            --color-deep-green: #2C332E; /* New brand color */
+            --font-heading: 'Tenor Sans', serif;
+            --font-body: 'Manrope', sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        body {
+            font-family: var(--font-body);
+            color: var(--color-text);
+            line-height: 1.75; /* Increased from 1.7 */
+            background-color: #F9F9F9;
+            display: flex;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 40px;
+            font-size: 13px;
+        }
+
+        .page-container {
+            background: white;
+            width: 210mm; /* A4 width */
+            height: 297mm; /* A4 height */
+            padding: 15mm 20mm; /* Adjusted margins */
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            position: relative;
+            display: block; /* Changed from flex to block for float layout */
+            border-radius: 8px; /* Consistent with other elements */
+        }
+
+        .header-section {
+            width: 100%;
+            margin-bottom: 20px; /* Consistent spacing */
+            padding-bottom: 20px;
+            display: flex; /* Flexbox for better alignment */
+            align-items: center;
+            justify-content: flex-start;
+            border-bottom: none; /* Removed as requested */
+        }
+
+        .logo {
+            width: 100px; /* Reduced width to give title more space */
+            margin-right: 25px;
+            margin-bottom: 0;
+            float: none; /* Reset float for flex layout */
+        }
+
+        h1 {
+            font-family: var(--font-heading);
+            color: var(--color-dark);
+            text-transform: uppercase;
+            letter-spacing: 0.05em; 
+            font-size: 18px; /* Reduced from 20px */
+            text-align: left;
+            margin: 0;
+            padding-top: 0; 
+            line-height: 1.2;
+            border: none;
+            flex: 1; /* Take remaining space */
+            white-space: nowrap; /* Force one line */
+        }
+
+        .greeting {
+            font-family: var(--font-heading);
+            font-size: 15px; /* Reduced from 16px */
+            color: var(--color-dark);
+            margin-bottom: 20px; /* Reduced from 28px */
+            display: block;
+            line-height: 1.5;
+        }
+
+        p {
+            margin-bottom: 10px; /* Reduced margin to compensate for line height */
+            font-weight: 300;
+            text-align: justify;
+            color: #555;
+            line-height: 1.7; /* Reduced from 1.8 */
+        }
+
+        .highlight-box {
+            background-color: #FAF9F6; /* Soft warm white */
+            border: 1px solid #EAE5D9;
+            border-radius: 8px; /* Consistent radius */
+            margin: 20px 0; /* Reduced from 28px */
+            width: 100%;
+            position: relative;
+            display: flex;
+            align-items: center;
+            overflow: hidden; /* Ensures image respects border radius */
+            padding: 0;
+        }
+
+        .highlight-image-container {
+            width: 40%;
+            align-self: stretch;
+            position: relative;
+            min-height: 120px; /* Minimum height for visual balance */
+        }
+
+        .highlight-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .highlight-content {
+            padding: 15px 25px; /* Reduced padding */
+            width: 60%;
+            text-align: left;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .highlight-title {
+            font-family: var(--font-heading);
+            color: var(--color-gold);
+            font-size: 16px; /* Reduced from 18px */
+            margin-bottom: 6px;
+            display: block;
+            letter-spacing: 0.05em;
+            line-height: 1.3;
+        }
+
+        .highlight-price {
+            font-size: 14px; /* Reduced from 16px */
+            color: var(--color-dark);
+            margin-bottom: 8px;
+            display: block;
+            font-weight: 500;
+        }
+        
+        .highlight-content p {
+            margin: 0;
+            font-size: 12px; /* Reduced from 13px */
+            line-height: 1.5;
+            text-align: left;
+        }
+
+        .treatment-wrapper {
+            display: flex;
+            align-items: stretch;
+            justify-content: space-between;
+            gap: 0; 
+            margin: 20px 0; /* Reduced from 28px */
+            width: 100%;
+            position: relative;
+        }
+
+        .treatment-card {
+            flex: 1;
+            padding: 15px 15px; /* Reduced padding */
+            background-color: #fff;
+            border: 1px solid #EAE5D9;
+            border-top: 3px solid var(--color-deep-green); 
+            border-radius: 8px; /* Consistent radius */
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            box-shadow: 0 5px 20px rgba(168, 150, 117, 0.08);
+            position: relative;
+            z-index: 1;
+            transition: transform 0.3s ease;
+        }
+        
+        /* Add right margin to left card and left margin to right card to create space for plus */
+        .treatment-wrapper > .treatment-card:first-child {
+            margin-right: 25px;
+        }
+        
+        .treatment-wrapper > .treatment-card:last-child {
+            margin-left: 25px;
+        }
+
+        .treatment-title {
+            font-family: var(--font-heading);
+            color: var(--color-dark);
+            font-size: 16px; /* Reduced from 20px */
+            margin-bottom: 6px;
+            line-height: 1.2;
+            letter-spacing: 0.03em;
+            text-transform: uppercase;
+        }
+
+        .treatment-price-tag {
+            font-family: var(--font-body);
+            font-size: 12px; /* Reduced from 14px */
+            color: var(--color-gold);
+            margin-bottom: 10px; /* Reduced from 12px */
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            border-bottom: 1px solid rgba(168, 150, 117, 0.2);
+            padding-bottom: 4px; /* Reduced from 6px */
+            display: inline-block;
+        }
+
+        .treatment-card p {
+            font-size: 11px; /* Reduced from 12px */
+            text-align: center; 
+            margin: 0;
+            line-height: 1.6;
+            color: #666;
+            font-style: normal; /* Changed from italic */
+        }
+
+        .plus-symbol {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--color-gold);
+            padding: 0;
+            position: absolute; /* Absolute positioning for vertical centering */
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 2;
+            font-size: 24px; /* Reduced from 36px */
+            font-family: var(--font-heading);
+            background: white; /* Hide the line behind */
+            height: 30px; /* Reduced from 40px */
+            width: 30px;
+            border-radius: 50%;
+        }
+
+        /* Connecting line behind the plus symbol */
+        .plus-symbol::before {
+            display: none; /* Remove line as requested or keep it? User said remove circle shape. Let's keep the line if it looks good, but maybe user wants just plus. "remove the circle shape surrounding the Plus symbol". */
+        }
+        
+        /* Re-adding line but making sure it doesn't cross the plus text if background is white */
+        .treatment-wrapper::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 0;
+            border-top: 1px solid var(--color-gold);
+            opacity: 0.3;
+            z-index: 0;
+        }
+
+        .plus-circle {
+            display: none; /* Removed as requested */
+        }
+
+        .synergy-section {
+            margin-top: 20px; /* Reduced from 28px */
+            font-style: italic;
+            color: var(--color-dark);
+            text-align: center;
+            padding: 0 10px;
+            font-size: 13px;
+        }
+
+        .footer {
+            margin-top: auto;
+            width: 100%;
+            text-align: left;
+            border-top: 1px solid #EEE;
+            padding-top: 15px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .terms-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5px 20px;
+        }
+        
+        .terms-title {
+            grid-column: 1 / -1;
+            font-family: var(--font-heading);
+            font-size: 11px;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: var(--color-dark);
+            margin-bottom: 2px;
+            letter-spacing: 0.05em;
+        }
+
+        .terms-list-item {
+            font-size: 10px;
+            color: #666;
+            line-height: 1.4;
+            position: relative;
+            padding-left: 10px;
+        }
+        
+        .terms-list-item::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: var(--color-gold);
+        }
+
+        .contact-section {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            font-size: 11px;
+            color: #555;
+            line-height: 1.6;
+            border-top: 1px solid #f5f5f5;
+            padding-top: 15px;
+            margin-top: 5px;
+        }
+        
+        .brand-name {
+            font-family: var(--font-heading);
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 2px;
+            color: var(--color-gold);
+            font-weight: 600;
+        }
+        
+        .contact-info {
+            text-align: left;
+            flex: 1;
+        }
+
+        .contact-info div {
+            margin-bottom: 2px;
+        }
+        
+        .contact-hours {
+            text-align: right;
+            color: #888;
+            font-size: 10px;
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+            padding-top: 4px; /* Align with text below brand name */
+        }
+
+        .contact-hours div {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            gap: 8px;
+        }
+
+        .contact-hours span {
+            display: inline-block;
+            background: #f5f5f5;
+            padding: 2px 6px;
+            border-radius: 4px;
+            color: #555;
+            font-weight: 500;
+            min-width: 60px;
+            text-align: center;
+        }
+
+        /* Print Button */
+        .print-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: var(--color-dark);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-family: var(--font-body);
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+            z-index: 100;
+        }
+
+        .print-btn:hover {
+            background-color: var(--color-gold);
+            transform: translateY(-2px);
+        }
+
+        @media print {
+            body {
+                background: none;
+                padding: 0;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+            .page-container {
+                box-shadow: none;
+                margin: 0;
+                width: 100%;
+                height: 100%;
+                overflow: hidden;
+            }
+            .treatment-card {
+                /* Use drop-shadow instead of box-shadow for cleaner print rendering */
+                box-shadow: none !important;
+                filter: drop-shadow(0 2px 8px rgba(168, 150, 117, 0.2));
+                
+                /* Ensure borders are preserved */
+                border: 1px solid #EAE5D9 !important;
+                border-top: 3px solid var(--color-deep-green) !important;
+                
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+                background-color: #fff !important;
+            }
+            .treatment-wrapper {
+                background: none !important;
+            }
+            .print-btn {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <button class="print-btn" onclick="window.print()">Print Invitation</button>
+
+    <div class="page-container">
+        <!-- Header Section -->
+        <div class="header-section">
+            <img src="logo-icon.png" alt="Skin Soul Spa" class="logo">
+            <h1>Exclusive AOX × Skin Soul Spa Invitation</h1>
+        </div>
+
+        <!-- Greeting -->
+        <div class="greeting">Dear Beloved AOX Owner,</div>
+
+        <!-- Intro -->
+        <p>
+            Congratulations on inviting AOX into your daily life — the quiet, powerful choice to flood your cells with antioxidant-rich, collagen-renewing water from within.
+        </p>
+        <p>
+            To complete this inside-out journey, we at Skin Soul Spa are honoured to offer you an exclusive experience reserved only for AOX dispenser owners like you.
+        </p>
+
+        <!-- Highlight Box -->
+        <div class="highlight-box">
+            <div class="highlight-content">
+                <span class="highlight-title">Your Exclusive AOX x Skin Soul Spa Experience</span>
+                <span class="highlight-price">Valued at $326, Yours for $168</span>
+                <p>An 80-minute bespoke experience designed to amplify your internal glow with external nourishment.</p>
+            </div>
+            <div class="highlight-image-container">
+                <img src="sensory.png" alt="Sensory Experience" class="highlight-image">
+            </div>
+        </div>
+
+        <!-- Treatments -->
+        <div class="treatment-wrapper">
+            <!-- Left Column -->
+            <div class="treatment-card">
+                <div class="treatment-title">Hydrating<br>Facial</div>
+                <div class="treatment-price-tag">(U.P. $198)</div>
+                <p>
+                    A gentle immersion for thirsty skin. Utilising the botanical power of our Hydra Global collection, this journey goes deeper than surface moisture. It is a process of "locking in" vitality, soothing tightness, and repairing the protective barrier.
+                </p>
+            </div>
+
+            <!-- Plus Symbol -->
+            <div class="plus-symbol">+</div>
+
+            <!-- Right Column -->
+            <div class="treatment-card">
+                <div class="treatment-title">Age Defying<br>Eye Treatment</div>
+                <div class="treatment-price-tag">(U.P. $128)</div>
+                <p>
+                    Re-knitting the support matrix. We employ Radio Frequency (RF) energy to deliver controlled thermal warmth deep into the dermis of the eye contours. This heat wakes up the fibroblasts, commanding them to produce new collagen and elastin.
+                </p>
+            </div>
+        </div>
+
+        <!-- Synergy -->
+        <div class="synergy-section">
+            <p style="text-align: center;">
+                "Together, this 80-minute session creates a harmonious synergy: your AOX water works systemically to boost collagen by up to 72%, while our hands and technologies deliver visible, soul-deep renewal on<br>the surface."
+            </p>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <div class="terms-section">
+                <div class="terms-title">Terms & Conditions</div>
+                <div class="terms-list-item">A reservation is required. Please call 93633111 for appointment booking</div>
+                <div class="terms-list-item">Please quote voucher code “AOX168" when making an appointment</div>
+                <div class="terms-list-item">Exclusively for first-time guests only</div>
+                <div class="terms-list-item">The original voucher must be presented during the visit</div>
+                <div class="terms-list-item">Only valid for Hydrating Facial + Age Defying Eye</div>
+                <div class="terms-list-item">Voucher is valid till 31 December 2026</div>
+            </div>
+            
+            <div class="contact-section">
+                <div class="contact-info">
+                    <div class="brand-name">Skin Soul Spa</div>
+                    <div>9 Scotts Road, #03-01 Pacific Plaza, Singapore 228210</div>
+                    <div>Hotline: <span style="color: var(--color-dark); font-weight: 600;"></span>9363 3111</span></div>
+                </div>
+                <div class="contact-hours">
+                    <div>11:00 am - 8:00 pm <span>Mon - Fri</span></div>
+                    <div>10:00 am - 7:00 pm <span>Sat, Sun, PH</span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
