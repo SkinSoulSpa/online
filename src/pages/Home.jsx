@@ -140,9 +140,9 @@ const Home = ({ isLoaded = true }) => {
           opacity: 0.95,
           maxWidth: '600px',
         }}>
-          A Hidden Gem<br />
-          Where Luxury is <span style={{ whiteSpace: 'nowrap', display: 'inline-block', color: '#BFA475' }}>
-            Gentle.
+          A hidden gem<br />
+          where luxury is <span style={{ whiteSpace: 'nowrap', display: 'inline-block' }}>
+            gentle.
           </span>
         </h1>
         <p style={{
