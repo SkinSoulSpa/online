@@ -520,9 +520,9 @@ const ExperiencesPage = () => {
                     <div style={{ marginBottom: '1.25rem' }}>
                       <p style={{
                         fontFamily: '"Cormorant Garamond", serif',
-                        fontSize: '1.05rem',
-                        lineHeight: 1.4,
-                        color: '#5C615E',
+                        fontSize: '1.15rem',
+                        lineHeight: 1.6,
+                        color: '#4A4E4C', // slightly darker for better visibility
                         marginBottom: 0
                       }}>
                         {item.narrative}
@@ -541,27 +541,31 @@ const ExperiencesPage = () => {
                       <details style={{ cursor: 'pointer', outline: 'none' }}>
                         <summary style={{ 
                           fontFamily: 'Montserrat, sans-serif', 
-                          fontSize: '0.65rem', 
+                          fontSize: '0.75rem', 
                           letterSpacing: '0.15em', 
                           textTransform: 'uppercase', 
-                          color: '#C5B398',
+                          color: '#A89675', // darker gold for better visibility
                           display: 'flex',
                           alignItems: 'center',
                           justifyContent: 'space-between',
                           userSelect: 'none',
-                          listStyle: 'none'
+                          listStyle: 'none',
+                          padding: '0.5rem',
+                          backgroundColor: 'rgba(197, 179, 152, 0.05)',
+                          borderRadius: '4px',
+                          border: '1px solid rgba(197, 179, 152, 0.2)'
                         }}>
                           The Sensation & Result
-                          <span style={{ fontSize: '0.8rem' }}>+</span>
+                          <span style={{ fontSize: '1rem', fontWeight: 'bold' }}>+</span>
                         </summary>
-                        <div style={{ marginTop: '0.75rem', display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr', gap: '1rem' }}>
+                        <div style={{ marginTop: '1rem', display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr', gap: '1rem', padding: '0 0.5rem' }}>
                           <div>
                             <span style={{ 
                               fontFamily: 'Montserrat, sans-serif', 
-                              fontSize: '0.6rem', 
+                              fontSize: '0.65rem', 
                               letterSpacing: '0.1em', 
                               textTransform: 'uppercase', 
-                              color: '#9CAFA0',
+                              color: '#7A8A7D', // darker green for better visibility
                               display: 'block',
                               marginBottom: '0.25rem'
                             }}>
@@ -569,9 +573,9 @@ const ExperiencesPage = () => {
                             </span>
                             <p style={{
                               fontFamily: '"Cormorant Garamond", serif',
-                              fontSize: '0.95rem',
-                              lineHeight: 1.4,
-                              color: '#5C615E',
+                              fontSize: '1.05rem',
+                              lineHeight: 1.5,
+                              color: '#4A4E4C',
                               fontStyle: 'italic',
                               marginBottom: 0
                             }}>
@@ -581,10 +585,10 @@ const ExperiencesPage = () => {
                           <div>
                             <span style={{ 
                               fontFamily: 'Montserrat, sans-serif', 
-                              fontSize: '0.6rem', 
+                              fontSize: '0.65rem', 
                               letterSpacing: '0.1em', 
                               textTransform: 'uppercase', 
-                              color: '#9CAFA0',
+                              color: '#7A8A7D', // darker green for better visibility
                               display: 'block',
                               marginBottom: '0.25rem'
                             }}>
@@ -592,9 +596,9 @@ const ExperiencesPage = () => {
                             </span>
                             <p style={{
                               fontFamily: '"Cormorant Garamond", serif',
-                              fontSize: '0.95rem',
-                              lineHeight: 1.4,
-                              color: '#5C615E',
+                              fontSize: '1.05rem',
+                              lineHeight: 1.5,
+                              color: '#4A4E4C',
                               marginBottom: 0
                             }}>
                               {item.result}
@@ -787,7 +791,7 @@ const ExperiencesPage = () => {
                   </div>
 
                   {/* Body Content */}
-                  <div>
+                  <div style={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
                     {/* Narrative */}
                     <div style={{ marginBottom: '1rem' }}>
                       <span style={{ 
@@ -795,7 +799,7 @@ const ExperiencesPage = () => {
                         fontSize: '0.65rem', 
                         letterSpacing: '0.15em', 
                         textTransform: 'uppercase', 
-                        color: '#C5B398',
+                        color: '#A89675', // darker gold for better visibility
                         display: 'block',
                         marginBottom: '0.25rem'
                       }}>
@@ -803,68 +807,98 @@ const ExperiencesPage = () => {
                       </span>
                       <p style={{
                         fontFamily: '"Cormorant Garamond", serif',
-                        fontSize: '0.95rem',
-                        lineHeight: 1.4,
-                        color: '#5C615E',
+                        fontSize: '1.05rem',
+                        lineHeight: 1.5,
+                        color: '#4A4E4C', // slightly darker for better visibility
                         marginBottom: 0
                       }}>
                         {item.narrative}
                       </p>
                     </div>
 
-                    {/* Sensation */}
-                    <div style={{ marginBottom: '1rem' }}>
-                      <span style={{ 
-                        fontFamily: 'Montserrat, sans-serif', 
-                        fontSize: '0.65rem', 
-                        letterSpacing: '0.15em', 
-                        textTransform: 'uppercase', 
-                        color: '#C5B398',
-                        display: 'block',
-                        marginBottom: '0.25rem'
-                      }}>
-                        The Sensation
-                      </span>
-                      <p style={{
-                        fontFamily: '"Cormorant Garamond", serif',
-                        fontSize: '0.95rem',
-                        lineHeight: 1.4,
-                        color: '#5C615E',
-                        marginBottom: 0,
-                        fontStyle: 'italic'
-                      }}>
-                        {item.sensation}
-                      </p>
-                    </div>
+                    {/* Sensation & Result Grid */}
+                    <div style={{ 
+                      display: 'grid', 
+                      gridTemplateColumns: '1fr', 
+                      gap: '1rem',
+                      marginTop: 'auto', // Push to bottom if space allows
+                      borderTop: '1px solid rgba(197, 179, 152, 0.2)',
+                      paddingTop: '1rem'
+                    }}>
+                      <details style={{ cursor: 'pointer', outline: 'none' }}>
+                        <summary style={{ 
+                          fontFamily: 'Montserrat, sans-serif', 
+                          fontSize: '0.75rem', 
+                          letterSpacing: '0.15em', 
+                          textTransform: 'uppercase', 
+                          color: '#A89675', // darker gold for better visibility
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'space-between',
+                          userSelect: 'none',
+                          listStyle: 'none',
+                          padding: '0.5rem',
+                          backgroundColor: 'rgba(197, 179, 152, 0.05)',
+                          borderRadius: '4px',
+                          border: '1px solid rgba(197, 179, 152, 0.2)'
+                        }}>
+                          The Sensation & Result
+                          <span style={{ fontSize: '1rem', fontWeight: 'bold' }}>+</span>
+                        </summary>
+                        <div style={{ marginTop: '1rem', display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr', gap: '1rem', padding: '0 0.5rem' }}>
+                          <div>
+                            <span style={{ 
+                              fontFamily: 'Montserrat, sans-serif', 
+                              fontSize: '0.65rem', 
+                              letterSpacing: '0.1em', 
+                              textTransform: 'uppercase', 
+                              color: '#7A8A7D', // darker green for better visibility
+                              display: 'block',
+                              marginBottom: '0.25rem'
+                            }}>
+                              The Sensation
+                            </span>
+                            <p style={{
+                              fontFamily: '"Cormorant Garamond", serif',
+                              fontSize: '1.05rem',
+                              lineHeight: 1.5,
+                              color: '#4A4E4C',
+                              fontStyle: 'italic',
+                              marginBottom: 0
+                            }}>
+                              {item.sensation}
+                            </p>
+                          </div>
+                          <div>
+                            <span style={{ 
+                              fontFamily: 'Montserrat, sans-serif', 
+                              fontSize: '0.65rem', 
+                              letterSpacing: '0.1em', 
+                              textTransform: 'uppercase', 
+                              color: '#7A8A7D', // darker green for better visibility
+                              display: 'block',
+                              marginBottom: '0.25rem'
+                            }}>
+                              The Result
+                            </span>
+                            <p style={{
+                              fontFamily: '"Cormorant Garamond", serif',
+                              fontSize: '1.05rem',
+                              lineHeight: 1.5,
+                              color: '#4A4E4C',
+                              marginBottom: 0
+                            }}>
+                              {item.result}
+                            </p>
+                          </div>
+                        </div>
+                      </details>
 
-                    {/* Result */}
-                    <div style={{ position: 'relative' }}>
-                      <span style={{ 
-                        fontFamily: 'Montserrat, sans-serif', 
-                        fontSize: '0.65rem', 
-                        letterSpacing: '0.15em', 
-                        textTransform: 'uppercase', 
-                        color: '#C5B398',
-                        display: 'block',
-                        marginBottom: '0.25rem'
-                      }}>
-                        The Result
-                      </span>
-                      <p style={{
-                        fontFamily: '"Cormorant Garamond", serif',
-                        fontSize: '0.95rem',
-                        lineHeight: 1.4,
-                        color: '#5C615E',
-                        marginBottom: 0
-                      }}>
-                        {item.result}
-                      </p>
-
-                      {/* Inline Button (placed bottom-right of 'The Result') */}
+                      {/* Inline Button (placed bottom-right) */}
                       <div style={{ 
                         display: 'flex', 
                         justifyContent: 'flex-end', 
-                        marginTop: '1rem' 
+                        marginTop: '0.5rem' 
                       }}>
                         <Button 
                           onClick={(e) => {
@@ -1087,9 +1121,9 @@ const ExperiencesPage = () => {
                     <div style={{ marginBottom: '1rem' }}>
                       <p style={{
                         fontFamily: '"Cormorant Garamond", serif',
-                        fontSize: '1rem',
-                        lineHeight: 1.5,
-                        color: '#5C615E',
+                        fontSize: '1.05rem',
+                        lineHeight: 1.6,
+                        color: '#4A4E4C', // slightly darker for better visibility
                         marginBottom: 0
                       }}>
                         {item.narrative}
@@ -1106,75 +1140,98 @@ const ExperiencesPage = () => {
                         flexDirection: 'column',
                         gap: '0.75rem'
                       }}>
-                        {item.sensation && (
-                          <div>
-                            <span style={{ 
-                              fontFamily: 'Montserrat, sans-serif', 
-                              fontSize: '0.65rem', 
-                              letterSpacing: '0.1em', 
-                              textTransform: 'uppercase', 
-                              color: '#C5B398',
-                              display: 'block',
-                              marginBottom: '0.25rem'
-                            }}>
-                              The Sensation
-                            </span>
-                            <p style={{
-                              fontFamily: '"Cormorant Garamond", serif',
-                              fontSize: '0.95rem',
-                              lineHeight: 1.4,
-                              color: '#5C615E',
-                              fontStyle: 'italic',
-                              marginBottom: 0
-                            }}>
-                              {item.sensation}
-                            </p>
+                        <details style={{ cursor: 'pointer', outline: 'none' }}>
+                          <summary style={{ 
+                            fontFamily: 'Montserrat, sans-serif', 
+                            fontSize: '0.75rem', 
+                            letterSpacing: '0.15em', 
+                            textTransform: 'uppercase', 
+                            color: '#A89675', // darker gold for better visibility
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'space-between',
+                            userSelect: 'none',
+                            listStyle: 'none',
+                            padding: '0.5rem',
+                            backgroundColor: 'rgba(197, 179, 152, 0.05)',
+                            borderRadius: '4px',
+                            border: '1px solid rgba(197, 179, 152, 0.2)'
+                          }}>
+                            The Sensation & Result
+                            <span style={{ fontSize: '1rem', fontWeight: 'bold' }}>+</span>
+                          </summary>
+                          <div style={{ marginTop: '1rem', display: 'flex', flexDirection: 'column', gap: '1rem', padding: '0 0.5rem' }}>
+                            {item.sensation && (
+                              <div>
+                                <span style={{ 
+                                  fontFamily: 'Montserrat, sans-serif', 
+                                  fontSize: '0.65rem', 
+                                  letterSpacing: '0.1em', 
+                                  textTransform: 'uppercase', 
+                                  color: '#7A8A7D', // darker green for better visibility
+                                  display: 'block',
+                                  marginBottom: '0.25rem'
+                                }}>
+                                  The Sensation
+                                </span>
+                                <p style={{
+                                  fontFamily: '"Cormorant Garamond", serif',
+                                  fontSize: '1.05rem',
+                                  lineHeight: 1.5,
+                                  color: '#4A4E4C',
+                                  fontStyle: 'italic',
+                                  marginBottom: 0
+                                }}>
+                                  {item.sensation}
+                                </p>
+                              </div>
+                            )}
+                            {item.result && (
+                              <div style={{ position: 'relative' }}>
+                                <span style={{ 
+                                  fontFamily: 'Montserrat, sans-serif', 
+                                  fontSize: '0.65rem', 
+                                  letterSpacing: '0.1em', 
+                                  textTransform: 'uppercase', 
+                                  color: '#7A8A7D', // darker green for better visibility
+                                  display: 'block',
+                                  marginBottom: '0.25rem'
+                                }}>
+                                  The Result
+                                </span>
+                                <p style={{
+                                  fontFamily: '"Cormorant Garamond", serif',
+                                  fontSize: '1.05rem',
+                                  lineHeight: 1.5,
+                                  color: '#4A4E4C',
+                                  marginBottom: 0
+                                }}>
+                                  {item.result}
+                                </p>
+                              </div>
+                            )}
                           </div>
-                        )}
-                        {item.result && (
-                          <div style={{ position: 'relative' }}>
-                            <span style={{ 
-                              fontFamily: 'Montserrat, sans-serif', 
-                              fontSize: '0.65rem', 
-                              letterSpacing: '0.1em', 
-                              textTransform: 'uppercase', 
-                              color: '#C5B398',
-                              display: 'block',
-                              marginBottom: '0.25rem'
-                            }}>
-                              The Result
-                            </span>
-                            <p style={{
-                              fontFamily: '"Cormorant Garamond", serif',
-                              fontSize: '0.95rem',
-                              lineHeight: 1.4,
-                              color: '#5C615E',
-                              marginBottom: 0
-                            }}>
-                              {item.result}
-                            </p>
+                        </details>
 
-                            {/* Inline Button (placed bottom-right of 'The Result') */}
-                            <div style={{ 
-                              display: 'flex', 
-                              justifyContent: 'flex-end', 
-                              marginTop: '1rem' 
-                            }}>
-                              <Button 
-                                onClick={(e) => {
-                                  e.stopPropagation();
-                                  handleCardClick(item.id);
-                                }}
-                                style={{ 
-                                  padding: '0.5rem 1.25rem',
-                                  fontSize: '0.7rem' 
-                                }}
-                              >
-                                Reserve
-                              </Button>
-                            </div>
-                          </div>
-                        )}
+                        {/* Inline Button (placed bottom-right) */}
+                        <div style={{ 
+                          display: 'flex', 
+                          justifyContent: 'flex-end', 
+                          marginTop: '0.5rem' 
+                        }}>
+                          <Button 
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              handleCardClick(item.id);
+                            }}
+                            style={{ 
+                              padding: '0.5rem 1.25rem',
+                              fontSize: '0.7rem' 
+                            }}
+                          >
+                            Reserve
+                          </Button>
+                        </div>
                       </div>
                     )}
                   </div>
