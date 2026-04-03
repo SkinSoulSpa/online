@@ -88,9 +88,9 @@ const Home = ({ isLoaded = true }) => {
         width: '100%',
         height: 'calc(100vh + 80px)', // Account for the negative margin
         zIndex: -1,
-        backgroundColor: '#1C1917', // Warm, deep stone/charcoal base instead of green
+        backgroundColor: '#FAF9F6', // Light brand base color
       }}>
-        {/* Actual Image with low opacity */}
+        {/* Actual Image with adjusted opacity */}
         <div style={{
           position: 'absolute',
           top: 0,
@@ -101,17 +101,17 @@ const Home = ({ isLoaded = true }) => {
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           backgroundAttachment: 'fixed', // Creates a nice parallax effect
-          opacity: 0.3, // Slightly higher opacity since the base is cleaner
+          opacity: 0.7, // Higher opacity to let the luminous image shine on light background
         }} />
         
-        {/* Gradient overlay for text readability */}
+        {/* Gradient overlay for text readability and smooth transition */}
         <div style={{
           position: 'absolute',
           top: 0,
           left: 0,
           width: '100%',
           height: '100%',
-          background: 'linear-gradient(to bottom, rgba(28,25,23,0.1) 0%, rgba(28,25,23,0.7) 100%)'
+          background: 'linear-gradient(to bottom, rgba(250,249,246,0.2) 0%, rgba(250,249,246,0.85) 100%)'
         }} />
       </div>
 
@@ -132,31 +132,29 @@ const Home = ({ isLoaded = true }) => {
         <h1 style={{
           fontFamily: '"Tenor Sans", sans-serif',
           fontSize: 'clamp(2rem, 4vw, 3rem)', // Toned down size
-          color: '#FCFAF5', // Changed to light color for dark background
+          color: '#2C332E', // Dark color for light background
           fontWeight: 400,
           lineHeight: 1.2,
           marginBottom: '1.5rem',
           letterSpacing: '0.02em',
           opacity: 0.95,
           maxWidth: '600px',
-          textShadow: '0 2px 10px rgba(0,0,0,0.2)' // Added text shadow for readability
         }}>
           A Hidden Gem<br />
-          Where Luxury is <span style={{ whiteSpace: 'nowrap', display: 'inline-block', color: '#E8DCC4' }}>
+          Where Luxury is <span style={{ whiteSpace: 'nowrap', display: 'inline-block', color: '#BFA475' }}>
             Gentle.
           </span>
         </h1>
         <p style={{
           fontFamily: '"Cormorant Garamond", serif',
           fontSize: 'clamp(1.1rem, 2vw, 1.4rem)', // Toned down size
-          color: '#E8DCC4', // Light warm tone
+          color: '#5A615C', // Medium dark tone for light background
           fontWeight: 300,
           fontStyle: 'italic',
           lineHeight: 1.6,
           maxWidth: '500px',
           margin: '0',
           position: 'relative',
-          textShadow: '0 2px 8px rgba(0,0,0,0.3)'
         }}>
           Experience the art of slow beauty. A transformative escape designed to nourish your skin and calm your spirit.
         </p>
@@ -174,14 +172,14 @@ const Home = ({ isLoaded = true }) => {
             fontSize: '0.65rem',
             letterSpacing: '0.2em',
             textTransform: 'uppercase',
-            color: '#FCFAF5' // Light color
+            color: '#5A615C' // Darker color for light background
           }}>
             Scroll to discover
           </span>
           <div style={{
             width: '40px',
             height: '1px',
-            backgroundColor: 'rgba(252, 250, 245, 0.3)',
+            backgroundColor: 'rgba(44, 51, 46, 0.2)', // Darker line track
             position: 'relative',
             overflow: 'hidden'
           }}>
@@ -191,7 +189,7 @@ const Home = ({ isLoaded = true }) => {
               left: 0,
               width: '100%',
               height: '100%',
-              backgroundColor: '#FCFAF5',
+              backgroundColor: '#2C332E', // Darker animated line
               animation: 'scrollLine 2s ease-in-out infinite'
             }} />
           </div>
