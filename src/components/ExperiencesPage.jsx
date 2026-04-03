@@ -261,8 +261,8 @@ const ExperiencesPage = () => {
               onClick={() => setActiveTab(tab.id)}
               style={{
                 fontFamily: '"Tenor Sans", sans-serif',
-                fontSize: isMobile ? '1rem' : '1.5rem',
-                color: activeTab === tab.id ? '#2C332E' : '#9CAFA0',
+                fontSize: isMobile ? '0.9rem' : '1.2rem',
+                color: activeTab === tab.id ? '#2C332E' : '#999999',
                 background: 'none',
                 border: 'none',
                 cursor: 'pointer',
