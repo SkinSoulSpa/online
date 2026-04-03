@@ -258,36 +258,18 @@ const TheJournal = () => {
                  */}
                  
                  <div style={{ marginTop: '1.5rem', display: 'flex', justifyContent: 'center' }}>
-                    <button 
-                      onClick={() => handleReserve('Youthful Radiance Facial')}
-                      style={{
-                        background: 'linear-gradient(to right, #A89675 0%, #A89675 50%, #A89675 60%, #FFFFFF 75%, #A89675 90%, #A89675 100%)',
-                        backgroundSize: '200% auto',
-                        WebkitBackgroundClip: 'text',
-                        backgroundClip: 'text',
-                        WebkitTextFillColor: 'transparent',
-                        border: 'none',
-                        padding: '0',
-                        fontFamily: '"Tenor Sans", sans-serif',
-                        fontSize: '0.8rem',
-                        letterSpacing: '0.15em',
-                        textTransform: 'uppercase',
-                        cursor: 'pointer',
-                        transition: 'background-position 0.6s ease',
-                        fontWeight: 400,
-                        backgroundPosition: '0% center'
+                    <Button 
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        handleReserve('Youthful Radiance Facial');
                       }}
-                      onMouseEnter={(e) => {
-                        e.target.style.backgroundPosition = '-100% center';
-                        e.target.style.transition = 'background-position 0.6s ease';
-                      }}
-                      onMouseLeave={(e) => {
-                        e.target.style.backgroundPosition = '0% center';
-                        e.target.style.transition = 'background-position 0.6s ease';
+                      style={{ 
+                        padding: '0.5rem 1.25rem',
+                        fontSize: '0.7rem' 
                       }}
                     >
                       Reserve
-                    </button>
+                    </Button>
                  </div>
                </div>
              )}
@@ -368,37 +350,18 @@ const TheJournal = () => {
               </p>
 
               <div style={{ marginTop: '1rem' }}>
-                <button 
-                  onClick={() => handleReserve('Youthful Radiance Facial')}
-                  style={{
-                    background: 'linear-gradient(to right, #A89675 0%, #A89675 50%, #A89675 60%, #FFFFFF 75%, #A89675 90%, #A89675 100%)',
-                    backgroundSize: '200% auto',
-                    WebkitBackgroundClip: 'text',
-                    backgroundClip: 'text',
-                    WebkitTextFillColor: 'transparent',
-                    border: 'none',
-                    padding: '0',
-                    fontFamily: '"Tenor Sans", sans-serif',
-                    fontSize: '0.8rem',
-                    letterSpacing: '0.15em',
-                    textTransform: 'uppercase',
-                    cursor: 'pointer',
-                    transition: 'background-position 0.6s ease',
-                    fontWeight: 400,
-                    marginTop: '1rem',
-                    backgroundPosition: '0% center'
+                <Button 
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    handleReserve('Youthful Radiance Facial');
                   }}
-                  onMouseEnter={(e) => {
-                    e.target.style.backgroundPosition = '-100% center';
-                    e.target.style.transition = 'background-position 0.6s ease';
-                  }}
-                  onMouseLeave={(e) => {
-                    e.target.style.backgroundPosition = '0% center';
-                    e.target.style.transition = 'background-position 0.6s ease';
+                  style={{ 
+                    padding: '0.5rem 1.25rem',
+                    fontSize: '0.7rem' 
                   }}
                 >
                   Reserve
-                </button>
+                </Button>
               </div>
             </div>
           </div>
@@ -445,41 +408,20 @@ const TheJournal = () => {
           <span style={{ fontFamily: '"Montserrat", sans-serif', fontSize: '0.8rem', color: '#5C615E' }}>
             $258.00
           </span>
-          <button 
-            onClick={(e) => {
-              e.stopPropagation();
-              handleReserve('Youthful Radiance Facial');
-            }}
-            style={{
-              background: 'linear-gradient(to right, #C5B398 0%, #C5B398 50%, #C5B398 60%, #FFFFFF 75%, #C5B398 90%, #C5B398 100%)',
-               backgroundSize: '200% auto',
-               WebkitBackgroundClip: 'text',
-               backgroundClip: 'text',
-               WebkitTextFillColor: 'transparent',
-               border: 'none',
-               padding: '4px 0 0 0',
-               fontFamily: '"Montserrat", sans-serif',
-               fontSize: '0.6rem',
-               letterSpacing: '0.15em',
-               textTransform: 'uppercase',
-               cursor: 'pointer',
-               textAlign: 'left',
-               transition: 'background-position 0.6s ease',
-               fontWeight: 500,
-               backgroundPosition: '0% center'
-             }}
-             onMouseEnter={(e) => {
-               e.target.style.backgroundPosition = '-100% center';
-               e.target.style.transition = 'background-position 0.6s ease';
-             }}
-             onMouseLeave={(e) => {
-               e.target.style.backgroundPosition = '0% center';
-               e.target.style.transition = 'background-position 0.6s ease';
-             }}
-          >
-            Reserve
-          </button>
         </div>
+        
+        <Button 
+          onClick={(e) => {
+            e.stopPropagation();
+            handleReserve('Youthful Radiance Facial');
+          }}
+          style={{ 
+            padding: '0.5rem 1.25rem',
+            fontSize: '0.7rem' 
+          }}
+        >
+          Reserve
+        </Button>
         {/* Payment Hidden for Launch
         <Button 
           style={{
