@@ -483,38 +483,42 @@ const ExperiencesPage = () => {
                     justifyContent: 'center'
                   }}>
                     {/* Header */}
-                    <div style={{
-                      display: 'flex',
-                      justifyContent: 'space-between',
-                      alignItems: 'baseline',
-                      flexWrap: 'wrap',
-                      marginBottom: '0.75rem',
-                      gap: '0.5rem'
+                  <div style={{
+                    display: 'flex',
+                    justifyContent: 'space-between',
+                    alignItems: 'flex-start',
+                    flexWrap: 'nowrap',
+                    marginBottom: '1rem',
+                    gap: '1rem'
+                  }}>
+                    <h3 style={{
+                      fontFamily: '"Tenor Sans", sans-serif',
+                      fontSize: '1.5rem',
+                      color: isHovered ? '#BFA475' : '#2C332E',
+                      transition: 'color 0.3s ease',
+                      margin: 0,
+                      lineHeight: 1.2
                     }}>
-                      <h3 style={{
-                        fontFamily: '"Tenor Sans", sans-serif',
-                        fontSize: '1.5rem',
-                        color: isHovered ? '#BFA475' : '#2C332E',
-                        transition: 'color 0.3s ease',
-                        margin: 0
-                      }}>
-                        {item.title}
-                      </h3>
-                      <span style={{
-                        fontFamily: '"Montserrat", sans-serif',
-                        fontSize: '0.65rem',
-                        fontWeight: 500,
-                        letterSpacing: '0.1em',
-                        textTransform: 'uppercase',
-                        color: '#FFFFFF',
-                        backgroundColor: '#9CAFA0', // Misty Sage
-                        padding: '0.2rem 0.6rem',
-                        borderRadius: '4px',
-                        boxShadow: '0 2px 4px rgba(156, 175, 160, 0.2)'
-                      }}>
-                        {item.duration} | {item.price}
-                      </span>
-                    </div>
+                      {item.title}
+                    </h3>
+                    <span style={{
+                      fontFamily: '"Montserrat", sans-serif',
+                      fontSize: '0.65rem',
+                      fontWeight: 500,
+                      letterSpacing: '0.1em',
+                      textTransform: 'uppercase',
+                      color: '#FFFFFF',
+                      backgroundColor: '#9CAFA0', // Misty Sage
+                      padding: '0.3rem 0.6rem',
+                      borderRadius: '4px',
+                      boxShadow: '0 2px 4px rgba(156, 175, 160, 0.2)',
+                      whiteSpace: 'nowrap',
+                      flexShrink: 0,
+                      marginTop: '0.25rem'
+                    }}>
+                      {item.duration} | {item.price}
+                    </span>
+                  </div>
 
                     {/* Narrative */}
                     <div style={{ marginBottom: '1.25rem' }}>
@@ -756,16 +760,17 @@ const ExperiencesPage = () => {
                   <div style={{
                     display: 'flex',
                     justifyContent: 'space-between',
-                    alignItems: 'baseline',
-                    flexWrap: 'wrap',
-                    marginBottom: '0.75rem',
-                    gap: '0.5rem'
+                    alignItems: 'flex-start',
+                    flexWrap: 'nowrap',
+                    marginBottom: '1rem',
+                    gap: '1rem'
                   }}>
                     <h3 style={{
                       fontFamily: '"Tenor Sans", sans-serif',
                       fontSize: '1.5rem',
                       color: '#2C332E',
-                      margin: 0
+                      margin: 0,
+                      lineHeight: 1.2
                     }}>
                       {item.title}
                     </h3>
@@ -777,9 +782,12 @@ const ExperiencesPage = () => {
                       textTransform: 'uppercase',
                       color: '#FFFFFF',
                       backgroundColor: '#9CAFA0', // Misty Sage
-                      padding: '0.2rem 0.6rem',
+                      padding: '0.3rem 0.6rem',
                       borderRadius: '4px',
-                      boxShadow: '0 2px 4px rgba(156, 175, 160, 0.2)'
+                      boxShadow: '0 2px 4px rgba(156, 175, 160, 0.2)',
+                      whiteSpace: 'nowrap',
+                      flexShrink: 0,
+                      marginTop: '0.25rem'
                     }}>
                       {item.duration} | {item.price}
                     </span>
@@ -1065,16 +1073,17 @@ const ExperiencesPage = () => {
                   <div style={{
                     display: 'flex',
                     justifyContent: 'space-between',
-                    alignItems: 'baseline',
-                    flexWrap: 'wrap',
-                    marginBottom: '0.75rem',
-                    gap: '0.5rem'
+                    alignItems: 'flex-start',
+                    flexWrap: 'nowrap',
+                    marginBottom: '1rem',
+                    gap: '1rem'
                   }}>
                     <h3 style={{
                       fontFamily: '"Tenor Sans", sans-serif',
                       fontSize: '1.5rem',
                       color: '#2C332E',
-                      margin: 0
+                      margin: 0,
+                      lineHeight: 1.2
                     }}>
                       {item.title}
                     </h3>
@@ -1086,9 +1095,12 @@ const ExperiencesPage = () => {
                       textTransform: 'uppercase',
                       color: '#FFFFFF',
                       backgroundColor: '#9CAFA0', // Misty Sage
-                      padding: '0.2rem 0.6rem',
+                      padding: '0.3rem 0.6rem',
                       borderRadius: '4px',
-                      boxShadow: '0 2px 4px rgba(156, 175, 160, 0.2)'
+                      boxShadow: '0 2px 4px rgba(156, 175, 160, 0.2)',
+                      whiteSpace: 'nowrap',
+                      flexShrink: 0,
+                      marginTop: '0.25rem'
                     }}>
                       {item.duration} | {item.price}
                     </span>
