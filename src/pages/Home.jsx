@@ -141,7 +141,7 @@ const Home = ({ isLoaded = true }) => {
           maxWidth: '600px',
         }}>
           A hidden gem<br />
-          where luxury is <span style={{ whiteSpace: 'nowrap', display: 'inline-block' }}>
+          where luxury is <span className="gentle-shimmer" style={{ whiteSpace: 'nowrap', display: 'inline-block' }}>
             gentle.
           </span>
         </h1>
@@ -205,6 +205,18 @@ const Home = ({ isLoaded = true }) => {
         @keyframes fadeInUp {
           from { opacity: 0; transform: translateY(20px); }
           to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes gentleShimmer {
+          0% { background-position: 200% center; }
+          100% { background-position: -100% center; }
+        }
+        .gentle-shimmer {
+          background: linear-gradient(to right, #2C332E 0%, #2C332E 45%, #C5B398 50%, #2C332E 55%, #2C332E 100%);
+          background-size: 250% auto;
+          -webkit-background-clip: text;
+          background-clip: text;
+          -webkit-text-fill-color: transparent;
+          animation: gentleShimmer 4s infinite linear;
         }
       `}</style>
 
