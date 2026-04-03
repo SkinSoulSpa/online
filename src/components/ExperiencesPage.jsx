@@ -598,49 +598,14 @@ const ExperiencesPage = () => {
                       */}
                       
                       <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-                        {/*
-                        <span style={{
-                          fontFamily: '"Cormorant Garamond", serif',
-                          fontStyle: 'italic',
-                          color: '#BFA475',
-                          fontSize: '1.1rem',
-                          lineHeight: 1,
-                          transform: 'translateY(1px)' // Fine-tune vertical alignment
-                        }}>or</span>
-                        */}
-                        <button 
+                        <Button 
                           onClick={(e) => {
                             e.stopPropagation();
                             handleCardClick(item.id);
                           }}
-                          style={{
-                            background: 'linear-gradient(to right, #A89675 0%, #A89675 50%, #A89675 60%, #FFFFFF 75%, #A89675 90%, #A89675 100%)',
-                          backgroundSize: '200% auto',
-                          WebkitBackgroundClip: 'text',
-                          backgroundClip: 'text',
-                          WebkitTextFillColor: 'transparent',
-                          border: 'none',
-                          padding: '0',
-                          fontFamily: '"Tenor Sans", sans-serif',
-                          fontSize: '0.8rem',
-                          letterSpacing: '0.15em',
-                          textTransform: 'uppercase',
-                          cursor: 'pointer',
-                          transition: 'background-position 0.6s ease',
-                          fontWeight: 400,
-                          backgroundPosition: '0% center'
-                        }}
-                        onMouseEnter={(e) => {
-                          e.target.style.backgroundPosition = '-100% center';
-                          e.target.style.transition = 'background-position 0.6s ease';
-                        }}
-                        onMouseLeave={(e) => {
-                          e.target.style.backgroundPosition = '0% center';
-                          e.target.style.transition = 'background-position 0.6s ease';
-                        }}
                         >
                           Reserve
-                        </button>
+                        </Button>
                       </div>
                     </div>
                   </div>
@@ -896,49 +861,14 @@ const ExperiencesPage = () => {
                       */}
                       
                       <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-                        {/*
-                        <span style={{
-                          fontFamily: '"Cormorant Garamond", serif',
-                          fontStyle: 'italic',
-                          color: '#BFA475',
-                          fontSize: '1.1rem',
-                          lineHeight: 1,
-                          transform: 'translateY(1px)'
-                        }}>or</span>
-                        */}
-                        <button 
+                        <Button 
                           onClick={(e) => {
                           e.stopPropagation();
                           handleCardClick(item.id);
                         }}
-                        style={{
-                          background: 'linear-gradient(to right, #A89675 0%, #A89675 50%, #A89675 60%, #FFFFFF 75%, #A89675 90%, #A89675 100%)',
-                          backgroundSize: '200% auto',
-                          WebkitBackgroundClip: 'text',
-                          backgroundClip: 'text',
-                          WebkitTextFillColor: 'transparent',
-                          border: 'none',
-                          padding: '0',
-                          fontFamily: '"Tenor Sans", sans-serif',
-                          fontSize: '0.8rem',
-                          letterSpacing: '0.15em',
-                          textTransform: 'uppercase',
-                          cursor: 'pointer',
-                          transition: 'background-position 0.6s ease',
-                          fontWeight: 400,
-                          backgroundPosition: '0% center'
-                        }}
-                        onMouseEnter={(e) => {
-                          e.target.style.backgroundPosition = '-100% center';
-                          e.target.style.transition = 'background-position 0.6s ease';
-                        }}
-                        onMouseLeave={(e) => {
-                          e.target.style.backgroundPosition = '0% center';
-                          e.target.style.transition = 'background-position 0.6s ease';
-                        }}
                       >
                         Reserve
-                        </button>
+                        </Button>
                     </div>
                   </div>
                 </div>
@@ -1233,49 +1163,14 @@ const ExperiencesPage = () => {
                     */}
                     
                     <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-                      {/*
-                      <span style={{
-                        fontFamily: '"Cormorant Garamond", serif',
-                        fontStyle: 'italic',
-                        color: '#BFA475',
-                        fontSize: '1.1rem',
-                        lineHeight: 1,
-                        transform: 'translateY(1px)'
-                      }}>or</span>
-                      */}
-                      <button 
+                      <Button 
                         onClick={(e) => {
                           e.stopPropagation();
                           handleCardClick(item.id);
                         }}
-                        style={{
-                          background: 'linear-gradient(to right, #A89675 0%, #A89675 50%, #A89675 60%, #FFFFFF 75%, #A89675 90%, #A89675 100%)',
-                          backgroundSize: '200% auto',
-                          WebkitBackgroundClip: 'text',
-                          backgroundClip: 'text',
-                          WebkitTextFillColor: 'transparent',
-                          border: 'none',
-                          padding: '0',
-                          fontFamily: '"Tenor Sans", sans-serif',
-                          fontSize: '0.8rem',
-                          letterSpacing: '0.15em',
-                          textTransform: 'uppercase',
-                          cursor: 'pointer',
-                          transition: 'background-position 0.6s ease',
-                          fontWeight: 400,
-                          backgroundPosition: '0% center'
-                        }}
-                        onMouseEnter={(e) => {
-                          e.target.style.backgroundPosition = '-100% center';
-                          e.target.style.transition = 'background-position 0.6s ease';
-                        }}
-                        onMouseLeave={(e) => {
-                          e.target.style.backgroundPosition = '0% center';
-                          e.target.style.transition = 'background-position 0.6s ease';
-                        }}
                       >
                         Reserve
-                        </button>
+                        </Button>
                     </div>
                   </div>
                 </div>
