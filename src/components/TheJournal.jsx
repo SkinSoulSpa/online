@@ -325,47 +325,43 @@ const TheJournal = () => {
               Reclaiming Your Youthful Radiance
             </h4>
             <div style={{
-              columnCount: isMobile ? 1 : 2,
-              columnGap: '4rem',
               fontFamily: '"Montserrat", sans-serif',
-              fontSize: '1rem',
-              lineHeight: 1.8,
+              fontSize: '1.15rem',
+              lineHeight: 1.9,
               color: '#2C332E',
-              marginBottom: '3rem'
+              marginBottom: '3rem',
+              maxWidth: '800px'
             }}>
               <p style={{ marginBottom: '2rem' }}>
-                In the relentless pulse of Orchard Road, where the city’s demands are loudest, exists a hidden gem that many pass without ever realising the sanctuary that lies just a floor away. Stepping into Level 3 of Pacific Plaza, the transition is immediate: the frantic energy of Scotts Road dissolves, replaced by a bubble of tranquillity where time feels suspended. This is Skin Soul Spa, a space where luxury is not loud, but gentle, soul-deep, and profoundly restorative.
+                In the relentless pulse of Orchard Road exists a hidden sanctuary. Stepping into Pacific Plaza, the frantic energy of the city dissolves into a bubble of tranquillity. This is Skin Soul Spa—a space where luxury is gentle, soul-deep, and profoundly restorative.
               </p>
 
               <h5 style={{ fontFamily: '"Tenor Sans", sans-serif', fontSize: '1.2rem', color: '#2C332E', margin: '2rem 0 1rem 0' }}>
                 The Dialogue Before the Glow
               </h5>
-              <p style={{ marginBottom: '1.5rem' }}>
-                Our most sought-after transformative experience, the Youthful Radiance Facial, begins not with the hum of a machine, but with a quiet, purposeful dialogue. We understand that every individual’s skin is a unique architecture; therefore, we reject generic protocols in favour of a highly personalised Skin Consultation.
-              </p>
               <p style={{ marginBottom: '2rem' }}>
-                Whether you are guided by the "attentive and gentle" touch of Shelbee or the seasoned expertise of Freya, the focus remains entirely on genuine care. In an atmosphere defined by zero pressure and no hard selling, our artisans provide professional recommendations designed to reveal your skin’s inherent luminosity, treating your journey with the highest level of professional discretion.
+                Our Youthful Radiance Facial begins with a purposeful dialogue. Rejecting generic protocols, our artisans—whether the gentle Shelbee or seasoned Freya—offer a highly personalised consultation. In an atmosphere free of pressure, we focus entirely on revealing your skin’s inherent luminosity.
               </p>
 
               <h5 style={{ fontFamily: '"Tenor Sans", sans-serif', fontSize: '1.2rem', color: '#2C332E', margin: '2rem 0 1rem 0' }}>
                 A Sensory Immersion
               </h5>
               <p style={{ marginBottom: '2rem' }}>
-                As you are led into your private treatment room, the ritual of self-reverence truly begins. You are invited to recline into spacious, plush beds and high-end linens designed for total physical surrender. The environment is a meticulously curated sanctuary of soft lighting, soothing music, and ambient scents that coax the mind into a state of deep, luxurious calm. It is here that guests find themselves slipping into a restorative sleep, safe in the hands of artisans who treat your skin as sacred.
+                Inside your private treatment room, recline into plush linens designed for total physical surrender. Soft lighting, soothing music, and ambient scents coax the mind into luxurious calm, allowing you to slip into a restorative sleep while our artisans treat your skin as sacred.
               </p>
 
               <h5 style={{ fontFamily: '"Tenor Sans", sans-serif', fontSize: '1.2rem', color: '#2C332E', margin: '2rem 0 1rem 0' }}>
                 The Science of Illumination
               </h5>
               <p style={{ marginBottom: '2rem' }}>
-                The Youthful Radiance Facial is a symphony of technical mastery and premium botanical ingredients. By utilising specialised techniques to promote circulation and repair the skin barrier, our artisans work to "coax" radiance rather than force it. To the discerning client, this $258 investment represents far more than a facial. It is the acquisition of emotional value, a rare pause in a busy life and the specialised care required to achieve an "ageless glow" that justifies the splurge.
+                This facial is a symphony of technical mastery and premium botanical ingredients. By utilising specialised techniques to repair the skin barrier, we "coax" radiance rather than force it. It is an investment in emotional value and an ageless glow.
               </p>
 
               <h5 style={{ fontFamily: '"Tenor Sans", sans-serif', fontSize: '1.2rem', color: '#2C332E', margin: '2rem 0 1rem 0' }}>
                 The Lingering Afterglow
               </h5>
               <p style={{ marginBottom: '1.5rem' }}>
-                You do not leave Skin Soul Spa simply with better skin; you leave with a renewed sense of well-being and a physical vitality that lingers for days. The Youthful Radiance Facial is designed to leave both the body and mind in harmony, turning a standard appointment into a private ritual of restoration.
+                You leave with a renewed sense of well-being and a physical vitality that lingers. The Youthful Radiance Facial leaves both body and mind in perfect harmony.
               </p>
               <p style={{ marginBottom: '2.5rem', fontStyle: 'italic', color: '#2C332E' }}>
                 In a noisy world, the ultimate luxury is the freedom to be vulnerable. The path to your most radiant self is a journey of total surrender.
