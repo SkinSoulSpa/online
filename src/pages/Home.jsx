@@ -88,7 +88,7 @@ const Home = ({ isLoaded = true }) => {
         width: '100%',
         height: 'calc(100vh + 80px)', // Account for the negative margin
         zIndex: -1,
-        backgroundColor: '#2C332E', // Solid dark base color
+        backgroundColor: '#1C1917', // Warm, deep stone/charcoal base instead of green
       }}>
         {/* Actual Image with low opacity */}
         <div style={{
@@ -101,7 +101,7 @@ const Home = ({ isLoaded = true }) => {
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           backgroundAttachment: 'fixed', // Creates a nice parallax effect
-          opacity: 0.25, // Low opacity for luminous.png
+          opacity: 0.3, // Slightly higher opacity since the base is cleaner
         }} />
         
         {/* Gradient overlay for text readability */}
@@ -111,7 +111,7 @@ const Home = ({ isLoaded = true }) => {
           left: 0,
           width: '100%',
           height: '100%',
-          background: 'linear-gradient(to bottom, rgba(44,51,46,0.1) 0%, rgba(44,51,46,0.6) 100%)'
+          background: 'linear-gradient(to bottom, rgba(28,25,23,0.1) 0%, rgba(28,25,23,0.7) 100%)'
         }} />
       </div>
 
