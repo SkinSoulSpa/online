@@ -127,17 +127,18 @@ const Navigation = () => {
           <style>{`
             .shimmer-text {
               color: #2C332E;
-              background: linear-gradient(to right, #2C332E 0%, #2C332E 40%, #C5B398 50%, #2C332E 60%, #2C332E 100%);
-              background-size: 200% auto;
+              /* Keep gradient fully pushed off to the right initially so no gold bleeds into the last letter */
+              background: linear-gradient(to right, #2C332E 0%, #2C332E 45%, #C5B398 50%, #2C332E 55%, #2C332E 100%);
+              background-size: 250% auto; /* Increase size to give more solid color buffer on edges */
               -webkit-background-clip: text;
               background-clip: text;
               -webkit-text-fill-color: transparent;
-              background-position: 0% center;
+              background-position: 100% center; /* Start firmly on the solid dark part */
               transition: background-position 0.5s ease;
             }
 
             .menu-item:hover .shimmer-text {
-              background-position: 200% center;
+              background-position: -100% center; /* Sweep completely across to the other side */
               transition: background-position 1.5s ease;
             }
 
