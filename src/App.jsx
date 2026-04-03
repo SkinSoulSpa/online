@@ -41,7 +41,8 @@ function App() {
             <Routes>
               <Route path="/" element={<Home isLoaded={isLoaded} />} />
               <Route path="/sanctuary" element={<Sanctuary />} />
-              <Route path="/experiences" element={<ExperiencesPage />} />
+              <Route path="/services" element={<ExperiencesPage />} />
+              <Route path="/experiences" element={<Navigate to="/services" replace />} />
               <Route path="/promotions" element={<Promotions />} />
               <Route path="/artisans" element={<TheArtisans />} />
               <Route path="/journal" element={<TheJournal />} />

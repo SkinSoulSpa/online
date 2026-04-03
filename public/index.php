@@ -65,9 +65,9 @@ if (strpos($path, '/artisans') !== false) {
     $new_image = 'https://skinsoulspa.sg/og/sanctuary.jpg?v=2';
     $new_width = '1152';
     $new_height = '928';
-} elseif (strpos($path, '/experiences') !== false) {
-    $new_title = 'The Experiences | Skin Soul Spa';
-    $new_description = 'Discover our bespoke facials, body therapies, and signature journeys designed to restore your soul.';
+} elseif (strpos($path, '/services') !== false) {
+    $new_title = 'Transformative Experiences | Skin Soul Spa';
+    $new_description = 'Discover our bespoke facials, regenerative treatments, and holistic wellness journeys designed for deep urban restoration.';
     $new_image = 'https://skinsoulspa.sg/og/experiences.jpg?v=2';
     $new_width = '1376';
     $new_height = '768';

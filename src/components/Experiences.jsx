@@ -48,12 +48,12 @@ const Experiences = () => {
   const handleCardClick = (type, id) => {
     if (isMobile) {
       if (hoveredId === id) {
-        navigate('/experiences', { state: { scrollTo: type } });
+        navigate('/services', { state: { scrollTo: type } });
       } else {
         setHoveredId(id);
       }
     } else {
-      navigate('/experiences', { state: { scrollTo: type } });
+      navigate('/services', { state: { scrollTo: type } });
     }
   };
 
