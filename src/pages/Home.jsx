@@ -73,53 +73,94 @@ const Home = ({ isLoaded = true }) => {
       <div style={{ 
       position: 'relative', 
       zIndex: 1, 
-      minHeight: '300vh', // Extended height to demonstrate scrolling
+      minHeight: '200vh', // Extended height to demonstrate scrolling
       display: 'flex',
       flexDirection: 'column',
       alignItems: 'flex-start', // Left align content container
-      paddingTop: '35vh'
+      paddingTop: isMobile ? '15vh' : '22vh' // Reduced spacing from top
     }}>
       <div 
         ref={heroRef}
         style={{
           textAlign: 'left',
-          maxWidth: '800px',
+          maxWidth: '1000px',
           padding: '0 2rem',
           marginLeft: isMobile ? '0' : '10vw', // Removed margin on mobile
-          // opacity: 0 // Removed to prevent permanent invisibility if JS fails
         }}
       >
         <h1 style={{
           fontFamily: '"Tenor Sans", sans-serif',
-          fontSize: 'clamp(2rem, 4vw, 3rem)',
+          fontSize: 'clamp(3rem, 6vw, 4.5rem)', // Made typography larger
           color: '#2C332E',
           fontWeight: 400,
-          lineHeight: 1.2,
-          marginBottom: '1.5rem',
+          lineHeight: 1.1,
+          marginBottom: '2rem',
           letterSpacing: '0.02em',
           opacity: 0.9,
-          maxWidth: '600px' // Increased width
+          maxWidth: '800px' // Increased width for larger text
         }}>
           A Hidden Gem<br />
-          Where Luxury is <span style={{ whiteSpace: 'nowrap', display: 'inline-block' }}>
+          Where Luxury is <span style={{ whiteSpace: 'nowrap', display: 'inline-block', fontStyle: 'italic', color: '#BFA475' }}>
             Gentle.
           </span>
         </h1>
         <p style={{
           fontFamily: '"Cormorant Garamond", serif',
-          fontSize: 'clamp(1.1rem, 2vw, 1.4rem)',
+          fontSize: 'clamp(1.25rem, 2.5vw, 1.75rem)', // Larger sub-text
           color: '#5C615E',
           fontWeight: 300,
           fontStyle: 'italic',
           lineHeight: 1.6,
-          maxWidth: '500px', // Tighter width for elegance
-          margin: '0' // Reset margin since we are left aligned
+          maxWidth: '600px', // Adjusted width
+          margin: '0',
+          position: 'relative'
         }}>
           Experience the art of slow beauty. A transformative escape designed to nourish your skin and calm your spirit.
         </p>
+        
+        {/* Scroll Indicator */}
+        <div style={{
+          marginTop: '4rem',
+          display: 'flex',
+          alignItems: 'center',
+          gap: '1rem',
+          opacity: 0.7
+        }}>
+          <span style={{
+            fontFamily: '"Montserrat", sans-serif',
+            fontSize: '0.65rem',
+            letterSpacing: '0.2em',
+            textTransform: 'uppercase',
+            color: '#2C332E'
+          }}>
+            Scroll to discover
+          </span>
+          <div style={{
+            width: '40px',
+            height: '1px',
+            backgroundColor: '#2C332E',
+            position: 'relative',
+            overflow: 'hidden'
+          }}>
+            <div style={{
+              position: 'absolute',
+              top: 0,
+              left: 0,
+              width: '100%',
+              height: '100%',
+              backgroundColor: '#BFA475',
+              animation: 'scrollLine 2s ease-in-out infinite'
+            }} />
+          </div>
+        </div>
       </div>
       
       <style>{`
+        @keyframes scrollLine {
+          0% { transform: translateX(-100%); }
+          50% { transform: translateX(0); }
+          100% { transform: translateX(100%); }
+        }
         @keyframes fadeInUp {
           from { opacity: 0; transform: translateY(20px); }
           to { opacity: 1; transform: translateY(0); }
