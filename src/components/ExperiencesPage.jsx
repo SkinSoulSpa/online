@@ -558,7 +558,7 @@ const ExperiencesPage = () => {
                           userSelect: 'none',
                           listStyle: 'none'
                         }}>
-                          The Sensation & Result
+                          Sensation & Result
                           <span style={{ fontSize: '1rem', fontWeight: 'bold' }}>+</span>
                         </summary>
                         <div style={{ marginTop: '1.25rem', display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr', gap: '2.5rem', padding: '0.5rem 0' }}>
@@ -572,7 +572,7 @@ const ExperiencesPage = () => {
                               display: 'block',
                               marginBottom: '0.25rem'
                             }}>
-                              The Sensation
+                              Sensation
                             </span>
                             <p style={{
                               fontFamily: '"Cormorant Garamond", serif',
@@ -595,7 +595,7 @@ const ExperiencesPage = () => {
                               display: 'block',
                               marginBottom: '0.25rem'
                             }}>
-                              The Result
+                              Result
                             </span>
                             <p style={{
                               fontFamily: '"Cormorant Garamond", serif',
@@ -848,7 +848,7 @@ const ExperiencesPage = () => {
                           userSelect: 'none',
                           listStyle: 'none'
                         }}>
-                          The Sensation & Result
+                          Sensation & Result
                           <span style={{ fontSize: '1rem', fontWeight: 'bold' }}>+</span>
                         </summary>
                         <div style={{ marginTop: '1.25rem', display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr', gap: '2.5rem', padding: '0.5rem 0' }}>
@@ -862,7 +862,7 @@ const ExperiencesPage = () => {
                               display: 'block',
                               marginBottom: '0.25rem'
                             }}>
-                              The Sensation
+                              Sensation
                             </span>
                             <p style={{
                               fontFamily: '"Cormorant Garamond", serif',
@@ -885,7 +885,7 @@ const ExperiencesPage = () => {
                               display: 'block',
                               marginBottom: '0.25rem'
                             }}>
-                              The Result
+                              Result
                             </span>
                             <p style={{
                               fontFamily: '"Cormorant Garamond", serif',
@@ -1166,7 +1166,7 @@ const ExperiencesPage = () => {
                             userSelect: 'none',
                             listStyle: 'none'
                           }}>
-                            The Sensation & Result
+                            Sensation & Result
                             <span style={{ fontSize: '1rem', fontWeight: 'bold' }}>+</span>
                           </summary>
                           <div style={{ marginTop: '1.25rem', display: 'flex', flexDirection: 'column', gap: '2.5rem', padding: '0.5rem 0' }}>
@@ -1181,7 +1181,7 @@ const ExperiencesPage = () => {
                                   display: 'block',
                                   marginBottom: '0.25rem'
                                 }}>
-                                  The Sensation
+                                  Sensation
                                 </span>
                                 <p style={{
                                   fontFamily: '"Cormorant Garamond", serif',
@@ -1206,7 +1206,7 @@ const ExperiencesPage = () => {
                                   display: 'block',
                                   marginBottom: '0.25rem'
                                 }}>
-                                  The Result
+                                  Result
                                 </span>
                                 <p style={{
                                   fontFamily: '"Cormorant Garamond", serif',
