@@ -171,7 +171,7 @@ const ExperiencesPage = () => {
       {/* SECTION 1: THE HERO (The Mood) */}
       <div ref={heroRef} style={{ 
         position: 'relative', 
-        minHeight: '80vh', 
+        minHeight: '60vh', 
         display: 'flex', 
         flexDirection: 'column',
         justifyContent: 'center',
@@ -213,9 +213,9 @@ const ExperiencesPage = () => {
 
         {/* Hero Visual - Replaced with Consultation Image */}
         <div className="fade-section" style={{ 
-          marginTop: '4rem', 
+          marginTop: '3rem', 
           width: '100%', 
-          maxWidth: '1000px', 
+          maxWidth: '800px', 
           height: 'auto',
           position: 'relative' 
         }}>
@@ -226,8 +226,10 @@ const ExperiencesPage = () => {
               style={{ 
                 width: '100%', 
                 height: 'auto', 
+                maxHeight: '500px',
                 display: 'block',
-                objectFit: 'cover'
+                objectFit: 'cover',
+                objectPosition: 'center 20%'
               }} 
             />
           </OrganicImagePlaceholder>
