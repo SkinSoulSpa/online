@@ -474,7 +474,7 @@ const ExperiencesPage = () => {
 
                   {/* Content Section */}
                   <div style={{
-                    padding: isMobile ? '2rem' : '3rem',
+                    padding: isMobile ? '1.5rem' : '2rem',
                     flex: 1,
                     display: 'flex',
                     flexDirection: 'column',
@@ -486,12 +486,12 @@ const ExperiencesPage = () => {
                       justifyContent: 'space-between',
                       alignItems: 'baseline',
                       flexWrap: 'wrap',
-                      marginBottom: '1rem',
-                      gap: '1rem'
+                      marginBottom: '0.75rem',
+                      gap: '0.5rem'
                     }}>
                       <h3 style={{
                         fontFamily: '"Tenor Sans", sans-serif',
-                        fontSize: '1.75rem',
+                        fontSize: '1.5rem',
                         color: isHovered ? '#BFA475' : '#2C332E',
                         transition: 'color 0.3s ease',
                         margin: 0
@@ -506,7 +506,7 @@ const ExperiencesPage = () => {
                         textTransform: 'uppercase',
                         color: '#FFFFFF',
                         backgroundColor: '#9CAFA0', // Misty Sage
-                        padding: '0.25rem 0.75rem',
+                        padding: '0.2rem 0.6rem',
                         borderRadius: '4px',
                         boxShadow: '0 2px 4px rgba(156, 175, 160, 0.2)'
                       }}>
@@ -515,11 +515,11 @@ const ExperiencesPage = () => {
                     </div>
 
                     {/* Narrative */}
-                    <div style={{ marginBottom: '2rem' }}>
+                    <div style={{ marginBottom: '1.25rem' }}>
                       <p style={{
                         fontFamily: '"Cormorant Garamond", serif',
-                        fontSize: '1.125rem',
-                        lineHeight: 1.6,
+                        fontSize: '1.05rem',
+                        lineHeight: 1.4,
                         color: '#5C615E',
                         marginBottom: 0
                       }}>
@@ -530,77 +530,95 @@ const ExperiencesPage = () => {
                     {/* Sensation & Result Grid */}
                     <div style={{ 
                       display: 'grid', 
-                      gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr', 
-                      gap: '1.5rem',
+                      gridTemplateColumns: '1fr', 
+                      gap: '1rem',
                       marginTop: 'auto', // Push to bottom if space allows
                       borderTop: '1px solid rgba(197, 179, 152, 0.2)',
-                      paddingTop: '1.5rem'
+                      paddingTop: '1rem'
                     }}>
-                      <div>
-                        <span style={{ 
+                      <details style={{ cursor: 'pointer', outline: 'none' }}>
+                        <summary style={{ 
                           fontFamily: 'Montserrat, sans-serif', 
-                          fontSize: '0.7rem', 
+                          fontSize: '0.65rem', 
                           letterSpacing: '0.15em', 
                           textTransform: 'uppercase', 
                           color: '#C5B398',
-                          display: 'block',
-                          marginBottom: '0.5rem'
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'space-between',
+                          userSelect: 'none',
+                          listStyle: 'none'
                         }}>
-                          The Sensation
-                        </span>
-                        <p style={{
-                          fontFamily: '"Cormorant Garamond", serif',
-                          fontSize: '1rem',
-                          lineHeight: 1.5,
-                          color: '#5C615E',
-                          fontStyle: 'italic',
-                          marginBottom: 0
-                        }}>
-                          {item.sensation}
-                        </p>
-                      </div>
-                      <div style={{ position: 'relative' }}>
-                        <span style={{ 
-                          fontFamily: 'Montserrat, sans-serif', 
-                          fontSize: '0.7rem', 
-                          letterSpacing: '0.15em', 
-                          textTransform: 'uppercase', 
-                          color: '#C5B398',
-                          display: 'block',
-                          marginBottom: '0.5rem'
-                        }}>
-                          The Result
-                        </span>
-                        <p style={{
-                          fontFamily: '"Cormorant Garamond", serif',
-                          fontSize: '1rem',
-                          lineHeight: 1.5,
-                          color: '#5C615E',
-                          fontStyle: 'italic',
-                          marginBottom: 0
-                        }}>
-                          {item.result}
-                        </p>
-                        
-                        {/* Inline Button (placed bottom-right of 'The Result') */}
-                        <div style={{ 
-                          display: 'flex', 
-                          justifyContent: isMobile ? 'flex-start' : 'flex-end', 
-                          marginTop: '1.5rem' 
-                        }}>
-                          <Button 
-                            onClick={(e) => {
-                              e.stopPropagation();
-                              handleCardClick(item.id);
-                            }}
-                            style={{ 
-                              padding: '0.6rem 1.5rem',
-                              fontSize: '0.75rem' 
-                            }}
-                          >
-                            Reserve
-                          </Button>
+                          The Sensation & Result
+                          <span style={{ fontSize: '0.8rem' }}>+</span>
+                        </summary>
+                        <div style={{ marginTop: '0.75rem', display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr', gap: '1rem' }}>
+                          <div>
+                            <span style={{ 
+                              fontFamily: 'Montserrat, sans-serif', 
+                              fontSize: '0.6rem', 
+                              letterSpacing: '0.1em', 
+                              textTransform: 'uppercase', 
+                              color: '#9CAFA0',
+                              display: 'block',
+                              marginBottom: '0.25rem'
+                            }}>
+                              The Sensation
+                            </span>
+                            <p style={{
+                              fontFamily: '"Cormorant Garamond", serif',
+                              fontSize: '0.95rem',
+                              lineHeight: 1.4,
+                              color: '#5C615E',
+                              fontStyle: 'italic',
+                              marginBottom: 0
+                            }}>
+                              {item.sensation}
+                            </p>
+                          </div>
+                          <div>
+                            <span style={{ 
+                              fontFamily: 'Montserrat, sans-serif', 
+                              fontSize: '0.6rem', 
+                              letterSpacing: '0.1em', 
+                              textTransform: 'uppercase', 
+                              color: '#9CAFA0',
+                              display: 'block',
+                              marginBottom: '0.25rem'
+                            }}>
+                              The Result
+                            </span>
+                            <p style={{
+                              fontFamily: '"Cormorant Garamond", serif',
+                              fontSize: '0.95rem',
+                              lineHeight: 1.4,
+                              color: '#5C615E',
+                              marginBottom: 0
+                            }}>
+                              {item.result}
+                            </p>
+                          </div>
                         </div>
+                      </details>
+                        
+                      {/* Inline Button (placed bottom-right) */}
+                      <div style={{ 
+                        display: 'flex', 
+                        justifyContent: 'flex-end', 
+                        marginTop: '0.5rem' 
+                      }}>
+                        <Button 
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            handleCardClick(item.id);
+                          }}
+                          style={{ 
+                            padding: '0.5rem 1.25rem',
+                            fontSize: '0.7rem' 
+                          }}
+                        >
+                          Reserve
+                        </Button>
                       </div>
                     </div>
                   </div>
@@ -706,7 +724,7 @@ const ExperiencesPage = () => {
                   style={{ 
                     backgroundColor: '#FFFFFF',
                     borderRadius: '1rem', 
-                    padding: '2.5rem',
+                    padding: '2rem',
                     border: '1px solid rgba(197, 179, 152, 0.2)', // Subtle gold border
                     transition: 'all 0.4s ease',
                     display: 'flex',
@@ -730,13 +748,13 @@ const ExperiencesPage = () => {
                     display: 'flex',
                     justifyContent: 'space-between',
                     alignItems: 'flex-start',
-                    marginBottom: '1.5rem',
-                    paddingBottom: '1rem',
+                    marginBottom: '1rem',
+                    paddingBottom: '0.75rem',
                     borderBottom: '1px solid rgba(197, 179, 152, 0.2)'
                   }}>
                     <h3 style={{
                       fontFamily: '"Tenor Sans", sans-serif',
-                      fontSize: '1.5rem',
+                      fontSize: '1.25rem',
                       color: '#2C332E',
                       margin: 0,
                       maxWidth: '70%'
@@ -769,7 +787,7 @@ const ExperiencesPage = () => {
                   {/* Body Content */}
                   <div>
                     {/* Narrative */}
-                    <div style={{ marginBottom: '1.5rem' }}>
+                    <div style={{ marginBottom: '1rem' }}>
                       <span style={{ 
                         fontFamily: 'Montserrat, sans-serif', 
                         fontSize: '0.65rem', 
@@ -777,14 +795,14 @@ const ExperiencesPage = () => {
                         textTransform: 'uppercase', 
                         color: '#C5B398',
                         display: 'block',
-                        marginBottom: '0.5rem'
+                        marginBottom: '0.25rem'
                       }}>
                         The Narrative
                       </span>
                       <p style={{
                         fontFamily: '"Cormorant Garamond", serif',
-                        fontSize: '1rem',
-                        lineHeight: 1.6,
+                        fontSize: '0.95rem',
+                        lineHeight: 1.4,
                         color: '#5C615E',
                         marginBottom: 0
                       }}>
@@ -793,7 +811,7 @@ const ExperiencesPage = () => {
                     </div>
 
                     {/* Sensation */}
-                    <div style={{ marginBottom: '1.5rem' }}>
+                    <div style={{ marginBottom: '1rem' }}>
                       <span style={{ 
                         fontFamily: 'Montserrat, sans-serif', 
                         fontSize: '0.65rem', 
@@ -801,14 +819,14 @@ const ExperiencesPage = () => {
                         textTransform: 'uppercase', 
                         color: '#C5B398',
                         display: 'block',
-                        marginBottom: '0.5rem'
+                        marginBottom: '0.25rem'
                       }}>
                         The Sensation
                       </span>
                       <p style={{
                         fontFamily: '"Cormorant Garamond", serif',
-                        fontSize: '1rem',
-                        lineHeight: 1.6,
+                        fontSize: '0.95rem',
+                        lineHeight: 1.4,
                         color: '#5C615E',
                         marginBottom: 0,
                         fontStyle: 'italic'
@@ -818,7 +836,7 @@ const ExperiencesPage = () => {
                     </div>
 
                     {/* Result */}
-                    <div>
+                    <div style={{ position: 'relative' }}>
                       <span style={{ 
                         fontFamily: 'Montserrat, sans-serif', 
                         fontSize: '0.65rem', 
@@ -826,44 +844,39 @@ const ExperiencesPage = () => {
                         textTransform: 'uppercase', 
                         color: '#C5B398',
                         display: 'block',
-                        marginBottom: '0.5rem'
+                        marginBottom: '0.25rem'
                       }}>
                         The Result
                       </span>
                       <p style={{
                         fontFamily: '"Cormorant Garamond", serif',
-                        fontSize: '1rem',
-                        lineHeight: 1.6,
+                        fontSize: '0.95rem',
+                        lineHeight: 1.4,
                         color: '#5C615E',
                         marginBottom: 0
                       }}>
                         {item.result}
                       </p>
-                    </div>
-                  </div>
 
-                  {/* Impulse Buy Button */}
-                    <div style={{ marginTop: '2rem', display: 'flex', flexDirection: 'row', alignItems: 'center', gap: '1rem', flexWrap: 'wrap' }}>
-                      {/* Payment Hidden for Launch
-                      <Button 
-                        onClick={(e) => handleAcquire(e, item)}
-                        style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}
-                      >
-                        {paymentMethod === 'apple' ? 'Pay with  Pay' : 
-                         paymentMethod === 'google' ? 'Pay with G Pay' : 
-                         'Purchase Experience'}
-                      </Button>
-                      */}
-                      
-                      <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+                      {/* Inline Button (placed bottom-right of 'The Result') */}
+                      <div style={{ 
+                        display: 'flex', 
+                        justifyContent: 'flex-end', 
+                        marginTop: '1rem' 
+                      }}>
                         <Button 
                           onClick={(e) => {
-                          e.stopPropagation();
-                          handleCardClick(item.id);
-                        }}
-                      >
-                        Reserve
+                            e.stopPropagation();
+                            handleCardClick(item.id);
+                          }}
+                          style={{ 
+                            padding: '0.5rem 1.25rem',
+                            fontSize: '0.7rem' 
+                          }}
+                        >
+                          Reserve
                         </Button>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -1067,7 +1080,7 @@ const ExperiencesPage = () => {
                   </div>
 
                   {/* Body Content */}
-                  <div>
+                  <div style={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
                     {/* Narrative */}
                     <div style={{ marginBottom: '1rem' }}>
                       <p style={{
@@ -1084,7 +1097,7 @@ const ExperiencesPage = () => {
                     {/* Sensation & Result - Compact */}
                     {(item.sensation || item.result) && (
                       <div style={{ 
-                        marginTop: '1rem',
+                        marginTop: 'auto',
                         paddingTop: '1rem',
                         borderTop: '1px dashed rgba(197, 179, 152, 0.2)',
                         display: 'flex',
@@ -1117,7 +1130,7 @@ const ExperiencesPage = () => {
                           </div>
                         )}
                         {item.result && (
-                          <div>
+                          <div style={{ position: 'relative' }}>
                             <span style={{ 
                               fontFamily: 'Montserrat, sans-serif', 
                               fontSize: '0.65rem', 
@@ -1138,35 +1151,30 @@ const ExperiencesPage = () => {
                             }}>
                               {item.result}
                             </p>
+
+                            {/* Inline Button (placed bottom-right of 'The Result') */}
+                            <div style={{ 
+                              display: 'flex', 
+                              justifyContent: 'flex-end', 
+                              marginTop: '1rem' 
+                            }}>
+                              <Button 
+                                onClick={(e) => {
+                                  e.stopPropagation();
+                                  handleCardClick(item.id);
+                                }}
+                                style={{ 
+                                  padding: '0.5rem 1.25rem',
+                                  fontSize: '0.7rem' 
+                                }}
+                              >
+                                Reserve
+                              </Button>
+                            </div>
                           </div>
                         )}
                       </div>
                     )}
-                  </div>
-                  
-                  {/* Impulse Buy Button */}
-                  <div style={{ marginTop: '2rem', display: 'flex', flexDirection: 'row', alignItems: 'center', gap: '1rem', flexWrap: 'wrap' }}>
-                    {/* Payment Hidden for Launch
-                    <Button 
-                      onClick={(e) => handleAcquire(e, item)}
-                      style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}
-                    >
-                      {paymentMethod === 'apple' ? 'Pay with  Pay' : 
-                       paymentMethod === 'google' ? 'Pay with G Pay' : 
-                       'Purchase Experience'}
-                    </Button>
-                    */}
-                    
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-                      <Button 
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          handleCardClick(item.id);
-                        }}
-                      >
-                        Reserve
-                        </Button>
-                    </div>
                   </div>
                 </div>
               );
