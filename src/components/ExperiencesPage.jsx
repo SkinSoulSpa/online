@@ -559,7 +559,7 @@ const ExperiencesPage = () => {
                           {item.sensation}
                         </p>
                       </div>
-                      <div>
+                      <div style={{ position: 'relative' }}>
                         <span style={{ 
                           fontFamily: 'Montserrat, sans-serif', 
                           fontSize: '0.7rem', 
@@ -581,31 +581,26 @@ const ExperiencesPage = () => {
                         }}>
                           {item.result}
                         </p>
-                      </div>
-                    </div>
-                    
-                    {/* Impulse Buy Button */}
-                    <div style={{ marginTop: '2rem', display: 'flex', flexDirection: 'row', alignItems: 'center', gap: '1rem', flexWrap: 'wrap' }}>
-                      {/* Payment Hidden for Launch
-                      <Button 
-                        onClick={(e) => handleAcquire(e, item)}
-                        style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}
-                      >
-                        {paymentMethod === 'apple' ? 'Pay with  Pay' : 
-                         paymentMethod === 'google' ? 'Pay with G Pay' : 
-                         'Purchase Experience'}
-                      </Button>
-                      */}
-                      
-                      <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-                        <Button 
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            handleCardClick(item.id);
-                          }}
-                        >
-                          Reserve
-                        </Button>
+                        
+                        {/* Inline Button (placed bottom-right of 'The Result') */}
+                        <div style={{ 
+                          display: 'flex', 
+                          justifyContent: isMobile ? 'flex-start' : 'flex-end', 
+                          marginTop: '1.5rem' 
+                        }}>
+                          <Button 
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              handleCardClick(item.id);
+                            }}
+                            style={{ 
+                              padding: '0.6rem 1.5rem',
+                              fontSize: '0.75rem' 
+                            }}
+                          >
+                            Reserve
+                          </Button>
+                        </div>
                       </div>
                     </div>
                   </div>
