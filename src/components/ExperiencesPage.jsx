@@ -535,10 +535,17 @@ const ExperiencesPage = () => {
                       gridTemplateColumns: '1fr', 
                       gap: '1rem',
                       marginTop: 'auto', // Push to bottom if space allows
-                      borderTop: '1px solid rgba(197, 179, 152, 0.2)',
-                      paddingTop: '1rem'
+                      paddingTop: '0.5rem'
                     }}>
-                      <details style={{ cursor: 'pointer', outline: 'none' }}>
+                      <details style={{ 
+                        cursor: 'pointer', 
+                        outline: 'none',
+                        border: '1px solid rgba(197, 179, 152, 0.4)',
+                        borderRadius: '4px',
+                        padding: '0.75rem',
+                        backgroundColor: 'transparent',
+                        transition: 'all 0.3s ease'
+                      }}>
                         <summary style={{ 
                           fontFamily: 'Montserrat, sans-serif', 
                           fontSize: '0.75rem', 
@@ -549,16 +556,12 @@ const ExperiencesPage = () => {
                           alignItems: 'center',
                           justifyContent: 'space-between',
                           userSelect: 'none',
-                          listStyle: 'none',
-                          padding: '0.5rem',
-                          backgroundColor: 'rgba(197, 179, 152, 0.05)',
-                          borderRadius: '4px',
-                          border: '1px solid rgba(197, 179, 152, 0.2)'
+                          listStyle: 'none'
                         }}>
                           The Sensation & Result
                           <span style={{ fontSize: '1rem', fontWeight: 'bold' }}>+</span>
                         </summary>
-                        <div style={{ marginTop: '1rem', display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr', gap: '1rem', padding: '0 0.5rem' }}>
+                        <div style={{ marginTop: '1.25rem', display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr', gap: '2.5rem', padding: '0.5rem 0' }}>
                           <div>
                             <span style={{ 
                               fontFamily: 'Montserrat, sans-serif', 
@@ -822,10 +825,17 @@ const ExperiencesPage = () => {
                       gridTemplateColumns: '1fr', 
                       gap: '1rem',
                       marginTop: 'auto', // Push to bottom if space allows
-                      borderTop: '1px solid rgba(197, 179, 152, 0.2)',
-                      paddingTop: '1rem'
+                      paddingTop: '0.5rem'
                     }}>
-                      <details style={{ cursor: 'pointer', outline: 'none' }}>
+                      <details style={{ 
+                        cursor: 'pointer', 
+                        outline: 'none',
+                        border: '1px solid rgba(197, 179, 152, 0.4)',
+                        borderRadius: '4px',
+                        padding: '0.75rem',
+                        backgroundColor: 'transparent',
+                        transition: 'all 0.3s ease'
+                      }}>
                         <summary style={{ 
                           fontFamily: 'Montserrat, sans-serif', 
                           fontSize: '0.75rem', 
@@ -836,16 +846,12 @@ const ExperiencesPage = () => {
                           alignItems: 'center',
                           justifyContent: 'space-between',
                           userSelect: 'none',
-                          listStyle: 'none',
-                          padding: '0.5rem',
-                          backgroundColor: 'rgba(197, 179, 152, 0.05)',
-                          borderRadius: '4px',
-                          border: '1px solid rgba(197, 179, 152, 0.2)'
+                          listStyle: 'none'
                         }}>
                           The Sensation & Result
                           <span style={{ fontSize: '1rem', fontWeight: 'bold' }}>+</span>
                         </summary>
-                        <div style={{ marginTop: '1rem', display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr', gap: '1rem', padding: '0 0.5rem' }}>
+                        <div style={{ marginTop: '1.25rem', display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr', gap: '2.5rem', padding: '0.5rem 0' }}>
                           <div>
                             <span style={{ 
                               fontFamily: 'Montserrat, sans-serif', 
@@ -1134,13 +1140,20 @@ const ExperiencesPage = () => {
                     {(item.sensation || item.result) && (
                       <div style={{ 
                         marginTop: 'auto',
-                        paddingTop: '1rem',
-                        borderTop: '1px dashed rgba(197, 179, 152, 0.2)',
+                        paddingTop: '0.5rem',
                         display: 'flex',
                         flexDirection: 'column',
                         gap: '0.75rem'
                       }}>
-                        <details style={{ cursor: 'pointer', outline: 'none' }}>
+                        <details style={{ 
+                          cursor: 'pointer', 
+                          outline: 'none',
+                          border: '1px solid rgba(197, 179, 152, 0.4)',
+                          borderRadius: '4px',
+                          padding: '0.75rem',
+                          backgroundColor: 'transparent',
+                          transition: 'all 0.3s ease'
+                        }}>
                           <summary style={{ 
                             fontFamily: 'Montserrat, sans-serif', 
                             fontSize: '0.75rem', 
@@ -1151,16 +1164,12 @@ const ExperiencesPage = () => {
                             alignItems: 'center',
                             justifyContent: 'space-between',
                             userSelect: 'none',
-                            listStyle: 'none',
-                            padding: '0.5rem',
-                            backgroundColor: 'rgba(197, 179, 152, 0.05)',
-                            borderRadius: '4px',
-                            border: '1px solid rgba(197, 179, 152, 0.2)'
+                            listStyle: 'none'
                           }}>
                             The Sensation & Result
                             <span style={{ fontSize: '1rem', fontWeight: 'bold' }}>+</span>
                           </summary>
-                          <div style={{ marginTop: '1rem', display: 'flex', flexDirection: 'column', gap: '1rem', padding: '0 0.5rem' }}>
+                          <div style={{ marginTop: '1.25rem', display: 'flex', flexDirection: 'column', gap: '2.5rem', padding: '0.5rem 0' }}>
                             {item.sensation && (
                               <div>
                                 <span style={{ 
