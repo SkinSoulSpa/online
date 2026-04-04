@@ -143,6 +143,19 @@ a, button {
   }
 }
 
+/* Artisan Modal Button Specific */
+.artisan-modal-btn {
+  color: $color-accent-rich;
+  
+  &:hover {
+    color: $color-bg !important;
+    
+    & > span {
+      color: $color-bg !important;
+    }
+  }
+}
+
 /* Navigation Visibility Control */
 .responsive-nav {
   padding: 2.5rem 4rem !important;

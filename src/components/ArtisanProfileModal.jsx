@@ -292,8 +292,8 @@ const ArtisanProfileModal = ({ artisan, isOpen, onClose }) => {
                   onClose();
                   navigate('/reservations', { state: { artisan: artisan.id } });
                 }}
+                className="artisan-modal-btn"
                 style={{
-                 color: '#A89675',
                  borderColor: '#C5B398',
                  fontSize: '0.9rem',
                  padding: '1rem 3rem'
