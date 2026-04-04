@@ -370,6 +370,7 @@ const ExperiencesPage = () => {
                   className="experience-card-item"
                   onMouseEnter={() => !isMobile && setHoveredId(item.id)}
                   onMouseLeave={() => !isMobile && setHoveredId(null)}
+                  onClick={() => handleCardClick(item)}
                   style={{ 
                     backgroundColor: '#FFFFFF',
                     borderRadius: '1rem', 
@@ -381,7 +382,8 @@ const ExperiencesPage = () => {
                     overflow: 'hidden',
                     display: 'flex',
                     flexDirection: isMobile ? 'column' : 'row',
-                    alignItems: 'stretch'
+                    alignItems: 'stretch',
+                    cursor: 'pointer'
                   }}
                 >
                   {/* Image Section (Mobile: Top, Desktop: Right) */}
@@ -742,7 +744,8 @@ const ExperiencesPage = () => {
                     display: 'flex',
                     flexDirection: 'column',
                     justifyContent: 'space-between',
-                    boxShadow: '0 5px 15px rgba(0,0,0,0.02)'
+                    boxShadow: '0 5px 15px rgba(0,0,0,0.02)',
+                    cursor: 'pointer'
                   }}
                   onMouseEnter={(e) => {
                     e.currentTarget.style.transform = 'translateY(-5px)';
@@ -754,6 +757,7 @@ const ExperiencesPage = () => {
                     e.currentTarget.style.boxShadow = '0 5px 15px rgba(0,0,0,0.02)';
                     e.currentTarget.style.borderColor = 'rgba(197, 179, 152, 0.2)';
                   }}
+                  onClick={() => handleCardClick(item)}
                 >
                   {/* Header */}
                   <div style={{
@@ -1057,7 +1061,8 @@ const ExperiencesPage = () => {
                     display: 'flex',
                     flexDirection: 'column',
                     justifyContent: 'space-between',
-                    boxShadow: '0 5px 15px rgba(0,0,0,0.02)'
+                    boxShadow: '0 5px 15px rgba(0,0,0,0.02)',
+                    cursor: 'pointer'
                   }}
                   onMouseEnter={(e) => {
                     e.currentTarget.style.transform = 'translateY(-3px)';
@@ -1069,6 +1074,7 @@ const ExperiencesPage = () => {
                     e.currentTarget.style.boxShadow = '0 5px 15px rgba(0,0,0,0.02)';
                     e.currentTarget.style.borderColor = 'rgba(197, 179, 152, 0.2)';
                   }}
+                  onClick={() => handleCardClick(item)}
                 >
                   {/* Header */}
                   <div style={{
