@@ -214,8 +214,8 @@ const ClientStories = () => {
 
   const ReviewCard = ({ review }) => (
     <div style={{
-      flex: '0 0 auto',
-      width: '100%', // Take full width of the embla slide
+      flex: '1', /* Use flex: 1 so both cards in a column stretch to fill the height evenly */
+      width: '100%',
       backgroundColor: '#FFFFFF',
       border: '1px solid rgba(197, 179, 152, 0.2)',
       borderRadius: '2px',
@@ -224,8 +224,7 @@ const ClientStories = () => {
       flexDirection: 'column',
       justifyContent: 'space-between',
       boxShadow: '0 4px 20px rgba(0,0,0,0.02)',
-      height: 'auto',
-      minHeight: '100%',
+      height: '100%', /* Ensure card takes full height of its flex slot */
       boxSizing: 'border-box'
     }}>
       <div style={{ marginBottom: '2rem', flexGrow: 1 }}>
@@ -281,9 +280,9 @@ const ClientStories = () => {
           }
           .embla__container {
             display: flex;
-            gap: 2rem;
-            padding: 1rem 0;
             touch-action: pan-y pinch-zoom;
+            margin-left: -2rem; /* Offset the gap for the first slide */
+            padding: 1rem 0; /* Add top/bottom padding to prevent shadow clipping */
           }
           .embla__slide {
             flex: 0 0 auto;
@@ -292,6 +291,7 @@ const ClientStories = () => {
             display: flex;
             flex-direction: column;
             gap: 2rem;
+            padding-left: 2rem; /* Add gap as padding to each slide instead of container gap */
           }
           .embla-button {
             display: flex;
@@ -333,11 +333,12 @@ const ClientStories = () => {
           }
           @media (max-width: 768px) {
             .embla__container {
-              gap: 1.5rem;
+              margin-left: -1.5rem;
             }
             .embla__slide {
               width: 320px;
               gap: 1.5rem;
+              padding-left: 1.5rem;
             }
           }
         `}
