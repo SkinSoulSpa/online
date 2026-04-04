@@ -35,18 +35,18 @@ const ClientStories = () => {
         }
       );
 
-      // Reviews Stagger Animation
-      gsap.fromTo(".review-card",
+      // Marquee fade in
+      gsap.fromTo(reviewsRef.current,
         { y: 50, opacity: 0 },
         {
           y: 0,
           opacity: 1,
-          stagger: 0.2,
           duration: 1,
+          delay: 0.2,
           ease: "power3.out",
           scrollTrigger: {
-            trigger: reviewsRef.current,
-            start: "top 85%",
+            trigger: sectionRef.current,
+            start: "top 80%",
           }
         }
       );
@@ -58,37 +58,81 @@ const ClientStories = () => {
   const reviews = [
     {
       id: 1,
-      quote: "It not only nurtured my skin but also nourished my soul. The treatment rooms are a sanctuary of serenity... Soft lighting, calming scents, and plush linens created an ambiance that allowed me to completely unwind.",
-      attribution: "Agnes"
+      quote: "Skin Soul Spa is hands down the best facial I have ever had. The facilities are spotless, the team are very polite and professional, and the treatment was incredibly thorough. If you are in Singapore, this is the place to come! It is great value for money, and you will leave looking better than when you walked in.",
+      attribution: "Stephanie O."
     },
     {
       id: 2,
-      quote: "Both staff Karen & Shelbee were very attentive and friendly. The whole atmosphere was very comfortable and welcoming. Karen was my beautician who did my facial. She was meticulous and my skin issue was addressed accordingly to the facial tailor for me. Both my boyfriend and I had a great time here! Highly recommended!",
-      attribution: "Jessica Loo"
+      quote: "The facial was an incredibly relaxing experience, with a soothing ambience and attentive service. The treatment left my skin feeling rejuvenated and glowing, thanks to a combination of exfoliation, hydration, and targeted mask treatments. Overall, it was luxurious and refreshing for both my skin and my mind. Would recommend it if anyone wants to relax and see results.",
+      attribution: "DNZK"
     },
     {
       id: 3,
-      quote: "I have been trusting Freya’s recommendations for many years. She is experienced and gives professional advice. The overall experience is awesome... and importantly, no pressure.",
-      attribution: "Tee Wei"
+      quote: "Nestled conveniently next to Isetan, this oasis offers a delightful atmosphere and exceptionally comfortable beds. After indulging in the hydrating facial, my skin radiates with a healthy glow. My therapist is incredibly professional and gentle, making it easy for me to drift off to sleep during my treatments. It's truly a rejuvenating experience! Highly recommend!!",
+      attribution: "Hyun Joo Lee"
+    },
+    {
+      id: 4,
+      quote: "Highly recommend this service - I’ve been coming here for years for my extraction, hydrating facial treatments, and facial massages. I always count on the therapists here, like Freya and Shelbee! Thank you for keeping my skin in order and for a super relaxing time, each time ❤️",
+      attribution: "Caryl Wong"
+    },
+    {
+      id: 5,
+      quote: "My husband and I are on our 2nd package here, and we treat ourselves to a facial every month. Fantastic service in a very relaxing environment with a wide range of facials available and staff who are very caring and attentive.",
+      attribution: "Kazzie"
+    },
+    {
+      id: 6,
+      quote: "This was more than a facial, it was a full sensory escape. I drifted off to sleep and woke up with plump, glowing skin. Highly recommend!",
+      attribution: "Jon"
+    },
+    {
+      id: 7,
+      quote: "Extremely relaxing experience. From my first to 4th time, they have not disappointed. All the therapists are extremely meticulous and consistent.",
+      attribution: "John Seah"
+    },
+    {
+      id: 8,
+      quote: "Been coming here for years, and the beauticians are always friendly and provide recommendations for my skin type. Facials are always comfortable, and my skin feels amazing post-facial. Highly recommended! Rooms are very clean and have a nice fragrance. Staff are very knowledgeable :)",
+      attribution: "Mark Lee"
+    },
+    {
+      id: 9,
+      quote: "I had an amazing facial at Skin Soul Spa! The staff was very knowledgeable and friendly. She was really patient and recommended some remedies/things not to do regarding my skin type. The music playing in the background + facial I was doing was sooo soothing and calming that I fell asleep…highly recommended facial spa ♥️",
+      attribution: "Sofea Shah"
+    },
+    {
+      id: 10,
+      quote: "Had an enjoyable and relaxing experience at Skin Soul Spa :) The ambience and services were amazing! The staff were very helpful in teaching me more about my skin type as well as recommending suitable facial treatments! Definitely recommend Skin Soul Spa 💕",
+      attribution: "Ashley"
+    },
+    {
+      id: 11,
+      quote: "Delightful atmosphere and the most professional beauticians!! They make the effort to explain the process every step of the way. Hands down the best facial experience 🤩😍",
+      attribution: "Alethea Lee"
+    },
+    {
+      id: 12,
+      quote: "Really relaxing environment and a great series of targeted treatments that left my skin rejuvenated and glowing. Definitely would recommend and come back again.",
+      attribution: "Aerin"
     }
   ];
+
+  const row1 = reviews.slice(0, 6);
+  const row2 = reviews.slice(6, 12);
 
   const RatingDisplay = () => {
     // Random shimmer effect
     const shimmerRef = useRef(null);
-    // Use a unique ref for the timeline to ensure independent control
     const timelineRef = useRef(null);
 
     useEffect(() => {
       const el = shimmerRef.current;
       if (!el) return;
 
-      // Generate truly random delays for each instance
-      // The key is to make sure these are calculated inside the effect instance
-      const initialDelay = Math.random() * 2; // Start between 0-2s
-      const repeatDelay = 2 + Math.random() * 3; // Wait 2-5s between shimmers
+      const initialDelay = Math.random() * 2;
+      const repeatDelay = 2 + Math.random() * 3;
       
-      // Kill any existing timeline
       if (timelineRef.current) {
         timelineRef.current.kill();
       }
@@ -114,49 +158,126 @@ const ClientStories = () => {
           timelineRef.current.kill();
         }
       };
-    }, []); // Empty dependency array means this runs once on mount per component instance
+    }, []);
 
     return (
-      <div style={{ marginTop: '1.5rem', opacity: 0.9 }}>
+      <div style={{ opacity: 0.9 }}>
         <span 
           ref={shimmerRef}
           style={{
             fontFamily: '"Tenor Sans", sans-serif',
-            fontSize: '1.5rem',
+            fontSize: '1.25rem',
             color: '#BFA475',
             background: 'linear-gradient(90deg, #BFA475 0%, #FFF8E7 50%, #BFA475 100%)',
             backgroundSize: '200% auto',
-            backgroundPosition: '-100% center', // Start off-screen
+            backgroundPosition: '-100% center',
             backgroundClip: 'text',
             WebkitBackgroundClip: 'text',
             WebkitTextFillColor: 'transparent',
             display: 'inline-block'
           }}
         >
-          5.0
+          ★★★★★
         </span>
       </div>
     );
   };
 
+  const ReviewCard = ({ review }) => (
+    <div style={{
+      flex: '0 0 auto',
+      width: isMobile ? '320px' : '420px',
+      backgroundColor: '#FFFFFF',
+      border: '1px solid rgba(197, 179, 152, 0.2)',
+      borderRadius: '2px',
+      padding: isMobile ? '2rem' : '2.5rem',
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'space-between',
+      marginRight: isMobile ? '1.5rem' : '2rem',
+      boxShadow: '0 4px 20px rgba(0,0,0,0.02)',
+      height: 'auto',
+      minHeight: '100%',
+      boxSizing: 'border-box'
+    }}>
+      <div style={{ marginBottom: '2rem', flexGrow: 1 }}>
+        <p style={{
+          fontFamily: '"Cormorant Garamond", serif',
+          fontSize: isMobile ? '1.1rem' : '1.25rem',
+          lineHeight: 1.6,
+          color: '#2C332E',
+          margin: 0,
+          fontStyle: 'italic'
+        }}>
+          "{review.quote}"
+        </p>
+      </div>
+      <div style={{ 
+        display: 'flex', 
+        alignItems: 'center', 
+        justifyContent: 'space-between',
+        borderTop: '1px solid rgba(197, 179, 152, 0.2)',
+        paddingTop: '1.5rem'
+      }}>
+        <h4 style={{
+          fontFamily: '"Montserrat", sans-serif',
+          fontSize: '0.75rem',
+          fontWeight: 600,
+          letterSpacing: '0.15em',
+          textTransform: 'uppercase',
+          color: '#5C615E',
+          margin: 0
+        }}>
+          {review.attribution}
+        </h4>
+        <RatingDisplay />
+      </div>
+    </div>
+  );
+
   return (
     <section ref={sectionRef} style={{
       width: '100%',
-      padding: isMobile ? '6rem 1.5rem' : '12rem 2rem',
+      padding: isMobile ? '6rem 0' : '10rem 0',
       backgroundColor: 'transparent',
       color: '#2C332E',
       position: 'relative',
       zIndex: 2,
-      boxSizing: 'border-box'
+      overflow: 'hidden'
     }}>
+      <style>
+        {`
+          @keyframes scrollLeft {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+          }
+          @keyframes scrollRight {
+            0% { transform: translateX(-50%); }
+            100% { transform: translateX(0); }
+          }
+          .marquee-container {
+            display: flex;
+            width: max-content;
+            animation: scrollLeft 60s linear infinite;
+          }
+          .marquee-container.reverse {
+            animation: scrollRight 60s linear infinite;
+          }
+          .marquee-wrapper:hover .marquee-container {
+            animation-play-state: paused;
+          }
+        `}
+      </style>
+
       <div style={{
         maxWidth: '1200px',
-        margin: '0 auto'
+        margin: '0 auto',
+        padding: '0 2rem'
       }}>
         {/* Header */}
         <div ref={headerRef} style={{
           textAlign: 'center',
-          marginBottom: '6rem'
+          marginBottom: '4rem'
         }}>
           <h2 style={{
             fontFamily: '"Tenor Sans", sans-serif',
@@ -179,69 +300,35 @@ const ClientStories = () => {
             Quiet Confidence. We let our guests speak for us.
           </p>
         </div>
+      </div>
 
-        {/* Reviews Grid */}
-        <div ref={reviewsRef} style={{
-          display: 'grid',
-          gridTemplateColumns: isMobile ? '1fr' : 'repeat(3, 1fr)',
-          gap: isMobile ? '4rem' : '5rem',
-          alignItems: 'start' // Ensure columns start at the top
-        }}>
-          {reviews.map((review, index) => (
-            <div key={review.id} className="review-card" style={{
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
-              textAlign: 'center',
-              height: '100%' // Ensure full height for flex distribution
-            }}>
-              
-              <div style={{ flex: 1, display: 'flex', alignItems: 'flex-start' }}>
-                <p style={{
-                  fontFamily: '"Cormorant Garamond", serif',
-                  fontSize: isMobile ? '1.2rem' : '1.4rem',
-                  lineHeight: 1.8,
-                  color: '#2C332E',
-                  margin: 0,
-                  fontStyle: 'italic',
-                  maxWidth: '90%'
-                }}>
-                  "{review.quote}"
-                </p>
-              </div>
+      {/* Marquee Wrapper */}
+      <div ref={reviewsRef} className="marquee-wrapper" style={{ position: 'relative', width: '100%' }}>
+        
+        {/* Fades for desktop to make it look smooth */}
+        {!isMobile && (
+          <>
+            <div style={{ position: 'absolute', left: 0, top: 0, bottom: 0, width: '150px', background: 'linear-gradient(to right, #FAF9F6, transparent)', zIndex: 10, pointerEvents: 'none' }} />
+            <div style={{ position: 'absolute', right: 0, top: 0, bottom: 0, width: '150px', background: 'linear-gradient(to left, #FAF9F6, transparent)', zIndex: 10, pointerEvents: 'none' }} />
+          </>
+        )}
 
-              <div style={{ 
-                display: 'flex', 
-                flexDirection: 'column', 
-                alignItems: 'center',
-                width: '100%',
-                marginTop: '1.5rem' // Ensure consistent spacing from text
-              }}>
-                <RatingDisplay />
-
-                <div style={{
-                  width: '40px',
-                  height: '1px',
-                  backgroundColor: '#BFA475',
-                  margin: '1.5rem 0',
-                  opacity: 0.5
-                }} />
-
-                <h4 style={{
-                  fontFamily: '"Montserrat", sans-serif',
-                  fontSize: '0.75rem',
-                  fontWeight: 500,
-                  letterSpacing: '0.2em',
-                  textTransform: 'uppercase',
-                  color: '#5C615E',
-                  margin: 0
-                }}>
-                  {review.attribution}
-                </h4>
-              </div>
-            </div>
-          ))}
+        {/* Row 1 (Scrolls Left) */}
+        <div style={{ marginBottom: isMobile ? '1.5rem' : '2rem' }}>
+          <div className="marquee-container" style={{ alignItems: 'stretch' }}>
+            {row1.map(review => <ReviewCard key={`orig-r1-${review.id}`} review={review} />)}
+            {row1.map(review => <ReviewCard key={`dup-r1-${review.id}`} review={review} />)}
+          </div>
         </div>
+
+        {/* Row 2 (Scrolls Right) */}
+        <div>
+          <div className="marquee-container reverse" style={{ alignItems: 'stretch' }}>
+            {row2.map(review => <ReviewCard key={`orig-r2-${review.id}`} review={review} />)}
+            {row2.map(review => <ReviewCard key={`dup-r2-${review.id}`} review={review} />)}
+          </div>
+        </div>
+
       </div>
     </section>
   );
