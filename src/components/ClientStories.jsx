@@ -209,7 +209,7 @@ const ClientStories = () => {
           margin: 0,
           fontStyle: 'italic'
         }}>
-          "{review.quote}"
+          {review.quote}
         </p>
       </div>
       <div style={{ 
