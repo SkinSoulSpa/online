@@ -11,7 +11,7 @@ const Button = ({ children, onClick, href, className = '', style = {}, ...props 
       style={style}
       {...props}
     >
-      <span>{children}</span>
+      <span style={{ position: 'relative', zIndex: 2 }}>{children}</span>
     </Component>
   );
 };
