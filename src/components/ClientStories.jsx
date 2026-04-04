@@ -1,6 +1,8 @@
-import React, { useRef, useEffect, useState } from 'react';
+import React, { useRef, useEffect, useState, useCallback } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import useEmblaCarousel from 'embla-carousel-react';
+import AutoScroll from 'embla-carousel-auto-scroll';
 
 if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger);
@@ -12,6 +14,19 @@ const ClientStories = () => {
   const headerRef = useRef(null);
   const reviewsRef = useRef(null);
 
+  const [emblaRef, emblaApi] = useEmblaCarousel(
+    { loop: true, align: 'start', dragFree: true },
+    [AutoScroll({ playOnInit: false, speed: 1, stopOnInteraction: false, stopOnMouseEnter: true })]
+  );
+
+  const scrollPrev = useCallback(() => {
+    if (emblaApi) emblaApi.scrollPrev();
+  }, [emblaApi]);
+
+  const scrollNext = useCallback(() => {
+    if (emblaApi) emblaApi.scrollNext();
+  }, [emblaApi]);
+
   useEffect(() => {
     const checkMobile = () => setIsMobile(window.innerWidth < 768);
     window.addEventListener('resize', checkMobile);
@@ -19,6 +34,9 @@ const ClientStories = () => {
   }, []);
 
   useEffect(() => {
+    if (!emblaApi) return;
+    const autoScroll = emblaApi.plugins().autoScroll;
+
     const ctx = gsap.context(() => {
       // Header Animation
       gsap.fromTo(headerRef.current,
@@ -31,6 +49,8 @@ const ClientStories = () => {
           scrollTrigger: {
             trigger: sectionRef.current,
             start: "top 80%",
+            onEnter: () => autoScroll.play(),
+            onLeaveBack: () => autoScroll.stop(),
           }
         }
       );
@@ -53,7 +73,7 @@ const ClientStories = () => {
     }, sectionRef);
 
     return () => ctx.revert();
-  }, []);
+  }, [emblaApi]);
 
   const reviews = [
     {
@@ -117,9 +137,6 @@ const ClientStories = () => {
       attribution: "Aerin"
     }
   ];
-
-  const row1 = reviews.slice(0, 6);
-  const row2 = reviews.slice(6, 12);
 
   const RatingDisplay = () => {
     // Random shimmer effect
@@ -186,7 +203,7 @@ const ClientStories = () => {
   const ReviewCard = ({ review }) => (
     <div style={{
       flex: '0 0 auto',
-      width: isMobile ? '320px' : '420px',
+      width: '100%', // Take full width of the embla slide
       backgroundColor: '#FFFFFF',
       border: '1px solid rgba(197, 179, 152, 0.2)',
       borderRadius: '2px',
@@ -194,7 +211,6 @@ const ClientStories = () => {
       display: 'flex',
       flexDirection: 'column',
       justifyContent: 'space-between',
-      marginRight: isMobile ? '1.5rem' : '2rem',
       boxShadow: '0 4px 20px rgba(0,0,0,0.02)',
       height: 'auto',
       minHeight: '100%',
@@ -247,24 +263,49 @@ const ClientStories = () => {
     }}>
       <style>
         {`
-          @keyframes scrollLeft {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
+          .embla {
+            overflow: hidden;
+            width: 100%;
           }
-          @keyframes scrollRight {
-            0% { transform: translateX(-50%); }
-            100% { transform: translateX(0); }
-          }
-          .marquee-container {
+          .embla__container {
             display: flex;
-            width: max-content;
-            animation: scrollLeft 60s linear infinite;
+            gap: 2rem;
+            padding: 1rem 0;
+            touch-action: pan-y pinch-zoom;
           }
-          .marquee-container.reverse {
-            animation: scrollRight 60s linear infinite;
+          .embla__slide {
+            flex: 0 0 auto;
+            transform: translate3d(0, 0, 0);
+            width: 420px;
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
           }
-          .marquee-wrapper:hover .marquee-container {
-            animation-play-state: paused;
+          .embla-button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 3rem;
+            height: 3rem;
+            border-radius: 50%;
+            background-color: transparent;
+            border: 1px solid rgba(197, 179, 152, 0.4);
+            color: #A89675;
+            cursor: pointer;
+            transition: all 0.3s ease;
+          }
+          .embla-button:hover {
+            background-color: #FAF9F6;
+            border-color: #A89675;
+          }
+          @media (max-width: 768px) {
+            .embla__container {
+              gap: 1.5rem;
+            }
+            .embla__slide {
+              width: 320px;
+              gap: 1.5rem;
+            }
           }
         `}
       </style>
@@ -276,29 +317,55 @@ const ClientStories = () => {
       }}>
         {/* Header */}
         <div ref={headerRef} style={{
-          textAlign: 'center',
-          marginBottom: '4rem'
+          display: 'flex',
+          flexDirection: isMobile ? 'column' : 'row',
+          justifyContent: 'space-between',
+          alignItems: isMobile ? 'center' : 'flex-end',
+          marginBottom: '4rem',
+          textAlign: isMobile ? 'center' : 'left'
         }}>
-          <h2 style={{
-            fontFamily: '"Tenor Sans", sans-serif',
-            fontSize: isMobile ? '2rem' : '3.5rem',
-            color: '#2C332E',
-            margin: '0 0 1.5rem 0',
-            fontWeight: 400,
-            letterSpacing: '0.05em'
+          <div>
+            <h2 style={{
+              fontFamily: '"Tenor Sans", sans-serif',
+              fontSize: isMobile ? '2rem' : '3.5rem',
+              color: '#2C332E',
+              margin: '0 0 1rem 0',
+              fontWeight: 400,
+              letterSpacing: '0.05em'
+            }}>
+              Client Stories
+            </h2>
+            <p style={{
+              fontFamily: '"Cormorant Garamond", serif',
+              fontSize: isMobile ? '1.25rem' : '1.6rem',
+              fontStyle: 'italic',
+              color: '#5C615E',
+              margin: 0,
+              letterSpacing: '0.02em'
+            }}>
+              Quiet Confidence. We let our guests speak for us.
+            </p>
+          </div>
+
+          {/* Navigation Arrows */}
+          <div style={{
+            display: 'flex',
+            gap: '1rem',
+            marginTop: isMobile ? '2rem' : '0'
           }}>
-            Client Stories
-          </h2>
-          <p style={{
-            fontFamily: '"Cormorant Garamond", serif',
-            fontSize: isMobile ? '1.25rem' : '1.6rem',
-            fontStyle: 'italic',
-            color: '#5C615E',
-            margin: 0,
-            letterSpacing: '0.02em'
-          }}>
-            Quiet Confidence. We let our guests speak for us.
-          </p>
+            <button className="embla-button" onClick={scrollPrev} aria-label="Previous review">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round">
+                <line x1="19" y1="12" x2="5" y2="12"></line>
+                <polyline points="12 19 5 12 12 5"></polyline>
+              </svg>
+            </button>
+            <button className="embla-button" onClick={scrollNext} aria-label="Next review">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </button>
+          </div>
         </div>
       </div>
 
@@ -313,19 +380,22 @@ const ClientStories = () => {
           </>
         )}
 
-        {/* Row 1 (Scrolls Left) */}
-        <div style={{ marginBottom: isMobile ? '1.5rem' : '2rem' }}>
-          <div className="marquee-container" style={{ alignItems: 'stretch' }}>
-            {row1.map(review => <ReviewCard key={`orig-r1-${review.id}`} review={review} />)}
-            {row1.map(review => <ReviewCard key={`dup-r1-${review.id}`} review={review} />)}
-          </div>
-        </div>
-
-        {/* Row 2 (Scrolls Right) */}
-        <div>
-          <div className="marquee-container reverse" style={{ alignItems: 'stretch' }}>
-            {row2.map(review => <ReviewCard key={`orig-r2-${review.id}`} review={review} />)}
-            {row2.map(review => <ReviewCard key={`dup-r2-${review.id}`} review={review} />)}
+        <div className="embla" ref={emblaRef}>
+          <div className="embla__container">
+            {isMobile ? (
+              reviews.map(review => (
+                <div className="embla__slide" key={review.id}>
+                  <ReviewCard review={review} />
+                </div>
+              ))
+            ) : (
+              Array.from({ length: Math.ceil(reviews.length / 2) }).map((_, i) => (
+                <div className="embla__slide" key={`slide-${i}`}>
+                  <ReviewCard review={reviews[i * 2]} />
+                  {reviews[i * 2 + 1] && <ReviewCard review={reviews[i * 2 + 1]} />}
+                </div>
+              ))
+            )}
           </div>
         </div>
 
