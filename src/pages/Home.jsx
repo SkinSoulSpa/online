@@ -100,7 +100,7 @@ const Home = ({ isLoaded = true }) => {
           backgroundImage: `url(${heroBg})`,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
-          backgroundAttachment: 'fixed', // Creates a nice parallax effect
+          backgroundAttachment: isMobile ? 'scroll' : 'fixed', // Fixed causes issues on mobile (especially iOS)
           opacity: 0.7, // Higher opacity to let the luminous image shine on light background
         }} />
         
