@@ -15,16 +15,28 @@ const ClientStories = () => {
   const reviewsRef = useRef(null);
 
   const [emblaRef, emblaApi] = useEmblaCarousel(
-    { loop: true, align: 'start', dragFree: true },
+    { loop: true, align: 'start', dragFree: true, skipSnaps: false },
     [AutoScroll({ playOnInit: false, speed: 1, stopOnInteraction: false, stopOnMouseEnter: true })]
   );
 
   const scrollPrev = useCallback(() => {
-    if (emblaApi) emblaApi.scrollPrev();
+    if (emblaApi) {
+      emblaApi.scrollPrev();
+      const autoScroll = emblaApi.plugins().autoScroll;
+      if (autoScroll && autoScroll.isPlaying()) {
+        autoScroll.stop();
+      }
+    }
   }, [emblaApi]);
 
   const scrollNext = useCallback(() => {
-    if (emblaApi) emblaApi.scrollNext();
+    if (emblaApi) {
+      emblaApi.scrollNext();
+      const autoScroll = emblaApi.plugins().autoScroll;
+      if (autoScroll && autoScroll.isPlaying()) {
+        autoScroll.stop();
+      }
+    }
   }, [emblaApi]);
 
   useEffect(() => {
@@ -293,6 +305,27 @@ const ClientStories = () => {
             color: #A89675;
             cursor: pointer;
             transition: all 0.3s ease;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 20;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(4px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+          }
+          .embla-button--prev {
+            left: 1rem;
+          }
+          .embla-button--next {
+            right: 1rem;
+          }
+          @media (max-width: 768px) {
+            .embla-button--prev {
+              left: 0.5rem;
+            }
+            .embla-button--next {
+              right: 0.5rem;
+            }
           }
           .embla-button:hover {
             background-color: #FAF9F6;
@@ -348,35 +381,39 @@ const ClientStories = () => {
           </div>
 
           {/* Navigation Arrows */}
-          <div style={{
-            display: 'flex',
-            gap: '1rem',
-            marginTop: isMobile ? '2rem' : '0'
-          }}>
-            <button className="embla-button" onClick={scrollPrev} aria-label="Previous review">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round">
-                <line x1="19" y1="12" x2="5" y2="12"></line>
-                <polyline points="12 19 5 12 12 5"></polyline>
-              </svg>
-            </button>
-            <button className="embla-button" onClick={scrollNext} aria-label="Next review">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round">
-                <line x1="5" y1="12" x2="19" y2="12"></line>
-                <polyline points="12 5 19 12 12 19"></polyline>
-              </svg>
-            </button>
-          </div>
+          {!isMobile && (
+            <div style={{
+              display: 'flex',
+              gap: '1rem',
+              marginTop: isMobile ? '2rem' : '0'
+            }}>
+            </div>
+          )}
         </div>
       </div>
 
       {/* Marquee Wrapper */}
-      <div ref={reviewsRef} className="marquee-wrapper" style={{ position: 'relative', width: '100%' }}>
+      <div ref={reviewsRef} className="marquee-wrapper" style={{ position: 'relative', width: '100%', padding: isMobile ? '0' : '0 2rem' }}>
         
+        <button className="embla-button embla-button--prev" onClick={scrollPrev} aria-label="Previous review">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round">
+            <line x1="19" y1="12" x2="5" y2="12"></line>
+            <polyline points="12 19 5 12 12 5"></polyline>
+          </svg>
+        </button>
+
+        <button className="embla-button embla-button--next" onClick={scrollNext} aria-label="Next review">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round">
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+            <polyline points="12 5 19 12 12 19"></polyline>
+          </svg>
+        </button>
+
         {/* Fades for desktop to make it look smooth */}
         {!isMobile && (
           <>
-            <div style={{ position: 'absolute', left: 0, top: 0, bottom: 0, width: '150px', background: 'linear-gradient(to right, #FAF9F6, transparent)', zIndex: 10, pointerEvents: 'none' }} />
-            <div style={{ position: 'absolute', right: 0, top: 0, bottom: 0, width: '150px', background: 'linear-gradient(to left, #FAF9F6, transparent)', zIndex: 10, pointerEvents: 'none' }} />
+            <div style={{ position: 'absolute', left: '2rem', top: 0, bottom: 0, width: '150px', background: 'linear-gradient(to right, #FAF9F6, transparent)', zIndex: 10, pointerEvents: 'none' }} />
+            <div style={{ position: 'absolute', right: '2rem', top: 0, bottom: 0, width: '150px', background: 'linear-gradient(to left, #FAF9F6, transparent)', zIndex: 10, pointerEvents: 'none' }} />
           </>
         )}
 
@@ -389,10 +426,12 @@ const ClientStories = () => {
                 </div>
               ))
             ) : (
-              Array.from({ length: Math.ceil(reviews.length / 2) }).map((_, i) => (
+              // On desktop, we want 2 distinct rows rather than 1 tall row.
+              // We achieve this by splitting the reviews into two rows and mapping over each row to create a column of 2 cards
+              Array.from({ length: 6 }).map((_, i) => (
                 <div className="embla__slide" key={`slide-${i}`}>
-                  <ReviewCard review={reviews[i * 2]} />
-                  {reviews[i * 2 + 1] && <ReviewCard review={reviews[i * 2 + 1]} />}
+                  <ReviewCard review={reviews[i]} />
+                  <ReviewCard review={reviews[i + 6]} />
                 </div>
               ))
             )}
