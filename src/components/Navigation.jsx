@@ -64,7 +64,8 @@ const Navigation = () => {
         zIndex: 100,
         boxSizing: 'border-box',
         background: 'linear-gradient(to bottom, rgba(250, 249, 246, 0.8) 0%, transparent 100%)',
-        backdropFilter: 'blur(2px)'
+        backdropFilter: 'blur(2px)',
+        pointerEvents: 'none' // Let clicks pass through the nav container
       }} className="responsive-nav">
         {/* Logo */}
         <div 
@@ -76,7 +77,8 @@ const Navigation = () => {
             position: 'relative',
             zIndex: 102, // Above overlay
             display: 'flex',
-            alignItems: 'center'
+            alignItems: 'center',
+            pointerEvents: 'auto' // Re-enable clicks for logo
           }}
         >
           <img 
@@ -91,7 +93,7 @@ const Navigation = () => {
         </div>
 
         {/* Desktop Menu */}
-        <div className="desktop-menu" style={{ flexDirection: 'row', alignItems: 'center', gap: '2rem' }}>
+        <div className="desktop-menu" style={{ flexDirection: 'row', alignItems: 'center', gap: '2rem', pointerEvents: 'auto' }}>
           {menuItems.map((item, index) => {
             const isActive = location.pathname === item.path || (item.path !== '/' && location.pathname.startsWith(item.path));
             return (
@@ -174,7 +176,7 @@ const Navigation = () => {
           className="hamburger-btn" 
           onClick={toggleMenu} 
           aria-label="Menu"
-          style={{ background: 'none', border: 'none', cursor: 'pointer', padding: '10px', zIndex: 102 }}
+          style={{ background: 'none', border: 'none', cursor: 'pointer', padding: '10px', zIndex: 102, pointerEvents: 'auto' }}
         >
           <svg width="32" height="24" viewBox="0 0 32 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             {/* Top Wave */}
@@ -231,7 +233,7 @@ const Navigation = () => {
       >
         <div 
           ref={mobileMenuRef}
-          style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '2.5rem' }}
+          style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '2rem', marginTop: '5rem' }}
         >
           {menuItems.map((item, index) => {
             const isActive = location.pathname === item.path || (item.path !== '/' && location.pathname.startsWith(item.path));
@@ -248,7 +250,7 @@ const Navigation = () => {
               <div 
                 style={{
                   fontFamily: '"Tenor Sans", sans-serif',
-                  fontSize: '1.75rem', // Slightly refined size
+                  fontSize: '1.35rem', // Reduced from 1.75rem to fix size issue
                   color: isActive ? '#A89675' : '#2C332E',
                   marginBottom: '0.2rem',
                   textTransform: 'uppercase',
