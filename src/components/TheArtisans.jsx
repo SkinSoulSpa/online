@@ -5,6 +5,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import OrganicImagePlaceholder from './OrganicImagePlaceholder';
 import ErrorBoundary from './ErrorBoundary';
 import Button from './Button';
+import ArtisanProfileModal from './ArtisanProfileModal';
 import testImage from '../assets/test.png';
 import heroHands from '../assets/artisans.jpg';
 import trustImage from '../assets/trust.jpg';
@@ -36,6 +37,8 @@ const Section = ({ children, style, className, id }) => (
 const TheArtisans = () => {
   const [isMobile, setIsMobile] = useState(() => window.innerWidth < 768);
   const [activePortrait, setActivePortrait] = useState(null);
+  const [selectedArtisan, setSelectedArtisan] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -67,19 +70,54 @@ const TheArtisans = () => {
     return () => ctx.revert();
   }, []);
 
-  const handleCardClick = (id) => {
-    navigate('/reservations', { state: { artisan: id } });
-  };
-
   const artisans = [
     {
       id: 'freya',
       name: "Freya",
-      role: "Senior Artisan",
+      role: "Senior Beauty Therapist | 26 Years Experience | CIDESCO Certified",
       image: freyaImage,
       vibe: "Experienced & Trusted",
       quote: "\"I have been trusting her recommendations for many years.\"",
-      author: "Tee Wei"
+      author: "Tee Wei",
+      bio: "Freya brings 26 years of experience and a CIDESCO Diploma to her craft. She is known for her gentle touch, deep expertise, and ability to truly understand each client’s skin. Her approach is thoughtful and personalised, combining meticulous care with a calming presence that clients return to time and time again.",
+      testimonials: [
+        {
+          quote: "My skin has indeed improved a lot under her care.",
+          context: "On my monthly visit, Freya will always examine my skin conditions and recommend the best treatment for that day. She is very detailed and explains every step clearly.",
+          author: "Evelyn Koh"
+        },
+        {
+          quote: "I have been seeing her for many, many years.",
+          context: "Despite knowing my skin well, she still carefully assesses it each session and recommends the most suitable treatment. Her care is knowledgeable, attentive, and consistent.",
+          author: "Eileen Seah"
+        },
+        {
+          quote: "She listened to my concerns and tailored everything for my skin.",
+          context: "Freya is gentle, warm, and attentive. The extraction was painless, and my skin felt clean, smooth, and radiant after.",
+          author: "Nicole Tang"
+        },
+        {
+          quote: "My skin looked brighter with tighter pores and improved dark circles.",
+          context: "A calming and relaxing experience with visible results right after the treatment.",
+          author: "Sheena"
+        },
+        {
+          quote: "A top-notch spa experience with incredible attention to detail.",
+          context: "From soothing music to warm towels and thoughtful touches, every part of the experience felt luxurious and carefully curated.",
+          author: "Akira"
+        },
+        {
+          quote: "Perfect for first-timers with sensitive skin.",
+          context: "Freya patiently explained every step and used gentle products suited for delicate skin.",
+          author: "Christy Chua"
+        }
+      ],
+      signature: [
+        "Gentle yet effective",
+        "Deeply relaxing and restorative",
+        "Thoughtfully tailored to individual skin needs",
+        "Consistent, meticulous, and results-driven"
+      ]
     },
     {
       id: 'shelbee',
@@ -109,6 +147,12 @@ const TheArtisans = () => {
       author: "Jon"
     }
   ];
+
+  const handleCardClick = (id) => {
+    const artisan = artisans.find(a => a.id === id);
+    setSelectedArtisan(artisan);
+    setIsModalOpen(true);
+  };
 
   return (
     <>
@@ -362,7 +406,7 @@ const TheArtisans = () => {
                       fontWeight: 600,
                       textShadow: '0 2px 10px rgba(0,0,0,0.1)'
                     }}>
-                      Reserve
+                      Discover
                     </span>
                   </div>
                 </div>
@@ -514,6 +558,11 @@ const TheArtisans = () => {
         </div>
       </Section>
     </div>
+    <ArtisanProfileModal 
+      isOpen={isModalOpen}
+      onClose={() => setIsModalOpen(false)}
+      artisan={selectedArtisan}
+    />
     </>
   );
 };
