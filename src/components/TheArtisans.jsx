@@ -4,6 +4,7 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import OrganicImagePlaceholder from './OrganicImagePlaceholder';
 import ErrorBoundary from './ErrorBoundary';
+import Button from './Button';
 import testImage from '../assets/test.png';
 import heroHands from '../assets/artisans.jpg';
 import trustImage from '../assets/trust.jpg';
@@ -68,13 +69,7 @@ const TheArtisans = () => {
 
   const handleCardClick = (id) => {
     if (isMobile) {
-      if (activePortrait === id) {
-        navigate('/reservations', { state: { artisan: id } });
-      } else {
-        setActivePortrait(id);
-      }
-    } else {
-      navigate('/reservations', { state: { artisan: id } });
+      setActivePortrait(activePortrait === id ? null : id);
     }
   };
 
@@ -292,7 +287,7 @@ const TheArtisans = () => {
                   transition: 'transform 0.4s ease, box-shadow 0.4s ease',
                   transform: isActive ? 'translateY(-5px)' : 'none',
                   boxShadow: isActive ? '0 20px 40px rgba(197, 179, 152, 0.2)' : '0 5px 15px rgba(0,0,0,0.05)',
-                  cursor: 'pointer'
+                  cursor: isMobile ? 'pointer' : 'default'
                 }}
                 onMouseEnter={() => !isMobile && setActivePortrait(artisan.id)}
                 onMouseLeave={() => !isMobile && setActivePortrait(null)}
@@ -385,6 +380,20 @@ const TheArtisans = () => {
                   marginTop: '-2rem' // Overlap slightly
                 }}>
                   <div style={{ marginBottom: '1rem' }}>
+                    <Button 
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        navigate('/reservations', { state: { artisan: artisan.id } });
+                      }}
+                      style={{ 
+                        padding: '0.5rem 1.25rem',
+                        fontSize: '0.7rem',
+                        marginBottom: '1rem',
+                        display: 'inline-block'
+                      }}
+                    >
+                      Reserve
+                    </Button>
                     <h3 style={{
                       fontFamily: '"Tenor Sans", sans-serif',
                       fontSize: '2rem',
