@@ -11,7 +11,7 @@ const Button = ({ children, onClick, href, className = '', style = {}, ...props 
       style={style}
       {...props}
     >
-      {children}
+      <span>{children}</span>
     </Component>
   );
 };

@@ -105,16 +105,13 @@ const ExperiencesPage = () => {
     return () => ctx.revert();
   }, [activeTab]);
 
-  const handleCardClick = (id) => {
-    if (isMobile) {
-      if (hoveredId === id) {
-        navigate('/reservations');
-      } else {
-        setHoveredId(id);
-      }
-    } else {
-      navigate('/reservations');
-    }
+  const handleCardClick = (item) => {
+    // If they click the card or the Reserve button, navigate to reservations with the selected experience
+    navigate('/reservations', { 
+      state: { 
+        selectedExperience: item.title,
+      } 
+    });
   };
 
   const scrollToSection = (id) => {
@@ -534,14 +531,16 @@ const ExperiencesPage = () => {
                     </div>
 
                     {/* Sensation & Result Grid */}
-                    <div style={{ 
-                      display: 'grid', 
-                      gridTemplateColumns: '1fr', 
+                    <div style={{
+                      display: 'flex',
+                      flexDirection: 'column',
                       gap: '1rem',
                       marginTop: 'auto', // Push to bottom if space allows
                       paddingTop: '0.5rem'
                     }}>
-                      <details style={{ 
+                      <details 
+                        onClick={(e) => e.stopPropagation()}
+                        style={{ 
                         cursor: 'pointer', 
                         outline: 'none',
                         border: '1px solid rgba(197, 179, 152, 0.4)',
@@ -623,7 +622,7 @@ const ExperiencesPage = () => {
                         <Button 
                           onClick={(e) => {
                             e.stopPropagation();
-                            handleCardClick(item.id);
+                            handleCardClick(item);
                           }}
                           style={{ 
                             padding: '0.5rem 1.25rem',
@@ -816,7 +815,9 @@ const ExperiencesPage = () => {
                       marginTop: 'auto', // Push to bottom if space allows
                       paddingTop: '0.5rem'
                     }}>
-                      <details style={{ 
+                      <details 
+                        onClick={(e) => e.stopPropagation()}
+                        style={{ 
                         cursor: 'pointer', 
                         outline: 'none',
                         border: '1px solid rgba(197, 179, 152, 0.4)',
@@ -898,7 +899,7 @@ const ExperiencesPage = () => {
                         <Button 
                           onClick={(e) => {
                             e.stopPropagation();
-                            handleCardClick(item.id);
+                            handleCardClick(item);
                           }}
                           style={{ 
                             padding: '0.5rem 1.25rem',
@@ -1129,7 +1130,9 @@ const ExperiencesPage = () => {
                       marginTop: 'auto', // Push to bottom if space allows
                       paddingTop: '0.5rem'
                     }}>
-                      <details style={{ 
+                      <details 
+                        onClick={(e) => e.stopPropagation()}
+                        style={{ 
                         cursor: 'pointer', 
                         outline: 'none',
                         border: '1px solid rgba(197, 179, 152, 0.4)',
@@ -1211,7 +1214,7 @@ const ExperiencesPage = () => {
                         <Button 
                           onClick={(e) => {
                             e.stopPropagation();
-                            handleCardClick(item.id);
+                            handleCardClick(item);
                           }}
                           style={{ 
                             padding: '0.5rem 1.25rem',

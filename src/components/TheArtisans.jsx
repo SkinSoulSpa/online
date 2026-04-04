@@ -68,9 +68,7 @@ const TheArtisans = () => {
   }, []);
 
   const handleCardClick = (id) => {
-    if (isMobile) {
-      setActivePortrait(activePortrait === id ? null : id);
-    }
+    navigate('/reservations', { state: { artisan: id } });
   };
 
   const artisans = [
@@ -287,7 +285,7 @@ const TheArtisans = () => {
                   transition: 'transform 0.4s ease, box-shadow 0.4s ease',
                   transform: isActive ? 'translateY(-5px)' : 'none',
                   boxShadow: isActive ? '0 20px 40px rgba(197, 179, 152, 0.2)' : '0 5px 15px rgba(0,0,0,0.05)',
-                  cursor: isMobile ? 'pointer' : 'default'
+                  cursor: 'pointer'
                 }}
                 onMouseEnter={() => !isMobile && setActivePortrait(artisan.id)}
                 onMouseLeave={() => !isMobile && setActivePortrait(null)}
@@ -503,8 +501,7 @@ const TheArtisans = () => {
             We honour the trust you place in our hands with absolute discretion. Here, we protect your peace as fiercely as we protect your skin barrier, ensuring that your ritual remains a secret strictly between us.
           </p>
           
-          <button 
-            className="btn-shimmer" 
+          <Button 
             onClick={() => navigate('/reservations')}
             style={{
              color: '#FAF9F6',
@@ -513,7 +510,7 @@ const TheArtisans = () => {
              padding: '1rem 3rem'
           }}>
             Reserve Time With An Artisan
-          </button>
+          </Button>
         </div>
       </Section>
     </div>
