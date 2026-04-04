@@ -122,29 +122,121 @@ const TheArtisans = () => {
     {
       id: 'shelbee',
       name: "Shelbee",
-      role: "Senior Artisan",
+      role: "Senior Beauty Therapist | 20 Years Experience | ITEC Certified",
       image: shelbeeImage,
       vibe: "Attentive & Soothing",
       quote: "\"Very attentive to details... I was enveloped in an atmosphere of tranquillity.\"",
-      author: "Agnes & Arielle Dray"
+      author: "Agnes & Arielle Dray",
+      bio: "An ITEC-certified therapist with 20 years of experience, Shelbee is known for her gentle care, thoughtful attention to detail, and ability to make every client feel comfortable and well looked after. Her treatments are calming yet effective, combining personalised skincare advice with a reassuring touch that keeps clients returning time and time again.",
+      testimonials: [
+        {
+          quote: "Therapist Shelbee is the best in a professional approach who goes the extra mile and advises for longer term.",
+          context: "I have been her customer for years.",
+          author: "HY"
+        },
+        {
+          quote: "Been with her since her previous workplace, experienced, gentle and knowledgeable.",
+          context: "Excellent care and service, and I would definitely recommend my friends here.",
+          author: "Michelle"
+        },
+        {
+          quote: "What impressed me most was Shelbee's ability to tailor the treatment to my specific skin concerns.",
+          context: "The extraction was expertly done with minimal discomfort and redness, and my skin felt super soft, smooth, and pampered after.",
+          author: "Aerin Yap"
+        },
+        {
+          quote: "Had the most relaxing facial with Shelbee today! Best part is no redness & blotchiness after the facial.",
+          context: "This says a lot considering my skin is super sensitive.",
+          author: "Gaby"
+        },
+        {
+          quote: "Wow! My skin is so glowy, and not red after extraction??",
+          context: "Shelbee was wonderful, and the whole experience was thoroughly enjoyable.",
+          author: "Abigail Thio"
+        },
+        {
+          quote: "Shelbee was phenomenal, very gentle and had incredible expertise when it came to massaging, acupuncture points and the facial.",
+          context: "She explained every step, making it a relaxing and comfortable experience.",
+          author: "Jaime Yap"
+        }
+      ],
+      signature: [
+        "Gentle, calming, and reassuring",
+        "Thorough and highly attentive",
+        "Personalised to individual skin concerns",
+        "Knowledgeable, caring, and comfort-focused"
+      ]
     },
     {
       id: 'karen',
       name: "Karen",
-      role: "Senior Artisan",
+      role: "Senior Beauty Therapist | 23 Years Experience | CIBTAC Certified",
       image: karenImage,
       vibe: "Deeply Relaxing",
       quote: "\"My therapist Karen is very professional... I fell asleep under her care!\"",
-      author: "Carina Tan"
+      author: "Carina Tan",
+      bio: "With over 23 years of experience and a CIBTAC Diploma, Karen is known for her professionalism, steady expertise, and ability to make every client feel at ease. Her approach is thoughtful and results-focused, combining tailored care, practical skincare advice, and a gentle touch that keeps clients coming back for years.",
+      testimonials: [
+        {
+          quote: "Karen has been my go-to therapist for years.",
+          context: "She is very experienced and skilful, and always gives very good advice on maintaining my skin.",
+          author: "June"
+        },
+        {
+          quote: "I trust her to decide on which treatment my skin needs for each session.",
+          context: "Sessions with Karen are comfortable and relaxing, and I always appreciate her advice on how to take better care of my skin.",
+          author: "Kitty"
+        },
+        {
+          quote: "Karen always has a warm smile and makes the experience useful by attending to my exact facial needs at each session.",
+          context: "Whether it is to hydrate, massage or brighten my face, she tailors each treatment thoughtfully.",
+          author: "Constance Png"
+        },
+        {
+          quote: "Always professional, pleasant, patient and non-pushy.",
+          context: "I have been regularly going to Karen for facials for years.",
+          author: "Pamela Kow"
+        },
+        {
+          quote: "Karen was meticulous, and my skin issue was addressed according to the facial tailored for me.",
+          context: "The whole atmosphere was very comfortable and welcoming, and both my boyfriend and I had a great time here.",
+          author: "Jessica Loo"
+        },
+        {
+          quote: "Patient in explaining the products and treatments used.",
+          context: "The products were gentle and suitable for my sensitive, breakout-prone skin, and I signed up for a package after my visit.",
+          author: "Jayne Lai"
+        }
+      ],
+      signature: [
+        "Professional and highly experienced",
+        "Tailored to each session’s skin needs",
+        "Gentle, calming, and reassuring",
+        "Honest, patient, and non-pushy"
+      ]
     },
     {
       id: 'caris',
       name: "Caris",
-      role: "Senior Artisan",
+      role: "Senior Beauty Therapist | 22 Years Experience | Diploma in Professional Aesthetics",
       image: carisImage,
       vibe: "Gentle & Precise",
       quote: "\"It was a full sensory escape. I drifted off to sleep and woke up with plump, glowing skin.\"",
-      author: "Jon"
+      author: "Jon",
+      bio: "With 22 years of experience in the beauty industry, Caris brings a calm, knowledgeable, and attentive approach to every treatment. Known for her accommodating nature and gentle care, she creates a relaxing experience while tailoring each session to help clients feel comfortable, cared for, and confident in their skin.",
+      testimonials: [
+        {
+          quote: "Caris is very accommodating and knowledgeable.",
+          context: "The facial was pleasant and relaxing, and the environment felt clean and well-maintained.",
+          author: "Kellie Tam"
+        }
+      ],
+      signature: [
+        "Knowledgeable and reassuring",
+        "Pleasant, calming, and relaxing",
+        "Thoughtful and accommodating",
+        "Delivered in a clean and comfortable environment"
+      ]
     }
   ];
 

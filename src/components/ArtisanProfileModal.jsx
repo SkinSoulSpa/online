@@ -293,7 +293,7 @@ const ArtisanProfileModal = ({ artisan, isOpen, onClose }) => {
                   navigate('/reservations', { state: { artisan: artisan.id } });
                 }}
                 style={{
-                 color: '#FAF9F6',
+                 color: '#A89675',
                  borderColor: '#C5B398',
                  fontSize: '0.9rem',
                  padding: '1rem 3rem'
